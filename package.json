@@ -1,0 +1,15 @@
+{
+  "name": "gladys",
+  "version": "4.0.0",
+  "description": "Gladys 4",
+  "main": "index.js",
+  "scripts": {
+    "test": "cd server && npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@personal:GladysAssistant/gladys-4-playground.git"
+  },
+  "author": "Pierre-Gilles Leymarie",
+  "license": "MIT"
+}
