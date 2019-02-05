@@ -8,11 +8,13 @@
     "prettier": "prettier --write 'controllers/**/*.js' 'lib/**/*.js'",
     "eslint": "eslint controllers lib models migrations middlewares config utils test services index.js",
     "start": "nodemon index.js",
-    "jsdoc": "jsdoc lib/**/*.js"
+    "jsdoc": "jsdoc lib/**/*.js -d jsdoc",
+    "apidoc": "apidoc -i controllers/ -o apidoc/"
   },
   "author": "Pierre-Gilles Leymarie",
   "license": "MIT",
   "devDependencies": {
+    "apidoc": "^0.17.7",
     "eslint": "^5.13.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",

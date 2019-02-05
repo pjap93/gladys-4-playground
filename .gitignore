@@ -1,3 +1,5 @@
 node_modules
 gladys-development.db
 gladys-test.db
+apidoc
+jsdoc
