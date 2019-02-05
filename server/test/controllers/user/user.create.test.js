@@ -3,7 +3,7 @@ const request = require('supertest');
 describe('POST /user', () => {
   it('should create user', async () => {
     await request(TEST_BACKEND_APP)
-      .post('/user')
+      .post('/api/user')
       .send({
         firstname: 'Tony',
         lastname: 'Stark',
