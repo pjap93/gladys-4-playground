@@ -7,6 +7,18 @@ const schema = Joi.object().keys({
   password: Joi.string().min(8),
 });
 
+/**
+ * @private
+ * @description This function validate a user passed in parameters for create and returns the user cleaned
+ * @name validateCreate
+ * @param {Object} user - A new user.
+ * @param {string} user.firstname - The firstname of the user.
+ * @param {string} user.lastname - The lastname of the user.
+ * @param {string} user.email - The email of the user.
+ * @param {string} user.password - The password for his account (min 8 characters).
+ * @example
+ * validateCreate(user);
+ */
 function validateCreate(user) {
   const { error, value } = Joi.validate(user, schema, { abortEarly: true, stripUnknown: true, presence: 'required' });
 
@@ -17,6 +29,18 @@ function validateCreate(user) {
   return value;
 }
 
+/**
+ * @private
+ * @description This function validate a user passed in parameters for update and returns the user cleaned
+ * @name validateCreate
+ * @param {Object} user - A new user.
+ * @param {string} user.firstname - The firstname of the user.
+ * @param {string} user.lastname - The lastname of the user.
+ * @param {string} user.email - The email of the user.
+ * @param {string} user.password - The password for his account (min 8 characters).
+ * @example
+ * validateCreate(user);
+ */
 function validateUpdate(user) {
   const { error, value } = Joi.validate(user, schema, { abortEarly: true, stripUnknown: true });
 
