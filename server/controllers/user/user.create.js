@@ -1,6 +1,6 @@
-const User = require('../../lib/user');
+const gladys = require('../../lib/');
 
 module.exports = async (req, res) => {
-  const newUser = await User.create(req.body);
+  const newUser = await gladys.user.create(req.body);
   res.status(201).json(newUser);
 };

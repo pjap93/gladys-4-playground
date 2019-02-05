@@ -1,1 +1,1 @@
-module.exports.create = require('./user.create');
+module.exports.create = require('./user.create').create;
