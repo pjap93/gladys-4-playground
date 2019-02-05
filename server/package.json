@@ -3,7 +3,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha ./test/bootstrap.test.js ./test/**/*.test.js --exit",
+    "pretest": "NODE_ENV=test node_modules/.bin/sequelize db:migrate",
+    "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha ./test/bootstrap.test.js ./test/**/*.test.js --exit",
     "prettier": "prettier --write 'controllers/**/*.js' 'lib/**/*.js'",
     "eslint": "eslint controllers",
     "start": "nodemon index.js"

@@ -10,7 +10,7 @@ module.exports = {
   },
   test: {
     dialect: 'sqlite',
-    storage: ':memory',
+    storage: './gladys-test.db',
     operatorsAliases: false,
     define: {
       underscored: true,

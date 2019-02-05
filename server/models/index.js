@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const config = require('../config/config');
 
-const env = process.NODE_ENV || 'development';
+const env = process.env.NODE_ENV || 'development';
 
 // SQLite
 const sequelize = new Sequelize('mainDB', null, null, config[env]);
