@@ -3,8 +3,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "pretest": "NODE_ENV=test node_modules/.bin/sequelize db:migrate",
-    "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha ./test/bootstrap.test.js ./test/**/*.test.js --exit",
+    "pretest": "cross-env NODE_ENV=test node_modules/.bin/sequelize db:migrate",
+    "test": "cross-env NODE_ENV=test ./node_modules/mocha/bin/mocha ./test/bootstrap.test.js ./test/**/*.test.js --exit",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov npm test > coverage.lcov",
     "prettier": "prettier --write 'controllers/**/*.js' 'lib/**/*.js'",
     "eslint": "eslint controllers lib models migrations middlewares config utils test services index.js",
@@ -16,6 +16,7 @@
   "license": "MIT",
   "devDependencies": {
     "apidoc": "^0.17.7",
+    "cross-env": "^5.2.0",
     "eslint": "^5.13.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
