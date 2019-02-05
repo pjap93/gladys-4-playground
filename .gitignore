@@ -3,3 +3,5 @@ gladys-development.db
 gladys-test.db
 apidoc
 jsdoc
+*.lcov
+.nyc_output
