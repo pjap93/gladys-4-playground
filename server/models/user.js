@@ -1,3 +1,5 @@
+
+
 module.exports = (sequelize, DataTypes) => {
   const user = sequelize.define('t_user', {
     id: {
@@ -5,8 +7,23 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4,
     },
-    firstname: DataTypes.STRING,
-    lastname: DataTypes.STRING,
+    firstname: {
+      type: DataTypes.STRING,
+    },
+    lastname: {
+      type: DataTypes.STRING,
+    },
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        isEmail: true,
+        isLowercase: true,
+      },
+    },
+    password_hash: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   }, {});
   return user;
 };

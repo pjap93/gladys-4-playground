@@ -6,9 +6,19 @@ module.exports = {
       type: Sequelize.UUID,
     },
     firstname: {
+      allowNull: false,
       type: Sequelize.STRING,
     },
     lastname: {
+      allowNull: false,
+      type: Sequelize.STRING,
+    },
+    email: {
+      allowNull: false,
+      type: Sequelize.STRING,
+    },
+    password_hash: {
+      allowNull: false,
       type: Sequelize.STRING,
     },
     created_at: {

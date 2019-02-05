@@ -3,14 +3,19 @@ module.exports = {
     dialect: 'sqlite',
     storage: './gladys-development.db',
     operatorsAliases: false,
-    logging: true,
     define: {
       underscored: true,
+      freezeTableName: true,
     },
   },
   test: {
     dialect: 'sqlite',
     storage: ':memory',
+    operatorsAliases: false,
+    define: {
+      underscored: true,
+      freezeTableName: true,
+    },
   },
   production: {
     dialect: 'sqlite',
@@ -19,6 +24,7 @@ module.exports = {
     logging: true,
     define: {
       underscored: true,
+      freezeTableName: true,
     },
   },
 };
