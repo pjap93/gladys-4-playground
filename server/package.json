@@ -7,10 +7,11 @@
     "test": "cross-env NODE_ENV=test ./node_modules/mocha/bin/mocha --recursive ./test/bootstrap.test.js \"./test/**/*.test.js\" --exit",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov npm test > coverage.lcov",
     "prettier": "prettier --write 'controllers/**/*.js' 'lib/**/*.js'",
-    "eslint": "eslint controllers lib models migrations middlewares config utils test services index.js",
+    "eslint": "eslint api lib models migrations config utils test services index.js --ignore-pattern 'node_modules' ",
     "start": "nodemon index.js",
     "jsdoc": "jsdoc lib/**/*.js -d jsdoc",
-    "apidoc": "apidoc -i controllers/ -o apidoc/"
+    "apidoc": "apidoc -i controllers/ -o apidoc/",
+    "checkjs": "tsc --allowJs --checkJs --noEmit --target ES5 lib/**/*.js api/**/*.js services/**/*.js"
   },
   "author": "Pierre-Gilles Leymarie",
   "license": "MIT",
@@ -31,6 +32,7 @@
   },
   "dependencies": {
     "bcrypt": "^3.0.3",
+    "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "http-errors": "^1.7.1",

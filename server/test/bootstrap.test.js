@@ -9,6 +9,7 @@ const SERVER_PORT = 6500;
 before(async () => {
   const gladys = Gladys();
   await gladys.start();
+  // @ts-ignore
   global.TEST_BACKEND_APP = server.start(gladys, SERVER_PORT);
 });
 

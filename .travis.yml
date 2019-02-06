@@ -19,8 +19,9 @@ env:
 
 before_install:
   - cd server && npm install && cd ..
-  - npm install codecov -g
+  - npm install codecov typescript -g
 
 script:
   - cd server && npm run eslint && cd ..
+  - cd server && npm run checkjs && cd ..
   - cd server && npm run coverage && codecov && cd ..
