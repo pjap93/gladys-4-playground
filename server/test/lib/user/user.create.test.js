@@ -1,7 +1,8 @@
-const user = require('../../../lib/user');
+const User = require('../../../lib/user');
 
 describe('user.create', () => {
   it('should create user', async () => {
+    const user = User();
     await user.create({
       firstname: 'Tony',
       lastname: 'Stark',

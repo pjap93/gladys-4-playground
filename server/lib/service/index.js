@@ -1,1 +1,7 @@
-module.exports.load = require('./service.load').load;
+const { load } = require('./service.load');
+
+module.exports = function Service() {
+  return {
+    load,
+  };
+};
