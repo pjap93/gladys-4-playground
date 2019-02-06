@@ -32,8 +32,9 @@ Start the server (dev):
 npm start
 ```
 
-Run tests:
+## Running tests
 
+To run tests:
 ```
 npm test
 ```
