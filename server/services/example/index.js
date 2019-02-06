@@ -21,8 +21,8 @@ module.exports = function ExampleService() {
     logger.log('stopping example service');
   }
 
-  return {
+  return Object.freeze({
     start,
     stop,
-  };
+  });
 };

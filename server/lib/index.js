@@ -19,4 +19,5 @@ const gladys = {
   start,
 };
 
-module.exports = gladys;
+// freeze Gladys object to ensure it's not modified
+module.exports = Object.freeze(gladys);
