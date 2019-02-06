@@ -17,9 +17,21 @@ module.exports = {
       allowNull: false,
       type: Sequelize.STRING,
     },
+    birthdate: {
+      allowNull: false,
+      type: Sequelize.DATEONLY,
+    },
+    language: {
+      allowNull: false,
+      type: Sequelize.ENUM('en', 'fr'),
+    },
     password_hash: {
       allowNull: false,
       type: Sequelize.STRING,
+    },
+    role: {
+      allowNull: false,
+      type: Sequelize.ENUM('admin', 'habitant', 'guest'),
     },
     created_at: {
       allowNull: false,

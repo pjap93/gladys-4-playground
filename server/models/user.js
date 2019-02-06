@@ -1,5 +1,4 @@
 
-
 module.exports = (sequelize, DataTypes) => {
   const user = sequelize.define('t_user', {
     id: {
@@ -20,9 +19,21 @@ module.exports = (sequelize, DataTypes) => {
         isLowercase: true,
       },
     },
-    password_hash: {
-      type: DataTypes.STRING,
+    birthdate: {
       allowNull: false,
+      type: DataTypes.DATEONLY,
+    },
+    language: {
+      allowNull: false,
+      type: DataTypes.ENUM('en', 'fr'),
+    },
+    password_hash: {
+      allowNull: false,
+      type: DataTypes.STRING,
+    },
+    role: {
+      allowNull: false,
+      type: DataTypes.ENUM('admin', 'habitant', 'guest'),
     },
   }, {});
   return user;
