@@ -8,6 +8,9 @@ describe('user.create', () => {
       lastname: 'Stark',
       email: 'tony.stark@gladysassistant.com',
       password: 'testststs',
+      birthdate: '01/01/2019',
+      language: 'en',
+      role: 'admin',
     });
   });
 });

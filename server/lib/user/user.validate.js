@@ -5,6 +5,9 @@ const schema = Joi.object().keys({
   lastname: Joi.string(),
   email: Joi.string().email().lowercase(),
   password: Joi.string().min(8),
+  birthdate: Joi.date(),
+  language: Joi.string().allow('en', 'fr'),
+  role: Joi.string().allow('admin', 'habitant', 'guest'),
 });
 
 /**
@@ -16,6 +19,9 @@ const schema = Joi.object().keys({
  * @param {string} user.lastname - The lastname of the user.
  * @param {string} user.email - The email of the user.
  * @param {string} user.password - The password for his account (min 8 characters).
+ * @param {string} user.birthdate - The birthdate of the user.
+ * @param {string} user.language - The language of the user.
+ * @param {string} user.role - The role of the user (admin, habitant, guest).
  * @example
  * validateCreate(user);
  */
