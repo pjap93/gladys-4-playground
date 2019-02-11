@@ -25,5 +25,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
   }, {});
+
+  pod.associate = (models) => {
+    pod.belongsTo(models.Room, {
+      foreignKey: 'room_id',
+      targetKey: 'id',
+      as: 'room',
+    });
+  };
+
   return pod;
 };

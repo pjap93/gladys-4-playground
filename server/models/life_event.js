@@ -35,5 +35,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.JSON,
     },
   }, {});
+
+  lifeEvent.associate = (models) => {
+    lifeEvent.belongsTo(models.User, {
+      foreignKey: 'user_id',
+      targetKey: 'id',
+      as: 'user',
+    });
+    lifeEvent.belongsTo(models.House, {
+      foreignKey: 'house_id',
+      targetKey: 'id',
+      as: 'house',
+    });
+  };
+
   return lifeEvent;
 };

@@ -86,5 +86,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
     },
   }, {});
+
+  deviceFeature.associate = (models) => {
+    deviceFeature.belongsTo(models.Device, {
+      foreignKey: 'device_id',
+      targetKey: 'id',
+      as: 'device',
+    });
+    deviceFeature.hasMany(models.DeviceFeatureState, {
+      foreignKey: 'device_feature_id',
+      sourceKey: 'id',
+      as: 'device_feature_states',
+    });
+  };
+
   return deviceFeature;
 };

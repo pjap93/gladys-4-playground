@@ -29,5 +29,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
   }, {});
+
+  service.associate = (models) => {
+    service.belongsTo(models.Pod, {
+      foreignKey: 'pod_id',
+      targetKey: 'id',
+      as: 'pod',
+    });
+  };
+
   return service;
 };

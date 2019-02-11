@@ -25,5 +25,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
   }, {});
+
+  device.associate = (models) => {
+    device.belongsTo(models.Room, {
+      foreignKey: 'room_id',
+      targetKey: 'id',
+      as: 'room',
+    });
+    device.hasMany(models.DeviceFeatureState, {
+      foreignKey: 'device_id',
+      sourceKey: 'id',
+      as: 'device_features',
+    });
+  };
+
   return device;
 };

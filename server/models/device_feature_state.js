@@ -19,5 +19,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DOUBLE,
     },
   }, {});
+
+  deviceFeatureState.associate = (models) => {
+    deviceFeatureState.belongsTo(models.DeviceFeature, {
+      foreignKey: 'device_feature_id',
+      targetKey: 'id',
+      as: 'device_feature',
+    });
+  };
+
   return deviceFeatureState;
 };

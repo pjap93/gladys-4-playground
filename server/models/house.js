@@ -25,5 +25,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DOUBLE,
     },
   }, {});
+
+  house.associate = (models) => {
+    house.hasMany(models.Room, {
+      foreignKey: 'house_id',
+      sourceKey: 'id',
+      as: 'rooms',
+    });
+  };
+
   return house;
 };

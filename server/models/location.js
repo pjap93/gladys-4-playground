@@ -31,5 +31,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DOUBLE,
     },
   }, {});
+
+  location.associate = (models) => {
+    location.belongsTo(models.User, {
+      foreignKey: 'user_id',
+      targetKey: 'id',
+      as: 'user',
+    });
+  };
+
   return location;
 };

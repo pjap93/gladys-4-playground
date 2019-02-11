@@ -24,5 +24,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
     },
   }, {});
+
+  variable.associate = (models) => {
+    variable.belongsTo(models.Service, {
+      foreignKey: 'service_id',
+      targetKey: 'id',
+      as: 'service',
+    });
+  };
+
   return variable;
 };

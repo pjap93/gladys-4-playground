@@ -37,5 +37,35 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.ENUM('admin', 'habitant', 'guest'),
     },
   }, {});
+
+
+  user.associate = (models) => {
+    user.hasMany(models.Location, {
+      foreignKey: 'user_id',
+      sourceKey: 'id',
+      as: 'locations',
+    });
+    user.hasMany(models.LifeEvent, {
+      foreignKey: 'user_id',
+      sourceKey: 'id',
+      as: 'life_events',
+    });
+    user.hasMany(models.Message, {
+      foreignKey: 'sender_id',
+      sourceKey: 'id',
+      as: 'sent_messages',
+    });
+    user.hasMany(models.Message, {
+      foreignKey: 'receiver_id',
+      sourceKey: 'id',
+      as: 'received_messages',
+    });
+    user.hasMany(models.Calendar, {
+      foreignKey: 'user_id',
+      sourceKey: 'id',
+      as: 'calendars',
+    });
+  };
+
   return user;
 };

@@ -44,5 +44,14 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: false,
     },
   }, {});
+
+  calendarEvent.associate = (models) => {
+    calendarEvent.belongsTo(models.Calendar, {
+      foreignKey: 'calendar_id',
+      targetKey: 'id',
+      as: 'calendar',
+    });
+  };
+
   return calendarEvent;
 };

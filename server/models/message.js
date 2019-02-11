@@ -40,5 +40,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.JSON,
     },
   }, {});
+
+  message.associate = (models) => {
+    message.belongsTo(models.User, {
+      foreignKey: 'sender_id',
+      targetKey: 'id',
+      as: 'sender',
+    });
+    message.belongsTo(models.User, {
+      foreignKey: 'receiver_id',
+      targetKey: 'id',
+      as: 'receiver',
+    });
+  };
+
   return message;
 };
