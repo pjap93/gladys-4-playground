@@ -58,6 +58,10 @@ module.exports = (sequelize, DataTypes) => {
     return values;
   };
 
+  User.prototype.comparePassword = async function comparePassword(password) {
+    return passwordUtils.compare(password, this.get('password'));
+  };
+
   User.associate = (models) => {
     User.hasMany(models.Location, {
       foreignKey: 'user_id',

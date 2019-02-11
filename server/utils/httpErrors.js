@@ -1,31 +1,53 @@
 
-class Error422 {
-  constructor(properties) {
-    this.status = 422;
-    this.message = 'UNPROCESSABLE_ENTITY';
-    this.properties = properties;
+class Error400 extends Error {
+  constructor() {
+    super();
+    this.status = 400;
+    this.code = 'BAD_REQUEST';
   }
 }
 
-class Error500 {
+class Error401 extends Error {
+  constructor() {
+    super();
+    this.status = 401;
+    this.code = 'UNAUTHORIZED';
+  }
+}
+
+class Error403 extends Error {
+  constructor(message) {
+    super();
+    this.status = 403;
+    this.code = 'FORBIDDEN';
+    this.message = message;
+  }
+}
+
+class Error409 extends Error {
   constructor(error) {
-    this.status = 500;
-    this.message = 'SERVER_ERROR';
+    super();
+    this.status = 409;
+    this.code = 'CONFLICT';
     this.error = error;
   }
 }
 
-class Error401 {
-  constructor() {
-    this.status = 401;
-    this.message = 'UNAUTHORIZED';
+class Error422 extends Error {
+  constructor(properties) {
+    super();
+    this.status = 422;
+    this.code = 'UNPROCESSABLE_ENTITY';
+    this.properties = properties;
   }
 }
 
-class Error409 {
+
+class Error500 extends Error {
   constructor(error) {
-    this.status = 409;
-    this.message = 'CONFLICT';
+    super();
+    this.status = 500;
+    this.code = 'SERVER_ERROR';
     this.error = error;
   }
 }
@@ -35,4 +57,6 @@ module.exports = {
   Error409,
   Error422,
   Error500,
+  Error400,
+  Error403,
 };
