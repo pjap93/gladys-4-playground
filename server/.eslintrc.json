@@ -62,6 +62,7 @@
       "brace-style": ["error", "1tbs", { 
         "allowSingleLine": false 
       }],
+      "no-param-reassign": ["error", { "props": false }],
       "jsdoc/check-examples": 0,
       "jsdoc/check-param-names": 2,
       "jsdoc/check-tag-names": 2,
