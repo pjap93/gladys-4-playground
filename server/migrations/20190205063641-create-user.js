@@ -24,7 +24,7 @@ module.exports = {
     },
     language: {
       allowNull: false,
-      type: Sequelize.ENUM('en', 'fr'),
+      type: Sequelize.STRING,
     },
     password_hash: {
       allowNull: false,
@@ -32,7 +32,7 @@ module.exports = {
     },
     role: {
       allowNull: false,
-      type: Sequelize.ENUM('admin', 'habitant', 'guest'),
+      type: Sequelize.STRING,
     },
     created_at: {
       allowNull: false,
