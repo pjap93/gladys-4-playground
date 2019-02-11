@@ -10,6 +10,9 @@ module.exports = function UserController(gladys) {
    * @apiParam {String} lastname Lastname of the user
    * @apiParam {String} email Email of the user
    * @apiParam {String} password Password of the user
+   * @apiParam {string="admin","habitant", "guest"} role role of the user
+   * @apiParam {date} birthdate Birthdate of the user
+   * @apiParam {string="en", "fr"} language Language of the user
    *
    * @apiSuccess {String} id id of the created user
    */
