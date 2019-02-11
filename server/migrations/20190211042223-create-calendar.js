@@ -64,6 +64,9 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
+
+    await queryInterface.addIndex('t_calendar', ['user_id']);
+    await queryInterface.addIndex('t_calendar', ['service_id']);
   },
   down: (queryInterface, Sequelize) => queryInterface.dropTable('t_calendar'),
 };

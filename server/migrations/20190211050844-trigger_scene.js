@@ -36,6 +36,13 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
+
+    await queryInterface.addIndex('t_trigger_scene', {
+      fields: ['trigger_id', 'scene_id'],
+      unique: true,
+    });
+    await queryInterface.addIndex('t_trigger_scene', ['trigger_id']);
+    await queryInterface.addIndex('t_trigger_scene', ['scene_id']);
   },
   down: (queryInterface, Sequelize) => queryInterface.dropTable('t_trigger_scene'),
 };

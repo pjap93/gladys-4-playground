@@ -42,6 +42,10 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
+
+    await queryInterface.addIndex('t_life_event', ['user_id']);
+    await queryInterface.addIndex('t_life_event', ['house_id']);
+    await queryInterface.addIndex('t_life_event', ['type']);
   },
   down: (queryInterface, Sequelize) => queryInterface.dropTable('t_life_event'),
 };

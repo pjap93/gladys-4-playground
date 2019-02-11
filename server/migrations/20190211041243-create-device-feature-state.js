@@ -30,6 +30,8 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
+
+    await queryInterface.addIndex('t_device_feature_state', ['device_feature_id']);
   },
   down: (queryInterface, Sequelize) => queryInterface.dropTable('t_device_feature_state'),
 };

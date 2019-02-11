@@ -55,6 +55,10 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
+
+    await queryInterface.addIndex('t_calendar_event', ['calendar_id']);
+    await queryInterface.addIndex('t_calendar_event', ['start']);
+    await queryInterface.addIndex('t_calendar_event', ['end']);
   },
   down: (queryInterface, Sequelize) => queryInterface.dropTable('t_calendar_event'),
 };

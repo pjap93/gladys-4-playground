@@ -36,6 +36,8 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
+
+    await queryInterface.addIndex('t_room', ['house_id']);
   },
   down: (queryInterface, Sequelize) => queryInterface.dropTable('t_room'),
 };
