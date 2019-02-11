@@ -15,6 +15,14 @@ module.exports = {
           key: 'id',
         },
       },
+      service_id: {
+        allowNull: true,
+        type: Sequelize.UUID,
+        references: {
+          model: 't_service',
+          key: 'id',
+        },
+      },
       name: {
         allowNull: false,
         unique: true,
