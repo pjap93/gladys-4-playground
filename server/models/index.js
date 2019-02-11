@@ -27,9 +27,7 @@ const TriggerModel = require('./trigger');
 const UserModel = require('./user');
 const VariableModel = require('./variable');
 
-const db = {
-  sequelize,
-  Sequelize,
+const models = {
   Area: AreaModel(sequelize, Sequelize),
   Calendar: CalendarModel(sequelize, Sequelize),
   CalendarEvent: CalendarEventModel(sequelize, Sequelize),
@@ -53,14 +51,15 @@ const db = {
 };
 
 // Associate all model
-const properties = Object.keys(db);
-properties.forEach((prop) => {
-  if (prop === 'sequelize' || prop === 'Sequelize') {
-    return;
-  }
-  if (db[prop].associate) {
-    db[prop].associate(db);
-  }
-});
+// Run `.associate` if it exists,
+// ie create relationships in the ORM
+Object.values(models)
+  .filter(model => typeof model.associate === 'function')
+  .forEach(model => model.associate(models));
+
+const db = {
+  ...models,
+  sequelize,
+};
 
 module.exports = db;
