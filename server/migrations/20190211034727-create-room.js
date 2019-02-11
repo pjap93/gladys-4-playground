@@ -14,6 +14,8 @@ module.exports = {
           model: 't_house',
           key: 'id',
         },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       name: {
         allowNull: false,

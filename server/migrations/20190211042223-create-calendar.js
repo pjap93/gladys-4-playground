@@ -14,6 +14,8 @@ module.exports = {
           model: 't_user',
           key: 'id',
         },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       service_id: {
         allowNull: true,
@@ -22,6 +24,8 @@ module.exports = {
           model: 't_service',
           key: 'id',
         },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       name: {
         allowNull: false,

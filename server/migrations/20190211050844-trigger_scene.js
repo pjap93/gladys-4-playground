@@ -14,6 +14,8 @@ module.exports = {
           model: 't_trigger',
           key: 'id',
         },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       scene_id: {
         allowNull: true,
@@ -22,6 +24,8 @@ module.exports = {
           model: 't_scene',
           key: 'id',
         },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       created_at: {
         allowNull: false,

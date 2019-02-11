@@ -14,6 +14,8 @@ module.exports = {
           model: 't_user',
           key: 'id',
         },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       receiver_id: {
         allowNull: true,
@@ -22,6 +24,8 @@ module.exports = {
           model: 't_user',
           key: 'id',
         },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       text: {
         allowNull: false,

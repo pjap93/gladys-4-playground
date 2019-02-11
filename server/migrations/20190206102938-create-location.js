@@ -14,6 +14,8 @@ module.exports = {
           model: 't_user',
           key: 'id',
         },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       latitude: {
         allowNull: false,

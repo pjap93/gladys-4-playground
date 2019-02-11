@@ -14,6 +14,8 @@ module.exports = {
           model: 't_device_feature',
           key: 'id',
         },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       value: {
         allowNull: false,

@@ -14,6 +14,8 @@ module.exports = {
           model: 't_pod',
           key: 'id',
         },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       name: {
         allowNull: false,

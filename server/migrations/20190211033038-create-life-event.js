@@ -14,6 +14,8 @@ module.exports = {
           model: 't_user',
           key: 'id',
         },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       house_id: {
         type: Sequelize.UUID,
@@ -21,6 +23,8 @@ module.exports = {
           model: 't_house',
           key: 'id',
         },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       type: {
         allowNull: false,
