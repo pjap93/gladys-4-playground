@@ -7,8 +7,8 @@ module.exports = {
     longitude: -71.989,
     altitude: 0,
     accuracy: 30,
-    created_at: new Date(),
-    updated_at: new Date(),
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
   }], {}),
 
   down: (queryInterface, Sequelize) => queryInterface.bulkDelete('t_location', null, {}),

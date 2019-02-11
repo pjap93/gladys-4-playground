@@ -1,6 +1,7 @@
+const passwordUtils = require('../utils/password');
 
 module.exports = (sequelize, DataTypes) => {
-  const user = sequelize.define('t_user', {
+  const User = sequelize.define('t_user', {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
@@ -28,9 +29,12 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.ENUM('en', 'fr'),
     },
-    password_hash: {
+    password: {
       allowNull: false,
       type: DataTypes.STRING,
+      validate: {
+        len: [8],
+      },
     },
     role: {
       allowNull: false,
@@ -38,34 +42,49 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
 
+  // ensure email is in lowercase
+  User.beforeValidate((user) => {
+    user.email = String(user.email).toLowerCase();
+  });
 
-  user.associate = (models) => {
-    user.hasMany(models.Location, {
+  // hash password before inserting
+  User.beforeCreate(async (user, options) => {
+    user.password = await passwordUtils.hash(user.password);
+  });
+
+  User.prototype.toJSON = function toJSON() {
+    const values = Object.assign({}, this.get());
+    delete values.password;
+    return values;
+  };
+
+  User.associate = (models) => {
+    User.hasMany(models.Location, {
       foreignKey: 'user_id',
       sourceKey: 'id',
       as: 'locations',
     });
-    user.hasMany(models.LifeEvent, {
+    User.hasMany(models.LifeEvent, {
       foreignKey: 'user_id',
       sourceKey: 'id',
       as: 'life_events',
     });
-    user.hasMany(models.Message, {
+    User.hasMany(models.Message, {
       foreignKey: 'sender_id',
       sourceKey: 'id',
       as: 'sent_messages',
     });
-    user.hasMany(models.Message, {
+    User.hasMany(models.Message, {
       foreignKey: 'receiver_id',
       sourceKey: 'id',
       as: 'received_messages',
     });
-    user.hasMany(models.Calendar, {
+    User.hasMany(models.Calendar, {
       foreignKey: 'user_id',
       sourceKey: 'id',
       as: 'calendars',
     });
   };
 
-  return user;
+  return User;
 };

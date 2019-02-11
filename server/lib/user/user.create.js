@@ -1,6 +1,4 @@
 const db = require('../../models');
-const passwordUtils = require('../../utils/password');
-const { validateCreate } = require('./user.validate');
 
 /**
  * @public
@@ -14,6 +12,7 @@ const { validateCreate } = require('./user.validate');
  * @param {string} user.birthdate - The birthdate of the user.
  * @param {string} user.language - The language of the user.
  * @param {string} user.role - The role of the user (admin, habitant, guest).
+ * @returns {Promise} Promise.
  * @example
  * await gladys.user.create({
  *  firstname: 'Tony'
@@ -21,17 +20,7 @@ const { validateCreate } = require('./user.validate');
  *
  */
 async function create(user) {
-  const userValidated = validateCreate(user);
-  const userToInsert = {
-    firstname: userValidated.firstname,
-    lastname: userValidated.lastname,
-    email: userValidated.email,
-    password_hash: await passwordUtils.hash(userValidated.password),
-    birthdate: userValidated.birthdate,
-    language: userValidated.language,
-    role: userValidated.role,
-  };
-  return db.User.create(userToInsert);
+  return db.User.create(user);
 }
 
 module.exports = {
