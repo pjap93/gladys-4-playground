@@ -14,6 +14,13 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id',
       },
     },
+    house_id: {
+      type: DataTypes.UUID,
+      references: {
+        model: 't_house',
+        key: 'id',
+      },
+    },
     type: {
       allowNull: false,
       type: DataTypes.ENUM(

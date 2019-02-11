@@ -15,6 +15,13 @@ module.exports = {
           key: 'id',
         },
       },
+      house_id: {
+        type: Sequelize.UUID,
+        references: {
+          model: 't_house',
+          key: 'id',
+        },
+      },
       type: {
         allowNull: false,
         type: Sequelize.STRING,
