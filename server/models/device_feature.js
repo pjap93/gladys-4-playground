@@ -1,6 +1,6 @@
 
 module.exports = (sequelize, DataTypes) => {
-  const device = sequelize.define('t_device', {
+  const deviceFeature = sequelize.define('t_device_feature', {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
@@ -86,5 +86,5 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
     },
   }, {});
-  return device;
+  return deviceFeature;
 };
