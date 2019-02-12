@@ -24,6 +24,12 @@
   "nodemonConfig": {
     "ignore": ["test/*"]
   },
+  "nyc": {
+    "exclude": [
+      "migrations/**/*.js",
+      "test/**/*.js"
+    ]
+  },
   "devDependencies": {
     "apidoc": "^0.17.7",
     "cross-env": "^5.2.0",
