@@ -22,6 +22,7 @@ const RoomModel = require('./room');
 const SceneModel = require('./scene');
 const ScriptModel = require('./script');
 const ServiceModel = require('./service');
+const SessionModel = require('./session');
 const TriggerSceneModel = require('./trigger_scene');
 const TriggerModel = require('./trigger');
 const UserModel = require('./user');
@@ -44,6 +45,7 @@ const models = {
   Scene: SceneModel(sequelize, Sequelize),
   Script: ScriptModel(sequelize, Sequelize),
   Service: ServiceModel(sequelize, Sequelize),
+  Session: SessionModel(sequelize, Sequelize),
   TriggerScene: TriggerSceneModel(sequelize, Sequelize),
   Trigger: TriggerModel(sequelize, Sequelize),
   User: UserModel(sequelize, Sequelize),
