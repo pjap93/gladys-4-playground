@@ -6,8 +6,8 @@ const JWT_SECRET_LENGTH = 500;
  * @private
  * @description Generate a jwt secret.
  * @example
- * const { jwtSecret } = generateJwtSecret();
- * @returns {Object} Object with jwtSecret.
+ * const jwtSecret = generateJwtSecret();
+ * @returns {string} JwtSecret.
  */
 function generateJwtSecret() {
   const jwtSecret = crypto
@@ -15,9 +15,7 @@ function generateJwtSecret() {
     .toString('hex') // convert to hexadecimal format
     .slice(0, JWT_SECRET_LENGTH); // return required number of characters
 
-  return {
-    jwtSecret,
-  };
+  return jwtSecret;
 }
 
 module.exports = {

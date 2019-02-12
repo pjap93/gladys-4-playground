@@ -1,5 +1,6 @@
 const express = require('express');
 const UserController = require('./controllers/user.controller');
+const AuthMiddleware = require('./middlewares/authMiddleware');
 
 /**
  * @description Setup the routes.
@@ -13,9 +14,14 @@ function setupRoutes(gladys) {
   // Configure router
   const userController = UserController(gladys);
 
-  // User routes
+  // open routes
   router.post('/api/user', userController.create);
   router.post('/api/login', userController.login);
+
+  // after this, all requests must have authenticated
+  router.use(AuthMiddleware(gladys.config.jwtSecret, 'dashboard:write', gladys.cache));
+
+  router.get('/api/me', userController.getMySelf);
 
   return router;
 }

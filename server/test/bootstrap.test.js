@@ -8,6 +8,8 @@ const location = require('../seeders/20190211053203-demo-location');
 
 const SERVER_PORT = 6500;
 
+process.env.JWT_SECRET = 'secret';
+
 before(async () => {
   const gladys = Gladys();
   await gladys.start();

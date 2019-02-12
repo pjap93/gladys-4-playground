@@ -5,3 +5,4 @@ apidoc
 jsdoc
 *.lcov
 .nyc_output
+.env

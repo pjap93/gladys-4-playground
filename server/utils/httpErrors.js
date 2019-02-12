@@ -1,5 +1,12 @@
+class HttpError extends Error {
+  constructor() {
+    super();
+    this.status = 500;
+    this.code = 'SERVER_ERROR';
+  }
+}
 
-class Error400 extends Error {
+class Error400 extends HttpError {
   constructor() {
     super();
     this.status = 400;
@@ -7,15 +14,16 @@ class Error400 extends Error {
   }
 }
 
-class Error401 extends Error {
-  constructor() {
+class Error401 extends HttpError {
+  constructor(message) {
     super();
     this.status = 401;
     this.code = 'UNAUTHORIZED';
+    this.message = message;
   }
 }
 
-class Error403 extends Error {
+class Error403 extends HttpError {
   constructor(message) {
     super();
     this.status = 403;
@@ -24,7 +32,7 @@ class Error403 extends Error {
   }
 }
 
-class Error404 extends Error {
+class Error404 extends HttpError {
   constructor(message) {
     super();
     this.status = 404;
@@ -33,7 +41,7 @@ class Error404 extends Error {
   }
 }
 
-class Error409 extends Error {
+class Error409 extends HttpError {
   constructor(error) {
     super();
     this.status = 409;
@@ -42,7 +50,7 @@ class Error409 extends Error {
   }
 }
 
-class Error422 extends Error {
+class Error422 extends HttpError {
   constructor(properties) {
     super();
     this.status = 422;
@@ -52,7 +60,7 @@ class Error422 extends Error {
 }
 
 
-class Error500 extends Error {
+class Error500 extends HttpError {
   constructor(error) {
     super();
     this.status = 500;
@@ -62,6 +70,7 @@ class Error500 extends Error {
 }
 
 module.exports = {
+  HttpError,
   Error400,
   Error401,
   Error403,

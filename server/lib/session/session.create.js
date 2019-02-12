@@ -14,7 +14,6 @@ const { generateAccessToken } = require('../../utils/accessToken');
  */
 async function create(jwtSecret, userId, scope, validityInSeconds) {
   const { refreshToken, refreshTokenHash } = await generateRefreshToken();
-  const accessToken = generateAccessToken(userId, scope, jwtSecret);
 
   const newSession = {
     user_id: userId,
@@ -24,7 +23,8 @@ async function create(jwtSecret, userId, scope, validityInSeconds) {
     valid_until: new Date(Date.now() + (validityInSeconds * 1000)),
   };
 
-  await db.Session.create(newSession);
+  const session = await db.Session.create(newSession);
+  const accessToken = generateAccessToken(userId, scope, session.id, jwtSecret);
 
   return {
     refresh_token: refreshToken,

@@ -1,12 +1,19 @@
-
+const { generateJwtSecret } = require('../utils/jwtSecret');
+const { Cache } = require('../utils/cache');
 const Service = require('./service');
 const Session = require('./session');
 const User = require('./user');
 
 module.exports = function Gladys() {
+  // CONFIG
+  const config = {
+    jwtSecret: process.env.JWT_SECRET || generateJwtSecret(),
+  };
+
+  const cache = new Cache();
   const user = User();
   const service = Service();
-  const session = Session();
+  const session = Session(config.jwtSecret);
 
   /**
  * @private
@@ -24,6 +31,8 @@ module.exports = function Gladys() {
     user,
     service,
     session,
+    cache,
+    config,
   };
 
   // freeze Gladys object to ensure it's not modified

@@ -41,8 +41,20 @@ module.exports = function UserController(gladys) {
     res.json(session);
   }
 
+  /**
+   * @api {get} /api/me getMySelf
+   * @apiName getMySelf
+   * @apiGroup User
+   *
+   */
+  async function getMySelf(req, res, next) {
+    const user = await gladys.user.getById(req.user.id);
+    res.json(user);
+  }
+
   return Object.freeze({
     create: asyncMiddleware(create),
     login: asyncMiddleware(login),
+    getMySelf: asyncMiddleware(getMySelf),
   });
 };
