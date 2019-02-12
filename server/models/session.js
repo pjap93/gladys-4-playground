@@ -21,6 +21,10 @@ module.exports = (sequelize, DataTypes) => {
         'api_token',
       ),
     },
+    scope: {
+      allowNull: false,
+      type: DataTypes.TEXT,
+    },
     token_hash: {
       allowNull: false,
       type: DataTypes.TEXT,

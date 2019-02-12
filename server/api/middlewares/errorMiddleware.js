@@ -1,5 +1,5 @@
-const { Error403, Error409, Error422, Error500 } = require('../../utils/httpErrors');
-const { PasswordNotMatchingError } = require('../../utils/coreErrors');
+const { Error403, Error404, Error409, Error422, Error500 } = require('../../utils/httpErrors');
+const { PasswordNotMatchingError, NotFoundError } = require('../../utils/coreErrors');
 const logger = require('../../utils/logger');
 
 module.exports = function errorMiddleware(error, req, res, next) {
@@ -29,6 +29,10 @@ module.exports = function errorMiddleware(error, req, res, next) {
     responseError = new Error409(errorToReturn);
   } else if (error instanceof PasswordNotMatchingError) {
     responseError = new Error403(error.message);
+  } else if (error instanceof NotFoundError && req.path === '/api/login') {
+    responseError = new Error403();
+  } else if (error instanceof NotFoundError) {
+    responseError = new Error404(error.message);
   } else {
     logger.trace(error);
     responseError = new Error500(error);

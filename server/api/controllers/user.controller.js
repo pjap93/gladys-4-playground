@@ -1,5 +1,7 @@
 const asyncMiddleware = require('../middlewares/asyncMiddleware');
 
+const LOGIN_SESSION_VALIDITY_IN_SECONDS = 30 * 24 * 60 * 60;
+
 module.exports = function UserController(gladys) {
   /**
    * @api {post} /api/user Create user
@@ -21,7 +23,26 @@ module.exports = function UserController(gladys) {
     res.status(201).json(newUser);
   }
 
+  /**
+   * @api {post} /api/login Login user
+   * @apiName LoginUser
+   * @apiGroup User
+   *
+   * @apiParam {String} email Email of the user
+   * @apiParam {String} password Password of the user
+   *
+   * @apiSuccess {String} refresh_token the refresh token
+   * @apiSuccess {String} access_token the access token
+   */
+  async function login(req, res, next) {
+    const user = await gladys.user.login(req.body.email, req.body.password);
+    const scope = req.body.scope || ['dashboard:write', 'dashboard:read'];
+    const session = await gladys.session.create(user.id, scope, LOGIN_SESSION_VALIDITY_IN_SECONDS);
+    res.json(session);
+  }
+
   return Object.freeze({
     create: asyncMiddleware(create),
+    login: asyncMiddleware(login),
   });
 };

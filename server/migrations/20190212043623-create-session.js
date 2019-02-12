@@ -25,6 +25,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT,
       },
+      scope: {
+        allowNull: false,
+        type: Sequelize.TEXT,
+      },
       valid_until: {
         type: Sequelize.DATE,
       },

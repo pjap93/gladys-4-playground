@@ -1,10 +1,12 @@
 
 const Service = require('./service');
+const Session = require('./session');
 const User = require('./user');
 
 module.exports = function Gladys() {
   const user = User();
   const service = Service();
+  const session = Session();
 
   /**
  * @private
@@ -21,6 +23,7 @@ module.exports = function Gladys() {
     start,
     user,
     service,
+    session,
   };
 
   // freeze Gladys object to ensure it's not modified

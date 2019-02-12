@@ -5,7 +5,7 @@ module.exports = {
     firstname: 'John',
     lastname: 'Doe',
     email: 'demo@demo.com',
-    password: 'xxxxxxxx',
+    password: '$2a$10$jsgdfTRYM4r5ainVwZdRsus44xtLYZn/mWhyBY2ch005MO15BS62u', // mysuperpassword
     language: 'en',
     role: 'admin',
     birthdate: '12/12/1990',

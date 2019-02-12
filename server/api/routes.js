@@ -15,6 +15,7 @@ function setupRoutes(gladys) {
 
   // User routes
   router.post('/api/user', userController.create);
+  router.post('/api/login', userController.login);
 
   return router;
 }

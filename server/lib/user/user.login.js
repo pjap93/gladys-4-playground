@@ -1,5 +1,5 @@
 const db = require('../../models');
-const { PasswordNotMatchingError } = require('../../utils/coreErrors');
+const { PasswordNotMatchingError, NotFoundError } = require('../../utils/coreErrors');
 
 /**
  * @private
@@ -13,7 +13,10 @@ const { PasswordNotMatchingError } = require('../../utils/coreErrors');
  *
  */
 async function login(email, password) {
-  const user = await db.User.findOne({ where: { email } });
+  const user = await db.User.findOne({ where: { email }, attributes: ['id', 'role', 'password'] });
+  if (user === null) {
+    throw new NotFoundError(`User "${email}" not found`);
+  }
   const passwordMatches = await user.comparePassword(password);
   if (passwordMatches !== true) {
     throw new PasswordNotMatchingError();

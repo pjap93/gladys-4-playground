@@ -6,6 +6,14 @@ class PasswordNotMatchingError extends Error {
   }
 }
 
+class NotFoundError extends Error {
+  constructor(message) {
+    super();
+    this.message = message;
+  }
+}
+
 module.exports = {
   PasswordNotMatchingError,
+  NotFoundError,
 };
