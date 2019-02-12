@@ -14,16 +14,21 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id',
       },
     },
-    refresh_token_hash: {
+    token_type: {
       allowNull: false,
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM(
+        'refresh_token',
+        'api_token',
+      ),
+    },
+    token_hash: {
+      allowNull: false,
+      type: DataTypes.TEXT,
     },
     valid_until: {
-      allowNull: false,
       type: DataTypes.DATE,
     },
     last_seen: {
-      allowNull: false,
       type: DataTypes.DATE,
     },
     revoked: {

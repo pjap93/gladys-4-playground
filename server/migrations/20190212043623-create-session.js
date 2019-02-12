@@ -17,16 +17,18 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
       },
-      refresh_token_hash: {
+      token_type: {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      valid_until: {
+      token_hash: {
         allowNull: false,
+        type: Sequelize.TEXT,
+      },
+      valid_until: {
         type: Sequelize.DATE,
       },
       last_seen: {
-        allowNull: false,
         type: Sequelize.DATE,
       },
       revoked: {
