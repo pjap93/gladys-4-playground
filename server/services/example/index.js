@@ -1,6 +1,13 @@
 const logger = require('../../utils/logger');
+const ExampleDeviceHandler = require('./lib/device');
 
 module.exports = function ExampleService() {
+  // here is an example module calling the Gladys website
+  const axios = require('axios');
+  const client = axios.create({
+    timeout: 1000,
+  });
+  console.log(axios);
   /**
    * @public
    * @description This function starts the ExampleService service
@@ -24,5 +31,6 @@ module.exports = function ExampleService() {
   return Object.freeze({
     start,
     stop,
+    device: new ExampleDeviceHandler(client),
   });
 };
