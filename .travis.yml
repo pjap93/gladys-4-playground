@@ -24,5 +24,6 @@ before_install:
 script:
   - cd server && npm run eslint && cd ..
   - cd server && npm run checkjs && cd ..
-  - cd server && npm run coverage && codecov -F backend && cd ..
+  - cd server && npm run coverage && codecov -F server && cd ..
   - cd front && npm run eslint && cd ..
+  - cd front && npm run test && codecov -F front && cd ..

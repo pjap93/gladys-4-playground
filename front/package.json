@@ -8,7 +8,7 @@
     "serve": "preact build && preact serve",
     "dev": "preact watch -p 1444",
     "eslint": "eslint src",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "eslintIgnore": [
     "build/*"
@@ -30,6 +30,8 @@
     "tabler-ui": "0.0.32"
   },
   "jest": {
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true,
     "verbose": true,
     "setupFiles": [
       "<rootDir>/tests/__mocks__/browserMocks.js"
