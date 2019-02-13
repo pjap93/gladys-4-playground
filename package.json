@@ -14,5 +14,8 @@
     "url": "git@personal:GladysAssistant/gladys-4-playground.git"
   },
   "author": "Pierre-Gilles Leymarie",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "preact-cli-plugin-fast-async": "^1.0.1"
+  }
 }
