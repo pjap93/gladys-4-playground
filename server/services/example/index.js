@@ -7,7 +7,6 @@ module.exports = function ExampleService() {
   const client = axios.create({
     timeout: 1000,
   });
-  console.log(axios);
   /**
    * @public
    * @description This function starts the ExampleService service
