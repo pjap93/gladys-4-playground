@@ -4,7 +4,7 @@ const Service = require('./service');
 const Session = require('./session');
 const User = require('./user');
 
-module.exports = function Gladys() {
+const Gladys = function Gladys() {
   // CONFIG
   const config = {
     jwtSecret: process.env.JWT_SECRET || generateJwtSecret(),
@@ -15,26 +15,17 @@ module.exports = function Gladys() {
   const service = Service();
   const session = Session(config.jwtSecret);
 
-  /**
- * @private
- * @description This function starts Gladys core
- * @name gladys.start
- * @example
- * gladys.start();
- */
-  async function start() {
-    service.load();
-  }
-
   const gladys = {
-    start,
     user,
     service,
     session,
     cache,
     config,
+    start: async () => service.load(gladys),
   };
 
   // freeze Gladys object to ensure it's not modified
   return Object.freeze(gladys);
 };
+
+module.exports = Gladys;

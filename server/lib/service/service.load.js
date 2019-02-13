@@ -6,13 +6,13 @@ const SERVICE_TO_LOAD = ['example'];
 /**
  * @public
  * @description Load all services
- * @name gladys.service.load
+ * @param {Object} gladys - Gladys instance.
  * @example
- * gladys.service.load();
+ * load(gladys);
  */
-function load() {
+function load(gladys) {
   SERVICE_TO_LOAD.forEach((service) => {
-    services[service]().start();
+    services[service](gladys).start();
   });
 }
 

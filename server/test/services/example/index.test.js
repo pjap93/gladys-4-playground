@@ -26,11 +26,16 @@ describe('ExampleService', () => {
 
 describe('ExampleService.device', () => {
   const exampleService = ExampleService();
+  const deviceFeature = {
+    id: 'd0a6cfc7-fe07-4df1-b0db-70d878bcdd2b',
+    external_id: 'example:1',
+    type: 'binary',
+  };
   it('should setValue device', async () => {
-    await exampleService.device.setValue('1', 10);
+    await exampleService.device.setValue(deviceFeature, 10);
   });
   it('should getValue device', async () => {
-    const value = await exampleService.device.getValue('1');
+    const value = await exampleService.device.getValue(deviceFeature);
     value.should.equal(5);
   });
 });

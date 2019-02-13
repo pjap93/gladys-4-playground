@@ -1,7 +1,7 @@
 const logger = require('../../utils/logger');
 const ExampleDeviceHandler = require('./lib/device');
 
-module.exports = function ExampleService() {
+module.exports = function ExampleService(gladys) {
   // here is an example module calling the Gladys website
   const axios = require('axios');
 
@@ -15,7 +15,7 @@ module.exports = function ExampleService() {
    * @example
    * gladys.services.example.start();
    */
-  function start() {
+  async function start() {
     logger.log('starting example service');
   }
 
@@ -25,13 +25,13 @@ module.exports = function ExampleService() {
    * @example
    * gladys.services.example.stop();
    */
-  function stop() {
+  async function stop() {
     logger.log('stopping example service');
   }
 
   return Object.freeze({
     start,
     stop,
-    device: new ExampleDeviceHandler(client),
+    device: new ExampleDeviceHandler(gladys, client),
   });
 };

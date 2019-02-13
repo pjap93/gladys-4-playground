@@ -2,13 +2,13 @@
 /**
  * @private
  * @description Get the value of a device.
- * @param {string} externalId - The ID of the lamp we want to control.
+ * @param {Object} deviceFeature - The deviceFeature object.
  * @returns {Promise} Resolving with device value.
  * @example
- * getValue('1');
+ * getValue(deviceFeature);
  */
-function getValue(externalId) {
-  return this.client.get(`https://some-api/${externalId}`);
+function getValue(deviceFeature) {
+  return this.client.get(`https://some-api/${deviceFeature.external_id}`);
 }
 
 module.exports = getValue;
