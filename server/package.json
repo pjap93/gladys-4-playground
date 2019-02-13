@@ -3,6 +3,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "node ./cli/install_service_dependencies.js",
     "clean:test": "shx --silent rm -f gladys-test.db && shx echo Cleaned test database",
     "pretest": "npm run db-migrate:test",
     "test": "cross-env NODE_ENV=test ./node_modules/mocha/bin/mocha --recursive ./test/bootstrap.test.js \"./test/**/*.test.js\" --exit",
