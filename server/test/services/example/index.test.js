@@ -24,6 +24,16 @@ describe('ExampleService', () => {
   });
 });
 
+describe('ExampleService lifecycle', () => {
+  const exampleService = ExampleService();
+  it('should start the service', async () => {
+    await exampleService.start();
+  });
+  it('should stop the service', async () => {
+    await exampleService.stop();
+  });
+});
+
 describe('ExampleService.light', () => {
   const exampleService = ExampleService();
   const deviceFeature = {
