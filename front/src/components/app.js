@@ -21,7 +21,7 @@ export default class App extends Component {
 	      <Header currentUrl={currentUrl} />
 	      <Router onChange={this.handleRoute}>
 	        <Dashboard path="/dashboard" />
-          <Dashboard path="/dashboard2" />
+	        <Dashboard path="/dashboard2" />
 	        <Login path="/" />
 	      </Router>
 	    </div>
