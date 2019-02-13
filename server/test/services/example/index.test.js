@@ -13,29 +13,32 @@ describe('ExampleService', () => {
   it('should have stop function', () => {
     exampleService.should.have.property('start').which.is.a.Function();
   });
-  it('should have device object', () => {
-    exampleService.should.have.property('device').which.is.a.Object();
+  it('should have light object', () => {
+    exampleService.should.have.property('light').which.is.a.Object();
   });
-  it('exampleService.device should have setValue function', () => {
-    exampleService.device.should.have.property('setValue').which.is.a.Function();
+  it('exampleService.light should have turnOn function', () => {
+    exampleService.light.should.have.property('turnOn').which.is.a.Function();
   });
-  it('exampleService.device should have setValue function', () => {
-    exampleService.device.should.have.property('getValue').which.is.a.Function();
+  it('exampleService.light should have turnOff function', () => {
+    exampleService.light.should.have.property('turnOff').which.is.a.Function();
   });
 });
 
-describe('ExampleService.device', () => {
+describe('ExampleService.light', () => {
   const exampleService = ExampleService();
   const deviceFeature = {
     id: 'd0a6cfc7-fe07-4df1-b0db-70d878bcdd2b',
     external_id: 'example:1',
     type: 'binary',
   };
-  it('should setValue device', async () => {
-    await exampleService.device.setValue(deviceFeature, 10);
+  it('should turnOn the light', async () => {
+    await exampleService.light.turnOn(deviceFeature);
   });
-  it('should getValue device', async () => {
-    const value = await exampleService.device.getValue(deviceFeature);
-    value.should.equal(5);
+  it('should turnOff the light', async () => {
+    await exampleService.light.turnOff(deviceFeature);
+  });
+  it('should get the state of the light', async () => {
+    const value = await exampleService.light.getState(deviceFeature);
+    value.should.equal(1);
   });
 });

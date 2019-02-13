@@ -1,8 +1,8 @@
 const logger = require('../../utils/logger');
-const ExampleDeviceHandler = require('./lib/device');
+const ExampleLightHandler = require('./lib/light');
 
 module.exports = function ExampleService(gladys) {
-  // here is an example module calling the Gladys website
+  // here is an example module
   const axios = require('axios');
 
   // @ts-ignore: TS doesn't know about the axios.create function
@@ -32,6 +32,6 @@ module.exports = function ExampleService(gladys) {
   return Object.freeze({
     start,
     stop,
-    device: new ExampleDeviceHandler(gladys, client),
+    light: new ExampleLightHandler(gladys, client),
   });
 };
