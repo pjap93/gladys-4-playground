@@ -34,13 +34,14 @@ As you can notice, the package.json of a service looks like this:
 
 ## Folder structure
 
-This service is an example service which is able to control a device. In this case, it's just a fake service doing close to nothing!
-
+This service is an example service which is able to control a light.
+ 
 ```
 -- lib
----- device
------- device.getValue.js
------- device.setValue.js
+---- light
+------ light.turnOn.js
+------ light.turnOff.js
+------ light.getState.js
 ------ index.js
 -- index.js
 -- package-lock.json
@@ -52,13 +53,15 @@ This service is an example service which is able to control a device. In this ca
 
 This services exposes a function which returns a read-only object: 
 
+
 ```
 {
   start: [Function], // function to start the service
   stop: [Function], // function to stop the service
-  device: {
-    getValue: [Function], // function to get the value of a given device 
-    setValue: [Function] // function to set the value of a given device
+  light: {
+    turnOn: [Function], // function to turnOn the light
+    turnOff: [Function], // function to turnOff the light
+    getState: [Function], // function to get the state of the light (on/off)
   }
 }
 ```
@@ -73,13 +76,15 @@ This object should be created and kept in the `index.js` file of your library.
 
 Then, you can pass this object to all functions of your service with a dependency injection pattern.
 
+See this module as an example!
+
 ## Testing
 
-All services should be tested.
+**All services should be tested.**
 
-You module is probably calling a third-party to control a device. Like `node-openzwave-shared` for the Zwave service for example.
+You module is probably calling a third-party library to control a device. Like `node-openzwave-shared` for the Zwave service for example.
 
-You need to mock your dependencies thanks to [proxyquire]().
+You need to mock your dependencies thanks to [proxyquire](https://github.com/thlorenz/proxyquire#readme).
 
 Let's say I'm using axios in my module, and I don't want to call axios in my tests.
 
