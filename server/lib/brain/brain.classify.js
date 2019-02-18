@@ -17,4 +17,6 @@ async function classify(message, language, context = new ConversationContext()) 
   };
 }
 
-module.exports = classify;
+module.exports = {
+  classify,
+};

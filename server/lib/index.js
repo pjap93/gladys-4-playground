@@ -11,9 +11,9 @@ const Gladys = function Gladys() {
   };
 
   const cache = new Cache();
-  const user = User();
-  const service = Service();
-  const session = Session(config.jwtSecret);
+  const user = new User();
+  const service = new Service();
+  const session = new Session(config.jwtSecret);
 
   const gladys = {
     user,

@@ -4,7 +4,6 @@ const { generateAccessToken } = require('../../utils/accessToken');
 
 /**
  * @description Create and save in database a refresh_token
- * @param {string} jwtSecret - The secret to generate the jsonwebtoken.
  * @param {string} userId - The uuid of a user.
  * @param {Array} scope - Scope the refresh token is able to access.
  * @param {number} validityInSeconds - Validity of the refreshToken.
@@ -12,7 +11,7 @@ const { generateAccessToken } = require('../../utils/accessToken');
  * @example
  * gladys.refreshToken.create('7144a75d-1ec2-4f31-a587-a4b316c28754');
  */
-async function create(jwtSecret, userId, scope, validityInSeconds) {
+async function create(userId, scope, validityInSeconds) {
   const { refreshToken, refreshTokenHash } = await generateRefreshToken();
 
   const newSession = {
@@ -24,7 +23,7 @@ async function create(jwtSecret, userId, scope, validityInSeconds) {
   };
 
   const session = await db.Session.create(newSession);
-  const accessToken = generateAccessToken(userId, scope, session.id, jwtSecret);
+  const accessToken = generateAccessToken(userId, scope, session.id, this.jwtSecret);
 
   return {
     refresh_token: refreshToken,

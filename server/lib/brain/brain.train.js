@@ -48,4 +48,6 @@ async function train() {
   await this.nlpManager.train();
 }
 
-module.exports = train;
+module.exports = {
+  train,
+};

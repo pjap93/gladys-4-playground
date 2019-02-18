@@ -1,7 +1,7 @@
 const { load } = require('./service.load');
 
-module.exports = function Service() {
-  return {
-    load,
-  };
-};
+const Service = function Service() {};
+
+Service.prototype.load = load;
+
+module.exports = Service;
