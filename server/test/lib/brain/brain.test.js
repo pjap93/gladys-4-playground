@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const Brain = require('../../../lib/brain');
 
 describe('brain.train', () => {
-  const brain = Brain();
+  const brain = new Brain();
   it('should train brain', async () => {
     await brain.train();
   });
