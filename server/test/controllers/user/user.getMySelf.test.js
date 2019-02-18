@@ -1,4 +1,5 @@
 const { expect } = require('chai');
+const request = require('supertest');
 const authenticatedRequest = require('../request.test');
 
 describe('GET /api/me', () => {
@@ -20,5 +21,11 @@ describe('GET /api/me', () => {
           updated_at: '2019-02-12T07:49:07.556Z',
         });
       });
+  });
+  it('should return 401 unauthorized', async () => {
+    await request(TEST_BACKEND_APP)
+      .get('/api/me')
+      .expect('Content-Type', /json/)
+      .expect(401);
   });
 });
