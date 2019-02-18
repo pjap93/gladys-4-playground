@@ -1,9 +1,9 @@
 const { expect } = require('chai');
-const request = require('supertest');
+const { request } = require('../request.test');
 
 describe('POST /user', () => {
   it('should create user', async () => {
-    await request(TEST_BACKEND_APP)
+    await request
       .post('/api/user')
       .send({
         firstname: 'Tony',
@@ -21,7 +21,7 @@ describe('POST /user', () => {
       });
   });
   it('should not create user, missing email', async () => {
-    await request(TEST_BACKEND_APP)
+    await request
       .post('/api/user')
       .send({
         firstname: 'Tony',
@@ -35,7 +35,7 @@ describe('POST /user', () => {
       .expect(422);
   });
   it('should not create user, duplicate email', async () => {
-    await request(TEST_BACKEND_APP)
+    await request
       .post('/api/user')
       .send({
         firstname: 'Tony',

@@ -1,8 +1,8 @@
-const request = require('supertest');
+const { request } = require('./request.test');
 
 describe('GET /thisroutedoesntexist', () => {
   it('should return 404 not found', async () => {
-    await request(TEST_BACKEND_APP)
+    await request
       .get('/thisroutedoesntexist')
       .expect('Content-Type', /json/)
       .expect(404);

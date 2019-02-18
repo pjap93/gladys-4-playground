@@ -1,6 +1,5 @@
 const { expect } = require('chai');
-const request = require('supertest');
-const authenticatedRequest = require('../request.test');
+const { request, authenticatedRequest } = require('../request.test');
 
 describe('GET /api/me', () => {
   it('should return the connected user', async () => {
@@ -23,7 +22,7 @@ describe('GET /api/me', () => {
       });
   });
   it('should return 401 unauthorized', async () => {
-    await request(TEST_BACKEND_APP)
+    await request
       .get('/api/me')
       .expect('Content-Type', /json/)
       .expect(401);

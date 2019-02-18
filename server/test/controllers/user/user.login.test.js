@@ -1,9 +1,9 @@
-const request = require('supertest');
 const { expect } = require('chai');
+const { request } = require('../request.test');
 
 describe('POST /api/login', () => {
   it('should login user', async () => {
-    await request(TEST_BACKEND_APP)
+    await request
       .post('/api/login')
       .send({
         email: 'demo@demo.com',
@@ -17,7 +17,7 @@ describe('POST /api/login', () => {
       });
   });
   it('should not login user (wrong password)', async () => {
-    await request(TEST_BACKEND_APP)
+    await request
       .post('/api/login')
       .send({
         email: 'usernotfound@demo.com',
@@ -27,7 +27,7 @@ describe('POST /api/login', () => {
       .expect(403);
   });
   it('should not login user (email not found)', async () => {
-    await request(TEST_BACKEND_APP)
+    await request
       .post('/api/login')
       .send({
         email: 'demo@demo.com',
