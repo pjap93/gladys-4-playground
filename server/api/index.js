@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const errorMiddleware = require('./middlewares/errorMiddleware');
 const logger = require('../utils/logger');
 const { setupRoutes } = require('./routes');
@@ -14,11 +13,8 @@ const { setupRoutes } = require('./routes');
 function start(gladys, port) {
   const app = express();
 
-  // parse application/x-www-form-urlencoded
-  app.use(bodyParser.urlencoded({ extended: false }));
-
-  // parse application/json
-  app.use(bodyParser.json());
+  // parse json
+  app.use(express.json());
 
   // loading app
   app.use(setupRoutes(gladys));
