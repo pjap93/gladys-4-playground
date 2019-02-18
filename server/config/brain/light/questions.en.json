@@ -1,0 +1,13 @@
+[
+  {
+    "label": "light.turnon",
+    "questions": [
+      "Turn on the light in the %room%",
+      "I want some light in the %room%"
+    ],
+    "answers": [
+      "Turning on the light in the {{ room }}",
+      "I'm turning on the light in the {{ room }}"
+    ]
+  }
+]
