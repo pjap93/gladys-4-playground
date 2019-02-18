@@ -1,4 +1,4 @@
-const { expect } = require('chai');
+const { expect } = require('chai');
 const authenticatedRequest = require('../request.test');
 
 describe('GET /api/me', () => {

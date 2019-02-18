@@ -16,7 +16,7 @@ describe('services', () => {
       const packageJsonPath = join(folder, 'package.json');
       it('package.json should exist', () => {
         const packageJsonExist = existsSync(packageJsonPath);
-        expect(packageJsonExist).to.be.true;
+        expect(packageJsonExist).to.be.true; // eslint-disable-line
       });
       const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf8'));
       it('package.json should specify compatible cpu', () => {
@@ -28,7 +28,7 @@ describe('services', () => {
       const indexFilePath = join(folder, 'index.js');
       it('index.js should exist', () => {
         const indexFileExist = existsSync(indexFilePath);
-        expect(indexFileExist).to.be.true;
+        expect(indexFileExist).to.be.true; // eslint-disable-line
       });
       const index = require(indexFilePath); // eslint-disable-line
       const service = index();
