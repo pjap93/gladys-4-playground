@@ -1,10 +1,14 @@
+const chai = require('chai');
+const chaiAsPromised = require('chai-as-promised');
+
 const db = require('../models');
 const server = require('../api/');
 const Gladys = require('../lib');
 const logger = require('../utils/logger');
-require('should');
 const user = require('../seeders/20190205071039-demo-user');
 const location = require('../seeders/20190211053203-demo-location');
+
+chai.use(chaiAsPromised);
 
 const SERVER_PORT = 6500;
 

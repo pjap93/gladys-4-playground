@@ -1,3 +1,5 @@
+const { assert } = require('chai');
+
 const User = require('../../../lib/user');
 
 describe('user.create', () => {
@@ -15,7 +17,7 @@ describe('user.create', () => {
   });
   it('should not create user, wrong email', async () => {
     const user = User();
-    return user.create({
+    const promise = user.create({
       firstname: 'Tony',
       lastname: 'Stark',
       email: 'thisisnotemail',
@@ -23,11 +25,12 @@ describe('user.create', () => {
       birthdate: '01/01/2019',
       language: 'en',
       role: 'admin',
-    }).should.be.rejected();
+    });
+    return assert.isRejected(promise, 'Validation error: Validation isEmail on email failed');
   });
   it('should not create user, password too small', () => {
     const user = User();
-    return user.create({
+    const promise = user.create({
       firstname: 'Tony',
       lastname: 'Stark',
       email: 'tony.stark@gladysassistant.com',
@@ -35,6 +38,7 @@ describe('user.create', () => {
       birthdate: '01/01/2019',
       language: 'en',
       role: 'admin',
-    }).should.be.rejected();
+    });
+    return assert.isRejected(promise, 'Validation error: Validation len on password failed');
   });
 });

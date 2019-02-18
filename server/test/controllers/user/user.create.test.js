@@ -1,3 +1,4 @@
+const { expect } = require('chai');
 const request = require('supertest');
 
 describe('POST /user', () => {
@@ -16,7 +17,7 @@ describe('POST /user', () => {
       .expect('Content-Type', /json/)
       .expect(201)
       .then((res) => {
-        res.body.should.have.property('id');
+        expect(res.body).to.have.property('id');
       });
   });
 });

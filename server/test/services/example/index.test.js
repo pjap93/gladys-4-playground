@@ -1,3 +1,4 @@
+const { expect } = require('chai');
 const proxyquire = require('proxyquire').noCallThru();
 const MockedClient = require('./mocks.test');
 
@@ -8,19 +9,19 @@ const ExampleService = proxyquire('../../../services/example/index', {
 describe('ExampleService', () => {
   const exampleService = ExampleService();
   it('should have start function', () => {
-    exampleService.should.have.property('start').which.is.a.Function();
+    expect(exampleService).to.have.property('start').and.be.instanceOf(Function);
   });
   it('should have stop function', () => {
-    exampleService.should.have.property('start').which.is.a.Function();
+    expect(exampleService).to.have.property('stop').and.be.instanceOf(Function);
   });
   it('should have light object', () => {
-    exampleService.should.have.property('light').which.is.a.Object();
+    expect(exampleService).to.have.property('light').and.be.instanceOf(Object);
   });
   it('exampleService.light should have turnOn function', () => {
-    exampleService.light.should.have.property('turnOn').which.is.a.Function();
+    expect(exampleService.light).to.have.property('turnOn').and.be.instanceOf(Function);
   });
   it('exampleService.light should have turnOff function', () => {
-    exampleService.light.should.have.property('turnOff').which.is.a.Function();
+    expect(exampleService.light).to.have.property('turnOff').and.be.instanceOf(Function);
   });
 });
 
@@ -49,6 +50,6 @@ describe('ExampleService.light', () => {
   });
   it('should get the state of the light', async () => {
     const value = await exampleService.light.getState(deviceFeature);
-    value.should.equal(1);
+    expect(value).to.equal(1);
   });
 });

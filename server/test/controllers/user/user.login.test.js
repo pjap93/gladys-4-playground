@@ -1,4 +1,5 @@
 const request = require('supertest');
+const { expect } = require('chai');
 
 describe('POST /api/login', () => {
   it('should login user', async () => {
@@ -11,8 +12,8 @@ describe('POST /api/login', () => {
       .expect('Content-Type', /json/)
       .expect(200)
       .then((res) => {
-        res.body.should.have.property('access_token');
-        res.body.should.have.property('refresh_token');
+        expect(res.body).to.have.property('access_token');
+        expect(res.body).to.have.property('refresh_token');
       });
   });
   it('should not login user (wrong password)', async () => {

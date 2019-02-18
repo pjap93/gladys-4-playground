@@ -2,6 +2,7 @@ const {
   lstatSync, readdirSync, readFileSync, existsSync,
 } = require('fs');
 const { join } = require('path');
+const { expect } = require('chai');
 
 /**
  * Verify that all services follow the requirements
@@ -15,29 +16,29 @@ describe('services', () => {
       const packageJsonPath = join(folder, 'package.json');
       it('package.json should exist', () => {
         const packageJsonExist = existsSync(packageJsonPath);
-        packageJsonExist.should.equal(true);
+        expect(packageJsonExist).to.be.true;
       });
       const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf8'));
       it('package.json should specify compatible cpu', () => {
-        packageJson.should.have.property('cpu');
+        expect(packageJson).to.have.property('cpu');
       });
       it('package.json should specify compatible os', () => {
-        packageJson.should.have.property('os');
+        expect(packageJson).to.have.property('os');
       });
       const indexFilePath = join(folder, 'index.js');
       it('index.js should exist', () => {
         const indexFileExist = existsSync(indexFilePath);
-        indexFileExist.should.equal(true);
+        expect(indexFileExist).to.be.true;
       });
       const index = require(indexFilePath); // eslint-disable-line
       const service = index();
       it('index.js should expose start function', () => {
-        service.should.have.property('start');
-        service.start.should.be.instanceOf(Function);
+        expect(service).to.have.property('start');
+        expect(service.start).to.be.instanceOf(Function);
       });
       it('index.js should expose stop function', () => {
-        service.should.have.property('stop');
-        service.stop.should.be.instanceOf(Function);
+        expect(service).to.have.property('stop');
+        expect(service.stop).to.be.instanceOf(Function);
       });
     });
   });

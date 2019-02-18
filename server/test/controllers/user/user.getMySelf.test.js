@@ -1,4 +1,4 @@
-const should = require('should');
+const { expect } = require('chai');
 const authenticatedRequest = require('../request.test');
 
 describe('GET /api/me', () => {
@@ -8,7 +8,7 @@ describe('GET /api/me', () => {
       .expect('Content-Type', /json/)
       .expect(200)
       .then((res) => {
-        should.deepEqual(res.body, {
+        expect(res.body).to.deep.equal({
           id: '0cd30aef-9c4e-4a23-88e3-3547971296e5',
           firstname: 'John',
           lastname: 'Doe',
