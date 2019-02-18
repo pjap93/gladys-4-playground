@@ -20,4 +20,33 @@ describe('POST /user', () => {
         expect(res.body).to.have.property('id');
       });
   });
+  it('should not create user, missing email', async () => {
+    await request(TEST_BACKEND_APP)
+      .post('/api/user')
+      .send({
+        firstname: 'Tony',
+        lastname: 'Stark',
+        password: 'testststs',
+        birthdate: '01/01/2019',
+        language: 'en',
+        role: 'admin',
+      })
+      .expect('Content-Type', /json/)
+      .expect(422);
+  });
+  it('should not create user, duplicate email', async () => {
+    await request(TEST_BACKEND_APP)
+      .post('/api/user')
+      .send({
+        firstname: 'Tony',
+        lastname: 'Stark',
+        password: 'testststs',
+        email: 'demo@demo.com',
+        birthdate: '01/01/2019',
+        language: 'en',
+        role: 'admin',
+      })
+      .expect('Content-Type', /json/)
+      .expect(409);
+  });
 });

@@ -1,5 +1,6 @@
 const express = require('express');
 const errorMiddleware = require('./middlewares/errorMiddleware');
+const notFoundMiddleware = require('./middlewares/notFoundMiddleware');
 const logger = require('../utils/logger');
 const { setupRoutes } = require('./routes');
 
@@ -18,6 +19,9 @@ function start(gladys, port) {
 
   // loading app
   app.use(setupRoutes(gladys));
+
+  // if not routes was found
+  app.use(notFoundMiddleware);
 
   // loading error middleware
   app.use(errorMiddleware);

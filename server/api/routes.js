@@ -18,8 +18,8 @@ function setupRoutes(gladys) {
   router.post('/api/user', userController.create);
   router.post('/api/login', userController.login);
 
-  // after this, all requests must have authenticated
-  router.use(AuthMiddleware(gladys.config.jwtSecret, 'dashboard:write', gladys.cache));
+  // after this, all requests to /api must have authenticated
+  router.use('/api/*', AuthMiddleware(gladys.config.jwtSecret, 'dashboard:write', gladys.cache));
 
   router.get('/api/me', userController.getMySelf);
 
