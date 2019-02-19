@@ -13,7 +13,7 @@ async function command(message, classification, context) {
     switch (classification.intent) {
     case 'light.turnon':
       await this.turnOn();
-      this.message.replyByIntent(message, 'light.turnon.success');
+      this.message.replyByIntent(message, 'light.turnon.success', context);
       break;
     default:
       throw new Error('Not found');
