@@ -41,9 +41,6 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
       },
-      classification: {
-        type: Sequelize.JSON,
-      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,

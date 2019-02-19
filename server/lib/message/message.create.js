@@ -20,7 +20,7 @@ async function create(message) {
   logger.debug(`Classified "${message.text}" with intent = "${classification.intent}".`);
 
   // new classification found, emitting event
-  this.event.emit(classification.intent, classification);
+  this.event.emit(classification.intent, message, classification);
 
   // if a first answer needs to be sent, send it
   if (classification.answer) {
@@ -32,7 +32,6 @@ async function create(message) {
     sender_id: message.user_id,
     receiver_id: null,
     is_read: true,
-    classification,
   };
 
   await db.Message.create(messageToInsert);

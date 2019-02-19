@@ -16,19 +16,24 @@ const Gladys = function Gladys() {
   const brain = new Brain();
   const cache = new Cache();
   const event = new Event();
-  const message = new MessageHandler(event, brain);
-  const user = new User();
   const service = new Service();
+  const message = new MessageHandler(event, brain, service);
+  const user = new User();
   const session = new Session(config.jwtSecret);
 
   const gladys = {
+    event,
     message,
     user,
     service,
     session,
     cache,
     config,
-    start: async () => service.load(gladys),
+    start: async () => {
+      await brain.load();
+      await service.load(gladys);
+      await service.start();
+    },
   };
 
   // freeze Gladys object to ensure it's not modified

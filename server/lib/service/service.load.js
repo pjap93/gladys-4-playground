@@ -1,18 +1,18 @@
 const services = require('../../services');
 
 // only here for the demo, should be stored in DB
-const SERVICE_TO_LOAD = ['example'];
+const SERVICE_TO_LOAD = ['example', 'telegram'];
 
 /**
  * @public
  * @description Load all services
- * @param {Object} gladys - Gladys instance.
+ * @param {Object} gladys - Gladys object.
  * @example
- * load(gladys);
+ * service.load(gladys);
  */
 function load(gladys) {
   SERVICE_TO_LOAD.forEach((service) => {
-    services[service](gladys).start();
+    this.services[service] = services[service](gladys);
   });
 }
 

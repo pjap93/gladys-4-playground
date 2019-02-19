@@ -1,6 +1,8 @@
 const logger = require('../../utils/logger');
 
-module.exports = function TelegramService(gladys, config) {
+module.exports = function TelegramService(gladys, config = { token: '766231991:AAGx6nVe7coyzEfAIa9zRp1WL3iuvrCVjPo' }) {
+  // See https://github.com/yagop/node-telegram-bot-api/issues/540
+  process.env.NTBA_FIX_319 = '1';
   const TelegramBot = require('node-telegram-bot-api');
   let bot;
   /**
@@ -12,11 +14,15 @@ module.exports = function TelegramService(gladys, config) {
   async function start() {
     logger.log('starting telegram service');
     bot = new TelegramBot(config.token, { polling: true });
-    bot.on('message', (msg) => {
-      const chatId = msg.chat.id;
+    bot.on('message', async (msg) => {
+      logger.debug(`new message from telegram, ${msg.text}`);
+      const telegramUserId = msg.from.id;
+      const user = await gladys.user.getByTelegramUserId(telegramUserId);
+
       const message = {
         source: 'telegram',
-        source_user_id: chatId,
+        source_user_id: telegramUserId,
+        user_id: user.id,
         date: msg.date,
         text: msg.text,
       };
@@ -37,5 +43,10 @@ module.exports = function TelegramService(gladys, config) {
   return Object.freeze({
     start,
     stop,
+    message: {
+      send: (text, options) => {
+        bot.sendMessage(options.source_user_id, text);
+      },
+    },
   });
 };

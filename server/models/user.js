@@ -40,6 +40,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.ENUM('admin', 'habitant', 'guest'),
     },
+    telegram_user_id: {
+      allowNull: true,
+      type: DataTypes.STRING,
+      unique: true,
+    },
   }, {});
 
   // ensure email is in lowercase

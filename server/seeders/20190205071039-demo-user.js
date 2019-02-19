@@ -9,6 +9,7 @@ module.exports = {
     language: 'en',
     role: 'admin',
     birthdate: '12/12/1990',
+    telegram_user_id: '555555555',
     created_at: '2019-02-12 07:49:07.556 +00:00',
     updated_at: '2019-02-12 07:49:07.556 +00:00',
   }], {}),

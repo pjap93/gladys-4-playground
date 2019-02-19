@@ -36,9 +36,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
-    classification: {
-      type: DataTypes.JSON,
-    },
   }, {
     validate: {
       atLeastOneUserId() {
