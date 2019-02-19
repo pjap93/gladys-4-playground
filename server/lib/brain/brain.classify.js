@@ -10,9 +10,9 @@ const { ConversationContext } = require('node-nlp');
    * brain.classify('What time is it?', 'en');
    */
 async function classify(message, language, context = new ConversationContext()) {
-  const result = await this.nlpManager.process(language, message, context);
+  const classification = await this.nlpManager.process(language, message, context);
   return {
-    result,
+    classification,
     context,
   };
 }

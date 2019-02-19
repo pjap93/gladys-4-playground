@@ -41,7 +41,7 @@ async function train() {
   // we fill the nlgManager with all async answers
   brainConfig.answers.forEach((answer) => {
     answer.answers.forEach((text) => {
-      this.nlgManager.addAnswer(answer.language, answer.label, text);
+      this.nlpManager.addAnswer(answer.language, answer.label, text);
     });
   });
 

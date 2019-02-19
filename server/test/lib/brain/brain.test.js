@@ -9,9 +9,17 @@ describe('brain.train', () => {
   it('should classify sentence', async () => {
     const firstQuestionResponse = await brain.classify('Order me a taxi in 5 minutes', 'en');
     const secondQuestionResponse = await brain.classify('Paris', 'en', firstQuestionResponse.context);
-    expect(firstQuestionResponse).to.have.property('result');
+    expect(firstQuestionResponse).to.have.property('classification');
     expect(firstQuestionResponse).to.have.property('context');
-    expect(secondQuestionResponse).to.have.property('result');
+    expect(secondQuestionResponse).to.have.property('classification');
     expect(secondQuestionResponse).to.have.property('context');
+  });
+  it('should getReply', async () => {
+    const response = brain.getReply('en', 'calendar.nextevent.getlocation.success', {
+      event: {
+        location: 'Paris',
+        name: 'work',
+      },
+    });
   });
 });

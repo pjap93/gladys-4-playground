@@ -39,7 +39,15 @@ module.exports = (sequelize, DataTypes) => {
     classification: {
       type: DataTypes.JSON,
     },
-  }, {});
+  }, {
+    validate: {
+      atLeastOneUserId() {
+        if (!this.sender_id && !this.receiver_id) {
+          throw new Error('sender_id and receiver_id cannot be both null');
+        }
+      },
+    },
+  });
 
   message.associate = (models) => {
     message.belongsTo(models.User, {

@@ -8,8 +8,8 @@ Event.prototype.emit = function emit(event, data) {
   this.emitter.emit(event, data);
 };
 
-Event.prototype.emit = function emit(event, data) {
-  this.emitter.emit(event, data);
+Event.prototype.on = function on(event, cb) {
+  this.emitter.on(event, cb);
 };
 
 module.exports = Event;
