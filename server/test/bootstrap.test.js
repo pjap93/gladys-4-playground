@@ -1,12 +1,10 @@
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
 
-const db = require('../models');
 const server = require('../api/');
 const Gladys = require('../lib');
 const logger = require('../utils/logger');
-const user = require('../seeders/20190205071039-demo-user');
-const location = require('../seeders/20190211053203-demo-location');
+const { seedDb, cleanDb } = require('./helpers/db.test');
 
 chai.use(chaiAsPromised);
 
@@ -21,12 +19,11 @@ before(async () => {
   global.TEST_BACKEND_APP = server.start(gladys, SERVER_PORT);
 });
 
+// cleaning and filling database between each tests
 beforeEach(async () => {
   try {
-    await location.down(db.sequelize.getQueryInterface());
-    await user.down(db.sequelize.getQueryInterface());
-    await user.up(db.sequelize.getQueryInterface());
-    await location.up(db.sequelize.getQueryInterface());
+    await cleanDb();
+    await seedDb();
   } catch (e) {
     logger.trace(e);
     throw e;
