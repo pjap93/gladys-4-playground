@@ -1,6 +1,6 @@
 const logger = require('../../utils/logger');
 
-module.exports = function TelegramService(gladys, config = { token: '766231991:AAGx6nVe7coyzEfAIa9zRp1WL3iuvrCVjPo' }) {
+module.exports = function TelegramService(gladys, config = { token: process.env.TELEGRAM_API_TOKEN }) {
   // See https://github.com/yagop/node-telegram-bot-api/issues/540
   process.env.NTBA_FIX_319 = '1';
   const TelegramBot = require('node-telegram-bot-api');
