@@ -35,7 +35,7 @@ const Gladys = function Gladys() {
     start: async () => {
       await brain.load();
       await service.load(gladys);
-      await service.start();
+      await service.startAll();
     },
   };
 
