@@ -19,7 +19,6 @@ module.exports = {
       },
       name: {
         allowNull: false,
-        unique: true,
         type: Sequelize.STRING,
       },
       selector: {
@@ -31,6 +30,16 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
+      enabled: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,
+      },
+      has_message_feature: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -41,6 +50,9 @@ module.exports = {
       },
     });
     await queryInterface.addIndex('t_service', ['pod_id']);
+    await queryInterface.addIndex('t_service', ['pod_id', 'name'], {
+      unique: true,
+    });
   },
   down: (queryInterface, Sequelize) => queryInterface.dropTable('t_service'),
 };

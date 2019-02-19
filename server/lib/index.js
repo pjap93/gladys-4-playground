@@ -24,6 +24,7 @@ const Gladys = function Gladys() {
   const light = new Light(event, message);
 
   const gladys = {
+    version: '0.1.0', // todo, read package.json
     event,
     message,
     user,

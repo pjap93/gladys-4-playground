@@ -24,7 +24,7 @@ async function create(message) {
 
   // if a first answer needs to be sent, send it
   if (classification.answer) {
-    this.reply(classification.answer, message.source, message.source_user_id);
+    this.reply(message, classification.answer);
   }
 
   const messageToInsert = {

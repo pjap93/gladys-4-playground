@@ -45,8 +45,15 @@ module.exports = function TelegramService(gladys, config = { token: process.env.
     start,
     stop,
     message: {
-      send: (text, options) => {
-        bot.sendMessage(options.source_user_id, text);
+      send: (chatId, text, options) => {
+        const telegramOptions = {};
+        if (options && options.suggestion) {
+          telegramOptions.reply_markup = {
+            one_time_keyboard: true,
+            keyboard: options.suggestion,
+          };
+        }
+        bot.sendMessage(chatId, text, telegramOptions);
       },
     },
   });

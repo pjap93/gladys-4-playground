@@ -21,9 +21,7 @@ async function reply(originalMessage, text) {
     const service = this.service.getService(originalMessage.source);
     // if the service exist, we send the message
     if (service) {
-      await service.message.send(text, {
-        source_user_id: originalMessage.source_user_id,
-      });
+      await service.message.send(originalMessage.source_user_id, text);
     }
   } catch (e) {
     logger.warn(`Unable to reply to user`);

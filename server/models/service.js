@@ -28,6 +28,16 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.STRING,
     },
+    enabled: {
+      allowNull: false,
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
+    has_message_feature: {
+      allowNull: false,
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
   }, {});
 
   service.associate = (models) => {
