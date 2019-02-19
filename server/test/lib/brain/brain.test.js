@@ -15,7 +15,7 @@ describe('brain.train', () => {
     expect(secondQuestionResponse).to.have.property('context');
   });
   it('should getReply', async () => {
-    const response = brain.getReply('en', 'calendar.nextevent.getlocation.success', {
+    brain.getReply('en', 'calendar.nextevent.getlocation.success', {
       event: {
         location: 'Paris',
         name: 'work',

@@ -6,7 +6,7 @@ const Handlebars = require('handlebars');
    * @param {string} language - The language of the message.
    * @param {string} intent - The intent of the message.
    * @param {Object} context - The context of the conversation.
-   * @returns {string} - Return a text
+   * @returns {string} - Return a text.
    * @example
    * brain.getReply('en', 'light.turnon.success');
    */
