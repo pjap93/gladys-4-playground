@@ -23,6 +23,7 @@ module.exports = function TelegramService(gladys, config = { token: process.env.
         source: 'telegram',
         source_user_id: telegramUserId,
         user_id: user.id,
+        language: user.language,
         date: msg.date,
         text: msg.text,
       };

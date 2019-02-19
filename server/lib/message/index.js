@@ -1,5 +1,6 @@
 const { create } = require('./message.create');
 const { reply } = require('./message.reply');
+const { replyByIntent } = require('./message.replyByIntent');
 
 const MessageHandler = function MessageHandler(event, brain, service) {
   this.event = event;
@@ -12,5 +13,6 @@ const MessageHandler = function MessageHandler(event, brain, service) {
 
 MessageHandler.prototype.create = create;
 MessageHandler.prototype.reply = reply;
+MessageHandler.prototype.replyByIntent = replyByIntent;
 
 module.exports = MessageHandler;

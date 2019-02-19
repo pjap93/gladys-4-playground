@@ -15,12 +15,12 @@ const db = require('../../models');
  */
 async function create(message) {
   // first, we classify the message to understand the intent
-  const { classification } = await this.brain.classify(message.text, message.language);
+  const { classification, context } = await this.brain.classify(message.text, message.language);
 
   logger.debug(`Classified "${message.text}" with intent = "${classification.intent}".`);
 
   // new classification found, emitting event
-  this.event.emit(classification.intent, message, classification);
+  this.event.emit(`intent.${classification.intent}`, message, classification, context);
 
   // if a first answer needs to be sent, send it
   if (classification.answer) {

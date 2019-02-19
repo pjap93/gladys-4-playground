@@ -1,0 +1,14 @@
+[
+  {
+    "label": "light.turnon.success",
+    "answers": [
+      "I turned on the light in room {{room}} with success!"
+    ]
+  },
+  {
+    "label": "light.turnon.fail",
+    "answers": [
+      "I didn't manage to turn on the light in room {{room}}."
+    ]
+  }
+]

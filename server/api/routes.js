@@ -21,7 +21,7 @@ function setupRoutes(gladys) {
   router.post('/api/login', userController.login);
 
   // after this, all requests to /api must have authenticated
-  router.use('/api/*', AuthMiddleware(gladys.config.jwtSecret, 'dashboard:write', gladys.cache));
+  router.use('/api/*', AuthMiddleware(gladys.config.jwtSecret, 'dashboard:write', gladys.cache, gladys.user));
 
   // message
   router.post('/api/message', messageController.create);

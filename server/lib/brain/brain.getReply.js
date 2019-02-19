@@ -1,5 +1,6 @@
 const { ConversationContext } = require('node-nlp');
 const Handlebars = require('handlebars');
+const { NotFoundError } = require('../../utils/coreErrors');
 
 /**
    * @description Get the reply for a given intent
@@ -12,6 +13,9 @@ const Handlebars = require('handlebars');
    */
 function getReply(language, intent, context = new ConversationContext()) {
   const text = this.nlpManager.getAnswer(language, intent, context);
+  if (!text) {
+    throw new NotFoundError(`Answer with intent ${intent} and language ${language} not found`);
+  }
   return Handlebars.compile(text)(context);
 }
 

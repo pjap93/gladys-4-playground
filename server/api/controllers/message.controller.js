@@ -10,13 +10,15 @@ module.exports = function MessageController(gladys) {
    * @apiParam {string} text Text to send
    */
   async function create(req, res) {
-    const message = {
+    const messageToSend = {
       text: req.body.text,
       source: 'api_client',
       source_user_id: req.user.id,
+      user_id: req.user.id,
+      language: req.user.language,
     };
-    const newMessage = await gladys.message.create(message);
-    res.status(201).json(newMessage);
+    const { message } = await gladys.message.create(messageToSend);
+    res.status(201).json(message);
   }
 
   return Object.freeze({

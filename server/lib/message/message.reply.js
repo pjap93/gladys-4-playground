@@ -8,9 +8,12 @@
  * reply('thanks', 'telegram', 'XXXX');
  */
 async function reply(text, source, sourceUserId) {
-  await this.service.getService(source).message.send(text, {
-    source_user_id: sourceUserId,
-  });
+  const service = this.service.getService(source);
+  if (service) {
+    await service.message.send(text, {
+      source_user_id: sourceUserId,
+    });
+  }
 }
 
 module.exports = {

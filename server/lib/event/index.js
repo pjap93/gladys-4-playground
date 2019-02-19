@@ -4,8 +4,8 @@ const Event = function Event() {
   this.emitter = new EventEmitter();
 };
 
-Event.prototype.emit = function emit(event, data) {
-  this.emitter.emit(event, data);
+Event.prototype.emit = function emit(event, ...args) {
+  this.emitter.emit(event, ...args);
 };
 
 Event.prototype.on = function on(event, cb) {

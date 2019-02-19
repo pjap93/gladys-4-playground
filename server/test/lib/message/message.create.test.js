@@ -2,13 +2,13 @@ const { expect } = require('chai');
 const EventEmitter = require('events');
 const MessageHandler = require('../../../lib/message');
 
-describe('message.new-message', () => {
+describe('message.create', () => {
   const eventEmitter = new EventEmitter();
   const classification = { intent: 'light.turnon', entities: [{ hey: 1 }] };
   const messageHandler = new MessageHandler(eventEmitter, {
     classify: () => Promise.resolve({ classification }),
   });
-  it('should handle new message', async () => {
+  it('should create new message', async () => {
     const newMessage = await messageHandler.create({
       text: 'Turn on the light in the kitchen',
       language: 'en',

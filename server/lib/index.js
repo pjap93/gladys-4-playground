@@ -6,6 +6,7 @@ const MessageHandler = require('./message');
 const Service = require('./service');
 const Session = require('./session');
 const User = require('./user');
+const Light = require('./light');
 
 const Gladys = function Gladys() {
   // CONFIG
@@ -20,6 +21,7 @@ const Gladys = function Gladys() {
   const message = new MessageHandler(event, brain, service);
   const user = new User();
   const session = new Session(config.jwtSecret);
+  const light = new Light(event, message);
 
   const gladys = {
     event,
@@ -29,6 +31,7 @@ const Gladys = function Gladys() {
     session,
     cache,
     config,
+    light,
     start: async () => {
       await brain.load();
       await service.load(gladys);

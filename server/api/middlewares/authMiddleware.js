@@ -3,7 +3,7 @@ const asyncMiddleware = require('./asyncMiddleware');
 const { Error401 } = require('../../utils/httpErrors');
 const logger = require('../../utils/logger');
 
-module.exports = function AuthMiddleware(jwtSecret, scope, cache) {
+module.exports = function AuthMiddleware(jwtSecret, scope, cache, user) {
   return asyncMiddleware(async (req, res, next) => {
     try {
       const authHeader = req.headers.authorization;
@@ -30,9 +30,7 @@ module.exports = function AuthMiddleware(jwtSecret, scope, cache) {
         throw new Error401('AuthMiddleware: Session was revoked');
       }
 
-      req.user = {
-        id: decoded.user_id,
-      };
+      req.user = await user.getById(decoded.user_id);
 
       next();
     } catch (e) {
