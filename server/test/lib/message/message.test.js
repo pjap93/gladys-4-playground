@@ -9,7 +9,7 @@ describe('message.new-message', () => {
     classify: () => Promise.resolve({ classification }),
   });
   it('should handle new message', async () => {
-    await messageHandler.new({
+    await messageHandler.create({
       text: 'Turn on the light in the kitchen',
       language: 'en',
       source: 'client-api',

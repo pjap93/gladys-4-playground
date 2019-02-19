@@ -15,7 +15,7 @@ module.exports = function MessageController(gladys) {
       source: 'api_client',
       source_user_id: req.user.id,
     };
-    const newMessage = await gladys.message.new(message);
+    const newMessage = await gladys.message.create(message);
     res.status(201).json(newMessage);
   }
 

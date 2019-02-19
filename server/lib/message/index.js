@@ -1,4 +1,4 @@
-const { newMessage } = require('./message.new');
+const { create } = require('./message.create');
 const { reply } = require('./message.reply');
 
 const MessageHandler = function MessageHandler(event, brain, light, services) {
@@ -11,7 +11,7 @@ const MessageHandler = function MessageHandler(event, brain, light, services) {
   });
 };
 
-MessageHandler.prototype.new = newMessage;
+MessageHandler.prototype.create = create;
 MessageHandler.prototype.reply = reply;
 
 module.exports = MessageHandler;

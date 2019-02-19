@@ -11,9 +11,9 @@ const db = require('../../models');
  * @param {string} message.source - The name of the service where the message comes from.
  * @param {string} message.source_user_id - The user id for the source service.
  * @example
- * message.new(message);
+ * message.create(message);
  */
-async function newMessage(message) {
+async function create(message) {
   // first, we classify the message to understand the intent
   const { classification } = await this.brain.classify(message.text, message.language);
 
@@ -44,5 +44,5 @@ async function newMessage(message) {
 }
 
 module.exports = {
-  newMessage,
+  create,
 };
