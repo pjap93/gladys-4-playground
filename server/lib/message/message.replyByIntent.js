@@ -12,7 +12,7 @@
  */
 async function replyByIntent(originalMessage, intent, context) {
   const text = this.brain.getReply(originalMessage.language, intent, context);
-  this.reply(text, originalMessage.source, originalMessage.source_user_id);
+  await this.reply(originalMessage, text);
 }
 
 module.exports = {

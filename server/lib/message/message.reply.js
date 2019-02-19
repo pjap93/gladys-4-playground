@@ -1,18 +1,33 @@
+const logger = require('../../utils/logger');
+const db = require('../../models');
 
 /**
  * @description Reply to a question from the user.
+ * @param {Object} originalMessage - The message sent by the user.
  * @param {string} text - The answer to send.
- * @param {string} source - The name of the integrations.
- * @param {string} sourceUserId - The identifier of the user given by the source.
  * @example
- * reply('thanks', 'telegram', 'XXXX');
+ * reply(originalMessage, 'thanks!');
  */
-async function reply(text, source, sourceUserId) {
-  const service = this.service.getService(source);
-  if (service) {
-    await service.message.send(text, {
-      source_user_id: sourceUserId,
-    });
+async function reply(originalMessage, text) {
+  try {
+    // first, we insert the message in database
+    const messageToInsert = {
+      text,
+      sender_id: null, // message sent by gladys
+      receiver_id: originalMessage.user_id,
+    };
+    await db.Message.create(messageToInsert);
+    // then, we get the service sending the original message
+    const service = this.service.getService(originalMessage.source);
+    // if the service exist, we send the message
+    if (service) {
+      await service.message.send(text, {
+        source_user_id: originalMessage.source_user_id,
+      });
+    }
+  } catch (e) {
+    logger.warn(`Unable to reply to user`);
+    logger.warn(e);
   }
 }
 
