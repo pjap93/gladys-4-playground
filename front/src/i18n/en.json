@@ -1,0 +1,15 @@
+{
+    "login": {
+      "title": "Gladys Assistant",
+      "cardTitle": "Login to your account",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "Enter your email",
+      "passwordLabel": "Password",
+      "forgotPasswordLabel": "I forgot my password",
+      "passwordPlaceholder": "Enter your password",
+      "loginButtonText": "Log in",
+      "wrongCredentials": "Wrong email/password.",
+      "invalidEmail": "Invalid email",
+      "needHelpText": "Need help? Join us on <a href=\"https://community.gladysassistant.com/\"> Gladys Community</a>."
+    }
+}

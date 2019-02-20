@@ -1,30 +1,51 @@
-import { h, Component } from 'preact';
-import { Router } from 'preact-router';
+import { h } from 'preact';
+import { Router, getCurrentUrl } from 'preact-router';
+import createStore from 'unistore';
+import { Provider, connect } from 'unistore/preact';
+import { IntlProvider } from 'preact-i18n';
+import { HttpClient } from '../utils/HttpClient';
+import translationEn from '../i18n/en.json';
+import translationFr from '../i18n/fr.json';
 
 import Header from './header';
+import Layout from './layout';
+import Login from '../routes/login/LoginPage';
+import Dashboard from '../routes/dashboard/DashboardPage';
 
-import Login from '../routes/login';
-import Dashboard from '../routes/dashboard';
+const store = createStore({
+  httpClient: new HttpClient(),
+  currentUrl: getCurrentUrl(),
+  user: {
+    profile_url: ''
+  }
+});
 
-export default class App extends Component {
-	
-	handleRoute = e => {
-	  this.currentUrl = e.url;
-	  this.setState({
-	    currentUrl: this.currentUrl
-	  });
-	};
+const actions = store => ({
+  handleRoute(e) {
+    store.setState({ currentUrl: e.url });
+  }
+});
 
-	render({}, { currentUrl }) {
-	  return (
-	    <div id="app">
-	      <Header currentUrl={currentUrl} />
-	      <Router onChange={this.handleRoute}>
-	        <Dashboard path="/dashboard" />
-	        <Dashboard path="/dashboard2" />
-	        <Login path="/" />
-	      </Router>
-	    </div>
-	  );
-	}
-}
+const Main = connect('currentUrl,user', actions)(
+  ({ currentUrl, user, handleRoute }) => (
+    <div id="app">
+      <Layout main={currentUrl !== '/login'}>
+        <Header currentUrl={currentUrl} user={user} />
+        <Router onChange={handleRoute}>
+          <Dashboard path="/dashboard" />
+          <Login path="/login" />
+        </Router>
+      </Layout>
+    </div>
+  )
+);
+
+const App = () => (
+  <Provider store={store}>
+    <IntlProvider definition={translationEn}>
+      <Main />
+    </IntlProvider>
+  </Provider>
+);
+
+export default App;
