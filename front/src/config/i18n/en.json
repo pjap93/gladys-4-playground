@@ -11,5 +11,19 @@
       "wrongCredentials": "Wrong email/password.",
       "invalidEmail": "Invalid email",
       "needHelpText": "Need help? Join us on <a href=\"https://community.gladysassistant.com/\"> Gladys Community</a>."
+    },
+    "integration": {
+      "root": {
+        "title": "Integrations",
+        "menu": {
+          "device": "Devices",
+          "communication": "Communication",
+          "calendar": "Calendar",
+          "music": "Music",
+          "health": "Health",
+          "weather": "Weather",
+          "navigation": "navigation"
+        }
+      }
     }
 }

@@ -1,0 +1,14 @@
+[
+  {
+    "key": "wemo",
+    "name": "Wemo",
+    "description": "Control your Wemo lights.",
+    "img": "/assets/integrations/cover/wemo.jpg"
+  },
+  {
+    "key": "philips-hue",
+    "name": "Philips Hue",
+    "description": "Control your Philips Hue lights.",
+    "img": "/assets/integrations/cover/philips-hue.jpg"
+  }
+]

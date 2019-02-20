@@ -4,7 +4,9 @@ import { Link } from 'preact-router/match';
 const PAGES_WITHOUT_HEADER = ['/login'];
 
 const Header = ({ ...props }) => {
-  console.log(props);
+  if (!props.currentUrl) {
+    return null;
+  }
   if (PAGES_WITHOUT_HEADER.includes(props.currentUrl)) {
     return null;
   }
@@ -84,27 +86,27 @@ const Header = ({ ...props }) => {
                   </Link>
                 </li>
                 <li class="nav-item">
-                  <Link activeClassName="active" href="/dashboard/instance" class="nav-link">
+                  <Link activeClassName="active" href="/dashboard/chat" class="nav-link">
                     <i class="fe fe-message-square" /> Chat
                   </Link>
                 </li>
                 <li class="nav-item">
-                  <Link activeClassName="active" href="/dashboard/instance" class="nav-link">
+                  <Link href="/dashboard/integration/device" class={props.currentUrl.startsWith('/dashboard/integration') ? 'active nav-link' : 'nav-link' }>
                     <i class="fe fe-grid" /> Integrations
                   </Link>
                 </li>
                 <li class="nav-item">
-                  <Link activeClassName="active" href="/dashboard/users" class="nav-link">
+                  <Link activeClassName="active" href="/dashboard/calendar" class="nav-link">
                     <i class="fe fe-calendar" /> Calendar
                   </Link>
                 </li>
                 <li class="nav-item">
-                  <Link activeClassName="active" href="/dashboard/users" class="nav-link">
+                  <Link activeClassName="active" href="/dashboard/maps" class="nav-link">
                     <i class="fe fe-map" /> Maps
                   </Link>
                 </li>
                 <li class="nav-item">
-                  <Link activeClassName="active" href="/dashboard/users" class="nav-link">
+                  <Link activeClassName="active" href="/dashboard/scene" class="nav-link">
                     <i class="fe fe-zap" /> Scene
                   </Link>
                 </li>

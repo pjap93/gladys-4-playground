@@ -4,24 +4,23 @@ import createStore from 'unistore';
 import { Provider, connect } from 'unistore/preact';
 import { IntlProvider } from 'preact-i18n';
 import { HttpClient } from '../utils/HttpClient';
-import translationEn from '../i18n/en.json';
-import translationFr from '../i18n/fr.json';
+import translationEn from '../config/i18n/en.json';
+import translationFr from '../config/i18n/fr.json';
 
 import Header from './header';
 import Layout from './layout';
 import Login from '../routes/login/LoginPage';
 import Dashboard from '../routes/dashboard/DashboardPage';
+import IntegrationPage from '../routes/integration/IntegrationPage';
 
 const store = createStore({
   httpClient: new HttpClient(),
   currentUrl: getCurrentUrl(),
-  user: {
-    profile_url: ''
-  }
+  user: {}
 });
 
 const actions = store => ({
-  handleRoute(e) {
+  handleRoute(state, e) {
     store.setState({ currentUrl: e.url });
   }
 });
@@ -32,8 +31,16 @@ const Main = connect('currentUrl,user', actions)(
       <Layout main={currentUrl !== '/login'}>
         <Header currentUrl={currentUrl} user={user} />
         <Router onChange={handleRoute}>
-          <Dashboard path="/dashboard" />
           <Login path="/login" />
+          <Dashboard path="/dashboard" />
+          <IntegrationPage path="/dashboard/integration" />
+          <IntegrationPage path="/dashboard/integration/device" />
+          <IntegrationPage path="/dashboard/integration/communication" />
+          <IntegrationPage path="/dashboard/integration/calendar" />
+          <IntegrationPage path="/dashboard/integration/music" />
+          <IntegrationPage path="/dashboard/integration/health" />
+          <IntegrationPage path="/dashboard/integration/weather" />
+          <IntegrationPage path="/dashboard/integration/navigation" />
         </Router>
       </Layout>
     </div>
