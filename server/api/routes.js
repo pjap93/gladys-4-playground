@@ -2,6 +2,7 @@ const express = require('express');
 const UserController = require('./controllers/user.controller');
 const MessageController = require('./controllers/message.controller');
 const AuthMiddleware = require('./middlewares/authMiddleware');
+const CorsMiddleware = require('./middlewares/corsMiddleware');
 
 /**
  * @description Setup the routes.
@@ -16,17 +17,22 @@ function setupRoutes(gladys) {
   const userController = UserController(gladys);
   const messageController = MessageController(gladys);
 
+  // enable cross origin requests
+  router.use(CorsMiddleware);
+
   // open routes
-  router.post('/api/user', userController.create);
-  router.post('/api/login', userController.login);
+  router.post('/api/v1/login', userController.login);
+
+  // todo: add check if one account already exist.
+  router.post('/api/v1/user', userController.create);
 
   // after this, all requests to /api must have authenticated
   router.use('/api/*', AuthMiddleware(gladys.config.jwtSecret, 'dashboard:write', gladys.cache, gladys.user));
 
   // message
-  router.post('/api/message', messageController.create);
+  router.post('/api/v1/message', messageController.create);
 
-  router.get('/api/me', userController.getMySelf);
+  router.get('/api/v1/me', userController.getMySelf);
 
   return router;
 }

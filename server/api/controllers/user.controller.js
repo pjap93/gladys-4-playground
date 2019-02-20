@@ -38,7 +38,8 @@ module.exports = function UserController(gladys) {
     const user = await gladys.user.login(req.body.email, req.body.password);
     const scope = req.body.scope || ['dashboard:write', 'dashboard:read'];
     const session = await gladys.session.create(user.id, scope, LOGIN_SESSION_VALIDITY_IN_SECONDS);
-    res.json(session);
+    const response = Object.assign({}, user, session);
+    res.json(response);
   }
 
   /**

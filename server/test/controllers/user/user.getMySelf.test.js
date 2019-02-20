@@ -1,10 +1,10 @@
 const { expect } = require('chai');
 const { request, authenticatedRequest } = require('../request.test');
 
-describe('GET /api/me', () => {
+describe('GET /api/v1/me', () => {
   it('should return the connected user', async () => {
     await authenticatedRequest
-      .get('/api/me')
+      .get('/api/v1/me')
       .expect('Content-Type', /json/)
       .expect(200)
       .then((res) => {
@@ -23,7 +23,7 @@ describe('GET /api/me', () => {
   });
   it('should return 401 unauthorized', async () => {
     await request
-      .get('/api/me')
+      .get('/api/v1/me')
       .expect('Content-Type', /json/)
       .expect(401);
   });

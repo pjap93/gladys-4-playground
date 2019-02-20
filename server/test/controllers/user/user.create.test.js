@@ -4,7 +4,7 @@ const { request } = require('../request.test');
 describe('POST /user', () => {
   it('should create user', async () => {
     await request
-      .post('/api/user')
+      .post('/api/v1/user')
       .send({
         firstname: 'Tony',
         lastname: 'Stark',
@@ -22,7 +22,7 @@ describe('POST /user', () => {
   });
   it('should not create user, missing email', async () => {
     await request
-      .post('/api/user')
+      .post('/api/v1/user')
       .send({
         firstname: 'Tony',
         lastname: 'Stark',
@@ -36,7 +36,7 @@ describe('POST /user', () => {
   });
   it('should not create user, duplicate email', async () => {
     await request
-      .post('/api/user')
+      .post('/api/v1/user')
       .send({
         firstname: 'Tony',
         lastname: 'Stark',
