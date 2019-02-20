@@ -15,7 +15,7 @@ const Header = ({ ...props }) => {
           <div class="d-flex">
             <a class="header-brand" href="/dashboard">
               <img src="/assets/icons/favicon-96x96.png" class="header-brand-img" alt="Gladys logo" />
-              <span class="header-brand-img">Gladys</span>
+              <span id="header-title">Gladys Assistant</span>
             </a>
             <div class="d-flex order-lg-2 ml-auto">
               <div class={'dropdown' + (props.showDropDown && ' show')}>

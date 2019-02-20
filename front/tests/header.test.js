@@ -1,12 +1,15 @@
 import Header from '../src/components/header';
-import { Link } from 'preact-router/match';
 // See: https://github.com/mzgoddard/preact-render-spy
 import { shallow } from 'preact-render-spy';
 
+const fakeUser = {
+  profile_url: ''
+};
+
 describe('Initial Test of the Header', () => {
-  test('Header renders 3 nav items', () => {
-    const context = shallow(<Header />);
-    expect(context.find('h1').text()).toBe('Gladys');
-    expect(context.find(<Link />).length).toBe(2);
+  test('Header renders Gladys Assistant title and 6 items in header', () => {
+    const context = shallow(<Header user={fakeUser} />);
+    expect(context.find('#header-title').text()).toBe('Gladys Assistant');
+    expect(context.find('.nav-item').length).toBe(6);
   });
 });
