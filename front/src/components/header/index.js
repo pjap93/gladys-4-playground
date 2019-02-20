@@ -4,9 +4,6 @@ import { Link } from 'preact-router/match';
 const PAGES_WITHOUT_HEADER = ['/login'];
 
 const Header = ({ ...props }) => {
-  if (!props.currentUrl) {
-    return null;
-  }
   if (PAGES_WITHOUT_HEADER.includes(props.currentUrl)) {
     return null;
   }
@@ -91,7 +88,7 @@ const Header = ({ ...props }) => {
                   </Link>
                 </li>
                 <li class="nav-item">
-                  <Link href="/dashboard/integration/device" class={props.currentUrl.startsWith('/dashboard/integration') ? 'active nav-link' : 'nav-link' }>
+                  <Link href="/dashboard/integration/device" class={props.currentUrl.startsWith('/dashboard/integration') ? 'active nav-link' : 'nav-link'}>
                     <i class="fe fe-grid" /> Integrations
                   </Link>
                 </li>

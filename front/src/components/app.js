@@ -5,18 +5,19 @@ import { Provider, connect } from 'unistore/preact';
 import { IntlProvider } from 'preact-i18n';
 import { HttpClient } from '../utils/HttpClient';
 import translationEn from '../config/i18n/en.json';
-import translationFr from '../config/i18n/fr.json';
 
 import Header from './header';
 import Layout from './layout';
 import Login from '../routes/login/LoginPage';
 import Dashboard from '../routes/dashboard/DashboardPage';
-import IntegrationPage from '../routes/integration/IntegrationPage';
+import IntegrationPage from '../routes/integration';
 
 const store = createStore({
   httpClient: new HttpClient(),
   currentUrl: getCurrentUrl(),
-  user: {}
+  user: {
+    language: 'en'
+  }
 });
 
 const actions = store => ({
