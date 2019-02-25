@@ -5,3 +5,14 @@ export const LoginStatus = {
   LoginSuccess: 'LoginSuccess'
 };
 
+export const TelegramGetApiKeyStatus = {
+  Getting: 'Getting',
+  GetError: 'GetError',
+  Success: 'Success'
+};
+
+export const TelegramSaveApiKeyStatus = {
+  Saving: 'Saving',
+  SavingError: 'SavingError',
+  Success: 'Success'
+};

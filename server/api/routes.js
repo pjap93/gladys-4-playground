@@ -1,6 +1,7 @@
 const express = require('express');
 const UserController = require('./controllers/user.controller');
 const MessageController = require('./controllers/message.controller');
+const VariableController = require('./controllers/variable.controller');
 const AuthMiddleware = require('./middlewares/authMiddleware');
 const CorsMiddleware = require('./middlewares/corsMiddleware');
 
@@ -16,6 +17,7 @@ function setupRoutes(gladys) {
   // Configure router
   const userController = UserController(gladys);
   const messageController = MessageController(gladys);
+  const variableController = VariableController(gladys);
 
   // enable cross origin requests
   router.use(CorsMiddleware);
@@ -32,7 +34,11 @@ function setupRoutes(gladys) {
   // message
   router.post('/api/v1/message', messageController.create);
 
+  // user
   router.get('/api/v1/me', userController.getMySelf);
+
+  // variable
+  router.post('/api/v1/service/:service_name/:variable_key', variableController.setForLocalService);
 
   return router;
 }

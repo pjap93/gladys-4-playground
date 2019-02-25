@@ -3,8 +3,8 @@ import IntegrationMenu from './IntegrationMenu';
 import IntegrationCategory from './IntegrationCategory';
 import actions from '../../actions/integration';
 
-const IntegrationPage = connect('integrations,currentUrl,integrationsFiltered', actions)(
-  ({ integrations, integrationsFiltered, currentUrl, search }) => (
+const IntegrationPage = connect('integrations,currentUrl,integrationsFiltered,totalSize', actions)(
+  ({ integrations, integrationsFiltered, totalSize, currentUrl, search }) => (
  
     <div class="page">
       <div class="page-main">
@@ -14,7 +14,7 @@ const IntegrationPage = connect('integrations,currentUrl,integrationsFiltered', 
               <h1 class="page-title">
                 Integrations
               </h1>
-              <div class="page-subtitle">1 - 10 of 43 integrations</div>
+              <div class="page-subtitle">1 - {integrations.length} of {totalSize} integrations</div>
               <div class="page-options d-flex">
                 <select class="form-control custom-select w-auto">
                   <option value="asc">A - Z</option>

@@ -1,8 +1,16 @@
 import deviceEn from './device.en.json';
+import communicationEn from './communication.en.json';
 
-export default {
+const integrations = {
   en: {
+    totalSize: deviceEn.length + communicationEn.length,
     device: deviceEn,
-    communication: []
+    communication: communicationEn
   }
 };
+
+communicationEn.forEach((integration) => {
+  integrations.en[integration.key] = integration;
+});
+
+export default integrations;

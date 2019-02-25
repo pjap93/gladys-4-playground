@@ -38,33 +38,33 @@ export class HttpClient {
     return this.gatewayClient.request.get(url, query);
   }
 
-  async post(url, data) {
+  async post(url, body) {
     if (!this.isGateway) {
       const { data } = await axios({
         baseURL: config.localApiUrl,
         url,
         method: 'post',
-        data,
+        data: body,
         headers: this.getAxiosHeaders()
       });
       return data;
     }
 
-    return this.gatewayClient.request.post(url, data);
+    return this.gatewayClient.request.post(url, body);
   }
 
-  async patch(url, data) {
+  async patch(url, body) {
     if (!this.isGateway) {
       const { data } = await axios({
         baseURL: config.localApiUrl,
         url,
         method: 'patch',
-        data,
+        data: body,
         headers: this.getAxiosHeaders()
       });
       return data;
     }
 
-    return this.gatewayClient.request.patch(url, data);
+    return this.gatewayClient.request.patch(url, body);
   }
 }

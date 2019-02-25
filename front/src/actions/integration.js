@@ -5,7 +5,8 @@ const actions = store => ({
     const currentIntegrationCategory = state.currentUrl.split('/').pop();
     const integrations = integrationsConfig[state.user.language][currentIntegrationCategory] || [];
     store.setState({
-      integrations
+      integrations,
+      totalSize: integrationsConfig[state.user.language].totalSize
     });
   },
   getIntegrationByCategory(state, category) {

@@ -11,9 +11,17 @@ import Layout from './layout';
 import Login from '../routes/login/LoginPage';
 import Dashboard from '../routes/dashboard/DashboardPage';
 import IntegrationPage from '../routes/integration';
+import ChatPage from '../routes/chat';
+import MapPage from '../routes/map';
+import CalendarPage from '../routes/calendar';
+
+import TelegramPage from '../routes/integration/all/telegram';
+
+const client = new HttpClient();
+client.setToken('XX', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiOTJiZjk0NDEtYzljMC00YTVmLWI3YmItNGY3NmYwZWM0Yzk1Iiwic2NvcGUiOlsiZGFzaGJvYXJkOndyaXRlIiwiZGFzaGJvYXJkOnJlYWQiXSwic2Vzc2lvbl9pZCI6IjZhOTYyNzk2LTZlMGQtNDRiNC04Y2Y2LWRkMmJhYjhjY2M0ZiIsImlhdCI6MTU1MTA2NzM5MywiZXhwIjoxNTUxMTUzNzkzLCJhdWQiOiJ1c2VyIiwiaXNzIjoiZ2xhZHlzIn0.JfiRsTn4cyARIMElD5DgyFt7xKHPcTNnaMLKznbfVc4');
 
 const store = createStore({
-  httpClient: new HttpClient(),
+  httpClient: client,
   currentUrl: getCurrentUrl(),
   user: {
     language: 'en'
@@ -42,6 +50,11 @@ const Main = connect('currentUrl,user', actions)(
           <IntegrationPage path="/dashboard/integration/health" />
           <IntegrationPage path="/dashboard/integration/weather" />
           <IntegrationPage path="/dashboard/integration/navigation" />
+          <TelegramPage path="/dashboard/integration/communication/telegram" />
+
+          <ChatPage path="/dashboard/chat" />
+          <MapPage path="/dashboard/maps" />
+          <CalendarPage path="/dashboard/calendar" />
         </Router>
       </Layout>
     </div>

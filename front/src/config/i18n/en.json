@@ -24,6 +24,12 @@
           "weather": "Weather",
           "navigation": "navigation"
         }
+      },
+      "telegram": {
+        "title": "Telegram",
+        "introduction": "To connect Gladys to Telegram, you first need to create a Telegram bot using the Botfather. Send a <b>/newbot</b> message to the <a href=\"https://telegram.me/BotFather\">@BotFather</a> in Telegram. Then, enter the API key he gave you below.",
+        "link": "To talk to Gladys in Telegram, click on <a href=\"{{link}}\">this link</a>.",
+        "note": "This link is unique to your account, do not send it to other users."
       }
     }
 }
