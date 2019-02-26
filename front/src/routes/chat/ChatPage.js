@@ -1,7 +1,6 @@
 import { connect } from 'unistore/preact';
 import actions from '../../actions/integration';
 import ChatItems from './ChatItems';
-import ChatItems2 from './ChatItem2';
 
 const IntegrationPage = connect('integrations,currentUrl,integrationsFiltered,totalSize', actions)(
   ({ integrations, integrationsFiltered, totalSize, currentUrl, search }) => (
@@ -10,8 +9,7 @@ const IntegrationPage = connect('integrations,currentUrl,integrationsFiltered,to
       <div class="page-main">
         <div class="my-3 my-md-5">
           <div class="container">
-            <div class="page-header">
-            </div>
+            <div class="page-header" />
             <div class="row">
               <div class="col-lg-8">
                 <div class="card">

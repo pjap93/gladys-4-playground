@@ -1,6 +1,6 @@
 import { Link } from 'preact-router/match';
 import { Text, MarkupText } from 'preact-i18n';
-import { TelegramSaveApiKeyStatus, TelegramGetApiKeyStatus } from '../../../../utils/consts';
+import { TelegramSaveApiKeyStatus } from '../../../../utils/consts';
 
 const TelegramPage = ({ children, ...props }) => (
   <div class="page">
