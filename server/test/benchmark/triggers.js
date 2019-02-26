@@ -9,19 +9,17 @@ const triggerManager = new TriggerManager(event, stateManager);
 
 const NUMBER_OF_LISTENERS = 300;
 const NUMBER_OF_CONDITIONS_PER_TRIGGER = 5;
-const NUMBER_OF_HOUSE_STATES = 20;
-const NUMBER_OF_EVENTS_TO_THROW = 1000000;
+const NUMBER_OF_HOUSE_STATES = 1000;
+const NUMBER_OF_EVENTS_TO_THROW = 1000 * 1000;
 
 const EVENTS_TO_THROW = [];
 
-const numberWithSpaces = (x) => {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-};
-
-const displayNumberOfEventProcessedBySeconds = (time, numberOfElementProcessed) => {
+const displayNumberOfEventProcessedBySeconds = (time) => {
   const elapsed = process.hrtime(time)[1] / 1000000; // divide by a million to get nano to milli
-  const perSecond = (1000 * numberOfElementProcessed / elapsed);
-  console.log(`Processed 1 million events in ${elapsed} ms, so ${numberWithSpaces(perSecond)} events/per seconds`);
+  const perSecond = (1000 * NUMBER_OF_EVENTS_TO_THROW / elapsed);
+  const millionEventProcessedPerSecond = perSecond / 1000000;
+  const millionEventProcessedPerSecondBeautiful = Math.round(millionEventProcessedPerSecond * 100) / 100;
+  console.log(`Processed 1 million events in ${elapsed} ms, so ${millionEventProcessedPerSecondBeautiful}M events/per second`);
 };
 
 const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min)) + min;
@@ -49,15 +47,23 @@ for (let i = 0; i < NUMBER_OF_LISTENERS; i += 1) {
     listener.conditions.push({
       type: (getRandomInt(0, 1) === 1) ? CONDITIONS.HOUSE_ALARM.IS_ARMED : CONDITIONS.HOUSE_ALARM.IS_DISARMED,
       house: j,
+      or: {
+        type: (getRandomInt(0, 1) === 1) ? CONDITIONS.HOUSE_ALARM.IS_ARMED : CONDITIONS.HOUSE_ALARM.IS_DISARMED,
+        house: j,
+      },
     });
   }
   triggerManager.addToListeners(listener);
 }
 
+EVENT_LIST.forEach((type) => {
+  event.on(type, oneEvent => triggerManager.handleEvent(type, oneEvent));
+});
+
 while (1) {
   const start = process.hrtime();
   EVENTS_TO_THROW.forEach((item, index) => {
-    triggerManager.handleEvent(item, {});
+    event.emit(item, {});
   });
-  displayNumberOfEventProcessedBySeconds(start, NUMBER_OF_EVENTS_TO_THROW);
+  displayNumberOfEventProcessedBySeconds(start);
 }
