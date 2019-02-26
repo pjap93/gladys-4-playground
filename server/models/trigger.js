@@ -1,3 +1,4 @@
+const { EVENT_LIST } = require('../utils/constants');
 
 module.exports = (sequelize, DataTypes) => {
   const trigger = sequelize.define('t_trigger', {
@@ -18,9 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     type: {
       allowNull: false,
-      type: DataTypes.ENUM(
-        'scheduled',
-      ),
+      type: DataTypes.ENUM(EVENT_LIST),
     },
     active: {
       allowNull: false,

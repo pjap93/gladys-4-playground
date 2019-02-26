@@ -1,4 +1,4 @@
-const CONSTANTS = require('../../../../utils/constants');
+const { STATE } = require('../../../../utils/constants');
 
 /**
  * @private
@@ -10,7 +10,7 @@ const CONSTANTS = require('../../../../utils/constants');
  */
 async function getState(deviceFeature) {
   const state = await this.client.get(`https://some-api/${deviceFeature.external_id}`);
-  return (state === true) ? CONSTANTS.STATE.ON : CONSTANTS.STATE.OFF;
+  return (state === true) ? STATE.ON : STATE.OFF;
 }
 
 module.exports = getState;
