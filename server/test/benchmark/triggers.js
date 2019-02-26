@@ -10,11 +10,7 @@ const NUMBER_OF_EVENTS_TO_THROW = 1000000;
 
 const EVENTS_TO_THROW = [];
 
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;
-}
+const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
 for (let a = 0; a < NUMBER_OF_EVENTS_TO_THROW; a += 1) {
   const oneEvent = EVENT_LIST[getRandomInt(0, EVENT_LIST.length)];

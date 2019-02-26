@@ -49,6 +49,9 @@ const EVENTS = {
     HUE_CHANGED: 'light.hue-changed',
     SATURATION_CHANGED: 'light.saturation-changed',
   },
+  TEMPERATURE_SENSOR: {
+    TEMPERATURE_CHANGED: 'temperature.changed',
+  },
   SCHEDULED_SCENE: {
     ENABLED: 'scheduled-scene.enabled',
     DISABLED: 'scheduled-scene.disabled',
@@ -82,6 +85,32 @@ const STATES = {
   },
 };
 
+const CONDITIONS = {
+  USER_SLEEP: {
+    IS_ASLEEP: 'user.is-asleep',
+    IS_AWAKE: 'user.is-awake',
+    NEED_TO_WAKE_UP: 'user.need-to-wake-up',
+    NEEED_TO_SLEEP: 'user.need-to-sleep',
+  },
+  USER_PRESENCE: {
+    IS_AT_HOME: 'user.is-at-home',
+    IS_OUT: 'user.is-out',
+  },
+  USER_WORK: {
+    IS_NOT_AT_WORK: 'user.is-not-at-work',
+    NEED_TO_GO_TO_WORK: 'user.need-to-go-to-work',
+    IS_AT_WORK: 'user.is-at-work',
+    NEED_TO_LEAVE_WORK: 'user.need-to-leave-work',
+  },
+  HOUSE_ALARM: {
+    IS_DISARMED: 'house.alarm.is-disarmed',
+    IS_TRYING_TO_ARM: 'house.alarm.is-trying-to-arm',
+    IS_ARMED: 'house.alarm.is-armed',
+    IS_TRYING_TO_DISARM: 'house.alarm.is-trying-to-disarm',
+    IS_TRIGGERED: 'house.alarm.is-triggered',
+  },
+};
+
 // build event list from object
 const EVENT_LIST = [];
 Object.keys(EVENTS).forEach((key) => {
@@ -90,6 +119,9 @@ Object.keys(EVENTS).forEach((key) => {
   });
 });
 
+
 module.exports.STATE = STATE;
 module.exports.EVENTS = EVENTS;
+module.exports.STATES = STATES;
+module.exports.CONDITIONS = CONDITIONS;
 module.exports.EVENT_LIST = EVENT_LIST;
