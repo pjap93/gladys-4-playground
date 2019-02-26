@@ -7,12 +7,19 @@ const Service = require('./service');
 const Session = require('./session');
 const User = require('./user');
 const Light = require('./light');
+const Variable = require('./variable');
 
-const Gladys = function Gladys() {
-  // CONFIG
-  const config = {
-    jwtSecret: process.env.JWT_SECRET || generateJwtSecret(),
-  };
+/**
+ * @description Start a new Gladys instance
+ * @param {Object} config - Configuration when starting Gladys.
+ * @param {string} [config.jwtSecret] - A secret to generate jsonwebtoken.
+ * @param {boolean} [config.disableService] - If true, disable the loading of services.
+ * @param {boolean} [config.disableBrainLoading] - If true, disable the loading of the brain.
+ * @example
+ * const gladys = Gladys();
+ */
+function Gladys(config) {
+  config.jwtSecret = config.jwtSecret || generateJwtSecret();
 
   const brain = new Brain();
   const cache = new Cache();
@@ -22,6 +29,7 @@ const Gladys = function Gladys() {
   const user = new User();
   const session = new Session(config.jwtSecret);
   const light = new Light(event, message);
+  const variable = new Variable();
 
   const gladys = {
     version: '0.1.0', // todo, read package.json
@@ -33,15 +41,20 @@ const Gladys = function Gladys() {
     cache,
     config,
     light,
+    variable,
     start: async () => {
-      await brain.load();
-      await service.load(gladys);
-      await service.startAll();
+      if (!config.disableBrainLoading) {
+        await brain.load();
+      }
+      if (!config.disableService) {
+        await service.load(gladys);
+        await service.startAll();
+      }
     },
   };
 
   // freeze Gladys object to ensure it's not modified
   return Object.freeze(gladys);
-};
+}
 
 module.exports = Gladys;

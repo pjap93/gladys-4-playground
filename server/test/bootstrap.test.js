@@ -13,7 +13,12 @@ const SERVER_PORT = 6500;
 process.env.JWT_SECRET = 'secret';
 
 before(async () => {
-  const gladys = Gladys();
+  const config = {
+    disableService: true,
+    disableBrainLoading: true,
+    jwtSecret: 'secret',
+  };
+  const gladys = Gladys(config);
   await gladys.start();
   // @ts-ignore
   global.TEST_BACKEND_APP = server.start(gladys, SERVER_PORT);
