@@ -61,27 +61,27 @@ const EVENTS = {
 
 const STATES = {
   USER_SLEEP: {
-    ASLEEP: 'asleep',
-    NEED_TO_WAKE_UP: 'need-to-wake-up',
-    AWAKE: 'awake',
-    NEED_TO_SLEEP: 'need-to-sleep',
+    ASLEEP: 'user.asleep',
+    NEED_TO_WAKE_UP: 'user.need-to-wake-up',
+    AWAKE: 'user.awake',
+    NEED_TO_SLEEP: 'user.need-to-sleep',
   },
   USER_PRESENCE: {
-    AT_HOME: 'at-home',
-    OUT: 'out',
+    AT_HOME: 'user.at-home',
+    OUT: 'user.out',
   },
   USER_WORK: {
-    NOT_AT_WORK: 'not-at-work',
-    NEED_TO_GO_TO_WORK: 'need-to-go-to-work',
-    AT_WORK: 'at-work',
-    NEED_TO_LEAVE_WORK: 'need-to-leave-work',
+    NOT_AT_WORK: 'user.not-at-work',
+    NEED_TO_GO_TO_WORK: 'user.need-to-go-to-work',
+    AT_WORK: 'user.at-work',
+    NEED_TO_LEAVE_WORK: 'user.need-to-leave-work',
   },
   HOUSE_ALARM: {
-    DISARMED: 'disarmed',
-    TRYING_TO_ARM: 'trying-to-arm',
-    ARMED: 'armed',
-    TRYING_TO_DISARM: 'trying-to-disarm',
-    TRIGGERED: 'triggered',
+    DISARMED: 'house.alarm.disarmed',
+    TRYING_TO_ARM: 'house.alarm.trying-to-arm',
+    ARMED: 'house.alarm.armed',
+    TRYING_TO_DISARM: 'house.alarm.trying-to-disarm',
+    TRIGGERED: 'house.alarm.triggered',
   },
 };
 
@@ -118,7 +118,6 @@ Object.keys(EVENTS).forEach((key) => {
     EVENT_LIST.push(EVENTS[key][secondKey]);
   });
 });
-
 
 module.exports.STATE = STATE;
 module.exports.EVENTS = EVENTS;

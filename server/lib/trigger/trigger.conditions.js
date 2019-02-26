@@ -1,11 +1,8 @@
-const { EVENTS } = require('../../utils/constants');
+const { STATES, CONDITIONS } = require('../../utils/constants');
 
 const conditions = {
-  [EVENTS.USER.ARRIVED_AT_WORK]: (trigger, event) => true,
-  [EVENTS.USER.BACK_HOME]: (trigger, event) => true,
-  [EVENTS.USER.CANCELED_GOING_TO_WORK]: (trigger, event) => true,
-  [EVENTS.SUN.SUNRISE]: (trigger, event) => true,
-  [EVENTS.SUN.SUNSET]: (trigger, event) => true,
+  [CONDITIONS.HOUSE_ALARM.IS_ARMED]: (stateManager, event, condition) => (stateManager.get('house', condition.house, 'alarm') === STATES.HOUSE_ALARM.ARMED),
+  [CONDITIONS.HOUSE_ALARM.IS_DISARMED]: (stateManager, event, condition) => (stateManager.get('house', condition.house, 'alarm') === STATES.HOUSE_ALARM.DISARMED),
 };
 
 module.exports = {
