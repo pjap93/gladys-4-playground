@@ -19,7 +19,6 @@ module.exports = {
       },
       name: {
         allowNull: false,
-        unique: true,
         type: Sequelize.STRING,
       },
       value: {
@@ -36,6 +35,9 @@ module.exports = {
       },
     });
     await queryInterface.addIndex('t_variable', ['service_id']);
+    await queryInterface.addIndex('t_variable', ['service_id', 'name'], {
+      unique: true,
+    });
   },
   down: (queryInterface, Sequelize) => queryInterface.dropTable('t_variable'),
 };
