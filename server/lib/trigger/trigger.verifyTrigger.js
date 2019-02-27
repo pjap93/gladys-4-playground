@@ -1,6 +1,7 @@
 const { verifiers } = require('./trigger.verifiers');
 const { conditionVerifiers } = require('./trigger.conditionVerifiers');
 
+let validateConditions;
 
 /**
  * @description Evaluate a condition
@@ -14,7 +15,7 @@ const { conditionVerifiers } = require('./trigger.conditionVerifiers');
 function validateCondition(stateManager, event, condition) {
   const valid = conditionVerifiers[condition.type](stateManager, event, condition);
   if (condition.or) {
-    return (valid || validateCondition(stateManager, event, condition.or));
+    return (valid || validateConditions(stateManager, event, condition.or));
   }
 
   return valid;
@@ -28,7 +29,7 @@ function validateCondition(stateManager, event, condition) {
  * @example
  * validateConditions(stateManager, event, conditions);
  */
-function validateConditions(stateManager, event, conditions) {
+validateConditions = function validateConditionsFunc(stateManager, event, conditions) {
   let conditionsValid = true;
   let i = 0;
   while (conditionsValid && i < conditions.length) {
@@ -36,7 +37,7 @@ function validateConditions(stateManager, event, conditions) {
     i += 1;
   }
   return conditionsValid;
-}
+};
 
 /**
  * @description Verify if a trigger and all its conditions are valid.

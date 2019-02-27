@@ -47,10 +47,10 @@ for (let i = 0; i < NUMBER_OF_LISTENERS; i += 1) {
     listener.conditions.push({
       type: (getRandomInt(0, 1) === 1) ? CONDITIONS.HOUSE_ALARM.IS_ARMED : CONDITIONS.HOUSE_ALARM.IS_DISARMED,
       house: j,
-      or: {
+      or: [{
         type: (getRandomInt(0, 1) === 1) ? CONDITIONS.HOUSE_ALARM.IS_ARMED : CONDITIONS.HOUSE_ALARM.IS_DISARMED,
         house: j,
-      },
+      }],
     });
   }
   triggerManager.addToListeners(listener);
