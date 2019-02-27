@@ -6,6 +6,14 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4,
     },
+    service_id: {
+      allowNull: false,
+      type: DataTypes.UUID,
+      references: {
+        model: 't_service',
+        key: 'id',
+      },
+    },
     room_id: {
       allowNull: false,
       type: DataTypes.UUID,
@@ -32,10 +40,15 @@ module.exports = (sequelize, DataTypes) => {
       targetKey: 'id',
       as: 'room',
     });
-    device.hasMany(models.DeviceFeatureState, {
+    device.belongsTo(models.Service, {
+      foreignKey: 'service_id',
+      targetKey: 'id',
+      as: 'service',
+    });
+    device.hasMany(models.DeviceFeature, {
       foreignKey: 'device_id',
       sourceKey: 'id',
-      as: 'device_features',
+      as: 'features',
     });
   };
 

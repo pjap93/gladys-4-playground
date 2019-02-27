@@ -46,6 +46,11 @@ module.exports = (sequelize, DataTypes) => {
       targetKey: 'id',
       as: 'pod',
     });
+    service.hasMany(models.Device, {
+      foreignKey: 'service_id',
+      sourceKey: 'id',
+      as: 'devices',
+    });
   };
 
   return service;

@@ -7,6 +7,16 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.UUID,
       },
+      service_id: {
+        allowNull: false,
+        type: Sequelize.UUID,
+        references: {
+          model: 't_service',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+      },
       room_id: {
         allowNull: false,
         type: Sequelize.UUID,
@@ -37,6 +47,7 @@ module.exports = {
       },
     });
 
+    await queryInterface.addIndex('t_device', ['service_id']);
     await queryInterface.addIndex('t_device', ['room_id']);
   },
   down: (queryInterface, Sequelize) => queryInterface.dropTable('t_device'),

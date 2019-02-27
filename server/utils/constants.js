@@ -139,6 +139,19 @@ const INTENTS = {
   },
 };
 
+const DEVICE_FEATURE_CATEGORIES = {
+  LIGHT: 'light',
+};
+
+const DEVICE_FEATURE_TYPES = {
+  LIGHT: {
+    BINARY: 'binary',
+    BRIGHTNESS: 'brightness',
+    HUE: 'hue',
+    SATURATION: 'saturation',
+  },
+};
+
 const createList = (obj) => {
   const list = [];
   Object.keys(obj).forEach((key) => {
@@ -160,6 +173,9 @@ module.exports.STATES = STATES;
 module.exports.CONDITIONS = CONDITIONS;
 module.exports.ACTIONS = ACTIONS;
 module.exports.INTENTS = INTENTS;
+module.exports.DEVICE_FEATURE_CATEGORIES = DEVICE_FEATURE_CATEGORIES;
+module.exports.DEVICE_FEATURE_TYPES = DEVICE_FEATURE_TYPES;
+
 module.exports.EVENT_LIST = EVENT_LIST;
 module.exports.ACTION_LIST = ACTION_LIST;
 module.exports.CONDITION_LIST = CONDITION_LIST;
