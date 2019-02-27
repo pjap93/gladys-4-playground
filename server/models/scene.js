@@ -1,6 +1,6 @@
 const Joi = require('joi');
 const { ACTION_LIST } = require('../utils/constants');
-const { slugify } = require('../utils/slugify');
+const { addSelector } = require('../utils/addSelector');
 
 const actionSchema = Joi.array().items(Joi.object().keys({
   type: Joi.string().valid(ACTION_LIST).required(),
@@ -44,14 +44,8 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
 
-  // ensure selector is a slug
-  scene.beforeValidate((newScene) => {
-    if (newScene.selector) {
-      newScene.selector = slugify(newScene.selector);
-    } else {
-      newScene.selector = slugify(newScene.name);
-    }
-  });
+  // add slug if needed
+  scene.beforeValidate(addSelector);
 
   scene.associate = (models) => {
     scene.belongsToMany(models.Trigger, {

@@ -143,6 +143,7 @@ const createList = (obj) => {
 // build lists from object
 const EVENT_LIST = createList(EVENTS);
 const ACTION_LIST = createList(ACTIONS);
+const CONDITION_LIST = createList(CONDITIONS);
 
 module.exports.STATE = STATE;
 module.exports.EVENTS = EVENTS;
@@ -151,3 +152,4 @@ module.exports.CONDITIONS = CONDITIONS;
 module.exports.ACTIONS = ACTIONS;
 module.exports.EVENT_LIST = EVENT_LIST;
 module.exports.ACTION_LIST = ACTION_LIST;
+module.exports.CONDITION_LIST = CONDITION_LIST;
