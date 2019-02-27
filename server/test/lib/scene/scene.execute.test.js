@@ -25,4 +25,8 @@ describe('SceneManager', () => {
       });
     }));
   });
+  it('scene does not exist', async () => {
+    const sceneManager = new SceneManager(light);
+    return sceneManager.execute('thisscenedoesnotexist');
+  });
 });

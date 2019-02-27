@@ -1,4 +1,5 @@
 const { executeActions } = require('./scene.executeActions');
+const logger = require('../../utils/logger');
 
 /**
  * @description Execute a scene by its selector.
@@ -7,11 +8,15 @@ const { executeActions } = require('./scene.executeActions');
  * @example
  * sceneManager.execute('test');
  */
-async function execute(sceneSelector, scope) {
-  if (!this.scenes[sceneSelector]) {
-    throw new Error(`Scene with selector ${sceneSelector} not found.`);
+function execute(sceneSelector, scope) {
+  try {
+    if (!this.scenes[sceneSelector]) {
+      throw new Error(`Scene with selector ${sceneSelector} not found.`);
+    }
+    this.queue.push(() => executeActions(this, this.scenes[sceneSelector].actions, scope));
+  } catch (e) {
+    logger.error(e);
   }
-  this.queue.push(() => executeActions(this, this.scenes[sceneSelector].actions, scope));
   return null;
 }
 
