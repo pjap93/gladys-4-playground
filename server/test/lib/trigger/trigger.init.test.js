@@ -1,6 +1,5 @@
 const { expect } = require('chai');
 const EventEmitter = require('events');
-const { EVENTS, STATES, CONDITIONS } = require('../../../utils/constants');
 const StateManager = require('../../../lib/state');
 const TriggerManager = require('../../../lib/trigger');
 
