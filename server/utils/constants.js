@@ -111,6 +111,25 @@ const CONDITIONS = {
   },
 };
 
+const ACTIONS = {
+  LIGHT: {
+    TURN_ON: 'light.turn-on',
+    TURN_OFF: 'light.turn-off',
+    CHANGE_BRIGHTNESS: 'light.change-brightness',
+    CHANGE_HUE: 'light.change-hue',
+    CHANGE_SATURATION: 'light.change-saturation',
+  },
+  HOUSE_ALARM: {
+    ARM: 'house.alarm.arm',
+    DISARM: 'house.alarm.disarm',
+    TRIGGER: 'house.alarm.trigger',
+  },
+  USER_PRESENCE: {
+    SET_AWAY: 'user.event.set-away',
+    SET_AT_HOME: 'user.event.set-at-home',
+  },
+};
+
 // build event list from object
 const EVENT_LIST = [];
 Object.keys(EVENTS).forEach((key) => {
@@ -123,4 +142,5 @@ module.exports.STATE = STATE;
 module.exports.EVENTS = EVENTS;
 module.exports.STATES = STATES;
 module.exports.CONDITIONS = CONDITIONS;
+module.exports.ACTIONS = ACTIONS;
 module.exports.EVENT_LIST = EVENT_LIST;
