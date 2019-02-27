@@ -1,4 +1,4 @@
-const { expect } = require('chai');
+const { expect, assert } = require('chai');
 const EventEmitter = require('events');
 const { EVENTS, CONDITIONS } = require('../../../utils/constants');
 const StateManager = require('../../../lib/state');
@@ -35,5 +35,20 @@ describe('trigger.create', () => {
       created_at: createdTrigger.created_at,
       selector: 'my-trigger',
     });
+  });
+  it('should not create invalid trigger', async () => {
+    const stateManager = new StateManager();
+    const triggerManager = new TriggerManager(event, stateManager, {});
+    const promise = triggerManager.create({
+      name: 'My trigger',
+      type: EVENTS.LIGHT.TURNED_ON,
+      rule: {
+        conditions: [{
+          type: 'UNKOWN',
+          house: 'my-house',
+        }],
+      },
+    });
+    assert.isRejected(promise);
   });
 });
