@@ -128,6 +128,9 @@ const ACTIONS = {
     SET_AWAY: 'user.event.set-away',
     SET_AT_HOME: 'user.event.set-at-home',
   },
+  TIME: {
+    DELAY: 'delay',
+  },
 };
 
 const createList = (obj) => {

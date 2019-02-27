@@ -15,6 +15,24 @@ describe('scene.executeActions', () => {
     }], {});
     assert.calledWith(light.turnOn, 'light-1');
   });
+  it('should execute wait 5 ms', async () => {
+    await executeActions({ light }, [{
+      type: ACTIONS.TIME.DELAY,
+      milliseconds: 5,
+    }], {});
+    await executeActions({ light }, [{
+      type: ACTIONS.TIME.DELAY,
+      seconds: 5 / 1000,
+    }], {});
+    await executeActions({ light }, [{
+      type: ACTIONS.TIME.DELAY,
+      minutes: 5 / 1000 / 60,
+    }], {});
+    await executeActions({ light }, [{
+      type: ACTIONS.TIME.DELAY,
+      hours: 5 / 1000 / 60 / 60,
+    }], {});
+  });
   it('should execute sequential actions', async () => {
     await executeActions({ light }, [{
       type: ACTIONS.LIGHT.TURN_ON,

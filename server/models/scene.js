@@ -5,6 +5,10 @@ const { addSelector } = require('../utils/addSelector');
 const actionSchema = Joi.array().items(Joi.object().keys({
   type: Joi.string().valid(ACTION_LIST).required(),
   deviceFeature: Joi.string(),
+  milliseconds: Joi.number(),
+  seconds: Joi.number(),
+  minutes: Joi.number(),
+  hours: Joi.number(),
 }));
 
 module.exports = (sequelize, DataTypes) => {
