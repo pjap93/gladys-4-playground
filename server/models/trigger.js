@@ -34,5 +34,17 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
     },
   }, {});
+
+  trigger.associate = (models) => {
+    trigger.belongsToMany(models.Scene, {
+      through: {
+        model: models.TriggerScene,
+        unique: true,
+      },
+      foreignKey: 'trigger_id',
+      as: 'scenes',
+    });
+  };
+
   return trigger;
 };

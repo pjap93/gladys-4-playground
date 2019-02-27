@@ -1,6 +1,6 @@
 
 module.exports = (sequelize, DataTypes) => {
-  const trigger = sequelize.define('t_trigger_scene', {
+  const triggerScene = sequelize.define('t_trigger_scene', {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
@@ -24,15 +24,5 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {});
 
-  trigger.associate = (models) => {
-    trigger.belongsToMany(models.Scene, {
-      through: {
-        model: models.TriggerScene,
-        unique: true,
-      },
-      foreignKey: 'trigger_id',
-    });
-  };
-
-  return trigger;
+  return triggerScene;
 };

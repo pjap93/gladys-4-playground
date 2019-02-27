@@ -32,6 +32,7 @@ module.exports = (sequelize, DataTypes) => {
         unique: true,
       },
       foreignKey: 'scene_id',
+      as: 'triggers',
     });
   };
 

@@ -7,7 +7,7 @@ const db = require('../../models');
  * trigger.init();
  */
 async function init() {
-  const triggers = await db.Trigger.find({
+  const triggers = await db.Trigger.findAll({
     where: {
       active: true,
     },
@@ -15,10 +15,10 @@ async function init() {
       model: db.Scene,
       as: 'scenes',
     }],
-    raw: true,
   });
-  triggers.forEach(trigger => this.addToListeners(trigger));
-  return null;
+  const plainTriggers = triggers.map(trigger => trigger.get({ plain: true }));
+  plainTriggers.forEach(trigger => this.addToListeners(trigger));
+  return plainTriggers;
 }
 
 module.exports = {
