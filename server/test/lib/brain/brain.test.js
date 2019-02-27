@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const Brain = require('../../../lib/brain');
 
-describe('brain.train', () => {
+describe('brain', () => {
   const brain = new Brain();
   it('should train brain', async () => {
     await brain.train();
@@ -15,7 +15,7 @@ describe('brain.train', () => {
     expect(secondQuestionResponse).to.have.property('context');
   });
   it('should getReply', async () => {
-    brain.getReply('en', 'calendar.nextevent.getlocation.success', {
+    brain.getReply('en', 'calendar.next-event.get-location.success', {
       event: {
         location: 'Paris',
         name: 'work',

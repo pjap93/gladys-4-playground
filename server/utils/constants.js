@@ -133,6 +133,12 @@ const ACTIONS = {
   },
 };
 
+const INTENTS = {
+  LIGHT: {
+    TURN_ON: 'intent.light.turn-on',
+  },
+};
+
 const createList = (obj) => {
   const list = [];
   Object.keys(obj).forEach((key) => {
@@ -153,6 +159,7 @@ module.exports.EVENTS = EVENTS;
 module.exports.STATES = STATES;
 module.exports.CONDITIONS = CONDITIONS;
 module.exports.ACTIONS = ACTIONS;
+module.exports.INTENTS = INTENTS;
 module.exports.EVENT_LIST = EVENT_LIST;
 module.exports.ACTION_LIST = ACTION_LIST;
 module.exports.CONDITION_LIST = CONDITION_LIST;
