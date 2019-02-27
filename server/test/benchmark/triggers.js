@@ -31,7 +31,7 @@ for (let a = 0; a < NUMBER_OF_EVENTS_TO_THROW; a += 1) {
 
 for (let b = 0; b < NUMBER_OF_HOUSE_STATES; b += 1) {
   // init stateManager
-  stateManager.setState('house', b, {
+  stateManager.setState('house', String(b), {
     alarm: (getRandomInt(0, 1) === 1) ? STATES.HOUSE_ALARM.ARMED : STATES.HOUSE_ALARM.DISARMED,
   });
 }

@@ -10,13 +10,15 @@ const logger = require('../../utils/logger');
  */
 function handleEvent(type, event) {
   try {
-    // foreach trigger in our dictionnat for this type, we check if all conditions are verified
-    this.triggerDictionnary[type].forEach((trigger) => {
-      const triggerValid = verifyTrigger(this.stateManager, type, trigger, event);
-      if (triggerValid) {
-        // execute scenes
-      }
-    });
+    if (this.triggerDictionnary[type]) {
+      // foreach trigger in our dictionnat for this type, we check if all conditions are verified
+      this.triggerDictionnary[type].forEach((trigger) => {
+        const triggerValid = verifyTrigger(this.stateManager, type, trigger, event);
+        if (triggerValid) {
+          // execute scenes
+        }
+      });
+    }
   } catch (e) {
     logger.error(e);
   }
