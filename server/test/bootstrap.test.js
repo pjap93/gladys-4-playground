@@ -16,6 +16,7 @@ before(async () => {
   const config = {
     disableService: true,
     disableBrainLoading: true,
+    disableTriggerLoading: true,
     jwtSecret: 'secret',
   };
   const gladys = Gladys(config);

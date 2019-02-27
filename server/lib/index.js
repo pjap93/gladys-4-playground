@@ -7,6 +7,9 @@ const Service = require('./service');
 const Session = require('./session');
 const User = require('./user');
 const Light = require('./light');
+const StateManager = require('./state');
+const SceneManager = require('./scene');
+const TriggerManager = require('./trigger');
 const Variable = require('./variable');
 
 /**
@@ -15,10 +18,11 @@ const Variable = require('./variable');
  * @param {string} [config.jwtSecret] - A secret to generate jsonwebtoken.
  * @param {boolean} [config.disableService] - If true, disable the loading of services.
  * @param {boolean} [config.disableBrainLoading] - If true, disable the loading of the brain.
+ * @param {boolean} [config.disableTriggerLoading] - If true, disable the loading of the triggers.
  * @example
  * const gladys = Gladys();
  */
-function Gladys(config) {
+function Gladys(config = {}) {
   config.jwtSecret = config.jwtSecret || generateJwtSecret();
 
   const brain = new Brain();
@@ -29,6 +33,9 @@ function Gladys(config) {
   const user = new User();
   const session = new Session(config.jwtSecret);
   const light = new Light(event, message);
+  const stateManager = new StateManager(event);
+  const sceneManager = new SceneManager(light);
+  const triggerManager = new TriggerManager(event, stateManager, sceneManager);
   const variable = new Variable();
 
   const gladys = {
@@ -41,6 +48,7 @@ function Gladys(config) {
     cache,
     config,
     light,
+    triggerManager,
     variable,
     start: async () => {
       if (!config.disableBrainLoading) {
@@ -49,6 +57,9 @@ function Gladys(config) {
       if (!config.disableService) {
         await service.load(gladys);
         await service.startAll();
+      }
+      if (!config.disableTriggerLoading) {
+        await triggerManager.init();
       }
     },
   };
