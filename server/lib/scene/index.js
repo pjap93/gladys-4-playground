@@ -1,5 +1,6 @@
 const queue = require('queue');
 const { addScene } = require('./scene.addScene');
+const { create } = require('./scene.create');
 const { execute } = require('./scene.execute');
 
 const SceneManager = function SceneManager(light) {
@@ -13,6 +14,7 @@ const SceneManager = function SceneManager(light) {
 };
 
 SceneManager.prototype.addScene = addScene;
+SceneManager.prototype.create = create;
 SceneManager.prototype.execute = execute;
 
 module.exports = SceneManager;

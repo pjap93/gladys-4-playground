@@ -130,13 +130,19 @@ const ACTIONS = {
   },
 };
 
-// build event list from object
-const EVENT_LIST = [];
-Object.keys(EVENTS).forEach((key) => {
-  Object.keys(EVENTS[key]).forEach((secondKey) => {
-    EVENT_LIST.push(EVENTS[key][secondKey]);
+const createList = (obj) => {
+  const list = [];
+  Object.keys(obj).forEach((key) => {
+    Object.keys(obj[key]).forEach((secondKey) => {
+      list.push(obj[key][secondKey]);
+    });
   });
-});
+  return list;
+};
+
+// build lists from object
+const EVENT_LIST = createList(EVENTS);
+const ACTION_LIST = createList(ACTIONS);
 
 module.exports.STATE = STATE;
 module.exports.EVENTS = EVENTS;
@@ -144,3 +150,4 @@ module.exports.STATES = STATES;
 module.exports.CONDITIONS = CONDITIONS;
 module.exports.ACTIONS = ACTIONS;
 module.exports.EVENT_LIST = EVENT_LIST;
+module.exports.ACTION_LIST = ACTION_LIST;
