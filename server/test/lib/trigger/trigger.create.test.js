@@ -6,7 +6,7 @@ const TriggerManager = require('../../../lib/trigger');
 
 const event = new EventEmitter();
 
-describe('trigger.crate', () => {
+describe('trigger.create', () => {
   it('should create trigger', async () => {
     const stateManager = new StateManager();
     const triggerManager = new TriggerManager(event, stateManager, {});
