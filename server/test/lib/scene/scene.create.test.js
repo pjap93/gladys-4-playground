@@ -15,6 +15,17 @@ describe('SceneManager', () => {
     });
     expect(scene).to.have.property('selector', 'my-living-room');
   });
+  it('should create one scene with custom selector', async () => {
+    const sceneManager = new SceneManager(light);
+    const scene = await sceneManager.create({
+      name: 'My living room',
+      selector: 'my-custom-selector',
+      actions: [{
+        type: ACTIONS.HOUSE_ALARM.ARM,
+      }],
+    });
+    expect(scene).to.have.property('selector', 'my-custom-selector');
+  });
   it('should return validation error', async () => {
     const sceneManager = new SceneManager(light);
     const promise = sceneManager.create({
