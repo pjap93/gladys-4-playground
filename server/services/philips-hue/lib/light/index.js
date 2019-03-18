@@ -1,4 +1,4 @@
-const { configureBridge } = require('./light.configureBridge');
+const { configureBridge } = require('./light.configureBridge');
 const { getBridges } = require('./light.getBridges');
 
 /**
