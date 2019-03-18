@@ -12,6 +12,7 @@ const CalendarEventModel = require('./calendar_event');
 const CustomDashboardModel = require('./custom_dashboard');
 const DeviceFeatureStateModel = require('./device_feature_state');
 const DeviceFeatureModel = require('./device_feature');
+const DeviceParamModel = require('./device_param');
 const DeviceModel = require('./device');
 const HouseModel = require('./house');
 const LifeEventModel = require('./life_event');
@@ -35,6 +36,7 @@ const models = {
   CustomDashboard: CustomDashboardModel(sequelize, Sequelize),
   DeviceFeatureState: DeviceFeatureStateModel(sequelize, Sequelize),
   DeviceFeature: DeviceFeatureModel(sequelize, Sequelize),
+  DeviceParam: DeviceParamModel(sequelize, Sequelize),
   Device: DeviceModel(sequelize, Sequelize),
   House: HouseModel(sequelize, Sequelize),
   LifeEvent: LifeEventModel(sequelize, Sequelize),
