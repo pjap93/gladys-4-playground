@@ -2,10 +2,10 @@ const logger = require('../../utils/logger');
 const PhilipsHueLightHandler = require('./lib/light');
 const HueController = require('./api/hue.controller');
 
-module.exports = function PhilipsHueService(gladys) {
+module.exports = function PhilipsHueService(gladys, serviceId) {
   // require the node-hue-api module
   const hueClient = require('node-hue-api');
-  const philipsHueLightHandler = new PhilipsHueLightHandler(gladys, hueClient);
+  const philipsHueLightHandler = new PhilipsHueLightHandler(gladys, hueClient, serviceId);
 
   /**
    * @public
