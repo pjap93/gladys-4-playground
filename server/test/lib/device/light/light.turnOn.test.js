@@ -26,8 +26,7 @@ const deviceFeature = {
   keep_history: true,
 };
 
-describe('Light', function LightTest() {
-  this.timeout(5000);
+describe('Light', () => {
   it('should turnOn the light', async () => {
     const stateManager = new StateManager(event);
     const deviceManager = new Device(event, {}, stateManager, services);

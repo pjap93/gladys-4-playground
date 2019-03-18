@@ -1,4 +1,5 @@
 const db = require('../../models');
+const logger = require('../../utils/logger');
 
 /**
  * @description Save new device feature state in DB.
@@ -11,30 +12,28 @@ const db = require('../../models');
  * }, 12);
  */
 async function saveState(deviceFeature, newValue) {
+  logger.debug(`device.saveState of deviceFeature ${deviceFeature.selector}`);
   await db.sequelize.transaction(async (t) => {
     // update deviceFeature lastValue in DB
-    const all = [
-      db.DeviceFeature.update({
-        last_value: newValue,
-        last_value_changed: new Date(),
-      }, {
-        where: {
-          id: deviceFeature.id,
-        },
-      }, {
-        transaction: t,
-      }),
-    ];
+    await db.DeviceFeature.update({
+      last_value: newValue,
+      last_value_changed: new Date(),
+    }, {
+      where: {
+        id: deviceFeature.id,
+      },
+    }, {
+      transaction: t,
+    });
     // if the deviceFeature should keep history, we save a new deviceFeatureState
     if (deviceFeature.keep_history) {
-      all.push(db.DeviceFeatureState.create({
+      await db.DeviceFeatureState.create({
         device_feature_id: deviceFeature.id,
         value: newValue,
       }, {
         transaction: t,
-      }));
+      });
     }
-    await Promise.all(all);
 
     // save local state in RAM
     this.stateManager.setState('deviceFeature', deviceFeature.selector, {
