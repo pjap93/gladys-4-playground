@@ -1,5 +1,5 @@
 const logger = require('../../../utils/logger');
-const { STATE } = require('../../../utils/constants');
+const { STATE, EVENTS } = require('../../../utils/constants');
 
 /**
  * @description TurnOn a given deviceFeature.
@@ -14,6 +14,7 @@ async function turnOn(device, deviceFeature) {
   if (!deviceFeature.has_state_feedback) {
     await this.deviceManager.saveState(deviceFeature, STATE.ON);
   }
+  this.eventManager.emit(EVENTS.LIGHT.TURNED_ON, { device, deviceFeature });
 }
 
 module.exports = {
