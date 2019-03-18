@@ -48,7 +48,8 @@ const context = {
   deviceFeature,
 };
 
-describe('Light', () => {
+describe('Light', function LightTest() {
+  this.timeout(5000);
   it('should send a turn on command', async () => {
     const stateManager = new StateManager(event);
     const deviceManager = new Device(event, messageManager, stateManager, services);

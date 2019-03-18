@@ -26,7 +26,8 @@ before(async () => {
 });
 
 // cleaning and filling database between each tests
-beforeEach(async () => {
+beforeEach(async function beforeEach() {
+  this.timeout(8000);
   try {
     await cleanDb();
     await seedDb();
