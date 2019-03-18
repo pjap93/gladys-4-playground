@@ -15,6 +15,7 @@ const actions = store => ({
         password: state.loginFormPasswordValue
       });
       store.setState({ user, loginStatus: LoginStatus.LoginSuccess });
+      state.httpClient.setToken(user.refresh_token, user.access_token);
       route('/dashboard');
     } catch (e) {
       store.setState({ loginStatus: LoginStatus.WrongCredentialsError });
