@@ -1,4 +1,4 @@
-const logger = require('../../utils/logger');
+const logger = require('../../../utils/logger');
 
 /**
  * @description Command a light.
@@ -12,15 +12,15 @@ async function command(message, classification, context) {
   try {
     switch (classification.intent) {
     case 'light.turnon':
-      await this.turnOn();
-      this.message.replyByIntent(message, 'light.turnon.success', context);
+      await this.turnOn(context.device, context.deviceFeature);
+      this.messageManager.replyByIntent(message, 'light.turnon.success', context);
       break;
     default:
       throw new Error('Not found');
     }
   } catch (e) {
     logger.debug(e);
-    this.message.replyByIntent(message, 'light.turnon.fail', context);
+    this.messageManager.replyByIntent(message, 'light.turnon.fail', context);
   }
 }
 

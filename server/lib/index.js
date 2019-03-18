@@ -1,12 +1,13 @@
 const { generateJwtSecret } = require('../utils/jwtSecret');
 const { Cache } = require('../utils/cache');
+const services = require('../services');
 const Brain = require('./brain');
 const Event = require('./event');
 const MessageHandler = require('./message');
 const Service = require('./service');
 const Session = require('./session');
 const User = require('./user');
-const Light = require('./light');
+const Device = require('./device');
 const StateManager = require('./state');
 const SceneManager = require('./scene');
 const TriggerManager = require('./trigger');
@@ -32,9 +33,9 @@ function Gladys(config = {}) {
   const message = new MessageHandler(event, brain, service);
   const user = new User();
   const session = new Session(config.jwtSecret);
-  const light = new Light(event, message);
   const stateManager = new StateManager(event);
-  const sceneManager = new SceneManager(light);
+  const device = new Device(event, message, stateManager, services);
+  const sceneManager = new SceneManager(device.lightManager);
   const triggerManager = new TriggerManager(event, stateManager, sceneManager);
   const variable = new Variable();
 
@@ -47,7 +48,7 @@ function Gladys(config = {}) {
     session,
     cache,
     config,
-    light,
+    device,
     triggerManager,
     variable,
     start: async () => {
