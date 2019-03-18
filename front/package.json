@@ -28,6 +28,7 @@
     "linkstate": "^1.1.1",
     "moment": "^2.24.0",
     "preact": "^8.2.6",
+    "preact-cli-plugin-fast-async": "^1.0.1",
     "preact-compat": "^3.18.4",
     "preact-i18n": "^1.2.2",
     "preact-router": "^2.5.7",
