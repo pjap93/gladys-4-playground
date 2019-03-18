@@ -1,5 +1,6 @@
 const EventEmitter = require('events');
 const { assert, fake } = require('sinon');
+const chaiAssert = require('chai').assert;
 const Device = require('../../../../lib/device');
 const StateManager = require('../../../../lib/state');
 
@@ -9,6 +10,14 @@ const services = {
   test: {
     light: {
       turnOn: fake.resolves(true),
+    },
+  },
+};
+
+const servicesBroken = {
+  test: {
+    light: {
+      turnOn: fake.rejects(true),
     },
   },
 };
@@ -46,5 +55,18 @@ describe('Light', () => {
     await deviceManager.lightManager.command(message, { intent: 'light.turnon' }, context);
     assert.calledWith(messageManager.replyByIntent, message, 'light.turnon.success', context);
     assert.calledWith(services.test.light.turnOn, deviceFeature);
+  });
+  it('should fail to send a turn on command', async () => {
+    const stateManager = new StateManager(event);
+    const deviceManager = new Device(event, messageManager, stateManager, servicesBroken);
+    await deviceManager.lightManager.command(message, { intent: 'light.turnon' }, context);
+    assert.calledWith(messageManager.replyByIntent, message, 'light.turnon.fail', context);
+    assert.calledWith(servicesBroken.test.light.turnOn, deviceFeature);
+  });
+  it('should fail to send a turn on command', async () => {
+    const stateManager = new StateManager(event);
+    const deviceManager = new Device(event, messageManager, stateManager, servicesBroken);
+    const promise = deviceManager.lightManager.command(message, { intent: 'unknow' }, context);
+    chaiAssert.isRejected(promise);
   });
 });
