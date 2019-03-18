@@ -11,7 +11,7 @@ const { slugify } = require('./slugify');
 function addSelector(item) {
   if (item.selector) {
     item.selector = slugify(item.selector);
-  } else {
+  } else if (item.name) {
     item.selector = slugify(item.name);
   }
 }
