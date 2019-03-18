@@ -2,9 +2,9 @@
 module.exports = (sequelize, DataTypes) => {
   const deviceParam = sequelize.define('t_device_param', {
     id: {
-      allowNull: false,
-      primaryKey: true,
       type: DataTypes.UUID,
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
     },
     device_id: {
       allowNull: false,
