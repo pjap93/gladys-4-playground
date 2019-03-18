@@ -92,7 +92,7 @@
       }
     },
     {
-      "files": ["api/controllers/**/*.js"],
+      "files": ["**/*.controller.js"],
       "rules": {
 
         "jsdoc/check-examples": 0,
