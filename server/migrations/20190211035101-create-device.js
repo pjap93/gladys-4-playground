@@ -18,7 +18,6 @@ module.exports = {
         onDelete: 'CASCADE',
       },
       room_id: {
-        allowNull: false,
         type: Sequelize.UUID,
         references: {
           model: 't_room',
