@@ -1,7 +1,7 @@
 
 module.exports = function HueController(philipsHueLightHandler) {
   /**
-   * @api {get} /api/v1/services/philips-hue/bridges Get Philips Hue bridges
+   * @api {get} /api/v1/service/philips-hue/bridge Get Philips Hue bridges
    * @apiName GetBridges
    * @apiGroup PhilipsHue
    */
@@ -11,7 +11,7 @@ module.exports = function HueController(philipsHueLightHandler) {
   }
 
   return {
-    'get /api/v1/services/philips-hue/bridges': {
+    'get /api/v1/service/philips-hue/bridge': {
       authenticated: true,
       controller: getBridges,
     },
