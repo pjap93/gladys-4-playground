@@ -5,12 +5,14 @@ const StateManager = require('../../../../lib/state');
 
 const event = new EventEmitter();
 
-const services = {
-  test: {
-    light: {
-      turnOn: fake.resolves(true),
-    },
+const testService = {
+  light: {
+    turnOn: fake.resolves(true),
   },
+};
+
+const service = {
+  getService: () => testService,
 };
 
 const device = {
@@ -29,8 +31,8 @@ const deviceFeature = {
 describe('Light', () => {
   it('should turnOn the light', async () => {
     const stateManager = new StateManager(event);
-    const deviceManager = new Device(event, {}, stateManager, services);
+    const deviceManager = new Device(event, {}, stateManager, service);
     await deviceManager.lightManager.turnOn(device, deviceFeature);
-    assert.calledWith(services.test.light.turnOn, deviceFeature);
+    assert.calledWith(testService.light.turnOn, deviceFeature);
   });
 });

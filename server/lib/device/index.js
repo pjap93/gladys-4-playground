@@ -2,11 +2,11 @@ const LightManager = require('./light');
 const { add } = require('./device.add');
 const { saveState } = require('./device.saveState');
 
-const DeviceManager = function DeviceManager(eventManager, messageManager, stateManager, services) {
+const DeviceManager = function DeviceManager(eventManager, messageManager, stateManager, serviceManager) {
   this.eventManager = eventManager;
   this.messageManager = messageManager;
   this.stateManager = stateManager;
-  this.services = services;
+  this.serviceManager = serviceManager;
   this.lightManager = new LightManager(eventManager, messageManager, this);
 };
 

@@ -6,20 +6,24 @@ const StateManager = require('../../../../lib/state');
 
 const event = new EventEmitter();
 
-const services = {
-  test: {
-    light: {
-      turnOn: fake.resolves(true),
-    },
+const testService = {
+  light: {
+    turnOn: fake.resolves(true),
   },
 };
 
-const servicesBroken = {
-  test: {
-    light: {
-      turnOn: fake.rejects(true),
-    },
+const testServiceBroken = {
+  light: {
+    turnOn: fake.rejects(true),
   },
+};
+
+const service = {
+  getService: () => testService,
+};
+
+const serviceBroken = {
+  getService: () => testServiceBroken,
 };
 
 const messageManager = {
@@ -51,21 +55,21 @@ const context = {
 describe('Light', () => {
   it('should send a turn on command', async () => {
     const stateManager = new StateManager(event);
-    const deviceManager = new Device(event, messageManager, stateManager, services);
+    const deviceManager = new Device(event, messageManager, stateManager, service);
     await deviceManager.lightManager.command(message, { intent: 'light.turnon' }, context);
     assert.calledWith(messageManager.replyByIntent, message, 'light.turnon.success', context);
-    assert.calledWith(services.test.light.turnOn, deviceFeature);
+    assert.calledWith(testService.light.turnOn, deviceFeature);
   });
   it('should fail to send a turn on command', async () => {
     const stateManager = new StateManager(event);
-    const deviceManager = new Device(event, messageManager, stateManager, servicesBroken);
+    const deviceManager = new Device(event, messageManager, stateManager, serviceBroken);
     await deviceManager.lightManager.command(message, { intent: 'light.turnon' }, context);
     assert.calledWith(messageManager.replyByIntent, message, 'light.turnon.fail', context);
-    assert.calledWith(servicesBroken.test.light.turnOn, deviceFeature);
+    assert.calledWith(testServiceBroken.light.turnOn, deviceFeature);
   });
   it('should fail to send a turn on command', async () => {
     const stateManager = new StateManager(event);
-    const deviceManager = new Device(event, messageManager, stateManager, servicesBroken);
+    const deviceManager = new Device(event, messageManager, stateManager, serviceBroken);
     const promise = deviceManager.lightManager.command(message, { intent: 'unknow' }, context);
     chaiAssert.isRejected(promise);
   });

@@ -10,7 +10,7 @@ const { STATE } = require('../../../utils/constants');
  */
 async function turnOn(device, deviceFeature) {
   logger.debug(`Turning on the light of deviceFeature "${deviceFeature.selector}"`);
-  await this.deviceManager.services[device.service.name].light.turnOn(deviceFeature);
+  await this.deviceManager.serviceManager.getService(device.service.name).light.turnOn(deviceFeature);
   if (!deviceFeature.has_state_feedback) {
     await this.deviceManager.saveState(deviceFeature, STATE.ON);
   }
