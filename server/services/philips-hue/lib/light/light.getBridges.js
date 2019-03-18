@@ -7,7 +7,7 @@ const logger = require('../../../../utils/logger');
  */
 async function getBridges() {
   const bridges = await this.hueClient.nupnpSearch();
-  logger.info(`PhilipsHueService: Found ${bridges} bridges`);
+  logger.info(`PhilipsHueService: Found ${bridges.length} bridges`);
   return bridges;
 }
 

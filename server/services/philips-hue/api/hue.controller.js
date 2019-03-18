@@ -6,11 +6,14 @@ module.exports = function HueController(philipsHueLightHandler) {
    * @apiGroup PhilipsHue
    */
   async function getBridges(req, res) {
-    const bridges = await philipsHueLightHandler.light.getBridges();
+    const bridges = await philipsHueLightHandler.getBridges();
     res.json(bridges);
   }
 
   return {
-    'get /api/v1/services/philips-hue/bridges': getBridges,
+    'get /api/v1/services/philips-hue/bridges': {
+      authenticated: true,
+      controller: getBridges,
+    },
   };
 };

@@ -1,3 +1,5 @@
+const { getBridges } = require('./light.getBridges');
+
 /**
  * @description Add ability to control a Philips Hue light
  * @param {Object} gladys - Gladys instance.
@@ -10,8 +12,6 @@ const PhilipsHueLightHandler = function PhilipsHueLightHandler(gladys, hueClient
   this.hueClient = hueClient;
 };
 
-PhilipsHueLightHandler.prototype.turnOn = function turnOn(deviceFeature) {
-
-};
+PhilipsHueLightHandler.prototype.getBridges = getBridges;
 
 module.exports = PhilipsHueLightHandler;
