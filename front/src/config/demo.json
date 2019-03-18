@@ -1,0 +1,28 @@
+{
+  "post /api/v1/login": {
+    "id": "215811c9-c0aa-4148-8a4b-e02892d7446f",
+    "firstname": "tony",
+    "lastname": "Stark",
+    "email": "tony.stark@gladysassistant.com",
+    "language": "fr",
+    "birthdate": "2011-02-04",
+    "role": "admin",
+    "created_at": "2019-02-20T04:26:47.811Z",
+    "updated_at": "2019-02-20T04:26:47.811Z",
+    "refresh_token": "15535ed55088d46b9a01738bfb2b96f982fb16edb2a5241d078775a7db8aa38a8ae59e73f81aa5367b62b1daef8aea5e3b7de4ff66dc8fb00f6ed02b6c3eb14ac68b1716e9cdb9425f88bf2eeb5b8cc3b4eb66913bbd8e5084381dc22fe1ff092c0efd80f2ec766511f03121bdffcc02202a20d5916e6e58c6aed4a84fb9980a99b828c8ded74d17e3c91108f7e50dccb80281720b6b37fe26345371cd2b4a1134abfbc63689814375aee968af15dc24379c7c95200c0c1740817806abfca934ccb4fb183e4c95e19f55a2e4c8a3bb453cf0700a6f7baa7088b24297d212f2ccfc3586093c28e731e9909addbead2b9c095f1a7f8993f4ddd405",
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiOTJiZjk0NDEtYzljMC00YTVmLWI3YmItNGY3NmYwZWM0Yzk1Iiwic2NvcGUiOlsiZGFzaGJvYXJkOndyaXRlIiwiZGFzaGJvYXJkOnJlYWQiXSwic2Vzc2lvbl9pZCI6IjZhOTYyNzk2LTZlMGQtNDRiNC04Y2Y2LWRkMmJhYjhjY2M0ZiIsImlhdCI6MTU1MTA2NzM5MywiZXhwIjoxNTUxMTUzNzkzLCJhdWQiOiJ1c2VyIiwiaXNzIjoiZ2xhZHlzIn0.JfiRsTn4cyARIMElD5DgyFt7xKHPcTNnaMLKznbfVc4"
+  },
+  "get /api/v1/me": {
+    "id": "215811c9-c0aa-4148-8a4b-e02892d7446f",
+    "firstname": "tony",
+    "lastname": "Stark",
+    "email": "tony.stark@gladysassistant.com",
+    "language": "fr",
+    "birthdate": "2011-02-04",
+    "role": "admin",
+    "created_at": "2019-02-20T04:26:47.811Z",
+    "updated_at": "2019-02-20T04:26:47.811Z",
+    "refresh_token": "15535ed55088d46b9a01738bfb2b96f982fb16edb2a5241d078775a7db8aa38a8ae59e73f81aa5367b62b1daef8aea5e3b7de4ff66dc8fb00f6ed02b6c3eb14ac68b1716e9cdb9425f88bf2eeb5b8cc3b4eb66913bbd8e5084381dc22fe1ff092c0efd80f2ec766511f03121bdffcc02202a20d5916e6e58c6aed4a84fb9980a99b828c8ded74d17e3c91108f7e50dccb80281720b6b37fe26345371cd2b4a1134abfbc63689814375aee968af15dc24379c7c95200c0c1740817806abfca934ccb4fb183e4c95e19f55a2e4c8a3bb453cf0700a6f7baa7088b24297d212f2ccfc3586093c28e731e9909addbead2b9c095f1a7f8993f4ddd405",
+    "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiOTJiZjk0NDEtYzljMC00YTVmLWI3YmItNGY3NmYwZWM0Yzk1Iiwic2NvcGUiOlsiZGFzaGJvYXJkOndyaXRlIiwiZGFzaGJvYXJkOnJlYWQiXSwic2Vzc2lvbl9pZCI6IjZhOTYyNzk2LTZlMGQtNDRiNC04Y2Y2LWRkMmJhYjhjY2M0ZiIsImlhdCI6MTU1MTA2NzM5MywiZXhwIjoxNTUxMTUzNzkzLCJhdWQiOiJ1c2VyIiwiaXNzIjoiZ2xhZHlzIn0.JfiRsTn4cyARIMElD5DgyFt7xKHPcTNnaMLKznbfVc4"
+  }
+}
