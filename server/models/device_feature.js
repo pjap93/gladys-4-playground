@@ -1,3 +1,4 @@
+const { addSelector } = require('../utils/addSelector');
 
 module.exports = (sequelize, DataTypes) => {
   const deviceFeature = sequelize.define('t_device_feature', {
@@ -104,6 +105,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
     },
   }, {});
+
+  // add slug if needed
+  deviceFeature.beforeValidate(addSelector);
 
   deviceFeature.associate = (models) => {
     deviceFeature.belongsTo(models.Device, {

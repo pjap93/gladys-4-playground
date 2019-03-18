@@ -1,3 +1,4 @@
+const { addSelector } = require('../utils/addSelector');
 
 module.exports = (sequelize, DataTypes) => {
   const device = sequelize.define('t_device', {
@@ -15,7 +16,6 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     room_id: {
-      allowNull: false,
       type: DataTypes.UUID,
       references: {
         model: 't_room',
@@ -33,6 +33,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
   }, {});
+
+  // add slug if needed
+  device.beforeValidate(addSelector);
 
   device.associate = (models) => {
     device.belongsTo(models.Room, {
