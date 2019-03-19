@@ -11,6 +11,7 @@ import Header from './header';
 import Layout from './layout';
 import Login from '../routes/login/LoginPage';
 import Dashboard from '../routes/dashboard/DashboardPage';
+import Device from '../routes/device';
 import IntegrationPage from '../routes/integration';
 import ChatPage from '../routes/chat';
 import MapPage from '../routes/map';
@@ -43,6 +44,7 @@ const Main = connect('currentUrl,user', actions)(
         <Router onChange={handleRoute}>
           <Login path="/login" />
           <Dashboard path="/dashboard" />
+          <Device path="/dashboard/device" />
           <IntegrationPage path="/dashboard/integration" />
           <IntegrationPage path="/dashboard/integration/device" />
           <IntegrationPage path="/dashboard/integration/communication" />

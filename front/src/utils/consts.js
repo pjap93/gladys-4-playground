@@ -16,3 +16,9 @@ export const TelegramSaveApiKeyStatus = {
   SavingError: 'SavingError',
   Success: 'Success'
 };
+
+export const DeviceGetByRoomStatus = {
+  Getting: 'Getting',
+  Success: 'Success',
+  Error: 'Error'
+};

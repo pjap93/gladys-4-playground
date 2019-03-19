@@ -88,6 +88,11 @@ const Header = ({ ...props }) => {
                   </Link>
                 </li>
                 <li class="nav-item">
+                  <Link activeClassName="active" href="/dashboard/device" class="nav-link">
+                    <i class="fe fe-toggle-right" /> Devices
+                  </Link>
+                </li>
+                <li class="nav-item">
                   <Link href="/dashboard/integration/device" class={props.currentUrl.startsWith('/dashboard/integration') ? 'active nav-link' : 'nav-link'}>
                     <i class="fe fe-grid" /> Integrations
                   </Link>
