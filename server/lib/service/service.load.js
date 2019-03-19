@@ -8,20 +8,14 @@ const SERVICES_TO_LOAD = Object.keys(services);
  * @public
  * @description Load all services
  * @param {Object} gladys - Gladys object.
+ * @returns {Promise} Resolve when init is finished.
  * @example
  * service.load(gladys);
  */
 async function load(gladys) {
-  // destroy all local services
-  await db.Service.destroy({
-    where: {
-      pod_id: null,
-    },
-  });
-
   await Promise.all(
     SERVICES_TO_LOAD.map(async (service) => {
-      const serviceToInsert = {
+      const serviceToInsertOrUpdate = {
         name: service,
         selector: service,
         version: gladys.version,
@@ -31,16 +25,29 @@ async function load(gladys) {
       try {
         this.services[service] = services[service](gladys);
         if (this.services[service].message && this.services[service].message.send) {
-          serviceToInsert.has_message_feature = true;
+          serviceToInsertOrUpdate.has_message_feature = true;
         }
       } catch (e) {
         logger.debug(e);
-        serviceToInsert.enabled = false;
+        serviceToInsertOrUpdate.enabled = false;
       }
-      // insert the service
-      return db.Service.create(serviceToInsert);
+      // check if service already exist
+      const serviceInDb = await db.Service.findOne({
+        where: {
+          pod_id: null,
+          name: service,
+        },
+      });
+      // if yes, we update it
+      if (serviceInDb) {
+        serviceInDb.set(serviceToInsertOrUpdate);
+        return serviceInDb.save();
+      }
+      // else, insert the service
+      return db.Service.create(serviceToInsertOrUpdate);
     }),
   );
+  return null;
 }
 
 module.exports = {
