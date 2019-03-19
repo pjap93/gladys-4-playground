@@ -1,6 +1,5 @@
 import { Link } from 'preact-router/match';
 import { Text, MarkupText } from 'preact-i18n';
-import { PhilipsHueGetBridgesStatus } from '../../../../utils/consts';
 
 const PhilipsHuePage = ({ children, ...props }) => (
   <div class="page">
