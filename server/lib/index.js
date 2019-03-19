@@ -19,6 +19,7 @@ const Variable = require('./variable');
  * @param {boolean} [config.disableService] - If true, disable the loading of services.
  * @param {boolean} [config.disableBrainLoading] - If true, disable the loading of the brain.
  * @param {boolean} [config.disableTriggerLoading] - If true, disable the loading of the triggers.
+ * @param {boolean} [config.disableDeviceLoading] - If true, disabvle the loading of devices in RAM.
  * @example
  * const gladys = Gladys();
  */
@@ -34,7 +35,7 @@ function Gladys(config = {}) {
   const session = new Session(config.jwtSecret);
   const stateManager = new StateManager(event);
   const device = new Device(event, message, stateManager, service);
-  const sceneManager = new SceneManager(device.lightManager);
+  const sceneManager = new SceneManager(stateManager);
   const triggerManager = new TriggerManager(event, stateManager, sceneManager);
   const variable = new Variable();
 
@@ -60,6 +61,9 @@ function Gladys(config = {}) {
       }
       if (!config.disableTriggerLoading) {
         await triggerManager.init();
+      }
+      if (!config.disableDeviceLoading) {
+        await device.init();
       }
     },
   };

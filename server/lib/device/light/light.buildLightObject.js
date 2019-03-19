@@ -12,13 +12,14 @@ const { DEVICE_FEATURE_TYPES } = require('../../../utils/constants');
  * });
  */
 function buildLightObject(device) {
+  const self = this;
   // find binary deviceType
   const binaryDeviceFeature = device.features.find(
     deviceFeature => deviceFeature.type === DEVICE_FEATURE_TYPES.LIGHT.BINARY,
   );
   if (binaryDeviceFeature) {
-    device.turnOn = async () => this.turnOn(device, binaryDeviceFeature);
-    device.turnOff = async () => this.turnOff(device, binaryDeviceFeature);
+    device.turnOn = async () => self.turnOn(device, binaryDeviceFeature);
+    device.turnOff = async () => self.turnOff(device, binaryDeviceFeature);
   }
   return device;
 }

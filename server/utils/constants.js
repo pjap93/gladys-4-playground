@@ -42,6 +42,9 @@ const EVENTS = {
     SUCCEEDED: 'scene.succeeded',
     FAILED: 'scene.failed',
   },
+  ACTION: {
+    TRIGGERED: 'action.triggered',
+  },
   LIGHT: {
     TURNED_ON: 'light.turned-on',
     TURNED_OFF: 'light.turned-off',
@@ -152,6 +155,12 @@ const DEVICE_FEATURE_TYPES = {
   },
 };
 
+const ACTIONS_STATUS = {
+  PENDING: 'pending',
+  SUCCESS: 'success',
+  FAILED: 'failed',
+};
+
 const createList = (obj) => {
   const list = [];
   Object.keys(obj).forEach((key) => {
@@ -175,6 +184,7 @@ module.exports.ACTIONS = ACTIONS;
 module.exports.INTENTS = INTENTS;
 module.exports.DEVICE_FEATURE_CATEGORIES = DEVICE_FEATURE_CATEGORIES;
 module.exports.DEVICE_FEATURE_TYPES = DEVICE_FEATURE_TYPES;
+module.exports.ACTIONS_STATUS = ACTIONS_STATUS;
 
 module.exports.EVENT_LIST = EVENT_LIST;
 module.exports.ACTION_LIST = ACTION_LIST;

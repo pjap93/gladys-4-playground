@@ -1,4 +1,5 @@
 const { INTENTS } = require('../../../utils/constants');
+const { buildLightObject } = require('./light.buildLightObject');
 const { command } = require('./light.command');
 const { init } = require('./light.init');
 const { turnOn } = require('./light.turnOn');
@@ -10,6 +11,7 @@ const LightManager = function Light(eventManager, messageManager, deviceManager)
   this.eventManager.on(INTENTS.LIGHT.TURN_ON, this.command.bind(this));
 };
 
+LightManager.prototype.buildLightObject = buildLightObject;
 LightManager.prototype.command = command;
 LightManager.prototype.init = init;
 LightManager.prototype.turnOn = turnOn;

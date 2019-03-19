@@ -1,6 +1,6 @@
 const db = require('../../../models');
+const logger = require('../../../utils/logger');
 const { DEVICE_FEATURE_CATEGORIES } = require('../../../utils/constants');
-const { buildLightObject } = require('./light.buildLightObject');
 
 /**
  * @description Get all lights and store them in memory.
@@ -26,9 +26,10 @@ async function init() {
       as: 'service',
     }],
   });
+  logger.debug(`Light : init : Found ${lights.length} light devices`);
   const plainLights = lights.map((light) => {
     const device = light.get({ plain: true });
-    const deviceWithFunctions = buildLightObject(device);
+    const deviceWithFunctions = this.buildLightObject(device);
     this.deviceManager.add(deviceWithFunctions);
     return device;
   });

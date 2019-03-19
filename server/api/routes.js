@@ -1,5 +1,6 @@
 const express = require('express');
 const UserController = require('./controllers/user.controller');
+const LightController = require('./controllers/light.controller');
 const MessageController = require('./controllers/message.controller');
 const VariableController = require('./controllers/variable.controller');
 const AuthMiddleware = require('./middlewares/authMiddleware');
@@ -16,6 +17,7 @@ const setupServiceRoutes = require('./servicesRoutes');
 function setupRoutes(gladys) {
   const router = express.Router();
   // Configure router
+  const lightController = LightController(gladys);
   const userController = UserController(gladys);
   const messageController = MessageController(gladys);
   const variableController = VariableController(gladys);
@@ -44,6 +46,9 @@ function setupRoutes(gladys) {
 
   // variable
   router.post('/api/v1/service/:service_name/:variable_key', variableController.setForLocalService);
+
+  // light
+  router.post('/api/v1/light/:device_selector/on', lightController.turnOn);
 
   return router;
 }

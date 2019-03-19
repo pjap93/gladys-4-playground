@@ -1,6 +1,7 @@
 const LightManager = require('./light');
 const { add } = require('./device.add');
 const { create } = require('./device.create');
+const { init } = require('./device.init');
 const { saveState } = require('./device.saveState');
 const { setParam } = require('./device.setParam');
 
@@ -14,6 +15,7 @@ const DeviceManager = function DeviceManager(eventManager, messageManager, state
 
 DeviceManager.prototype.add = add;
 DeviceManager.prototype.create = create;
+DeviceManager.prototype.init = init;
 DeviceManager.prototype.saveState = saveState;
 DeviceManager.prototype.setParam = setParam;
 
