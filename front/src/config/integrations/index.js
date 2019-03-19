@@ -13,4 +13,8 @@ communicationEn.forEach((integration) => {
   integrations.en[integration.key] = integration;
 });
 
+deviceEn.forEach((integration) => {
+  integrations.en[integration.key] = integration;
+});
+
 export default integrations;

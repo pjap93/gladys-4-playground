@@ -22,3 +22,9 @@ export const DeviceGetByRoomStatus = {
   Success: 'Success',
   Error: 'Error'
 };
+
+export const PhilipsHueGetBridgesStatus = {
+  Getting: 'Getting',
+  Success: 'Success',
+  Error: 'Error'
+};

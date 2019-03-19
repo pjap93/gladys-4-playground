@@ -17,7 +17,9 @@ import ChatPage from '../routes/chat';
 import MapPage from '../routes/map';
 import CalendarPage from '../routes/calendar';
 
+// Integrations
 import TelegramPage from '../routes/integration/all/telegram';
+import PhilipsHuePage from '../routes/integration/all/philips-hue';
 
 const httpClient = (process.env.DEMO_MODE === 'true') ? new DemoHttpClient() : new HttpClient();
 httpClient.setToken('XX', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiOTJiZjk0NDEtYzljMC00YTVmLWI3YmItNGY3NmYwZWM0Yzk1Iiwic2NvcGUiOlsiZGFzaGJvYXJkOndyaXRlIiwiZGFzaGJvYXJkOnJlYWQiXSwic2Vzc2lvbl9pZCI6IjZhOTYyNzk2LTZlMGQtNDRiNC04Y2Y2LWRkMmJhYjhjY2M0ZiIsImlhdCI6MTU1MTA2NzM5MywiZXhwIjoxNTUxMTUzNzkzLCJhdWQiOiJ1c2VyIiwiaXNzIjoiZ2xhZHlzIn0.JfiRsTn4cyARIMElD5DgyFt7xKHPcTNnaMLKznbfVc4');
@@ -53,7 +55,9 @@ const Main = connect('currentUrl,user', actions)(
           <IntegrationPage path="/dashboard/integration/health" />
           <IntegrationPage path="/dashboard/integration/weather" />
           <IntegrationPage path="/dashboard/integration/navigation" />
+
           <TelegramPage path="/dashboard/integration/communication/telegram" />
+          <PhilipsHuePage path="/dashboard/integration/device/philips-hue" />
 
           <ChatPage path="/dashboard/chat" />
           <MapPage path="/dashboard/maps" />

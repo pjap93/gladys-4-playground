@@ -30,6 +30,11 @@
         "introduction": "To connect Gladys to Telegram, you first need to create a Telegram bot using the Botfather. Send a <b>/newbot</b> message to the <a href=\"https://telegram.me/BotFather\">@BotFather</a> in Telegram. Then, enter the API key he gave you below.",
         "link": "To talk to Gladys in Telegram, click on <a href=\"{{link}}\">this link</a>.",
         "note": "This link is unique to your account, do not send it to other users."
+      },
+      "philipsHue": {
+        "title": "Philips Hue",
+        "introduction": "Configure here your Philips Hue lights. Gladys is compatible with <a href=\"{{link}}\">this set of Philips Hue lights</a>",
+        "searchForBridgesButton": "Scan network for bridges"
       }
     }
 }

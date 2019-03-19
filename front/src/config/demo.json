@@ -49,5 +49,9 @@
     "type": "light.turn-on",
     "device": "main-lamp",
     "status": "pending"
-  }  
+  },
+  "get /api/v1/service/philips-hue/bridge": [{
+    "name": "Philips hue",
+    "ipaddress": "192.168.2.245"
+  }]
 }
