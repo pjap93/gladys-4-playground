@@ -20,7 +20,7 @@ const gladys = {
 
 describe('PhilipsHueService', () => {
   const philipsHueService = PhilipsHueService(gladys, 'a810b8db-6d04-4697-bed3-c4b72c996279');
-  it('getBridges configure bridge', async () => {
+  it('should configure bridge', async () => {
     const device = await philipsHueService.light.configureBridge('Bridge', '192.168.1.1');
     expect(device).to.have.property('name', 'Bridge');
     expect(device).to.have.property('selector', 'bridge');
