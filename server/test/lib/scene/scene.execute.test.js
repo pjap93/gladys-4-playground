@@ -1,6 +1,10 @@
 const { assert, fake } = require('sinon');
+const EventEmitter = require('events');
 const { ACTIONS } = require('../../../utils/constants');
 const SceneManager = require('../../../lib/scene');
+const StateManager = require('../../../lib/state');
+
+const event = new EventEmitter();
 
 const light = {
   turnOn: fake.resolves(null),
@@ -8,19 +12,21 @@ const light = {
 
 describe('SceneManager', () => {
   it('should execute one scene', async () => {
-    const sceneManager = new SceneManager(light);
+    const stateManager = new StateManager(event);
+    stateManager.setState('device', 'light-1', light);
+    const sceneManager = new SceneManager(stateManager);
     const scene = {
       selector: 'my-scene',
       actions: [{
         type: ACTIONS.LIGHT.TURN_ON,
-        deviceFeature: 'light-1',
+        device: 'light-1',
       }],
     };
     sceneManager.addScene(scene);
     await sceneManager.execute('my-scene');
     return new Promise(((resolve) => {
       sceneManager.queue.start(() => {
-        assert.calledWith(light.turnOn, 'light-1');
+        assert.calledOnce(light.turnOn);
         resolve();
       });
     }));

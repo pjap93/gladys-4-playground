@@ -18,16 +18,26 @@ function setState(update) {
 }
 /**
  * @description Return the value of a key in the store.
+ * @returns {any} Return the full state in store.
+ * @example
+ * store.get();
+ */
+function get() {
+  return this.state;
+}
+/**
+ * @description Return the value of a key in the store.
  * @param {string} key - The key to lookup in the store.
  * @returns {any} Return the value of the key.
  * @example
- * store.get('alarm');
+ * store.getKey('alarm');
  */
-function get(key) {
+function getKey(key) {
   return this.state[key];
 }
 
 Store.prototype.setState = setState;
 Store.prototype.get = get;
+Store.prototype.getKey = getKey;
 
 module.exports = Store;

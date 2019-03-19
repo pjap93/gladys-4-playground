@@ -21,16 +21,31 @@ function setState(entity, entitySelector, update) {
  * @description Return the value of a key in the store.
  * @param {string} entity - The type of entity we should get the value from.
  * @param {string} entitySelector - The selector to identify one entity.
- * @param {string} key - The key to get in the store.
- * @returns {any} Return the value found in the store.
+ * @returns {any} Return the full state in store.
  * @example
- * stateManager.get('house', 'main-house', 'alarm');
+ * stateManager.get('device', 'main-lamp');
  */
-function get(entity, entitySelector, key) {
+function get(entity, entitySelector) {
   if (!this.state[entity][entitySelector]) {
     return null;
   }
-  return this.state[entity][entitySelector].get(key);
+  return this.state[entity][entitySelector].get();
+}
+
+/**
+ * @description Return the value of a key in the store.
+ * @param {string} entity - The type of entity we should get the value from.
+ * @param {string} entitySelector - The selector to identify one entity.
+ * @param {string} key - The key to get in the store.
+ * @returns {any} Return the value found in the store.
+ * @example
+ * stateManager.getKey('house', 'main-house', 'alarm');
+ */
+function getKey(entity, entitySelector, key) {
+  if (!this.state[entity][entitySelector]) {
+    return null;
+  }
+  return this.state[entity][entitySelector].getKey(key);
 }
 
 const StateManager = function StateManager(event) {
@@ -46,5 +61,6 @@ const StateManager = function StateManager(event) {
 
 StateManager.prototype.setState = setState;
 StateManager.prototype.get = get;
+StateManager.prototype.getKey = getKey;
 
 module.exports = StateManager;

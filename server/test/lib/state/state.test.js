@@ -31,12 +31,12 @@ describe('state', () => {
     stateManager.setState('user', 'tony', {
       sleep: 'asleep',
     });
-    const userSleepState = stateManager.get('user', 'tony', 'sleep');
+    const userSleepState = stateManager.getKey('user', 'tony', 'sleep');
     expect(userSleepState).to.equal('asleep');
   });
   it('should return null', async () => {
     const stateManager = new StateManager(event);
-    const userSleepState = stateManager.get('user', 'tony', 'sleep');
+    const userSleepState = stateManager.getKey('user', 'tony', 'sleep');
     expect(userSleepState).to.be.null; // eslint-disable-line
   });
 });

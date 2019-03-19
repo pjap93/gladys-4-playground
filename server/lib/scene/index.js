@@ -3,8 +3,8 @@ const { addScene } = require('./scene.addScene');
 const { create } = require('./scene.create');
 const { execute } = require('./scene.execute');
 
-const SceneManager = function SceneManager(light) {
-  this.light = light;
+const SceneManager = function SceneManager(stateManager) {
+  this.stateManager = stateManager;
   this.scenes = {};
   // @ts-ignore
   this.queue = queue({
