@@ -1,0 +1,28 @@
+const { DEVICE_FEATURE_TYPES } = require('../../../utils/constants');
+
+/**
+ * @description Add functions to light object.
+ * @param {Object} device - The device to build the light object from.
+ * @returns {Object} Return a device with functions.
+ * @example
+ * buildLightObject({
+ *    id: '3d8496a6-bfff-4920-8f12-4767d93fd67f',
+ *    selector: 'test-lamp',
+ *    features: []
+ * });
+ */
+function buildLightObject(device) {
+  // find binary deviceType
+  const binaryDeviceFeature = device.features.find(
+    deviceFeature => deviceFeature.type === DEVICE_FEATURE_TYPES.LIGHT.BINARY,
+  );
+  if (binaryDeviceFeature) {
+    device.turnOn = async () => this.turnOn(device, binaryDeviceFeature);
+    device.turnOff = async () => this.turnOff(device, binaryDeviceFeature);
+  }
+  return device;
+}
+
+module.exports = {
+  buildLightObject,
+};
