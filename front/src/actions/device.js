@@ -51,7 +51,7 @@ function createActions(store) {
       });
 
       store.setState(newState);
-    },
+    }
   };
   return actions;
 }
