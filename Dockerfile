@@ -15,6 +15,7 @@ RUN apk add --no-cache --virtual .build-deps make gcc g++ python git \
     && npm install -g modclean \
     && modclean -n default:safe,default:caution -r \
     && npm remove -g modclean \
+    && npm cache clean --force \
     && apk del .build-deps
 
 ENV NODE_ENV production
