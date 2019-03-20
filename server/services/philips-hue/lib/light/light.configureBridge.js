@@ -1,5 +1,4 @@
 const logger = require('../../../../utils/logger');
-const { Error400 } = require('../../../../utils/httpErrors');
 
 /**
  * @description Configure the philips hue bridge.
@@ -9,14 +8,11 @@ const { Error400 } = require('../../../../utils/httpErrors');
  * configureBridge('162.198.1.1');
  */
 async function configureBridge(name, ipAddress) {
-  let userId;
-  try {
-    userId = await this.hueApi.registerUser(ipAddress, 'Gladys');
-  } catch (e) {
-    logger.warn(`PhilipsHueService : configureBridge : There was an error while configuring the bridge. Did you press the button?`);
-    logger.warn(e);
-    throw new Error400();
-  }
+  logger.info(`Connecting to hue bridge ${name} at ${ipAddress}...`);
+  const { HueApi } = this.hueClient;
+  const disconnectedHueApi = new HueApi();
+  const userId = await disconnectedHueApi.registerUser(ipAddress, 'Gladys');
+  this.hueApi = new HueApi(ipAddress, userId);
   return this.gladys.device.create({
     name,
     service_id: this.serviceId,

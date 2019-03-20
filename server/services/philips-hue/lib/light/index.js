@@ -1,5 +1,6 @@
 const { configureBridge } = require('./light.configureBridge');
 const { getBridges } = require('./light.getBridges');
+const { getLightsFromBridge } = require('./light.getLightsFromBridge');
 
 /**
  * @description Add ability to control a Philips Hue light
@@ -13,11 +14,11 @@ const PhilipsHueLightHandler = function PhilipsHueLightHandler(gladys, hueClient
   this.gladys = gladys;
   this.hueClient = hueClient;
   this.serviceId = serviceId;
-  const { HueApi } = this.hueClient;
-  this.hueApi = new HueApi();
+  this.hueApi = null;
 };
 
 PhilipsHueLightHandler.prototype.configureBridge = configureBridge;
 PhilipsHueLightHandler.prototype.getBridges = getBridges;
+PhilipsHueLightHandler.prototype.getLightsFromBridge = getLightsFromBridge;
 
 module.exports = PhilipsHueLightHandler;

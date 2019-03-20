@@ -52,15 +52,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.BOOLEAN,
       },
-      should_poll: {
-        allowNull: false,
-        type: Sequelize.BOOLEAN,
-        defaultValue: false,
-      },
-      poll_frequency: {
-        allowNull: true,
-        type: Sequelize.INTEGER,
-      },
       unit: {
         allowNull: true,
         type: Sequelize.STRING,

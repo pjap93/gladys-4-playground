@@ -1,3 +1,4 @@
+const lights = require('./lights.json');
 
 class HueApi {
   constructor() {
@@ -6,6 +7,11 @@ class HueApi {
 
   async registerUser(host, name) {
     return Promise.resolve(this.userId);
+  }
+
+  async lights() {
+    console.log(this.userId);
+    return Promise.resolve(lights);
   }
 }
 

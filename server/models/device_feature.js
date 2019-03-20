@@ -77,15 +77,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.BOOLEAN,
     },
-    should_poll: {
-      allowNull: false,
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
-    poll_frequency: {
-      allowNull: true,
-      type: DataTypes.INTEGER,
-    },
     unit: {
       allowNull: true,
       type: DataTypes.STRING,

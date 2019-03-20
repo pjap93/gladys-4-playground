@@ -32,6 +32,19 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       type: DataTypes.STRING,
     },
+    external_id: {
+      unique: true,
+      type: DataTypes.STRING,
+    },
+    should_poll: {
+      allowNull: false,
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    poll_frequency: {
+      allowNull: true,
+      type: DataTypes.INTEGER,
+    },
   }, {});
 
   // add slug if needed

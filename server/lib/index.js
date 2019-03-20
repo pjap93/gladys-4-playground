@@ -49,6 +49,7 @@ function Gladys(config = {}) {
     cache,
     config,
     device,
+    stateManager,
     triggerManager,
     variable,
     start: async () => {

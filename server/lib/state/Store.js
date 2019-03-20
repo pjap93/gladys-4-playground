@@ -12,9 +12,13 @@ const Store = function Store() {
  * });
  */
 function setState(update) {
-  Object.keys(update).forEach((key) => {
-    this.state[key] = update[key];
-  });
+  if (typeof update === 'string') {
+    this.state = update;
+  } else {
+    Object.keys(update).forEach((key) => {
+      this.state[key] = update[key];
+    });
+  }
 }
 /**
  * @description Return the value of a key in the store.

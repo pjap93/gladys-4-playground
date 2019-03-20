@@ -36,6 +36,19 @@ module.exports = {
         unique: true,
         type: Sequelize.STRING,
       },
+      external_id: {
+        unique: true,
+        type: Sequelize.STRING,
+      },
+      should_poll: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+      poll_frequency: {
+        allowNull: true,
+        type: Sequelize.INTEGER,
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,
