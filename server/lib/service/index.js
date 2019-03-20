@@ -6,7 +6,8 @@ const { getServices } = require('./service.getServices');
 const { getMessageServices } = require('./service.getMessageServices');
 const { getLocalServiceByName } = require('./service.getLocalServiceByName');
 
-const Service = function Service() {
+const Service = function Service(servicesFromFiles) {
+  this.servicesFromFiles = servicesFromFiles;
   this.services = {};
 };
 

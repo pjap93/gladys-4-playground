@@ -2,11 +2,21 @@ const { expect } = require('chai');
 
 const Service = require('../../../lib/service');
 
+const services = {
+  example: () => ({
+    start: async () => Promise.resolve(),
+  }),
+};
+
+const gladys = {
+  version: '0.1.0',
+};
+
 describe('service', () => {
-  const service = new Service();
-  const gladys = {};
+  const service = new Service(services);
   it('should start a service', async () => {
-    service.start(gladys, 'example');
+    await service.load(gladys);
+    await service.start('example');
   });
   it('should return the example service', async () => {
     expect(service.getService('example')).to.be.instanceOf(Object).and.to.be.not.null; // eslint-disable-line

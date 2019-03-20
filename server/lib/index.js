@@ -11,6 +11,7 @@ const StateManager = require('./state');
 const SceneManager = require('./scene');
 const TriggerManager = require('./trigger');
 const Variable = require('./variable');
+const services = require('../services');
 
 /**
  * @description Start a new Gladys instance
@@ -29,7 +30,7 @@ function Gladys(config = {}) {
   const brain = new Brain();
   const cache = new Cache();
   const event = new Event();
-  const service = new Service();
+  const service = new Service(services);
   const message = new MessageHandler(event, brain, service);
   const user = new User();
   const session = new Session(config.jwtSecret);

@@ -1,18 +1,19 @@
-const services = require('../../services');
+const logger = require('../../utils/logger');
 
 /**
  * @public
  * @description Start one service by name
- * @param {Object} gladys - The Gladys instance to attach the service to.
  * @param {string} name - The name of the service.
  * @example
- * service.service('telegram');
+ * service.start('telegram');
  */
-async function start(gladys, name) {
-  if (!this.services[name]) {
-    this.services[name] = services[name](gladys);
+async function start(name) {
+  try {
+    await this.services[name].start();
+  } catch (e) {
+    logger.warn(`Unable to start service ${name}`);
+    logger.warn(e);
   }
-  await this.services[name].start();
 }
 
 module.exports = {

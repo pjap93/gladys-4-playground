@@ -8,7 +8,7 @@
  */
 async function startAll() {
   return Promise.all(
-    Object.keys(this.services).map(serviceKey => this.services[serviceKey].start()),
+    Object.keys(this.services).map(serviceKey => this.start(serviceKey)),
   );
 }
 

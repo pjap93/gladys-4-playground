@@ -1,8 +1,5 @@
 const logger = require('../../utils/logger');
-const services = require('../../services');
 const db = require('../../models');
-
-const SERVICES_TO_LOAD = Object.keys(services);
 
 /**
  * @public
@@ -13,6 +10,7 @@ const SERVICES_TO_LOAD = Object.keys(services);
  * service.load(gladys);
  */
 async function load(gladys) {
+  const SERVICES_TO_LOAD = Object.keys(this.servicesFromFiles);
   await Promise.all(
     SERVICES_TO_LOAD.map(async (service) => {
       const serviceToInsertOrUpdate = {
@@ -35,7 +33,7 @@ async function load(gladys) {
       }
       // we try to start the service
       try {
-        this.services[service] = services[service](gladys, serviceInDb.id);
+        this.services[service] = this.servicesFromFiles[service](gladys, serviceInDb.id);
         if (this.services[service].message && this.services[service].message.send) {
           serviceToInsertOrUpdate.has_message_feature = true;
         }

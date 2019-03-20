@@ -57,6 +57,7 @@ const StateManager = function StateManager(event) {
     deviceFeature: {},
     sun: {},
     system: {},
+    variable: {},
   };
 };
 

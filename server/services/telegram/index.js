@@ -1,6 +1,6 @@
 const logger = require('../../utils/logger');
 
-module.exports = function TelegramService(gladys, config = { token: process.env.TELEGRAM_API_TOKEN }) {
+module.exports = function TelegramService(gladys, serviceId) {
   // See https://github.com/yagop/node-telegram-bot-api/issues/540
   process.env.NTBA_FIX_319 = '1';
   const TelegramBot = require('node-telegram-bot-api');
@@ -12,9 +12,12 @@ module.exports = function TelegramService(gladys, config = { token: process.env.
    * gladys.services.telegram.start();
    */
   async function start() {
-    logger.log('starting telegram service');
-    return null;
-    bot = new TelegramBot(config.token, { polling: true });
+    logger.info('Starting telegram service');
+    const token = gladys.stateManager.get('variable', 'TELEGRAM_API_TOKEN');
+    if (!token) {
+      throw new Error('No telegram api token found. Not starting telegram service');
+    }
+    bot = new TelegramBot(token, { polling: true });
     bot.on('message', async (msg) => {
       logger.debug(`new message from telegram, ${msg.text}`);
       const telegramUserId = msg.from.id;
