@@ -1,6 +1,6 @@
 import BinaryDeviceFeature from './device-features/BinaryDeviceFeature';
 import SensorDeviceFeature from './device-features/SensorDeviceFeature';
-import MultilevelDeviceFeature from './device-features/MultilevelDeviceFeature';
+import MultilevelDeviceFeature from './device-features/MultiLevelDeviceFeature';
 
 const DeviceRow = ({ children, ...props }) => {
   
