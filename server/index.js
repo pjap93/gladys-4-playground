@@ -15,5 +15,7 @@ const SERVER_PORT = parseInt(process.env.SERVER_PORT, 10) || 1443;
   await gladys.start();
 
   // start server
-  server.start(gladys, SERVER_PORT);
+  server.start(gladys, SERVER_PORT, {
+    serveFront: process.env.SERVE_FRONT === 'true',
+  });
 })();

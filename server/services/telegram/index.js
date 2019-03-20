@@ -13,6 +13,7 @@ module.exports = function TelegramService(gladys, config = { token: process.env.
    */
   async function start() {
     logger.log('starting telegram service');
+    return null;
     bot = new TelegramBot(config.token, { polling: true });
     bot.on('message', async (msg) => {
       logger.debug(`new message from telegram, ${msg.text}`);

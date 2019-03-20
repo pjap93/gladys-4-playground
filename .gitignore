@@ -6,3 +6,5 @@ jsdoc
 *.lcov
 .nyc_output
 .env
+build
+static

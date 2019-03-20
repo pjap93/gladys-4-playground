@@ -22,7 +22,9 @@ before(async () => {
   const gladys = Gladys(config);
   await gladys.start();
   // @ts-ignore
-  global.TEST_BACKEND_APP = server.start(gladys, SERVER_PORT);
+  global.TEST_BACKEND_APP = server.start(gladys, SERVER_PORT, {
+    serveFront: false,
+  });
 });
 
 // cleaning and filling database between each tests
