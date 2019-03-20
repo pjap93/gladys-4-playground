@@ -22,8 +22,20 @@ async function load(gladys) {
         has_message_feature: false,
         enabled: true,
       };
+      // check if service already exist
+      let serviceInDb = await db.Service.findOne({
+        where: {
+          pod_id: null,
+          name: service,
+        },
+      });
+      // if not, we create it
+      if (!serviceInDb) {
+        serviceInDb = await db.Service.create(serviceToInsertOrUpdate);
+      }
+      // we try to start the service
       try {
-        this.services[service] = services[service](gladys);
+        this.services[service] = services[service](gladys, serviceInDb.id);
         if (this.services[service].message && this.services[service].message.send) {
           serviceToInsertOrUpdate.has_message_feature = true;
         }
@@ -31,20 +43,10 @@ async function load(gladys) {
         logger.debug(e);
         serviceToInsertOrUpdate.enabled = false;
       }
-      // check if service already exist
-      const serviceInDb = await db.Service.findOne({
-        where: {
-          pod_id: null,
-          name: service,
-        },
-      });
-      // if yes, we update it
-      if (serviceInDb) {
-        serviceInDb.set(serviceToInsertOrUpdate);
-        return serviceInDb.save();
-      }
-      // else, insert the service
-      return db.Service.create(serviceToInsertOrUpdate);
+      // we update if needed the service with success/failed enabled
+      // and features
+      serviceInDb.set(serviceToInsertOrUpdate);
+      return serviceInDb.save();
     }),
   );
   return null;
