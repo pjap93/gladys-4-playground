@@ -1,6 +1,5 @@
 node_modules
-gladys-development.db
-gladys-test.db
+*.db
 apidoc
 jsdoc
 *.lcov

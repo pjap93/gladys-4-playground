@@ -21,7 +21,7 @@ module.exports = {
     dialect: 'sqlite',
     storage: process.env.SQLITE_FILE_PATH || './gladys-production.db',
     operatorsAliases: false,
-    logging: true,
+    logging: false,
     define: {
       underscored: true,
       freezeTableName: true,
