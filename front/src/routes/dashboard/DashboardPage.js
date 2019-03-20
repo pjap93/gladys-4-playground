@@ -1,11 +1,14 @@
 import { connect } from 'unistore/preact';
 import PageLayout from '../../components/layout/page';
 import loginActions from '../../actions/login';
+import WeatherBox from '../../components/boxs/weather/WeatherBox';
 
 const DashboardPage = connect('user', loginActions)(
   ({ user }) => (
     <PageLayout>
       <div class="card-columns">
+
+        <WeatherBox  temperature={27} unit={'C'} date={'Fri 20/5'} weather="sun" />
 
         <div class="card" style="display: inline-block; min-width: 300px;">
           <div class="card-header"><h3 class="card-title">Main room</h3>
