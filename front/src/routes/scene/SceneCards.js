@@ -1,35 +1,25 @@
 import { Link } from 'preact-router/match';
+import style from './style.css';
 
 const SceneCards = ({ children, ...props }) => (
   <div class="row row-cards">
     { props.scenes.map((scene) => (
       <div class="col-sm-6 col-lg-3">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">{ scene.name }</h3>
-            <div class="card-options">
-              <a href="#" class="btn btn-primary btn-sm"><i class="fe fe-play" /></a>
-              <Link href={`${props.currentUrl}/${scene.id}`} class="btn btn-secondary btn-sm ml-2"><i class="fe fe-settings" /></Link>
+        <div class="card h-100">
+          <div class="card-body p-3 text-center">
+            <div class="text-right text-green">
+              <a href="#" class="icon" data-toggle="card-remove" ><i class="fe fe-trash" /></a>
+            </div>
+            <div class={style.scene_icon}><i class={`fe fe-${scene.icon}`} /></div>
+            <h4>{scene.name}</h4>
+            <div class="text-muted">{scene.description}</div>
+          </div>
+          <div class="card-footer">
+            <div class="btn-list text-center">
+              <Link href={`${props.currentUrl}/${scene.id}`} class="btn btn-outline-primary btn-sm"><i class="fe fe-edit" />Edit</Link>
+              <button type="button" class="btn btn-outline-success btn-sm" id={scene.selector}><i class="fe fe-play" />Play</button>
             </div>
           </div>
-          <Link href={`${props.currentUrl}/${scene.id}`} style={{ color: '#9aa0ac', textAlign: 'center', padding: '40px', textDecoration: 'none' }}>
-            { false && <img class="card-img-top" src={scene.img} alt={scene.name} /> }
-            <i class={scene.icon} style={{ fontSize: '100px' }} />
-          </Link>
-          { false && <div class="card-body">
-            <div class="row">
-              <div class="col-md-8">
-                <h4>Holidays</h4>
-              </div>
-              <div class="col-md-4">
-                <div class="float-right">
-                  <Link href="#" class="btn btn-primary btn-sm"><i class="fe fe-play" /></Link>
-                  <Link href={`${props.currentUrl}/${scene.id}`} class="btn btn-secondary btn-sm ml-2"><i class="fe fe-settings" /></Link>
-                </div>
-              </div>
-            </div>
-          </div>
-          }
         </div>
       </div>
     ))}
