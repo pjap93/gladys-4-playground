@@ -18,6 +18,7 @@ import MapPage from '../routes/map';
 import CalendarPage from '../routes/calendar';
 import ScenePage from '../routes/scene';
 import EditScenePage from '../routes/scene/edit-scene';
+import TriggerPage from '../routes/trigger';
 
 // Integrations
 import TelegramPage from '../routes/integration/all/telegram';
@@ -66,6 +67,7 @@ const Main = connect('currentUrl,user', actions)(
           <CalendarPage path="/dashboard/calendar" />
           <ScenePage path="/dashboard/scene" />
           <EditScenePage path="/dashboard/scene/:scene_id" />
+          <TriggerPage path="/dashboard/trigger" />
         </Router>
       </Layout>
     </div>

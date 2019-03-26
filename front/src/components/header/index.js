@@ -109,7 +109,12 @@ const Header = ({ ...props }) => {
                 </li>
                 <li class="nav-item">
                   <Link href="/dashboard/scene" class={props.currentUrl.startsWith('/dashboard/scene') ? 'active nav-link' : 'nav-link'}>
-                    <i class="fe fe-zap" /> Scene
+                    <i class="fe fe-play" /> Scene
+                  </Link>
+                </li>
+                <li class="nav-item">
+                  <Link href="/dashboard/trigger" class={props.currentUrl.startsWith('/dashboard/trigger') ? 'active nav-link' : 'nav-link'}>
+                    <i class="fe fe-zap" /> Trigger
                   </Link>
                 </li>
               </ul>
