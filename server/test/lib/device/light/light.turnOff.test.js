@@ -7,7 +7,7 @@ const event = new EventEmitter();
 
 const testService = {
   light: {
-    turnOn: fake.resolves(true),
+    turnOff: fake.resolves(true),
   },
 };
 
@@ -29,10 +29,10 @@ const deviceFeature = {
 };
 
 describe('Light', () => {
-  it('should turnOn the light', async () => {
+  it('should turnOff the light', async () => {
     const stateManager = new StateManager(event);
     const deviceManager = new Device(event, {}, stateManager, service);
-    await deviceManager.lightManager.turnOn(device, deviceFeature);
-    assert.calledWith(testService.light.turnOn, device, deviceFeature);
+    await deviceManager.lightManager.turnOff(device, deviceFeature);
+    assert.calledWith(testService.light.turnOff, device, deviceFeature);
   });
 });

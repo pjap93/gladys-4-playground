@@ -3,6 +3,7 @@ const { buildLightObject } = require('./light.buildLightObject');
 const { command } = require('./light.command');
 const { init } = require('./light.init');
 const { turnOn } = require('./light.turnOn');
+const { turnOff } = require('./light.turnOff');
 
 const LightManager = function Light(eventManager, messageManager, deviceManager) {
   this.eventManager = eventManager;
@@ -15,5 +16,6 @@ LightManager.prototype.buildLightObject = buildLightObject;
 LightManager.prototype.command = command;
 LightManager.prototype.init = init;
 LightManager.prototype.turnOn = turnOn;
+LightManager.prototype.turnOff = turnOff;
 
 module.exports = LightManager;
