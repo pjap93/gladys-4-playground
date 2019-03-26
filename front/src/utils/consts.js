@@ -28,3 +28,9 @@ export const PhilipsHueGetBridgesStatus = {
   Success: 'Success',
   Error: 'Error'
 };
+
+export const SceneGetStatus = {
+  Getting: 'Getting',
+  Success: 'Success',
+  Error: 'Error'
+};

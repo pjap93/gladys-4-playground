@@ -108,7 +108,7 @@ const Header = ({ ...props }) => {
                   </Link>
                 </li>
                 <li class="nav-item">
-                  <Link activeClassName="active" href="/dashboard/scene" class="nav-link">
+                  <Link href="/dashboard/scene" class={props.currentUrl.startsWith('/dashboard/scene') ? 'active nav-link' : 'nav-link'}>
                     <i class="fe fe-zap" /> Scene
                   </Link>
                 </li>
