@@ -1,3 +1,4 @@
+const { EVENTS } = require('../../utils/constants');
 const LightManager = require('./light');
 const { add } = require('./device.add');
 const { create } = require('./device.create');
@@ -5,6 +6,7 @@ const { init } = require('./device.init');
 const { saveState } = require('./device.saveState');
 const { setParam } = require('./device.setParam');
 const { setValue } = require('./device.setValue');
+const { newStateEvent } = require('./device.newStateEvent');
 
 const DeviceManager = function DeviceManager(eventManager, messageManager, stateManager, serviceManager) {
   this.eventManager = eventManager;
@@ -12,11 +14,13 @@ const DeviceManager = function DeviceManager(eventManager, messageManager, state
   this.stateManager = stateManager;
   this.serviceManager = serviceManager;
   this.lightManager = new LightManager(eventManager, messageManager, this);
+  this.eventManager.on(EVENTS.SENSOR.STATE_CHANGED, this.newStateEvent);
 };
 
 DeviceManager.prototype.add = add;
 DeviceManager.prototype.create = create;
 DeviceManager.prototype.init = init;
+DeviceManager.prototype.newStateEvent = newStateEvent;
 DeviceManager.prototype.saveState = saveState;
 DeviceManager.prototype.setParam = setParam;
 DeviceManager.prototype.setValue = setValue;
