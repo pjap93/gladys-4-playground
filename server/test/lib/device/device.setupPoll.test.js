@@ -32,4 +32,17 @@ describe('Device', () => {
     }];
     await device.pollAll(DEVICE_POLL_FREQUENCIES.EVERY_MINUTES)();
   });
+  it('should poll all (empty frequency)', async () => {
+    const stateManager = new StateManager(event);
+    const service = {
+      getService: () => testService,
+    };
+    const device = new Device(event, {}, stateManager, service);
+    device.devicesByPollFrequency[DEVICE_POLL_FREQUENCIES.EVERY_MINUTES] = [{
+      service: {
+        name: 'test',
+      },
+    }];
+    await device.pollAll(10)();
+  });
 });
