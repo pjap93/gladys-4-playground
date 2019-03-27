@@ -1,8 +1,7 @@
-const { DEVICE_FEATURE_CATEGORIES, DEVICE_FEATURE_TYPES } = require('../../../../utils/constants');
+const { DEVICE_FEATURE_CATEGORIES, DEVICE_FEATURE_TYPES, DEVICE_POLL_FREQUENCIES } = require('../../../../utils/constants');
 const i18n = require('../../../../config/i18n');
 
 const EXTERNAL_ID_BASE = 'philips-hue';
-const POLL_FREQUENCY_IN_MILLISECONDS = 30 * 60 * 1000; // every 30 minutes
 
 /**
  * @description Get lights from Philips Hue bridge
@@ -20,7 +19,7 @@ async function getLightsFromBridge() {
     service_id: this.serviceId,
     external_id: `${EXTERNAL_ID_BASE}:${philipsHueLight.id}`,
     should_poll: true,
-    poll_frequency: POLL_FREQUENCY_IN_MILLISECONDS,
+    poll_frequency: DEVICE_POLL_FREQUENCIES.EVERY_MINUTES,
   }, [{
     name: `${philipsHueLight.name} ${i18n[systemLanguage].device.binarySuffix}`,
     type: DEVICE_FEATURE_TYPES.LIGHT.BINARY,

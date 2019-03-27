@@ -1,4 +1,5 @@
 const { addSelector } = require('../utils/addSelector');
+const { DEVICE_POLL_FREQUENCIES_LIST } = require('../utils/constants');
 
 module.exports = (sequelize, DataTypes) => {
   const device = sequelize.define('t_device', {
@@ -43,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     poll_frequency: {
       allowNull: true,
-      type: DataTypes.INTEGER,
+      type: DataTypes.ENUM(DEVICE_POLL_FREQUENCIES_LIST),
     },
   }, {});
 

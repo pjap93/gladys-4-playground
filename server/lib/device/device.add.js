@@ -1,3 +1,4 @@
+
 /**
  * @description Load device in memory.
  * @param {Object} device - Device object.
@@ -9,6 +10,12 @@ function add(device) {
   device.features.forEach((feature) => {
     this.stateManager.setState('deviceFeature', feature.selector, feature);
   });
+  if (device.should_poll === true && device.poll_frequency) {
+    if (!this.devicesByPollFrequency[device.poll_frequency]) {
+      this.devicesByPollFrequency[device.poll_frequency] = [];
+    }
+    this.devicesByPollFrequency[device.poll_frequency].push(device);
+  }
 }
 
 module.exports = {

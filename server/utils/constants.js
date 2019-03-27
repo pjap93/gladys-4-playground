@@ -164,12 +164,24 @@ const ACTIONS_STATUS = {
   FAILED: 'failed',
 };
 
+const DEVICE_POLL_FREQUENCIES = {
+  EVERY_MINUTES: 60 * 1000,
+};
+
 const createList = (obj) => {
   const list = [];
   Object.keys(obj).forEach((key) => {
     Object.keys(obj[key]).forEach((secondKey) => {
       list.push(obj[key][secondKey]);
     });
+  });
+  return list;
+};
+
+const createListOneLevelObject = (obj) => {
+  const list = [];
+  Object.keys(obj).forEach((key) => {
+    list.push(obj[key]);
   });
   return list;
 };
@@ -192,3 +204,6 @@ module.exports.ACTIONS_STATUS = ACTIONS_STATUS;
 module.exports.EVENT_LIST = EVENT_LIST;
 module.exports.ACTION_LIST = ACTION_LIST;
 module.exports.CONDITION_LIST = CONDITION_LIST;
+
+module.exports.DEVICE_POLL_FREQUENCIES = DEVICE_POLL_FREQUENCIES;
+module.exports.DEVICE_POLL_FREQUENCIES_LIST = createListOneLevelObject(DEVICE_POLL_FREQUENCIES);
