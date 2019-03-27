@@ -1,3 +1,4 @@
+const { LIFE_EVENT_LIST } = require('../utils/constants');
 
 module.exports = (sequelize, DataTypes) => {
   const lifeEvent = sequelize.define('t_life_event', {
@@ -23,13 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     type: {
       allowNull: false,
-      type: DataTypes.ENUM(
-        'woke_up',
-        'went_sleeping',
-        'back_at_home',
-        'left_home',
-        'entered_area',
-      ),
+      type: DataTypes.ENUM(LIFE_EVENT_LIST),
     },
     data: {
       type: DataTypes.JSON,

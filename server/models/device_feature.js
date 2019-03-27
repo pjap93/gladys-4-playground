@@ -1,4 +1,5 @@
 const { addSelector } = require('../utils/addSelector');
+const { DEVICE_FEATURE_CATEGORIES_LIST, DEVICE_FEATURE_TYPES_LIST } = require('../utils/constants');
 
 module.exports = (sequelize, DataTypes) => {
   const deviceFeature = sequelize.define('t_device_feature', {
@@ -31,38 +32,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     category: {
       allowNull: false,
-      type: DataTypes.ENUM(
-        // control
-        'light',
-        'television',
-        'music-player',
-        'security-camera',
-        'switch',
-        'phone',
-        'computer',
-        // sensors
-        'temperature-sensor',
-        'humidity-sensor',
-        'light-sensor',
-        'door-opening-sensor',
-        'window-opening-sensor',
-        'smoke-sensor',
-        'flood-sensor',
-        'motion-sensor',
-        'rain-sensor',
-        'wind-sensor',
-        'co2-sensor',
-        'co-sensor',
-      ),
+      type: DataTypes.ENUM(DEVICE_FEATURE_CATEGORIES_LIST),
     },
     type: {
       allowNull: false,
-      type: DataTypes.ENUM(
-        'binary',
-        'push',
-        'multilevel',
-        'color',
-      ),
+      type: DataTypes.ENUM(DEVICE_FEATURE_TYPES_LIST),
     },
     read_only: {
       allowNull: false,

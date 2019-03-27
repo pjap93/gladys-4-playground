@@ -1,3 +1,4 @@
+const { SESSION_TOKEN_TYPE_LIST } = require('../utils/constants');
 
 module.exports = (sequelize, DataTypes) => {
   const session = sequelize.define('t_session', {
@@ -16,10 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     token_type: {
       allowNull: false,
-      type: DataTypes.ENUM(
-        'refresh_token',
-        'api_token',
-      ),
+      type: DataTypes.ENUM(SESSION_TOKEN_TYPE_LIST),
     },
     scope: {
       allowNull: false,

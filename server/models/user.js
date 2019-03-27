@@ -1,4 +1,5 @@
 const passwordUtils = require('../utils/password');
+const { AVAILABLE_LANGUAGES_LIST, USER_ROLE_LIST } = require('../utils/constants');
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('t_user', {
@@ -27,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     language: {
       allowNull: false,
-      type: DataTypes.ENUM('en', 'fr'),
+      type: DataTypes.ENUM(AVAILABLE_LANGUAGES_LIST),
     },
     password: {
       allowNull: false,
@@ -38,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     role: {
       allowNull: false,
-      type: DataTypes.ENUM('admin', 'habitant', 'guest'),
+      type: DataTypes.ENUM(USER_ROLE_LIST),
     },
     telegram_user_id: {
       allowNull: true,

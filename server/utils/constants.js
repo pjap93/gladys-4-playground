@@ -3,6 +3,22 @@ const STATE = {
   OFF: 0,
 };
 
+const USER_ROLE = {
+  ADMIN: 'admin',
+  HABITANT: 'habitant',
+  GUEST: 'guest',
+};
+
+const AVAILABLE_LANGUAGES = {
+  EN: 'en',
+  FR: 'fr',
+};
+
+const SESSION_TOKEN_TYPES = {
+  ACCESS_TOKEN: 'access_token',
+  REFRESH_TOKEN: 'refresh_token',
+};
+
 const EVENTS = {
   USER_SLEEP: {
     TIME_TO_WAKE_UP: 'user.time-to-wake-up',
@@ -63,6 +79,12 @@ const EVENTS = {
     DISABLED: 'scheduled-scene.disabled',
     TRIGGERED: 'scheduled-scene.triggered',
   },
+};
+
+const LIFE_EVENTS = {
+  USER_SLEEP: EVENTS.USER_SLEEP,
+  USER_PRESENCE: EVENTS.USER_PRESENCE,
+  USER_WORK: EVENTS.WORK,
 };
 
 const STATES = {
@@ -171,28 +193,31 @@ const DEVICE_POLL_FREQUENCIES = {
 const createList = (obj) => {
   const list = [];
   Object.keys(obj).forEach((key) => {
-    Object.keys(obj[key]).forEach((secondKey) => {
-      list.push(obj[key][secondKey]);
-    });
-  });
-  return list;
-};
-
-const createListOneLevelObject = (obj) => {
-  const list = [];
-  Object.keys(obj).forEach((key) => {
-    list.push(obj[key]);
+    if (typeof obj[key] === 'object') {
+      Object.keys(obj[key]).forEach((secondKey) => {
+        list.push(obj[key][secondKey]);
+      });
+    } else {
+      list.push(obj[key]);
+    }
   });
   return list;
 };
 
 // build lists from object
 const EVENT_LIST = createList(EVENTS);
+const LIFE_EVENT_LIST = createList(LIFE_EVENTS);
 const ACTION_LIST = createList(ACTIONS);
 const CONDITION_LIST = createList(CONDITIONS);
+const DEVICE_FEATURE_CATEGORIES_LIST = createList(DEVICE_FEATURE_CATEGORIES);
+const DEVICE_FEATURE_TYPES_LIST = createList(DEVICE_FEATURE_TYPES);
+const USER_ROLE_LIST = createList(USER_ROLE);
+const AVAILABLE_LANGUAGES_LIST = createList(AVAILABLE_LANGUAGES);
+const SESSION_TOKEN_TYPE_LIST = createList(SESSION_TOKEN_TYPES);
 
 module.exports.STATE = STATE;
 module.exports.EVENTS = EVENTS;
+module.exports.LIFE_EVENTS = LIFE_EVENTS;
 module.exports.STATES = STATES;
 module.exports.CONDITIONS = CONDITIONS;
 module.exports.ACTIONS = ACTIONS;
@@ -200,10 +225,19 @@ module.exports.INTENTS = INTENTS;
 module.exports.DEVICE_FEATURE_CATEGORIES = DEVICE_FEATURE_CATEGORIES;
 module.exports.DEVICE_FEATURE_TYPES = DEVICE_FEATURE_TYPES;
 module.exports.ACTIONS_STATUS = ACTIONS_STATUS;
+module.exports.USER_ROLE = USER_ROLE;
+module.exports.AVAILABLE_LANGUAGES = AVAILABLE_LANGUAGES;
+module.exports.SESSION_TOKEN_TYPES = SESSION_TOKEN_TYPES;
 
 module.exports.EVENT_LIST = EVENT_LIST;
+module.exports.LIFE_EVENT_LIST = LIFE_EVENT_LIST;
 module.exports.ACTION_LIST = ACTION_LIST;
 module.exports.CONDITION_LIST = CONDITION_LIST;
+module.exports.DEVICE_FEATURE_CATEGORIES_LIST = DEVICE_FEATURE_CATEGORIES_LIST;
+module.exports.DEVICE_FEATURE_TYPES_LIST = DEVICE_FEATURE_TYPES_LIST;
+module.exports.USER_ROLE_LIST = USER_ROLE_LIST;
+module.exports.AVAILABLE_LANGUAGES_LIST = AVAILABLE_LANGUAGES_LIST;
+module.exports.SESSION_TOKEN_TYPE_LIST = SESSION_TOKEN_TYPE_LIST;
 
 module.exports.DEVICE_POLL_FREQUENCIES = DEVICE_POLL_FREQUENCIES;
-module.exports.DEVICE_POLL_FREQUENCIES_LIST = createListOneLevelObject(DEVICE_POLL_FREQUENCIES);
+module.exports.DEVICE_POLL_FREQUENCIES_LIST = createList(DEVICE_POLL_FREQUENCIES);

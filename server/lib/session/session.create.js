@@ -1,4 +1,5 @@
 const db = require('../../models');
+const { SESSION_TOKEN_TYPES } = require('../../utils/constants');
 const { generateRefreshToken } = require('../../utils/refreshToken');
 const { generateAccessToken } = require('../../utils/accessToken');
 
@@ -16,7 +17,7 @@ async function create(userId, scope, validityInSeconds) {
 
   const newSession = {
     user_id: userId,
-    token_type: 'refresh_token',
+    token_type: SESSION_TOKEN_TYPES.REFRESH_TOKEN,
     token_hash: refreshTokenHash,
     scope: scope.join(','),
     valid_until: new Date(Date.now() + (validityInSeconds * 1000)),
