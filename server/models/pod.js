@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV4,
     },
     room_id: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.UUID,
       references: {
         model: 't_room',

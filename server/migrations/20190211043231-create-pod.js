@@ -8,7 +8,7 @@ module.exports = {
         type: Sequelize.UUID,
       },
       room_id: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.UUID,
         references: {
           model: 't_room',
