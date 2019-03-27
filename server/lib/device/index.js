@@ -4,6 +4,7 @@ const { create } = require('./device.create');
 const { init } = require('./device.init');
 const { saveState } = require('./device.saveState');
 const { setParam } = require('./device.setParam');
+const { setValue } = require('./device.setValue');
 
 const DeviceManager = function DeviceManager(eventManager, messageManager, stateManager, serviceManager) {
   this.eventManager = eventManager;
@@ -18,5 +19,6 @@ DeviceManager.prototype.create = create;
 DeviceManager.prototype.init = init;
 DeviceManager.prototype.saveState = saveState;
 DeviceManager.prototype.setParam = setParam;
+DeviceManager.prototype.setValue = setValue;
 
 module.exports = DeviceManager;
