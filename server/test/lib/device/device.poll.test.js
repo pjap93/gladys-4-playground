@@ -12,11 +12,27 @@ const testService = {
   poll: fake.resolves(true),
 };
 
+const testServiceBroken = {
+  poll: fake.rejects(true),
+};
+
 describe('Device', () => {
   it('should poll device', async () => {
     const stateManager = new StateManager(event);
     const service = {
       getService: () => testService,
+    };
+    const device = new Device(event, {}, stateManager, service);
+    await device.poll({
+      service: {
+        name: 'test',
+      },
+    });
+  });
+  it('should poll device with error', async () => {
+    const stateManager = new StateManager(event);
+    const service = {
+      getService: () => testServiceBroken,
     };
     const device = new Device(event, {}, stateManager, service);
     await device.poll({

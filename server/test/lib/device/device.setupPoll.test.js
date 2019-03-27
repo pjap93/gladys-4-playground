@@ -1,7 +1,7 @@
 const EventEmitter = require('events');
 const { fake } = require('sinon');
 const Device = require('../../../lib/device');
-
+const { DEVICE_POLL_FREQUENCIES } = require('../../../utils/constants');
 const StateManager = require('../../../lib/state');
 
 const event = new EventEmitter();
@@ -18,5 +18,18 @@ describe('Device', () => {
     };
     const device = new Device(event, {}, stateManager, service);
     device.setupPoll();
+  });
+  it('should poll all', async () => {
+    const stateManager = new StateManager(event);
+    const service = {
+      getService: () => testService,
+    };
+    const device = new Device(event, {}, stateManager, service);
+    device.devicesByPollFrequency[DEVICE_POLL_FREQUENCIES.EVERY_MINUTES] = [{
+      service: {
+        name: 'test',
+      },
+    }];
+    await device.pollAll(DEVICE_POLL_FREQUENCIES.EVERY_MINUTES)();
   });
 });
