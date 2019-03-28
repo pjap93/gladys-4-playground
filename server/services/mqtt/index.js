@@ -1,8 +1,11 @@
 const logger = require('../../utils/logger');
 const MqttHandler = require('./lib');
 
+const MQTT_URL_KEY = 'MQTT_URL';
+const MQTT_USERNAME_KEY = 'MQTT_USERNAME';
+const MQTT_PASSWORD_KEY = 'MQTT_PASSWORD';
+
 module.exports = function PhilipsHueService(gladys, serviceId) {
-  // require the node-hue-api module
   const mqtt = require('mqtt');
   const mqttHandler = new MqttHandler(gladys, mqtt, serviceId);
 
@@ -13,6 +16,13 @@ module.exports = function PhilipsHueService(gladys, serviceId) {
    * gladys.services.mqtt.start();
    */
   async function start() {
+    const mqttUrl = await gladys.variable.getValue(MQTT_URL_KEY, serviceId);
+    const mqttUsername = await gladys.variable.getValue(MQTT_USERNAME_KEY, serviceId);
+    const mqttPassword = await gladys.variable.getValue(MQTT_PASSWORD_KEY, serviceId);
+    const variablesFound = (mqttUrl && mqttUsername && mqttPassword);
+    if (!variablesFound) {
+      throw new Error('MQTT is not configured.');
+    }
     logger.log('starting MQTT service');
   }
 
