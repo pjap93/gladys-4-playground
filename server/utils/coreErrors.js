@@ -13,7 +13,15 @@ class NotFoundError extends Error {
   }
 }
 
+class ServiceNotConfiguredError extends Error {
+  constructor(message) {
+    super();
+    this.message = message;
+  }
+}
+
 module.exports = {
   PasswordNotMatchingError,
   NotFoundError,
+  ServiceNotConfiguredError,
 };

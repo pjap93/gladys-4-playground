@@ -1,4 +1,5 @@
 const logger = require('../../utils/logger');
+const { ServiceNotConfiguredError } = require('../../utils/coreErrors');
 const MqttHandler = require('./lib');
 
 const MQTT_URL_KEY = 'MQTT_URL';
@@ -21,7 +22,7 @@ module.exports = function PhilipsHueService(gladys, serviceId) {
     const mqttPassword = await gladys.variable.getValue(MQTT_PASSWORD_KEY, serviceId);
     const variablesFound = (mqttUrl && mqttUsername && mqttPassword);
     if (!variablesFound) {
-      throw new Error('MQTT is not configured.');
+      throw new ServiceNotConfiguredError('MQTT is not configured.');
     }
     logger.log('starting MQTT service');
   }
