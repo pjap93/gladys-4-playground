@@ -53,9 +53,11 @@ module.exports = (sequelize, DataTypes) => {
     user.email = String(user.email).toLowerCase();
   });
 
-  // hash password before inserting
-  User.beforeCreate(async (user, options) => {
-    user.password = await passwordUtils.hash(user.password);
+  // hash password after validating
+  User.afterValidate(async (user, options) => {
+    if (user.password) {
+      user.password = await passwordUtils.hash(user.password);
+    }
   });
 
   User.prototype.toJSON = function toJSON() {
