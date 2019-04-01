@@ -53,9 +53,22 @@ module.exports = function UserController(gladys) {
     res.json(user);
   }
 
+  /**
+   * @api {post} /api/access_token getAccessToken
+   * @apiName getAccessToken
+   * @apiGroup User
+   *
+   */
+  async function getAccessToken(req, res) {
+    const scope = req.body.scope || ['dashboard:write', 'dashboard:read'];
+    const session = await gladys.session.getAccessToken(req.body.refresh_token, scope);
+    res.json(session);
+  }
+
   return Object.freeze({
     create: asyncMiddleware(create),
     login: asyncMiddleware(login),
     getMySelf: asyncMiddleware(getMySelf),
+    getAccessToken: asyncMiddleware(getAccessToken),
   });
 };
