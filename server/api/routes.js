@@ -22,6 +22,7 @@ function setupRoutes(gladys) {
   const messageController = MessageController(gladys);
   const variableController = VariableController(gladys);
   const authMiddleware = AuthMiddleware(gladys.config.jwtSecret, 'dashboard:write', gladys.cache, gladys.user);
+  const resetPasswordAuthMiddleware = AuthMiddleware(gladys.config.jwtSecret, 'reset-password:write', gladys.cache, gladys.user);
 
   // enable cross origin requests
   router.use(CorsMiddleware);
@@ -30,6 +31,7 @@ function setupRoutes(gladys) {
   router.post('/api/v1/login', userController.login);
   router.post('/api/v1/access_token', userController.getAccessToken);
   router.post('/api/v1/forgot_password', userController.forgotPassword);
+  router.post('/api/v1/reset_password', resetPasswordAuthMiddleware, userController.resetPassword);
 
   // todo: add check if one account already exist.
   router.post('/api/v1/user', userController.create);

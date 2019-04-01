@@ -1,4 +1,5 @@
 const asyncMiddleware = require('../middlewares/asyncMiddleware');
+const logger = require('../../utils/logger');
 
 const LOGIN_SESSION_VALIDITY_IN_SECONDS = 30 * 24 * 60 * 60;
 
@@ -72,10 +73,22 @@ module.exports = function UserController(gladys) {
    *
    */
   async function forgotPassword(req, res) {
-    await gladys.user.forgotPassword(req.body.email);
+    const session = await gladys.user.forgotPassword(req.body.email);
+    logger.info(`Forgot password initiated for user ${req.body.email}, access_token = ${session.access_token}`);
     res.json({
       success: true,
     });
+  }
+
+  /**
+   * @api {post} /api/reset_password resetPassword
+   * @apiName resetPassword
+   * @apiGroup User
+   *
+   */
+  async function resetPassword(req, res) {
+    const user = await gladys.user.updatePassword(req.user.id, req.body.password);
+    res.json(user);
   }
 
   return Object.freeze({
@@ -84,5 +97,6 @@ module.exports = function UserController(gladys) {
     getMySelf: asyncMiddleware(getMySelf),
     getAccessToken: asyncMiddleware(getAccessToken),
     forgotPassword: asyncMiddleware(forgotPassword),
+    resetPassword: asyncMiddleware(resetPassword),
   });
 };
