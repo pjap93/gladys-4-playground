@@ -56,3 +56,18 @@ describe('house.get', () => {
     }]);
   });
 });
+
+describe('house.getRooms', () => {
+  const house = new House();
+  it('should get rooms in a house', async () => {
+    const rooms = await house.getRooms('test-house');
+    expect(rooms).to.deep.equal([{
+      id: '2398c689-8b47-43cc-ad32-e98d9be098b5',
+      house_id: 'a741dfa6-24de-4b46-afc7-370772f068d5',
+      name: 'Test room',
+      selector: 'test-room',
+      created_at: new Date('2019-02-12T07:49:07.556Z'),
+      updated_at: new Date('2019-02-12T07:49:07.556Z'),
+    }]);
+  });
+});
