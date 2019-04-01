@@ -2,6 +2,7 @@ const express = require('express');
 const UserController = require('./controllers/user.controller');
 const LightController = require('./controllers/light.controller');
 const MessageController = require('./controllers/message.controller');
+const SessionController = require('./controllers/session.controller');
 const VariableController = require('./controllers/variable.controller');
 const AuthMiddleware = require('./middlewares/authMiddleware');
 const CorsMiddleware = require('./middlewares/corsMiddleware');
@@ -21,6 +22,7 @@ function setupRoutes(gladys) {
   const userController = UserController(gladys);
   const messageController = MessageController(gladys);
   const variableController = VariableController(gladys);
+  const sessionController = SessionController(gladys);
   const authMiddleware = AuthMiddleware(gladys.config.jwtSecret, 'dashboard:write', gladys.cache, gladys.user);
   const resetPasswordAuthMiddleware = AuthMiddleware(gladys.config.jwtSecret, 'reset-password:write', gladys.cache, gladys.user);
 
@@ -50,6 +52,9 @@ function setupRoutes(gladys) {
 
   // variable
   router.post('/api/v1/service/:service_name/:variable_key', variableController.setForLocalService);
+
+  // session
+  router.post('/api/v1/session/:session_id/revoke', sessionController.revoke);
 
   // light
   router.post('/api/v1/light/:device_selector/on', lightController.turnOn);
