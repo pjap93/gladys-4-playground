@@ -1,5 +1,6 @@
 const express = require('express');
 const UserController = require('./controllers/user.controller');
+const HouseController = require('./controllers/house.controller');
 const LightController = require('./controllers/light.controller');
 const MessageController = require('./controllers/message.controller');
 const SessionController = require('./controllers/session.controller');
@@ -20,6 +21,7 @@ function setupRoutes(gladys) {
   // Configure router
   const lightController = LightController(gladys);
   const userController = UserController(gladys);
+  const houseController = HouseController(gladys);
   const messageController = MessageController(gladys);
   const variableController = VariableController(gladys);
   const sessionController = SessionController(gladys);
@@ -43,6 +45,12 @@ function setupRoutes(gladys) {
 
   // after this, all requests to /api must have authenticated
   router.use('/api/*', authMiddleware);
+
+  // house
+  router.post('/api/v1/house', houseController.create);
+  router.patch('/api/v1/house/:house_selector', houseController.update);
+  router.get('/api/v1/house', houseController.get);
+  router.delete('/api/v1/house/:house_selector', houseController.destroy);
 
   // message
   router.post('/api/v1/message', messageController.create);
