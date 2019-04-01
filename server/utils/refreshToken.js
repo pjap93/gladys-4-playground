@@ -6,6 +6,18 @@ const randomBytes = Promise.promisify(crypto.randomBytes);
 const REFRESH_TOKEN_LENGTH = 500;
 
 /**
+ * @description Hash a refresh token.
+ * @param {string} refreshToken - The refresh token to hash.
+ * @returns {string} The hash of the refresh token.
+ * @example
+ * hashRefreshToken('xx');
+ */
+function hashRefreshToken(refreshToken) {
+  const refreshTokenHash = crypto.createHash('sha256').update(refreshToken).digest('hex');
+  return refreshTokenHash;
+}
+
+/**
  * @private
  * @description Generate a refresh token and its hash.
  * @example
@@ -14,7 +26,7 @@ const REFRESH_TOKEN_LENGTH = 500;
  */
 async function generateRefreshToken() {
   const refreshToken = (await randomBytes(Math.ceil(REFRESH_TOKEN_LENGTH / 2))).toString('hex').slice(0, REFRESH_TOKEN_LENGTH);
-  const refreshTokenHash = crypto.createHash('sha256').update(refreshToken).digest('hex');
+  const refreshTokenHash = hashRefreshToken(refreshToken);
 
   return {
     refreshToken,
@@ -24,4 +36,5 @@ async function generateRefreshToken() {
 
 module.exports = {
   generateRefreshToken,
+  hashRefreshToken,
 };

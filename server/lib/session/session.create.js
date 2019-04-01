@@ -10,7 +10,7 @@ const { generateAccessToken } = require('../../utils/accessToken');
  * @param {number} validityInSeconds - Validity of the refreshToken.
  * @returns {Promise} Resolving with the refreshToken.
  * @example
- * gladys.refreshToken.create('7144a75d-1ec2-4f31-a587-a4b316c28754');
+ * gladys.session.create('7144a75d-1ec2-4f31-a587-a4b316c28754');
  */
 async function create(userId, scope, validityInSeconds) {
   const { refreshToken, refreshTokenHash } = await generateRefreshToken();
