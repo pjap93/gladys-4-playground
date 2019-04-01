@@ -29,6 +29,7 @@ function setupRoutes(gladys) {
   // open routes
   router.post('/api/v1/login', userController.login);
   router.post('/api/v1/access_token', userController.getAccessToken);
+  router.post('/api/v1/forgot_password', userController.forgotPassword);
 
   // todo: add check if one account already exist.
   router.post('/api/v1/user', userController.create);

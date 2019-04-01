@@ -65,10 +65,24 @@ module.exports = function UserController(gladys) {
     res.json(session);
   }
 
+  /**
+   * @api {post} /api/forgot_password forgotPassword
+   * @apiName forgotPassword
+   * @apiGroup User
+   *
+   */
+  async function forgotPassword(req, res) {
+    await gladys.user.forgotPassword(req.body.email);
+    res.json({
+      success: true,
+    });
+  }
+
   return Object.freeze({
     create: asyncMiddleware(create),
     login: asyncMiddleware(login),
     getMySelf: asyncMiddleware(getMySelf),
     getAccessToken: asyncMiddleware(getAccessToken),
+    forgotPassword: asyncMiddleware(forgotPassword),
   });
 };
