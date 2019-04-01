@@ -70,4 +70,8 @@ describe('house.getRooms', () => {
       updated_at: new Date('2019-02-12T07:49:07.556Z'),
     }]);
   });
+  it('should return not found', async () => {
+    const promise = house.getRooms('house-not-found');
+    return assert.isRejected(promise, 'House not found');
+  });
 });
