@@ -1,3 +1,4 @@
+const { addSelector } = require('../utils/addSelector');
 
 module.exports = (sequelize, DataTypes) => {
   const house = sequelize.define('t_house', {
@@ -25,6 +26,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DOUBLE,
     },
   }, {});
+
+  house.beforeValidate(addSelector);
 
   house.associate = (models) => {
     house.hasMany(models.Room, {
