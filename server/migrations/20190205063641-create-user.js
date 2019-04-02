@@ -14,6 +14,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
+      selector: {
+        allowNull: false,
+        unique: true,
+        type: Sequelize.STRING,
+      },
       email: {
         allowNull: false,
         unique: true,
@@ -43,6 +48,26 @@ module.exports = {
         allowNull: true,
         type: Sequelize.STRING,
         unique: true,
+      },
+      last_latitude: {
+        allowNull: true,
+        type: Sequelize.DOUBLE,
+      },
+      last_longitude: {
+        allowNull: true,
+        type: Sequelize.DOUBLE,
+      },
+      last_altitude: {
+        allowNull: true,
+        type: Sequelize.DOUBLE,
+      },
+      last_accuracy: {
+        allowNull: true,
+        type: Sequelize.DOUBLE,
+      },
+      last_location_changed: {
+        allowNull: true,
+        type: Sequelize.DATE,
       },
       created_at: {
         allowNull: false,

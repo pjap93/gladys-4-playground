@@ -1,4 +1,5 @@
 const passwordUtils = require('../utils/password');
+const { addSelector } = require('../utils/addSelector');
 const { AVAILABLE_LANGUAGES_LIST, USER_ROLE_LIST } = require('../utils/constants');
 
 const MAX_SIZE_PROFILE_PICTURE = 30 * 1000; // 30 ko
@@ -14,6 +15,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     lastname: {
+      type: DataTypes.STRING,
+    },
+    selector: {
+      allowNull: false,
+      unique: true,
       type: DataTypes.STRING,
     },
     email: {
@@ -55,11 +61,36 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       unique: true,
     },
+    last_latitude: {
+      allowNull: true,
+      type: DataTypes.DOUBLE,
+    },
+    last_longitude: {
+      allowNull: true,
+      type: DataTypes.DOUBLE,
+    },
+    last_altitude: {
+      allowNull: true,
+      type: DataTypes.DOUBLE,
+    },
+    last_accuracy: {
+      allowNull: true,
+      type: DataTypes.DOUBLE,
+    },
+    last_location_changed: {
+      allowNull: true,
+      type: DataTypes.DATE,
+    },
   }, {});
 
   // ensure email is in lowercase
   User.beforeValidate((user) => {
     user.email = String(user.email).toLowerCase();
+    if (!user.selector) {
+      user.name = user.firstname;
+      addSelector(user);
+      delete user.name;
+    }
   });
 
   // hash password after validating

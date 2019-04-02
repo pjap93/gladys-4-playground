@@ -1,5 +1,6 @@
 const { create } = require('./user.create');
 const { login } = require('./user.login');
+const { get } = require('./user.get');
 const { getById } = require('./user.getById');
 const { getPicture } = require('./user.getPicture');
 const { getByTelegramUserId } = require('./user.getByTelegramUserId');
@@ -14,6 +15,7 @@ const User = function User(session) {
 User.prototype.create = create;
 User.prototype.login = login;
 User.prototype.forgotPassword = forgotPassword;
+User.prototype.get = get;
 User.prototype.getById = getById;
 User.prototype.getPicture = getPicture;
 User.prototype.getByTelegramUserId = getByTelegramUserId;

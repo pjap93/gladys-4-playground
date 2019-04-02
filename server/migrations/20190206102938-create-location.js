@@ -26,11 +26,11 @@ module.exports = {
         type: Sequelize.DOUBLE,
       },
       altitude: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DOUBLE,
       },
       accuracy: {
-        allowNull: false,
+        allowNull: true,
         type: Sequelize.DOUBLE,
       },
       created_at: {

@@ -3,6 +3,7 @@ const { Cache } = require('../utils/cache');
 const Brain = require('./brain');
 const Event = require('./event');
 const House = require('./house');
+const Location = require('./location');
 const MessageHandler = require('./message');
 const Service = require('./service');
 const Session = require('./session');
@@ -33,6 +34,7 @@ function Gladys(config = {}) {
   const event = new Event();
   const house = new House();
   const service = new Service(services);
+  const location = new Location();
   const message = new MessageHandler(event, brain, service);
   const session = new Session(config.jwtSecret, cache);
   const user = new User(session);
@@ -46,6 +48,7 @@ function Gladys(config = {}) {
     version: '0.1.0', // todo, read package.json
     event,
     house,
+    location,
     message,
     user,
     service,

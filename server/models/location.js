@@ -23,11 +23,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DOUBLE,
     },
     altitude: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.DOUBLE,
     },
     accuracy: {
-      allowNull: false,
+      allowNull: true,
       type: DataTypes.DOUBLE,
     },
   }, {});

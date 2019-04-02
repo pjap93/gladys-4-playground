@@ -44,6 +44,21 @@ module.exports = function UserController(gladys) {
   }
 
   /**
+   * @api {get} /api/v1/user getUsers
+   * @apiName getUsers
+   * @apiGroup User
+   *
+   */
+  async function getUsers(req, res, next) {
+    const options = req.query;
+    if (options.fields) {
+      options.fields = options.fields.split(',');
+    }
+    const users = await gladys.user.get(options);
+    res.json(users);
+  }
+
+  /**
    * @api {get} /api/me getMySelf
    * @apiName getMySelf
    * @apiGroup User
@@ -117,6 +132,7 @@ module.exports = function UserController(gladys) {
     create: asyncMiddleware(create),
     login: asyncMiddleware(login),
     getMySelf: asyncMiddleware(getMySelf),
+    getUsers: asyncMiddleware(getUsers),
     getMyPicture: asyncMiddleware(getMyPicture),
     updateMySelf: asyncMiddleware(updateMySelf),
     getAccessToken: asyncMiddleware(getAccessToken),

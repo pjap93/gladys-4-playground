@@ -2,6 +2,7 @@ const express = require('express');
 const UserController = require('./controllers/user.controller');
 const HouseController = require('./controllers/house.controller');
 const LightController = require('./controllers/light.controller');
+const LocationController = require('./controllers/location.controller');
 const MessageController = require('./controllers/message.controller');
 const SessionController = require('./controllers/session.controller');
 const VariableController = require('./controllers/variable.controller');
@@ -20,6 +21,7 @@ function setupRoutes(gladys) {
   const router = express.Router();
   // Configure router
   const lightController = LightController(gladys);
+  const locationController = LocationController(gladys);
   const userController = UserController(gladys);
   const houseController = HouseController(gladys);
   const messageController = MessageController(gladys);
@@ -56,9 +58,14 @@ function setupRoutes(gladys) {
   router.post('/api/v1/message', messageController.create);
 
   // user
+  router.get('/api/v1/user', userController.getUsers);
   router.get('/api/v1/me', userController.getMySelf);
   router.patch('/api/v1/me', userController.updateMySelf);
   router.get('/api/v1/me/picture', userController.getMyPicture);
+
+  // location
+  router.post('/api/v1/user/:user_selector/location', locationController.create);
+  router.get('/api/v1/user/:user_selector/location', locationController.getLocationsUser);
 
   // variable
   router.post('/api/v1/service/:service_name/:variable_key', variableController.setForLocalService);
