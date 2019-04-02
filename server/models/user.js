@@ -1,6 +1,8 @@
 const passwordUtils = require('../utils/password');
 const { AVAILABLE_LANGUAGES_LIST, USER_ROLE_LIST } = require('../utils/constants');
 
+const MAX_SIZE_PROFILE_PICTURE = 30 * 1000; // 30 ko
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('t_user', {
     id: {
@@ -29,6 +31,13 @@ module.exports = (sequelize, DataTypes) => {
     language: {
       allowNull: false,
       type: DataTypes.ENUM(AVAILABLE_LANGUAGES_LIST),
+    },
+    picture: {
+      allowNull: true,
+      type: DataTypes.TEXT,
+      validate: {
+        len: [0, MAX_SIZE_PROFILE_PICTURE],
+      },
     },
     password: {
       allowNull: false,

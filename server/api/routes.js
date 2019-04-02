@@ -57,6 +57,8 @@ function setupRoutes(gladys) {
 
   // user
   router.get('/api/v1/me', userController.getMySelf);
+  router.patch('/api/v1/me', userController.updateMySelf);
+  router.get('/api/v1/me/picture', userController.getMyPicture);
 
   // variable
   router.post('/api/v1/service/:service_name/:variable_key', variableController.setForLocalService);

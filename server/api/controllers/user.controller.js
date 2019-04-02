@@ -55,6 +55,28 @@ module.exports = function UserController(gladys) {
   }
 
   /**
+   * @api {get} /api/me/picture getMyPicture
+   * @apiName getMyPicture
+   * @apiGroup User
+   *
+   */
+  async function getMyPicture(req, res, next) {
+    const picture = await gladys.user.getPicture(req.user.id);
+    res.send(picture);
+  }
+
+  /**
+   * @api {patch} /api/me updateMySelf
+   * @apiName updateMySelf
+   * @apiGroup User
+   *
+   */
+  async function updateMySelf(req, res, next) {
+    const newUser = await gladys.user.update(req.user.id, req.body);
+    res.json(newUser);
+  }
+
+  /**
    * @api {post} /api/access_token getAccessToken
    * @apiName getAccessToken
    * @apiGroup User
@@ -95,6 +117,8 @@ module.exports = function UserController(gladys) {
     create: asyncMiddleware(create),
     login: asyncMiddleware(login),
     getMySelf: asyncMiddleware(getMySelf),
+    getMyPicture: asyncMiddleware(getMyPicture),
+    updateMySelf: asyncMiddleware(updateMySelf),
     getAccessToken: asyncMiddleware(getAccessToken),
     forgotPassword: asyncMiddleware(forgotPassword),
     resetPassword: asyncMiddleware(resetPassword),
