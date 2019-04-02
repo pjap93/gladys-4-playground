@@ -53,6 +53,7 @@ function setupRoutes(gladys) {
   router.patch('/api/v1/house/:house_selector', houseController.update);
   router.get('/api/v1/house', houseController.get);
   router.delete('/api/v1/house/:house_selector', houseController.destroy);
+  router.get('/api/v1/house/:house_selector/room', houseController.getRooms);
   router.post('/api/v1/house/:house_selector/user/:user_selector/seen', houseController.userSeen);
 
   // message

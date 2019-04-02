@@ -59,11 +59,23 @@ module.exports = function HouseController(gladys) {
     res.json(user);
   }
 
+  /**
+   * @api {get} /api/house/:house_selector/room getRooms
+   * @apiName getRooms
+   * @apiGroup House
+   *
+   */
+  async function getRooms(req, res) {
+    const rooms = await gladys.house.getRooms(req.params.house_selector);
+    res.json(rooms);
+  }
+
   return Object.freeze({
     create: asyncMiddleware(create),
     destroy: asyncMiddleware(destroy),
     get: asyncMiddleware(get),
     update: asyncMiddleware(update),
     userSeen: asyncMiddleware(userSeen),
+    getRooms: asyncMiddleware(getRooms),
   });
 };

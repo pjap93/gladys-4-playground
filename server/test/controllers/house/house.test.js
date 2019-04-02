@@ -74,6 +74,21 @@ describe('DELETE /api/v1/house/test-house', () => {
   });
 });
 
+describe('GET /api/v1/house/test-house/room', () => {
+  it('should return rooms in a house', async () => {
+    await authenticatedRequest
+      .get('/api/v1/house/test-house/room')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then((res) => {
+        res.body.forEach((room) => {
+          expect(room).to.have.property('id');
+          expect(room).to.have.property('name');
+        });
+      });
+  });
+});
+
 describe('POST /api/v1/house/:user_selector/user/:user_selector/seen', () => {
   it('should mark the user has seen in this house', async () => {
     await authenticatedRequest
