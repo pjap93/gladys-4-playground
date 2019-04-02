@@ -19,6 +19,11 @@ import CalendarPage from '../routes/calendar';
 import ScenePage from '../routes/scene';
 import EditScenePage from '../routes/scene/edit-scene';
 import TriggerPage from '../routes/trigger';
+import ProfilePage from '../routes/profile';
+import SettingsSessionPage from '../routes/settings/settings-session';
+import SettingsHousePage from '../routes/settings/settings-house';
+import SettingsAdvancedPage from '../routes/settings/settings-advanced';
+import SettingsSystemPage from '../routes/settings/settings-system';
 
 // Integrations
 import TelegramPage from '../routes/integration/all/telegram';
@@ -32,20 +37,24 @@ const store = createStore({
   currentUrl: getCurrentUrl(),
   user: {
     language: 'en'
-  }
+  },
+  showDropDown: false
 });
 
 const actions = store => ({
   handleRoute(state, e) {
-    store.setState({ currentUrl: e.url });
+    store.setState({ currentUrl: e.url, showDropDown: false });
+  },
+  toggleDropDown(state) {
+    store.setState({ showDropDown: !state.showDropDown });
   }
 });
 
-const Main = connect('currentUrl,user', actions)(
-  ({ currentUrl, user, handleRoute }) => (
+const Main = connect('currentUrl,user,showDropDown', actions)(
+  ({ currentUrl, user, showDropDown, handleRoute, toggleDropDown }) => (
     <div id="app">
       <Layout main={currentUrl !== '/login'}>
-        <Header currentUrl={currentUrl} user={user} />
+        <Header currentUrl={currentUrl} user={user} toggleDropDown={toggleDropDown} showDropDown={showDropDown} />
         <Router onChange={handleRoute}>
           <Login path="/login" />
           <Dashboard path="/dashboard" />
@@ -68,6 +77,12 @@ const Main = connect('currentUrl,user', actions)(
           <ScenePage path="/dashboard/scene" />
           <EditScenePage path="/dashboard/scene/:scene_id" />
           <TriggerPage path="/dashboard/trigger" />
+
+          <ProfilePage path="/dashboard/profile" />
+          <SettingsSessionPage path="/dashboard/settings/session" />
+          <SettingsHousePage path="/dashboard/settings/house" />
+          <SettingsAdvancedPage path="/dashboard/settings/advanced" />
+          <SettingsSystemPage path="/dashboard/settings/system" />
         </Router>
       </Layout>
     </div>

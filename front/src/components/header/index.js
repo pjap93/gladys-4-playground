@@ -45,7 +45,7 @@ const Header = ({ ...props }) => {
                   <a class="dropdown-item" href="/dashboard/profile">
                     <i class="dropdown-icon fe fe-user" /> Profile
                   </a>
-                  <a class="dropdown-item" href="/dashboard/settings">
+                  <a class="dropdown-item" href="/dashboard/settings/house">
                     <i class="dropdown-icon fe fe-settings" /> Settings
                   </a>
                   <div class="dropdown-divider" />

@@ -34,3 +34,9 @@ export const SceneGetStatus = {
   Success: 'Success',
   Error: 'Error'
 };
+
+export const RequestStatus = {
+  Getting: 'Getting',
+  Success: 'Success',
+  Error: 'Error'
+};
