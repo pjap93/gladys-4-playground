@@ -69,6 +69,18 @@ module.exports = {
         allowNull: true,
         type: Sequelize.DATE,
       },
+      current_house_id: {
+        allowNull: true,
+        type: Sequelize.UUID,
+        references: {
+          model: 't_house',
+          key: 'id',
+        },
+      },
+      last_house_changed: {
+        allowNull: true,
+        type: Sequelize.DATE,
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,

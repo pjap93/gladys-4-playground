@@ -1,9 +1,16 @@
-const { expect, assert } = require('chai');
+const { expect } = require('chai');
+const assertChai = require('chai').assert;
+const { fake, assert } = require('sinon');
+const { EVENTS } = require('../../../utils/constants');
 
 const House = require('../../../lib/house');
 
+const event = {
+  emit: fake.returns(null),
+};
+
 describe('house.create', () => {
-  const house = new House();
+  const house = new House(event);
   it('should create a house', async () => {
     const newHouse = await house.create({
       name: 'My test house',
@@ -14,7 +21,7 @@ describe('house.create', () => {
 });
 
 describe('house.update', () => {
-  const house = new House();
+  const house = new House(event);
   it('should update a house', async () => {
     const updatedHouse = await house.update('test-house', {
       name: 'Updated house',
@@ -26,23 +33,23 @@ describe('house.update', () => {
     const promise = house.update('house-does-not-exist', {
       name: 'Updated house',
     });
-    return assert.isRejected(promise, 'House not found');
+    return assertChai.isRejected(promise, 'House not found');
   });
 });
 
 describe('house.destroy', () => {
-  const house = new House();
+  const house = new House(event);
   it('should delete a house', async () => {
     await house.destroy('test-house');
   });
   it('should return house not found', async () => {
     const promise = house.destroy('house-not-found');
-    return assert.isRejected(promise, 'House not found');
+    return assertChai.isRejected(promise, 'House not found');
   });
 });
 
 describe('house.get', () => {
-  const house = new House();
+  const house = new House(event);
   it('should get list of houses', async () => {
     const houses = await house.get();
     expect(houses).to.deep.equal([{
@@ -53,12 +60,21 @@ describe('house.get', () => {
       longitude: null,
       created_at: new Date('2019-02-12T07:49:07.556Z'),
       updated_at: new Date('2019-02-12T07:49:07.556Z'),
+    },
+    {
+      id: '6295ad8b-b655-4422-9e6d-b4612da5d55f',
+      name: 'Peppers house',
+      selector: 'pepper-house',
+      latitude: null,
+      longitude: null,
+      created_at: new Date('2019-02-12T07:49:07.556Z'),
+      updated_at: new Date('2019-02-12T07:49:07.556Z'),
     }]);
   });
 });
 
 describe('house.getRooms', () => {
-  const house = new House();
+  const house = new House(event);
   it('should get rooms in a house', async () => {
     const rooms = await house.getRooms('test-house');
     expect(rooms).to.deep.equal([{
@@ -72,6 +88,32 @@ describe('house.getRooms', () => {
   });
   it('should return not found', async () => {
     const promise = house.getRooms('house-not-found');
-    return assert.isRejected(promise, 'House not found');
+    return assertChai.isRejected(promise, 'House not found');
+  });
+});
+
+describe('house.userSeen', () => {
+  const house = new House(event);
+  it('should mark user as present in this house', async () => {
+    const user = await house.userSeen('test-house', 'john');
+    expect(user).to.deep.equal({
+      id: '0cd30aef-9c4e-4a23-88e3-3547971296e5',
+      firstname: 'John',
+      lastname: 'Doe',
+      selector: 'john',
+      email: 'demo@demo.com',
+      current_house_id: 'a741dfa6-24de-4b46-afc7-370772f068d5',
+      last_house_changed: user.last_house_changed,
+      updated_at: user.updated_at,
+    });
+    assert.calledWith(event.emit, EVENTS.USER_PRESENCE.BACK_HOME, user);
+  });
+  it('should return house not found', async () => {
+    const promise = house.userSeen('house-not-found', 'john');
+    return assertChai.isRejected(promise, 'House not found');
+  });
+  it('should return user not found', async () => {
+    const promise = house.userSeen('test-house', 'user-not-found');
+    return assertChai.isRejected(promise, 'User not found');
   });
 });

@@ -81,6 +81,18 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
       type: DataTypes.DATE,
     },
+    current_house_id: {
+      allowNull: true,
+      type: DataTypes.UUID,
+      references: {
+        model: 't_house',
+        key: 'id',
+      },
+    },
+    last_house_changed: {
+      allowNull: true,
+      type: DataTypes.DATE,
+    },
   }, {});
 
   // ensure email is in lowercase
@@ -120,6 +132,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'user_id',
       sourceKey: 'id',
       as: 'life_events',
+    });
+    User.belongsTo(models.House, {
+      foreignKey: 'current_house_id',
+      sourceKey: 'id',
+      as: 'current_house',
     });
     User.hasMany(models.Message, {
       foreignKey: 'sender_id',

@@ -54,6 +54,9 @@ module.exports = function UserController(gladys) {
     if (options.fields) {
       options.fields = options.fields.split(',');
     }
+    if (options.expand) {
+      options.expand = options.expand.split(',');
+    }
     const users = await gladys.user.get(options);
     res.json(users);
   }

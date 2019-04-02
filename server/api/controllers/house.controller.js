@@ -48,10 +48,22 @@ module.exports = function HouseController(gladys) {
     });
   }
 
+  /**
+   * @api {post} /api/house/:house_selector/user/:user_selector/seen userSeen
+   * @apiName userSeen
+   * @apiGroup House
+   *
+   */
+  async function userSeen(req, res) {
+    const user = await gladys.house.userSeen(req.params.house_selector, req.params.user_selector);
+    res.json(user);
+  }
+
   return Object.freeze({
     create: asyncMiddleware(create),
     destroy: asyncMiddleware(destroy),
     get: asyncMiddleware(get),
     update: asyncMiddleware(update),
+    userSeen: asyncMiddleware(userSeen),
   });
 };

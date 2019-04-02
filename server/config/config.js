@@ -12,6 +12,7 @@ module.exports = {
     dialect: 'sqlite',
     storage: './gladys-test.db',
     operatorsAliases: false,
+    logging: false,
     define: {
       underscored: true,
       freezeTableName: true,

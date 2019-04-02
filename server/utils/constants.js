@@ -31,6 +31,7 @@ const EVENTS = {
   USER_PRESENCE: {
     LEFT_HOME: 'user.left-home',
     BACK_HOME: 'user.back-home',
+    SEEN_AT_HOME: 'user.seen-at-home',
   },
   USER_WORK: {
     TIME_TO_GO_TO_WORK: 'user.time-to-go-to-work',

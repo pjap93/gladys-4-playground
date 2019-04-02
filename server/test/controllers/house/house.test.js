@@ -32,6 +32,15 @@ describe('GET /api/v1/house', () => {
           longitude: null,
           created_at: '2019-02-12T07:49:07.556Z',
           updated_at: '2019-02-12T07:49:07.556Z',
+        },
+        {
+          id: '6295ad8b-b655-4422-9e6d-b4612da5d55f',
+          name: 'Peppers house',
+          selector: 'pepper-house',
+          latitude: null,
+          longitude: null,
+          created_at: '2019-02-12T07:49:07.556Z',
+          updated_at: '2019-02-12T07:49:07.556Z',
         }]);
       });
   });
@@ -61,6 +70,18 @@ describe('DELETE /api/v1/house/test-house', () => {
       .expect(200)
       .then((res) => {
         expect(res.body).to.have.property('success', true);
+      });
+  });
+});
+
+describe('POST /api/v1/house/:user_selector/user/:user_selector/seen', () => {
+  it('should mark the user has seen in this house', async () => {
+    await authenticatedRequest
+      .post('/api/v1/house/test-house/user/john/seen')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then((res) => {
+        expect(res.body).to.have.property('current_house_id', 'a741dfa6-24de-4b46-afc7-370772f068d5');
       });
   });
 });

@@ -2,6 +2,7 @@ const db = require('../../models');
 
 const DEFAULT_OPTIONS = {
   fields: ['id', 'firstname', 'lastname', 'selector', 'email'],
+  expand: [],
   take: 20,
   skip: 0,
 };
@@ -18,8 +19,18 @@ const DEFAULT_OPTIONS = {
 async function get(options) {
   const optionsWithDefault = Object.assign({}, DEFAULT_OPTIONS, options);
 
+  // add ability to get house
+  const includeExpand = [];
+  if (optionsWithDefault.expand.includes('current_house')) {
+    includeExpand.push({
+      model: db.House,
+      as: 'current_house',
+    });
+  }
+
   const users = await db.User.findAll({
     attributes: optionsWithDefault.fields,
+    include: includeExpand,
     limit: optionsWithDefault.take,
     offset: optionsWithDefault.skip,
     order: [
