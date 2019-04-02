@@ -10,7 +10,9 @@ const SERVE_FRONT = process.env.NODE_ENV === 'production' ? true : (process.env.
 
 (async () => {
   // create Gladys object
-  const gladys = Gladys();
+  const gladys = Gladys({
+    jwtSecret: process.env.JWT_SECRET,
+  });
 
   // start Gladys
   await gladys.start();
