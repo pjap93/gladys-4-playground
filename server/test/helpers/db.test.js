@@ -9,10 +9,14 @@ const files = readdirSync(SEEDERS_PATH);
 const seeds = files.map(file => require(join(SEEDERS_PATH, file))); // eslint-disable-line
 const reversedSeed = seeds.slice().reverse();
 
+const callLater = () => (new Promise((resolve) => {
+  setTimeout(resolve, 1);
+}));
+
 module.exports.seedDb = async () => {
-  await Promise.mapSeries(seeds, (seed => seed.up(db.sequelize.getQueryInterface())));
+  await Promise.mapSeries(seeds, (seed => callLater().then(() => seed.up(db.sequelize.getQueryInterface()))));
 };
 
 module.exports.cleanDb = async () => {
-  await Promise.mapSeries(reversedSeed, (seed => seed.down(db.sequelize.getQueryInterface())));
+  await Promise.mapSeries(reversedSeed, (seed => callLater().then(() => seed.down(db.sequelize.getQueryInterface()))));
 };
