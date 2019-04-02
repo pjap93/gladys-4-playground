@@ -108,6 +108,19 @@ describe('house.userSeen', () => {
     });
     assert.calledWith(event.emit, EVENTS.USER_PRESENCE.BACK_HOME, user);
   });
+  it('should emit user seen event', async () => {
+    const user = await house.userSeen('pepper-house', 'pepper');
+    expect(user).to.deep.equal({
+      id: '7a137a56-069e-4996-8816-36558174b727',
+      firstname: 'Pepper',
+      lastname: 'Pots',
+      selector: 'pepper',
+      email: 'pepper@pots.com',
+      current_house_id: '6295ad8b-b655-4422-9e6d-b4612da5d55f',
+      last_house_changed: user.last_house_changed,
+    });
+    assert.calledWith(event.emit, EVENTS.USER_PRESENCE.SEEN_AT_HOME, user);
+  });
   it('should return house not found', async () => {
     const promise = house.userSeen('house-not-found', 'john');
     return assertChai.isRejected(promise, 'House not found');

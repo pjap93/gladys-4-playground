@@ -21,7 +21,7 @@ async function userSeen(houseSelector, userSelector) {
   }
 
   const user = await db.User.find({
-    attributes: ['id', 'firstname', 'lastname', 'selector', 'email', 'current_house_id'],
+    attributes: ['id', 'firstname', 'lastname', 'selector', 'email', 'current_house_id', 'last_house_changed'],
     where: {
       selector: userSelector,
     },

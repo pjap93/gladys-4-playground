@@ -27,6 +27,7 @@ module.exports = {
     role: 'admin',
     birthdate: '12/12/1990',
     current_house_id: '6295ad8b-b655-4422-9e6d-b4612da5d55f',
+    last_house_changed: '2019-02-12 07:49:07.556 +00:00',
     created_at: '2019-02-12 07:49:07.556 +00:00',
     updated_at: '2019-02-12 07:49:07.556 +00:00',
   }], {}),
