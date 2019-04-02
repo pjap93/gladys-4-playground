@@ -1,4 +1,5 @@
 const EventEmitter = require('events');
+const logger = require('../../utils/logger');
 const TriggerManager = require('../../lib/trigger');
 const StateManager = require('../../lib/state');
 const { EVENT_LIST, CONDITIONS, STATES } = require('../../utils/constants');
@@ -19,7 +20,7 @@ const displayNumberOfEventProcessedBySeconds = (time) => {
   const perSecond = (1000 * NUMBER_OF_EVENTS_TO_THROW / elapsed);
   const millionEventProcessedPerSecond = perSecond / 1000000;
   const millionEventProcessedPerSecondBeautiful = Math.round(millionEventProcessedPerSecond * 100) / 100;
-  console.log(`Processed 1 million events in ${elapsed} ms, so ${millionEventProcessedPerSecondBeautiful}M events/per second`);
+  logger.info(`Processed 1 million events in ${elapsed} ms, so ${millionEventProcessedPerSecondBeautiful}M events/per second`);
 };
 
 const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min)) + min;
@@ -60,7 +61,7 @@ EVENT_LIST.forEach((type) => {
   event.on(type, oneEvent => triggerManager.handleEvent(type, oneEvent));
 });
 
-while (1) {
+while (1) { // eslint-disable-line
   const start = process.hrtime();
   EVENTS_TO_THROW.forEach((item, index) => {
     event.emit(item, {});

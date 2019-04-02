@@ -16,7 +16,6 @@ const DEFAULT_OPTIONS = {
  * });
  */
 async function get(options) {
-  console.log(options);
   const optionsWithDefault = Object.assign({}, DEFAULT_OPTIONS, options);
 
   const users = await db.User.findAll({

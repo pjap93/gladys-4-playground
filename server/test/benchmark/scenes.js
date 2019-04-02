@@ -1,4 +1,5 @@
 const { ACTIONS } = require('../../utils/constants');
+const logger = require('../../utils/logger');
 const SceneManager = require('../../lib/scene');
 
 const light = {
@@ -15,7 +16,7 @@ const displayNumberOfEventProcessedBySeconds = (time) => {
   const perSecond = (NUMBER_OF_SCENE_TO_REGISTER * NUMBER_OF_ACTIONS_PER_SCENE / elapsed);
   const millionsEventProcessedPerSecond = perSecond / 1000000;
   const millionsEventProcessedPerSecondBeautiful = Math.round(millionsEventProcessedPerSecond * 100) / 100;
-  console.log(`Executed 1 million actions in ${elapsed} s, so ${millionsEventProcessedPerSecondBeautiful}M actions/per second`);
+  logger.info(`Executed 1 million actions in ${elapsed} s, so ${millionsEventProcessedPerSecondBeautiful}M actions/per second`);
 };
 
 for (let i = 0; i < NUMBER_OF_SCENE_TO_REGISTER; i += 1) {
