@@ -1,4 +1,3 @@
-import PageLayout from '../../components/layout/page';
 
 const DashboardProfile = ({ children, ...props }) => (
   <div class="page">
