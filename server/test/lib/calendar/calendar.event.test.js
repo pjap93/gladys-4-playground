@@ -12,6 +12,13 @@ describe('calendar.createEvent', () => {
     expect(newCalendarEvent).to.have.property('name', 'My test event');
     expect(newCalendarEvent).to.have.property('selector', 'my-test-event');
   });
+  it('should return calendar not found', async () => {
+    const promise = calendar.createEvent('calendar-not-found', {
+      name: 'My test event',
+      start: '2019-02-12 07:49:07.556',
+    });
+    return assert.isRejected(promise, 'Calendar not found');
+  });
 });
 
 describe('calendar.update', () => {
