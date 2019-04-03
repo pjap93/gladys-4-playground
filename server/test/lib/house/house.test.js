@@ -71,6 +71,12 @@ describe('house.get', () => {
       updated_at: new Date('2019-02-12T07:49:07.556Z'),
     }]);
   });
+  it('should get list of houses with rooms list', async () => {
+    const houses = await house.get({ expand: ['rooms'] });
+    houses.forEach((oneHouse) => {
+      expect(oneHouse).to.have.property('rooms').and.to.be.instanceOf(Array);
+    });
+  });
 });
 
 describe('house.getRooms', () => {
