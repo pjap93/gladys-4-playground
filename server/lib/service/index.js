@@ -6,9 +6,9 @@ const { getServices } = require('./service.getServices');
 const { getMessageServices } = require('./service.getMessageServices');
 const { getLocalServiceByName } = require('./service.getLocalServiceByName');
 
-const Service = function Service(servicesFromFiles) {
+const Service = function Service(servicesFromFiles, stateManager) {
   this.servicesFromFiles = servicesFromFiles;
-  this.services = {};
+  this.stateManager = stateManager;
 };
 
 Service.prototype.load = load;

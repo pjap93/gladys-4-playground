@@ -1,6 +1,7 @@
 const { expect } = require('chai');
 
 const Service = require('../../../lib/service');
+const StateManager = require('../../../lib/state');
 
 const services = {
   example: () => ({
@@ -13,7 +14,8 @@ const gladys = {
 };
 
 describe('service', () => {
-  const service = new Service(services);
+  const stateManager = new StateManager();
+  const service = new Service(services, stateManager);
   it('should start a service', async () => {
     await service.load(gladys);
     await service.start('example');

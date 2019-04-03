@@ -6,6 +6,7 @@ const LocationController = require('./controllers/location.controller');
 const MessageController = require('./controllers/message.controller');
 const RoomController = require('./controllers/room.controller');
 const SessionController = require('./controllers/session.controller');
+const ServiceController = require('./controllers/service.controller');
 const VariableController = require('./controllers/variable.controller');
 const AuthMiddleware = require('./middlewares/authMiddleware');
 const CorsMiddleware = require('./middlewares/corsMiddleware');
@@ -29,6 +30,7 @@ function setupRoutes(gladys) {
   const roomController = RoomController(gladys);
   const variableController = VariableController(gladys);
   const sessionController = SessionController(gladys);
+  const serviceController = ServiceController(gladys);
   const authMiddleware = AuthMiddleware(gladys.config.jwtSecret, 'dashboard:write', gladys.cache, gladys.user);
   const resetPasswordAuthMiddleware = AuthMiddleware(gladys.config.jwtSecret, 'reset-password:write', gladys.cache, gladys.user);
 
@@ -65,6 +67,10 @@ function setupRoutes(gladys) {
 
   // message
   router.post('/api/v1/message', messageController.create);
+
+  // service
+  router.post('/api/v1/service/:service_name/start', serviceController.start);
+  router.post('/api/v1/service/:service_name/stop', serviceController.stop);
 
   // user
   router.get('/api/v1/user', userController.getUsers);

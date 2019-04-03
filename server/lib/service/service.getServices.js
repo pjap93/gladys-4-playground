@@ -7,7 +7,7 @@
  * service.getServices();
  */
 function getServices() {
-  return this.services;
+  return this.stateManager.state.service;
 }
 
 module.exports = {

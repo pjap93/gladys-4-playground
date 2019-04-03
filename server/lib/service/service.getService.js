@@ -8,10 +8,7 @@
  * service.getService('telegram');
  */
 function getService(name) {
-  if (!this.services[name]) {
-    return null;
-  }
-  return this.services[name];
+  return this.stateManager.get('service', name);
 }
 
 module.exports = {

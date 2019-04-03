@@ -160,6 +160,10 @@ const ACTIONS = {
   TIME: {
     DELAY: 'delay',
   },
+  SERVICE: {
+    START: 'service.start',
+    STOP: 'service.stop',
+  },
 };
 
 const INTENTS = {

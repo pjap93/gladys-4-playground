@@ -9,7 +9,8 @@ const logger = require('../../utils/logger');
  */
 async function start(name) {
   try {
-    await this.services[name].start();
+    const service = this.stateManager.get('service', name);
+    await service.start();
   } catch (e) {
     logger.warn(`Unable to start service ${name}`);
     logger.warn(e);

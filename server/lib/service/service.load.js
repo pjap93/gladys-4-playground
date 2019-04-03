@@ -33,8 +33,11 @@ async function load(gladys) {
       }
       // we try to start the service
       try {
-        this.services[service] = this.servicesFromFiles[service](gladys, serviceInDb.id);
-        if (this.services[service].message && this.services[service].message.send) {
+        // calling constructor of service
+        const newServiceObject = this.servicesFromFiles[service](gladys, serviceInDb.id);
+        // saving service in stateManager
+        this.stateManager.setState('service', service, newServiceObject);
+        if (newServiceObject.message && newServiceObject.message.send) {
           serviceToInsertOrUpdate.has_message_feature = true;
         }
       } catch (e) {
