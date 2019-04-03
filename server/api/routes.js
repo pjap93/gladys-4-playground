@@ -4,6 +4,7 @@ const HouseController = require('./controllers/house.controller');
 const LightController = require('./controllers/light.controller');
 const LocationController = require('./controllers/location.controller');
 const MessageController = require('./controllers/message.controller');
+const RoomController = require('./controllers/room.controller');
 const SessionController = require('./controllers/session.controller');
 const VariableController = require('./controllers/variable.controller');
 const AuthMiddleware = require('./middlewares/authMiddleware');
@@ -25,6 +26,7 @@ function setupRoutes(gladys) {
   const userController = UserController(gladys);
   const houseController = HouseController(gladys);
   const messageController = MessageController(gladys);
+  const roomController = RoomController(gladys);
   const variableController = VariableController(gladys);
   const sessionController = SessionController(gladys);
   const authMiddleware = AuthMiddleware(gladys.config.jwtSecret, 'dashboard:write', gladys.cache, gladys.user);
@@ -55,6 +57,11 @@ function setupRoutes(gladys) {
   router.delete('/api/v1/house/:house_selector', houseController.destroy);
   router.get('/api/v1/house/:house_selector/room', houseController.getRooms);
   router.post('/api/v1/house/:house_selector/user/:user_selector/seen', houseController.userSeen);
+
+  // room
+  router.post('/api/v1/house/:house_selector/room', roomController.create);
+  router.patch('/api/v1/room/:room_selector', roomController.update);
+  router.delete('/api/v1/room/:room_selector', roomController.destroy);
 
   // message
   router.post('/api/v1/message', messageController.create);

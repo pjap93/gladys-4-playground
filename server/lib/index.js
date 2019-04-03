@@ -9,6 +9,7 @@ const Service = require('./service');
 const Session = require('./session');
 const User = require('./user');
 const Device = require('./device');
+const Room = require('./room');
 const StateManager = require('./state');
 const SceneManager = require('./scene');
 const TriggerManager = require('./trigger');
@@ -33,6 +34,7 @@ function Gladys(config = {}) {
   const cache = new Cache();
   const event = new Event();
   const house = new House(event);
+  const room = new Room();
   const service = new Service(services);
   const location = new Location();
   const message = new MessageHandler(event, brain, service);
@@ -56,6 +58,7 @@ function Gladys(config = {}) {
     cache,
     config,
     device,
+    room,
     stateManager,
     triggerManager,
     variable,

@@ -6,9 +6,9 @@ const { NotFoundError } = require('../../utils/coreErrors');
  * @description Delete a room.
  * @param {string} selector - The selector of the room to delete.
  * @example
- * gladys.house.destroyRoom('kitchen');
+ * gladys.room.destroy('kitchen');
  */
-async function destroyRoom(selector) {
+async function destroy(selector) {
   const room = await db.Room.findOne({
     where: {
       selector,
@@ -23,5 +23,5 @@ async function destroyRoom(selector) {
 }
 
 module.exports = {
-  destroyRoom,
+  destroy,
 };

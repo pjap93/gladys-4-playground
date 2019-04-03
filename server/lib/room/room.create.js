@@ -6,11 +6,11 @@ const { NotFoundError } = require('../../utils/coreErrors');
  * @param {string} selector - The selector of a house.
  * @param {Object} room - The room to create.
  * @example
- * gladys.house.addRoom('my-house', {
+ * gladys.room.create('my-house', {
  *    name: 'Kitchen'
  * });
  */
-async function addRoom(selector, room) {
+async function create(selector, room) {
   const house = await db.House.findOne({
     where: {
       selector,
@@ -27,5 +27,5 @@ async function addRoom(selector, room) {
 }
 
 module.exports = {
-  addRoom,
+  create,
 };

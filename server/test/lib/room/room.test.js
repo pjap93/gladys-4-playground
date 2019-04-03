@@ -1,39 +1,35 @@
 const { expect, assert } = require('chai');
 
-const House = require('../../../lib/house');
+const Room = require('../../../lib/room');
 
-const event = {
-  emit: () => true,
-};
-
-describe('house.addRoom', () => {
-  const house = new House(event);
+describe('room.create', () => {
+  const room = new Room();
   it('should create a room', async () => {
-    const newRoom = await house.addRoom('test-house', {
+    const newRoom = await room.create('test-house', {
       name: 'My test room',
     });
     expect(newRoom).to.have.property('name', 'My test room');
     expect(newRoom).to.have.property('selector', 'my-test-room');
   });
   it('should return house not found', async () => {
-    const promise = house.addRoom('house-does-not-exist', {
+    const promise = room.create('house-does-not-exist', {
       name: 'My test room',
     });
     return assert.isRejected(promise, 'House not found');
   });
 });
 
-describe('house.editRoom', () => {
-  const house = new House(event);
-  it('should edit a room', async () => {
-    const newRoom = await house.editRoom('test-room', {
+describe('room.update', () => {
+  const room = new Room();
+  it('should update a room', async () => {
+    const newRoom = await room.update('test-room', {
       name: 'New name',
     });
     expect(newRoom).to.have.property('name', 'New name');
     expect(newRoom).to.have.property('selector', 'test-room');
   });
   it('should return room not found', async () => {
-    const promise = house.editRoom('room-does-not-exist', {
+    const promise = room.update('room-does-not-exist', {
       name: 'My test room',
     });
     return assert.isRejected(promise, 'Room not found');
@@ -41,13 +37,13 @@ describe('house.editRoom', () => {
 });
 
 
-describe('house.destroyRoom', () => {
-  const house = new House(event);
+describe('room.destroy', () => {
+  const room = new Room();
   it('should destroy a room', async () => {
-    await house.destroyRoom('test-room');
+    await room.destroy('test-room');
   });
   it('should return room not found', async () => {
-    const promise = house.destroyRoom('room-does-not-exist');
+    const promise = room.destroy('room-does-not-exist');
     return assert.isRejected(promise, 'Room not found');
   });
 });

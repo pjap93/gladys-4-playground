@@ -2,15 +2,15 @@ const db = require('../../models');
 const { NotFoundError } = require('../../utils/coreErrors');
 
 /**
- * @description Edit a room.
+ * @description Update a room.
  * @param {string} selector - The selector of the room.
  * @param {Object} room - The new room.
  * @example
- * gladys.house.editRoom('kitchen', {
+ * gladys.room.update('kitchen', {
  *    name: 'New Kitchen'
  * });
  */
-async function editRoom(selector, room) {
+async function update(selector, room) {
   const existingRoom = await db.Room.findOne({
     where: {
       selector,
@@ -27,5 +27,5 @@ async function editRoom(selector, room) {
 }
 
 module.exports = {
-  editRoom,
+  update,
 };
