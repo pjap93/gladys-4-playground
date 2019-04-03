@@ -1,4 +1,5 @@
 const express = require('express');
+const CalendarController = require('./controllers/calendar.controller');
 const UserController = require('./controllers/user.controller');
 const HouseController = require('./controllers/house.controller');
 const LightController = require('./controllers/light.controller');
@@ -22,6 +23,7 @@ const setupServiceRoutes = require('./servicesRoutes');
 function setupRoutes(gladys) {
   const router = express.Router();
   // Configure router
+  const calendarController = CalendarController(gladys);
   const lightController = LightController(gladys);
   const locationController = LocationController(gladys);
   const userController = UserController(gladys);
@@ -51,6 +53,14 @@ function setupRoutes(gladys) {
 
   // after this, all requests to /api must have authenticated
   router.use('/api/*', authMiddleware);
+
+  // calendar
+  router.post('/api/v1/calendar', calendarController.create);
+  router.patch('/api/v1/calendar/:calendar_selector', calendarController.update);
+  router.delete('/api/v1/calendar/:calendar_selector', calendarController.destroy);
+  router.post('/api/v1/calendar/:calendar_selector/event', calendarController.createEvent);
+  router.patch('/api/v1/calendar/event/:calendar_event_selector', calendarController.updateEvent);
+  router.delete('/api/v1/calendar/event/:calendar_event_selector', calendarController.destroyEvent);
 
   // house
   router.post('/api/v1/house', houseController.create);
