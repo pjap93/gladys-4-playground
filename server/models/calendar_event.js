@@ -1,3 +1,4 @@
+const { addSelector } = require('../utils/addSelector');
 
 module.exports = (sequelize, DataTypes) => {
   const calendarEvent = sequelize.define('t_calendar_event', {
@@ -44,6 +45,8 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: false,
     },
   }, {});
+
+  calendarEvent.beforeValidate(addSelector);
 
   calendarEvent.associate = (models) => {
     calendarEvent.belongsTo(models.Calendar, {
