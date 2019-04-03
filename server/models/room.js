@@ -1,3 +1,4 @@
+const { addSelector } = require('../utils/addSelector');
 
 module.exports = (sequelize, DataTypes) => {
   const room = sequelize.define('t_room', {
@@ -25,6 +26,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
   }, {});
+
+  room.beforeValidate(addSelector);
 
   room.associate = (models) => {
     room.belongsTo(models.House, {
