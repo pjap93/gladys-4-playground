@@ -11,7 +11,7 @@ module.exports = function ServiceController(gladys) {
   async function start(req, res) {
     const action = {
       type: ACTIONS.SERVICE.START,
-      name: req.params.service_name,
+      service: req.params.service_name,
       status: ACTIONS_STATUS.PENDING,
     };
     gladys.event.emit(EVENTS.ACTION.TRIGGERED, action);
@@ -27,7 +27,7 @@ module.exports = function ServiceController(gladys) {
   async function stop(req, res) {
     const action = {
       type: ACTIONS.SERVICE.STOP,
-      name: req.params.service_name,
+      service: req.params.service_name,
       status: ACTIONS_STATUS.PENDING,
     };
     gladys.event.emit(EVENTS.ACTION.TRIGGERED, action);

@@ -16,6 +16,8 @@ const actionsFunc = {
       setTimeout(resolve, action.hours * 1000 * 60 * 60);
     }
   }),
+  [ACTIONS.SERVICE.START]: async (self, action, scope) => self.stateManager.get('service', action.service).start(),
+  [ACTIONS.SERVICE.STOP]: async (self, action, scope) => self.stateManager.get('service', action.service).stop(),
 };
 
 module.exports = {
