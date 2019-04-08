@@ -16,6 +16,7 @@ const SceneManager = require('./scene');
 const TriggerManager = require('./trigger');
 const Variable = require('./variable');
 const services = require('../services');
+const Weather = require('./weather');
 
 /**
  * @description Start a new Gladys instance
@@ -47,6 +48,7 @@ function Gladys(config = {}) {
   const sceneManager = new SceneManager(stateManager);
   const triggerManager = new TriggerManager(event, stateManager, sceneManager);
   const variable = new Variable();
+  const weather = new Weather(service);
 
   const gladys = {
     version: '0.1.0', // todo, read package.json
@@ -65,6 +67,7 @@ function Gladys(config = {}) {
     stateManager,
     triggerManager,
     variable,
+    weather,
     start: async () => {
       if (!config.disableBrainLoading) {
         await brain.load();
