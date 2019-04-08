@@ -9,6 +9,7 @@ const RoomController = require('./controllers/room.controller');
 const SessionController = require('./controllers/session.controller');
 const ServiceController = require('./controllers/service.controller');
 const VariableController = require('./controllers/variable.controller');
+const WeatherController = require('./controllers/weather.controller');
 const AuthMiddleware = require('./middlewares/authMiddleware');
 const CorsMiddleware = require('./middlewares/corsMiddleware');
 const setupServiceRoutes = require('./servicesRoutes');
@@ -33,6 +34,7 @@ function setupRoutes(gladys) {
   const variableController = VariableController(gladys);
   const sessionController = SessionController(gladys);
   const serviceController = ServiceController(gladys);
+  const weatherController = WeatherController(gladys);
   const authMiddleware = AuthMiddleware(gladys.config.jwtSecret, 'dashboard:write', gladys.cache, gladys.user);
   const resetPasswordAuthMiddleware = AuthMiddleware(gladys.config.jwtSecret, 'reset-password:write', gladys.cache, gladys.user);
 
@@ -100,6 +102,10 @@ function setupRoutes(gladys) {
 
   // light
   router.post('/api/v1/light/:device_selector/on', lightController.turnOn);
+
+  // weather
+  router.get('/api/v1/user/:user_selector/weather', weatherController.getByUser);
+  router.get('/api/v1/house/:house_selector/weather', weatherController.getByHouse);
 
   return router;
 }

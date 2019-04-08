@@ -21,11 +21,11 @@ const darkSky = {
 };
 
 const service = {
-  get: () => darkSky,
+  getService: () => darkSky,
 };
 
 const serviceWithoutDarkSky = {
-  get: () => null,
+  getService: () => null,
 };
 
 describe('weather.get', () => {

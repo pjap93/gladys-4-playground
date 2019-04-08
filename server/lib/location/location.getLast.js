@@ -18,7 +18,7 @@ async function getLast(userSelector) {
     throw new NotFoundError('User not found');
   }
 
-  const location = await db.Location.find({
+  const locations = await db.Location.findAll({
     where: {
       user_id: user.id,
     },
@@ -28,9 +28,11 @@ async function getLast(userSelector) {
     limit: 1,
   });
 
-  if (location === null) {
+  if (locations.length === 0) {
     throw new NotFoundError('User does not have any location yet.');
   }
+
+  const location = locations[0];
 
   return location.get({ plain: true });
 }

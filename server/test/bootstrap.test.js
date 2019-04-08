@@ -5,6 +5,7 @@ const server = require('../api/');
 const Gladys = require('../lib');
 const logger = require('../utils/logger');
 const { seedDb, cleanDb } = require('./helpers/db.test');
+const fakeDarkSkyService = require('./services/darksky/fakeDarkSkyService');
 
 chai.use(chaiAsPromised);
 
@@ -21,6 +22,7 @@ before(async () => {
   };
   const gladys = Gladys(config);
   await gladys.start();
+  gladys.stateManager.setState('service', 'darksky', fakeDarkSkyService);
   // @ts-ignore
   global.TEST_BACKEND_APP = server.start(gladys, SERVER_PORT, {
     serveFront: false,

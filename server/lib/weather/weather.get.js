@@ -17,7 +17,7 @@ const { ServiceNotConfiguredError } = require('../../utils/coreErrors');
   * });
  */
 function get(options) {
-  const darkSkyService = this.service.get('darksky');
+  const darkSkyService = this.service.getService('darksky');
   if (darkSkyService === null) {
     throw new ServiceNotConfiguredError(`Service darksky is not found or not configured.`);
   }

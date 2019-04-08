@@ -7,10 +7,11 @@ class HttpError extends Error {
 }
 
 class Error400 extends HttpError {
-  constructor() {
+  constructor(message) {
     super();
     this.status = 400;
     this.code = 'BAD_REQUEST';
+    this.message = message;
   }
 }
 

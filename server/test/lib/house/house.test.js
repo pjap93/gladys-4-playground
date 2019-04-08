@@ -56,8 +56,8 @@ describe('house.get', () => {
       id: 'a741dfa6-24de-4b46-afc7-370772f068d5',
       name: 'Test house',
       selector: 'test-house',
-      latitude: null,
-      longitude: null,
+      latitude: 12,
+      longitude: 12,
       created_at: new Date('2019-02-12T07:49:07.556Z'),
       updated_at: new Date('2019-02-12T07:49:07.556Z'),
     },
@@ -134,5 +134,25 @@ describe('house.userSeen', () => {
   it('should return user not found', async () => {
     const promise = house.userSeen('test-house', 'user-not-found');
     return assertChai.isRejected(promise, 'User not found');
+  });
+});
+
+describe('house.getBySelector', () => {
+  const house = new House(event);
+  it('should return a house', async () => {
+    const testHouse = await house.getBySelector('test-house');
+    expect(testHouse).to.deep.equal({
+      id: 'a741dfa6-24de-4b46-afc7-370772f068d5',
+      name: 'Test house',
+      selector: 'test-house',
+      latitude: 12,
+      longitude: 12,
+      created_at: new Date('2019-02-12T07:49:07.556Z'),
+      updated_at: new Date('2019-02-12T07:49:07.556Z'),
+    });
+  });
+  it('should return not found', async () => {
+    const promise = house.getBySelector('house-not-found');
+    return assertChai.isRejected(promise, 'House not found');
   });
 });
