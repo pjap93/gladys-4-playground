@@ -21,7 +21,7 @@ async function get(userSelector, from, to) {
     throw new NotFoundError('User not found');
   }
 
-  const locations = db.Location.findAll({
+  const locations = await db.Location.findAll({
     where: {
       user_id: user.id,
       created_at: {
