@@ -164,6 +164,10 @@ const ACTIONS = {
     START: 'service.start',
     STOP: 'service.stop',
   },
+  SCENE: {
+    START: 'scene.start',
+    STOP: 'scene.stop',
+  },
 };
 
 const INTENTS = {

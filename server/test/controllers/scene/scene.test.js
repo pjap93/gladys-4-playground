@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 const { authenticatedRequest } = require('../request.test');
-const { ACTIONS } = require('../../../utils/constants');
+const { ACTIONS, ACTIONS_STATUS } = require('../../../utils/constants');
 
 describe('POST /api/v1/scene', () => {
   it('should create scene', async () => {
@@ -78,6 +78,22 @@ describe('DELETE /api/v1/scene/:scene_selector', () => {
       .then((res) => {
         expect(res.body).to.deep.equal({
           success: true,
+        });
+      });
+  });
+});
+
+describe('POST /api/v1/scene/:scene_selector/start', () => {
+  it('should start a scene', async () => {
+    await authenticatedRequest
+      .post('/api/v1/scene/test-scene/start')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then((res) => {
+        expect(res.body).to.deep.equal({
+          type: ACTIONS.SCENE.START,
+          scene: 'test-scene',
+          status: ACTIONS_STATUS.PENDING,
         });
       });
   });

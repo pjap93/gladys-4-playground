@@ -112,6 +112,7 @@ function setupRoutes(gladys) {
   router.get('/api/v1/scene', sceneController.get);
   router.patch('/api/v1/scene/:scene_selector', sceneController.update);
   router.delete('/api/v1/scene/:scene_selector', sceneController.destroy);
+  router.post('/api/v1/scene/:scene_selector/start', sceneController.start);
 
   // trigger
   router.post('/api/v1/trigger', triggerController.create);

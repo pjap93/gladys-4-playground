@@ -1,5 +1,5 @@
 const asyncMiddleware = require('../middlewares/asyncMiddleware');
-
+const { EVENTS, ACTIONS, ACTIONS_STATUS } = require('../../utils/constants');
 
 module.exports = function SceneController(gladys) {
   /**
@@ -48,10 +48,27 @@ module.exports = function SceneController(gladys) {
     });
   }
 
+  /**
+   * @api {post} /api/v1/scene/:scene_selector/start start
+   * @apiName start
+   * @apiGroup Scene
+   *
+   */
+  async function start(req, res) {
+    const action = {
+      type: ACTIONS.SCENE.START,
+      scene: req.params.scene_selector,
+      status: ACTIONS_STATUS.PENDING,
+    };
+    gladys.event.emit(EVENTS.ACTION.TRIGGERED, action);
+    res.json(action);
+  }
+
   return Object.freeze({
     create: asyncMiddleware(create),
     destroy: asyncMiddleware(destroy),
     get: asyncMiddleware(get),
     update: asyncMiddleware(update),
+    start: asyncMiddleware(start),
   });
 };

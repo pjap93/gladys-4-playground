@@ -18,6 +18,7 @@ const actionsFunc = {
   }),
   [ACTIONS.SERVICE.START]: async (self, action, scope) => self.stateManager.get('service', action.service).start(),
   [ACTIONS.SERVICE.STOP]: async (self, action, scope) => self.stateManager.get('service', action.service).stop(),
+  [ACTIONS.SCENE.START]: async (self, action, scope) => self.execute(action.scene, scope),
 };
 
 module.exports = {
