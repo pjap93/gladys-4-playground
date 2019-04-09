@@ -62,6 +62,8 @@ function setupRoutes(gladys) {
 
   // calendar
   router.post('/api/v1/calendar', calendarController.create);
+  router.get('/api/v1/calendar', calendarController.get);
+  router.get('/api/v1/calendar/event', calendarController.getEvents);
   router.patch('/api/v1/calendar/:calendar_selector', calendarController.update);
   router.delete('/api/v1/calendar/:calendar_selector', calendarController.destroy);
   router.post('/api/v1/calendar/:calendar_selector/event', calendarController.createEvent);

@@ -89,3 +89,38 @@ describe('DELETE /api/v1/calendar/event/:calendar_event_selector', () => {
       });
   });
 });
+
+describe('GET /api/v1/calendar', () => {
+  it('should GET all calendars', async () => {
+    await authenticatedRequest
+      .get('/api/v1/calendar')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then((res) => {
+        res.body.forEach((calendar) => {
+          expect(calendar).to.have.property('name');
+          expect(calendar).to.have.property('description');
+          expect(calendar).to.have.property('user_id', '0cd30aef-9c4e-4a23-88e3-3547971296e5');
+          expect(calendar).to.have.property('sync');
+          expect(calendar).to.have.property('notify');
+        });
+      });
+  });
+});
+
+describe('GET /api/v1/calendar/event', () => {
+  it('should GET all calendar events', async () => {
+    await authenticatedRequest
+      .get('/api/v1/calendar/event')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then((res) => {
+        res.body.forEach((calendar) => {
+          expect(calendar).to.have.property('name');
+          expect(calendar).to.have.property('calendar');
+          expect(calendar).to.have.property('start');
+          expect(calendar).to.have.property('end');
+        });
+      });
+  });
+});

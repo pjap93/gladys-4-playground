@@ -119,10 +119,32 @@ module.exports = function CalendarController(gladys) {
     });
   }
 
+  /**
+   * @api {get} /api/v1/calendar get
+   * @apiName get
+   * @apiGroup Calendar
+   */
+  async function get(req, res) {
+    const calendars = await gladys.calendar.get(req.user.id);
+    res.json(calendars);
+  }
+
+  /**
+   * @api {get} /api/v1/calendar/event get events
+   * @apiName getEvents
+   * @apiGroup Calendar
+   */
+  async function getEvents(req, res) {
+    const calendarEvents = await gladys.calendar.getEvents(req.user.id, req.query);
+    res.json(calendarEvents);
+  }
+
   return Object.freeze({
     create: asyncMiddleware(create),
     destroy: asyncMiddleware(destroy),
     update: asyncMiddleware(update),
+    get: asyncMiddleware(get),
+    getEvents: asyncMiddleware(getEvents),
     createEvent: asyncMiddleware(createEvent),
     updateEvent: asyncMiddleware(updateEvent),
     destroyEvent: asyncMiddleware(destroyEvent),

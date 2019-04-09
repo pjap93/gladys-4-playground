@@ -47,7 +47,7 @@ describe('calendar.destroy', () => {
 describe('calendar.get', () => {
   const calendar = new Calendar();
   it('should get list of calendars', async () => {
-    const calendars = await calendar.get();
+    const calendars = await calendar.get('0cd30aef-9c4e-4a23-88e3-3547971296e5');
     calendars.forEach((oneCalendar) => {
       expect(oneCalendar).to.have.property('id');
       expect(oneCalendar).to.have.property('name');
