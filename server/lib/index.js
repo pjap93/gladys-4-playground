@@ -12,7 +12,7 @@ const User = require('./user');
 const Device = require('./device');
 const Room = require('./room');
 const StateManager = require('./state');
-const SceneManager = require('./scene');
+const Scene = require('./scene');
 const TriggerManager = require('./trigger');
 const Variable = require('./variable');
 const services = require('../services');
@@ -45,8 +45,8 @@ function Gladys(config = {}) {
   const session = new Session(config.jwtSecret, cache);
   const user = new User(session);
   const device = new Device(event, message, stateManager, service);
-  const sceneManager = new SceneManager(stateManager);
-  const triggerManager = new TriggerManager(event, stateManager, sceneManager);
+  const scene = new Scene(stateManager);
+  const triggerManager = new TriggerManager(event, stateManager, scene);
   const variable = new Variable();
   const weather = new Weather(service);
 
@@ -59,6 +59,7 @@ function Gladys(config = {}) {
     message,
     user,
     service,
+    scene,
     session,
     cache,
     config,

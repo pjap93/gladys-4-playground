@@ -31,7 +31,7 @@ module.exports = function RoomController(gladys) {
    *
    */
   async function destroy(req, res) {
-    await gladys.room.destroy(req.params.room_selector, req.body);
+    await gladys.room.destroy(req.params.room_selector);
     res.json({
       success: true,
     });
