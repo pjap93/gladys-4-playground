@@ -20,7 +20,9 @@
     "db-migrate:test": "cross-env NODE_ENV=test node_modules/.bin/sequelize db:migrate",
     "jsdoc": "jsdoc lib/**/*.js -d jsdoc",
     "apidoc": "apidoc -i controllers/ -o apidoc/",
-    "checkjs": "tsc --allowJs --resolveJsonModule --checkJs --noEmit --lib ES5,ES2018 lib/**/*.js api/**/*.js services/**/*.js"
+    "checkjs": "tsc --allowJs --resolveJsonModule --checkJs --noEmit --lib ES5,ES2018 lib/**/*.js api/**/*.js services/**/*.js",
+    "generate-apidoc": "apidoc -i api/ -o apidoc",
+    "generate-jsdoc": "jsdoc lib/**/*.js services/**/*.js -d jsdoc"
   },
   "author": "Pierre-Gilles Leymarie",
   "license": "MIT",
