@@ -34,6 +34,6 @@ describe('SceneManager', () => {
         type: 'THIS_DOES_NOT_EXIST',
       }],
     });
-    assert.isRejected(promise);
+    return assert.isRejected(promise);
   });
 });
