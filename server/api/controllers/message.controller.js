@@ -3,7 +3,7 @@ const asyncMiddleware = require('../middlewares/asyncMiddleware');
 
 module.exports = function MessageController(gladys) {
   /**
-   * @api {post} /api/message Send message to Gladys
+   * @api {post} /api/v1/message Send message to Gladys
    * @apiName SendMessage
    * @apiGroup Message
    *

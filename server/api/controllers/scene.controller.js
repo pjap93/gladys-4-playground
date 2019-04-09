@@ -1,12 +1,24 @@
 const asyncMiddleware = require('../middlewares/asyncMiddleware');
 const { EVENTS, ACTIONS, ACTIONS_STATUS } = require('../../utils/constants');
 
+/**
+ * @apiDefine SceneParam
+ * @apiParamExample {json} Request-Example:
+ *  {
+ *    "name": "New Scene",
+ *    "actions": [{
+ *      "type": "house.arm",
+ *      "house": "main-house",
+ *     }],
+ *  }
+ */
+
 module.exports = function SceneController(gladys) {
   /**
    * @api {post} /api/v1/scene create
    * @apiName create
    * @apiGroup Scene
-   *
+   * @apiUse SceneParam
    */
   async function create(req, res) {
     const newScene = await gladys.scene.create(req.body);
@@ -17,7 +29,7 @@ module.exports = function SceneController(gladys) {
    * @api {patch} /api/v1/scene/:scene_selector update
    * @apiName update
    * @apiGroup Scene
-   *
+   * @apiUse SceneParam
    */
   async function update(req, res) {
     const newScene = await gladys.scene.update(req.params.scene_selector, req.body);

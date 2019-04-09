@@ -3,7 +3,7 @@ const { EVENTS, ACTIONS, ACTIONS_STATUS } = require('../../utils/constants');
 
 module.exports = function LightController(gladys) {
   /**
-   * @api {post} /api/light/:device_selector/on Turn On the light
+   * @api {post} /api/v1/light/:device_selector/on Turn On
    * @apiName TurnOn
    * @apiGroup Light
    */

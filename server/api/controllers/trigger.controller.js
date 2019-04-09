@@ -1,12 +1,27 @@
 const asyncMiddleware = require('../middlewares/asyncMiddleware');
 
+/**
+ * @apiDefine TriggerParam
+ * @apiParamExample {json} Request-Example:
+ * {
+ *   "name": "New trigger",
+ *   "type": "light.turned-on",
+ *   "rule": {
+ *     "conditions": [{
+ *        "type": "house.is-armed",
+ *        "house": "my-house",
+ *      }]
+ *    }
+ *  }
+ */
+
 
 module.exports = function TriggerController(gladys) {
   /**
    * @api {post} /api/v1/trigger create
    * @apiName create
    * @apiGroup Trigger
-   *
+   * @apiUse TriggerParam
    */
   async function create(req, res) {
     const newTrigger = await gladys.trigger.create(req.body);
@@ -17,7 +32,7 @@ module.exports = function TriggerController(gladys) {
    * @api {patch} /api/v1/trigger/:trigger_selector update
    * @apiName update
    * @apiGroup Trigger
-   *
+   * @apiUse TriggerParam
    */
   async function update(req, res) {
     const newTrigger = await gladys.trigger.update(req.params.trigger_selector, req.body);

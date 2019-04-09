@@ -1,12 +1,30 @@
 const asyncMiddleware = require('../middlewares/asyncMiddleware');
 
+/**
+ * @apiDefine HouseParam
+ * @apiParam {String} name Name of the house.
+ * @apiParam {String} [selector] Selector of the house.
+ * @apiParam {Number} [latitude] Latitude of the house.
+ * @apiParam {Number} [longitude] Longitude of the house.
+ */
+
+/**
+ * @apiDefine HouseSuccess
+ * @apiSuccess {String} name Name of the house.
+ * @apiSuccess {String} [selector] Selector of the house.
+ * @apiSuccess {Number} [latitude] Latitude of the house.
+ * @apiSuccess {Number} [longitude] Longitude of the house.
+ */
+
 
 module.exports = function HouseController(gladys) {
   /**
-   * @api {post} /api/house createHouse
-   * @apiName createHouse
+   * @api {post} /api/v1/house create
+   * @apiName create
    * @apiGroup House
    *
+   * @apiUse HouseParam
+   * @apiUse HouseSuccess
    */
   async function create(req, res) {
     const house = await gladys.house.create(req.body);
@@ -14,10 +32,9 @@ module.exports = function HouseController(gladys) {
   }
 
   /**
-   * @api {get} /api/house getHouses
-   * @apiName getHouses
+   * @api {get} /api/v1/house get
+   * @apiName get
    * @apiGroup House
-   *
    */
   async function get(req, res) {
     const houses = await gladys.house.get();
@@ -25,10 +42,11 @@ module.exports = function HouseController(gladys) {
   }
 
   /**
-   * @api {patch} /api/house/:house_selector updateHouse
-   * @apiName updateHouse
+   * @api {patch} /api/v1/house/:house_selector update
+   * @apiName update
    * @apiGroup House
-   *
+   * @apiUse HouseParam
+   * @apiUse HouseSuccess
    */
   async function update(req, res) {
     const house = await gladys.house.update(req.params.house_selector, req.body);
@@ -36,8 +54,8 @@ module.exports = function HouseController(gladys) {
   }
 
   /**
-   * @api {delete} /api/house/:house_selector deleteHouse
-   * @apiName deleteHouse
+   * @api {delete} /api/v1/house/:house_selector delete
+   * @apiName delete
    * @apiGroup House
    *
    */
@@ -49,7 +67,7 @@ module.exports = function HouseController(gladys) {
   }
 
   /**
-   * @api {post} /api/house/:house_selector/user/:user_selector/seen userSeen
+   * @api {post} /api/v1/house/:house_selector/user/:user_selector/seen userSeen
    * @apiName userSeen
    * @apiGroup House
    *
@@ -60,7 +78,7 @@ module.exports = function HouseController(gladys) {
   }
 
   /**
-   * @api {get} /api/house/:house_selector/room getRooms
+   * @api {get} /api/v1/house/:house_selector/room getRooms
    * @apiName getRooms
    * @apiGroup House
    *

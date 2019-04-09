@@ -2,9 +2,13 @@ const asyncMiddleware = require('../middlewares/asyncMiddleware');
 
 module.exports = function LocationController(gladys) {
   /**
-   * @api {post} /api/v1/user/:user_selector/location createLocation
-   * @apiName createLocation
+   * @api {post} /api/v1/user/:user_selector/location create
+   * @apiName create
    * @apiGroup Location
+   * @apiParam {Number} latitude Latitude of the user
+   * @apiParam {Number} longitude Longitude of the user
+   * @apiParam {Number} altitude Altitude of the user
+   * @apiParam {Number} accuracy Accuracy of the geolocation
    */
   async function create(req, res) {
     const newLocation = await gladys.location.create(req.params.user_selector, req.body);

@@ -5,7 +5,7 @@ const LOGIN_SESSION_VALIDITY_IN_SECONDS = 30 * 24 * 60 * 60;
 
 module.exports = function UserController(gladys) {
   /**
-   * @api {post} /api/user Create user
+   * @api {post} /api/v1/user Create
    * @apiName CreateUser
    * @apiGroup User
    *
@@ -25,7 +25,7 @@ module.exports = function UserController(gladys) {
   }
 
   /**
-   * @api {post} /api/login Login user
+   * @api {post} /api/v1/login Login
    * @apiName LoginUser
    * @apiGroup User
    *
@@ -62,7 +62,7 @@ module.exports = function UserController(gladys) {
   }
 
   /**
-   * @api {get} /api/me getMySelf
+   * @api {get} /api/v1/me getMySelf
    * @apiName getMySelf
    * @apiGroup User
    *
@@ -73,7 +73,7 @@ module.exports = function UserController(gladys) {
   }
 
   /**
-   * @api {get} /api/me/picture getMyPicture
+   * @api {get} /api/v1/me/picture getMyPicture
    * @apiName getMyPicture
    * @apiGroup User
    *
@@ -84,7 +84,7 @@ module.exports = function UserController(gladys) {
   }
 
   /**
-   * @api {patch} /api/me updateMySelf
+   * @api {patch} /api/v1/me updateMySelf
    * @apiName updateMySelf
    * @apiGroup User
    *
@@ -95,7 +95,7 @@ module.exports = function UserController(gladys) {
   }
 
   /**
-   * @api {post} /api/access_token getAccessToken
+   * @api {post} /api/v1/access_token getAccessToken
    * @apiName getAccessToken
    * @apiGroup User
    *
@@ -107,7 +107,7 @@ module.exports = function UserController(gladys) {
   }
 
   /**
-   * @api {post} /api/forgot_password forgotPassword
+   * @api {post} /api/v1/forgot_password forgotPassword
    * @apiName forgotPassword
    * @apiGroup User
    *
@@ -121,7 +121,7 @@ module.exports = function UserController(gladys) {
   }
 
   /**
-   * @api {post} /api/reset_password resetPassword
+   * @api {post} /api/v1/reset_password resetPassword
    * @apiName resetPassword
    * @apiGroup User
    *
