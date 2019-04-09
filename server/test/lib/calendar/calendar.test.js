@@ -43,3 +43,18 @@ describe('calendar.destroy', () => {
     return assert.isRejected(promise, 'Calendar not found');
   });
 });
+
+describe('calendar.get', () => {
+  const calendar = new Calendar();
+  it('should get list of calendars', async () => {
+    const calendars = await calendar.get();
+    calendars.forEach((oneCalendar) => {
+      expect(oneCalendar).to.have.property('id');
+      expect(oneCalendar).to.have.property('name');
+      expect(oneCalendar).to.have.property('selector');
+      expect(oneCalendar).to.have.property('external_id');
+      expect(oneCalendar).to.have.property('sync');
+      expect(oneCalendar).to.have.property('notify');
+    });
+  });
+});
