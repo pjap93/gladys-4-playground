@@ -46,7 +46,7 @@ function Gladys(config = {}) {
   const user = new User(session);
   const device = new Device(event, message, stateManager, service);
   const scene = new Scene(stateManager);
-  const triggerManager = new TriggerManager(event, stateManager, scene);
+  const trigger = new TriggerManager(event, stateManager, scene);
   const variable = new Variable();
   const weather = new Weather(service);
 
@@ -66,7 +66,7 @@ function Gladys(config = {}) {
     device,
     room,
     stateManager,
-    triggerManager,
+    trigger,
     variable,
     weather,
     start: async () => {
@@ -78,7 +78,7 @@ function Gladys(config = {}) {
         await service.startAll();
       }
       if (!config.disableTriggerLoading) {
-        await triggerManager.init();
+        await trigger.init();
       }
       if (!config.disableDeviceLoading) {
         await device.init();

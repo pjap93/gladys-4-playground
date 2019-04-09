@@ -9,6 +9,7 @@ const RoomController = require('./controllers/room.controller');
 const SessionController = require('./controllers/session.controller');
 const ServiceController = require('./controllers/service.controller');
 const SceneController = require('./controllers/scene.controller');
+const TriggerController = require('./controllers/trigger.controller');
 const VariableController = require('./controllers/variable.controller');
 const WeatherController = require('./controllers/weather.controller');
 const AuthMiddleware = require('./middlewares/authMiddleware');
@@ -36,6 +37,7 @@ function setupRoutes(gladys) {
   const sessionController = SessionController(gladys);
   const serviceController = ServiceController(gladys);
   const sceneController = SceneController(gladys);
+  const triggerController = TriggerController(gladys);
   const weatherController = WeatherController(gladys);
   const authMiddleware = AuthMiddleware(gladys.config.jwtSecret, 'dashboard:write', gladys.cache, gladys.user);
   const resetPasswordAuthMiddleware = AuthMiddleware(gladys.config.jwtSecret, 'reset-password:write', gladys.cache, gladys.user);
@@ -110,6 +112,12 @@ function setupRoutes(gladys) {
   router.get('/api/v1/scene', sceneController.get);
   router.patch('/api/v1/scene/:scene_selector', sceneController.update);
   router.delete('/api/v1/scene/:scene_selector', sceneController.destroy);
+
+  // trigger
+  router.post('/api/v1/trigger', triggerController.create);
+  router.get('/api/v1/trigger', triggerController.get);
+  router.patch('/api/v1/trigger/:trigger_selector', triggerController.update);
+  router.delete('/api/v1/trigger/:trigger_selector', triggerController.destroy);
 
   // weather
   router.get('/api/v1/user/:user_selector/weather', weatherController.getByUser);
