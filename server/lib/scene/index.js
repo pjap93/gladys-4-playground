@@ -1,6 +1,7 @@
 const queue = require('queue');
 const { addScene } = require('./scene.addScene');
 const { create } = require('./scene.create');
+const { destroy } = require('./scene.destroy');
 const { execute } = require('./scene.execute');
 const { get } = require('./scene.get');
 const { executeSingleAction } = require('./scene.executeSingleAction');
@@ -18,6 +19,7 @@ const SceneManager = function SceneManager(stateManager) {
 
 SceneManager.prototype.addScene = addScene;
 SceneManager.prototype.create = create;
+SceneManager.prototype.destroy = destroy;
 SceneManager.prototype.get = get;
 SceneManager.prototype.execute = execute;
 SceneManager.prototype.executeSingleAction = executeSingleAction;
