@@ -69,6 +69,18 @@ describe('PATCH /api/v1/scene/:scene_selector', () => {
   });
 });
 
+describe('GET /api/v1/scene/:scene_selector', () => {
+  it('should get scene by selector', async () => {
+    await authenticatedRequest
+      .get('/api/v1/scene/test-scene')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then((res) => {
+        expect(res.body).to.have.property('selector', 'test-scene');
+      });
+  });
+});
+
 describe('DELETE /api/v1/scene/:scene_selector', () => {
   it('should delete scene', async () => {
     await authenticatedRequest

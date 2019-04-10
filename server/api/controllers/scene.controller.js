@@ -48,6 +48,17 @@ module.exports = function SceneController(gladys) {
   }
 
   /**
+   * @api {get} /api/v1/scene/:scene_selector get by selector
+   * @apiName getBySelector
+   * @apiGroup Scene
+   *
+   */
+  async function getBySelector(req, res) {
+    const scene = await gladys.scene.getBySelector(req.params.scene_selector);
+    res.json(scene);
+  }
+
+  /**
    * @api {delete} /api/v1/scene/:scene_selector delete
    * @apiName delete
    * @apiGroup Scene
@@ -80,6 +91,7 @@ module.exports = function SceneController(gladys) {
     create: asyncMiddleware(create),
     destroy: asyncMiddleware(destroy),
     get: asyncMiddleware(get),
+    getBySelector: asyncMiddleware(getBySelector),
     update: asyncMiddleware(update),
     start: asyncMiddleware(start),
   });

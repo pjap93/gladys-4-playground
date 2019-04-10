@@ -4,6 +4,7 @@ const { create } = require('./scene.create');
 const { destroy } = require('./scene.destroy');
 const { execute } = require('./scene.execute');
 const { get } = require('./scene.get');
+const { getBySelector } = require('./scene.getBySelector');
 const { executeSingleAction } = require('./scene.executeSingleAction');
 const { update } = require('./scene.update');
 
@@ -21,6 +22,7 @@ SceneManager.prototype.addScene = addScene;
 SceneManager.prototype.create = create;
 SceneManager.prototype.destroy = destroy;
 SceneManager.prototype.get = get;
+SceneManager.prototype.getBySelector = getBySelector;
 SceneManager.prototype.execute = execute;
 SceneManager.prototype.executeSingleAction = executeSingleAction;
 SceneManager.prototype.update = update;
