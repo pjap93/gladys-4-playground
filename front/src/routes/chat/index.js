@@ -1,7 +1,7 @@
 import { Component } from 'preact';
 import { connect } from 'unistore/preact';
 import ChatPage from './ChatPage';
-import actions from '../../actions/integration';
+import actions from '../../actions/message';
 
 @connect(
   '',
@@ -10,7 +10,7 @@ import actions from '../../actions/integration';
 class Chat extends Component {
 
   componentWillMount() {
-    
+    this.props.getMessages();
   }
 
   render({}, { }) {

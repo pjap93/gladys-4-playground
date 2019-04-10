@@ -1,9 +1,9 @@
 import { connect } from 'unistore/preact';
-import actions from '../../actions/integration';
+import actions from '../../actions/message';
 import ChatItems from './ChatItems';
 
-const IntegrationPage = connect('integrations,currentUrl,integrationsFiltered,totalSize', actions)(
-  ({ integrations, integrationsFiltered, totalSize, currentUrl, search }) => (
+const IntegrationPage = connect('messages,currentMessageTextInput', actions)(
+  ({ messages, currentMessageTextInput, updateMessageTextInput, onKeyPress, sendMessage }) => (
  
     <div class="page">
       <div class="page-main">
@@ -13,12 +13,12 @@ const IntegrationPage = connect('integrations,currentUrl,integrationsFiltered,to
             <div class="row">
               <div class="col-lg-8">
                 <div class="card">
-                  <ChatItems />
+                  <ChatItems messages={messages} />
                   <div class="card-footer">
                     <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Message" />
+                      <input type="text" class="form-control" placeholder="Message" value={currentMessageTextInput} onChange={updateMessageTextInput} onKeyPress={onKeyPress} />
                       <div class="input-group-append">
-                        <button type="button" class="btn btn-secondary">
+                        <button type="button" class="btn btn-secondary" onClick={sendMessage}>
                           <i class="fe fe-send" />
                         </button>
                       </div>
