@@ -9,7 +9,7 @@ const { NotFoundError } = require('../../utils/coreErrors');
    * @param {Object} context - The context of the conversation.
    * @returns {string} - Return a text.
    * @example
-   * brain.getReply('en', 'light.turnon.success');
+   * brain.getReply('en', 'light.turn-on.success');
    */
 function getReply(language, intent, context = new ConversationContext()) {
   const text = this.nlpManager.getAnswer(language, intent, context);

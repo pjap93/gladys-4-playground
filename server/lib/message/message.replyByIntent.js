@@ -8,7 +8,7 @@
  * @param {string} intent - The intent to send.
  * @param {Object} context - The context of the reply.
  * @example
- * message.replyByIntent('en','light.turnon.success',{ deviceFeature: {name: 'test'} },'telegram', 'XXXX');
+ * message.replyByIntent('en','light.turn-on.success',{ deviceFeature: {name: 'test'} },'telegram', 'XXXX');
  */
 async function replyByIntent(originalMessage, intent, context) {
   const text = this.brain.getReply(originalMessage.language, intent, context);

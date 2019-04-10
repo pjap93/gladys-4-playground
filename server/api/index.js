@@ -1,7 +1,10 @@
 const express = require('express');
+const http = require('http');
+const WebSocket = require('ws');
 const path = require('path');
 const errorMiddleware = require('./middlewares/errorMiddleware');
 const notFoundMiddleware = require('./middlewares/notFoundMiddleware');
+const WebsocketManager = require('./websockets');
 const logger = require('../utils/logger');
 const { setupRoutes } = require('./routes');
 
@@ -42,7 +45,17 @@ function start(gladys, port, options) {
   // loading error middleware
   app.use(errorMiddleware);
 
-  app.listen(port, () => {
+  // initialize a simple http server
+  const server = http.createServer(app);
+
+  // initialize the WebSocket server instance
+  const wss = new WebSocket.Server({ server });
+
+  // load the websocket server
+  const websocketManager = new WebsocketManager(wss, gladys);
+  websocketManager.init();
+
+  server.listen(port, () => {
     logger.info(`Server listening on port ${port}`);
   });
 

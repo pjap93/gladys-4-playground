@@ -29,6 +29,7 @@ async function create(userId, scope, validityInSeconds) {
   return {
     refresh_token: refreshToken,
     access_token: accessToken,
+    session_id: session.id,
   };
 }
 

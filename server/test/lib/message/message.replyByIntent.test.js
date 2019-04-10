@@ -31,7 +31,7 @@ describe('message.replyByIntent', () => {
       source_user_id: 'XXXX',
       user_id: '0cd30aef-9c4e-4a23-88e3-3547971296e5',
     };
-    await messageHandler.replyByIntent(message, 'light.turnon.success', {});
+    await messageHandler.replyByIntent(message, 'light.turn-on.success', {});
     assert.calledWith(send, 'XXXX', 'this is the reply!');
   });
 });

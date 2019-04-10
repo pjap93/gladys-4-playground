@@ -1,4 +1,5 @@
 const logger = require('../../utils/logger');
+const { EVENTS, WEBSOCKET_MESSAGE_TYPES } = require('../../utils/constants');
 const db = require('../../models');
 
 /**
@@ -16,7 +17,13 @@ async function reply(originalMessage, text) {
       sender_id: null, // message sent by gladys
       receiver_id: originalMessage.user_id,
     };
-    await db.Message.create(messageToInsert);
+    const messageCreated = await db.Message.create(messageToInsert);
+    // send the message through websocket
+    this.event.emit(EVENTS.WEBSOCKET.SEND, {
+      type: WEBSOCKET_MESSAGE_TYPES.MESSAGE.NEW,
+      userId: originalMessage.user_id,
+      payload: messageCreated,
+    });
     // then, we get the service sending the original message
     const service = this.service.getService(originalMessage.source);
     // if the service exist, we send the message

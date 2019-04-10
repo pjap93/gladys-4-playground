@@ -1,5 +1,5 @@
 const asyncMiddleware = require('../middlewares/asyncMiddleware');
-
+const { EVENTS } = require('../../utils/constants');
 
 module.exports = function MessageController(gladys) {
   /**
@@ -16,9 +16,10 @@ module.exports = function MessageController(gladys) {
       source_user_id: req.user.id,
       user_id: req.user.id,
       language: req.user.language,
+      created_at: new Date(),
     };
-    const { message } = await gladys.message.create(messageToSend);
-    res.status(201).json(message);
+    gladys.event.emit(EVENTS.MESSAGE.NEW, messageToSend);
+    res.status(201).json(messageToSend);
   }
 
   /**

@@ -6,8 +6,18 @@
       "I want some light in the %room%"
     ],
     "answers": [
-      "Turning on the light in the {{ room }}",
-      "I'm turning on the light in the {{ room }}"
+      "Turning on the light in the {{ room }}...",
+      "I'm turning on the light in the {{ room }}!"
+    ],
+    "slots": [
+      {
+        "key": "room",
+        "mandatory": true,
+        "ifMissing": "In which room should I turn on the light?",
+        "afterLastCondition": {
+          "after": "in the"
+        }
+      }
     ]
   }
 ]

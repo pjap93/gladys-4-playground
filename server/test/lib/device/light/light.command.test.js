@@ -57,14 +57,14 @@ describe('Light', () => {
     const stateManager = new StateManager(event);
     const deviceManager = new Device(event, messageManager, stateManager, service);
     await deviceManager.lightManager.command(message, { intent: 'light.turnon' }, context);
-    assert.calledWith(messageManager.replyByIntent, message, 'light.turnon.success', context);
+    assert.calledWith(messageManager.replyByIntent, message, 'light.turn-on.success', context);
     assert.calledWith(testService.light.turnOn, device, deviceFeature);
   });
   it('should fail to send a turn on command', async () => {
     const stateManager = new StateManager(event);
     const deviceManager = new Device(event, messageManager, stateManager, serviceBroken);
     await deviceManager.lightManager.command(message, { intent: 'light.turnon' }, context);
-    assert.calledWith(messageManager.replyByIntent, message, 'light.turnon.fail', context);
+    assert.calledWith(messageManager.replyByIntent, message, 'light.turn-on.fail', context);
     assert.calledWith(testServiceBroken.light.turnOn, device, deviceFeature);
   });
   it('should fail to send a turn on command', async () => {

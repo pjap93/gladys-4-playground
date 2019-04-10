@@ -80,6 +80,12 @@ const EVENTS = {
     DISABLED: 'scheduled-scene.disabled',
     TRIGGERED: 'scheduled-scene.triggered',
   },
+  MESSAGE: {
+    NEW: 'message.new',
+  },
+  WEBSOCKET: {
+    SEND: 'websocket.send',
+  },
 };
 
 const LIFE_EVENTS = {
@@ -199,6 +205,15 @@ const DEVICE_POLL_FREQUENCIES = {
   EVERY_MINUTES: 60 * 1000,
 };
 
+const WEBSOCKET_MESSAGE_TYPES = {
+  MESSAGE: {
+    NEW: 'message.new',
+  },
+  AUTHENTICATION: {
+    REQUEST: 'authenticate.request',
+  },
+};
+
 const createList = (obj) => {
   const list = [];
   Object.keys(obj).forEach((key) => {
@@ -250,3 +265,5 @@ module.exports.SESSION_TOKEN_TYPE_LIST = SESSION_TOKEN_TYPE_LIST;
 
 module.exports.DEVICE_POLL_FREQUENCIES = DEVICE_POLL_FREQUENCIES;
 module.exports.DEVICE_POLL_FREQUENCIES_LIST = createList(DEVICE_POLL_FREQUENCIES);
+
+module.exports.WEBSOCKET_MESSAGE_TYPES = WEBSOCKET_MESSAGE_TYPES;

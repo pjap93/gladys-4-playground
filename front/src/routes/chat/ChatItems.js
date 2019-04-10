@@ -34,7 +34,8 @@ const Messages = ({ children, ...props }) => (
             return (<OutGoingMessage message={message} />);
           })
           }
-          
+
+          { props.gladysIsTyping && <p>Typing...</p> }
         </div>
       </div>
     </div>

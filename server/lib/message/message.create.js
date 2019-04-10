@@ -16,8 +16,13 @@ const db = require('../../models');
 async function create(message) {
   // first, we classify the message to understand the intent
   const { classification, context } = await this.brain.classify(message.text, message.language);
-
+  console.log(classification);
   logger.debug(`Classified "${message.text}" with intent = "${classification.intent}".`);
+
+  // if Gladys doesn't understand
+  if (classification.intent === 'None') {
+    this.replyByIntent(message, 'question.no-intent-found', context);
+  }
 
   // new classification found, emitting event
   this.event.emit(`intent.${classification.intent}`, message, classification, context);

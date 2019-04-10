@@ -1,9 +1,8 @@
-const jwt = require('jsonwebtoken');
 const asyncMiddleware = require('./asyncMiddleware');
 const { Error401 } = require('../../utils/httpErrors');
 const logger = require('../../utils/logger');
 
-module.exports = function AuthMiddleware(jwtSecret, scope, cache, user) {
+module.exports = function AuthMiddleware(scope, gladys) {
   return asyncMiddleware(async (req, res, next) => {
     try {
       const authHeader = req.headers.authorization;
@@ -12,25 +11,10 @@ module.exports = function AuthMiddleware(jwtSecret, scope, cache, user) {
         throw new Error401('Missing Bearer header');
       }
       const token = authHeader.substring(7, authHeader.length);
-      /**
-       * @type {Object} decoded
-       */
-      const decoded = jwt.verify(token, jwtSecret, {
-        issuer: 'gladys',
-        audience: 'user',
-      });
-
-      // we verify that the scope required to access this route is here
-      if (decoded.scope.includes(scope) === false) {
-        throw new Error401(`AuthMiddleware: Scope "${scope}" is not in list of authorized scope ${decoded.scope}`);
-      }
-
-      // we verify that the session is not revoked
-      if (cache.get(`revoked_session:${decoded.session_id}`) === true) {
-        throw new Error401('AuthMiddleware: Session was revoked');
-      }
-
-      req.user = await user.getById(decoded.user_id);
+      // we validate the token
+      const userId = gladys.session.validateAccessToken(token, scope);
+      // we get the user in DB
+      req.user = await gladys.user.getById(userId);
 
       next();
     } catch (e) {

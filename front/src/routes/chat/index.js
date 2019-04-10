@@ -4,13 +4,14 @@ import ChatPage from './ChatPage';
 import actions from '../../actions/message';
 
 @connect(
-  '',
+  'session',
   actions
 )
 class Chat extends Component {
 
   componentWillMount() {
     this.props.getMessages();
+    this.props.session.event.addEventListener('message.new', (event) => this.props.pushMessage(event.detail));
   }
 
   render({}, { }) {

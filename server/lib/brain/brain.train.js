@@ -1,5 +1,5 @@
 const { getConfiguration } = require('../../config/brain/index');
-
+const logger = require('../../utils/logger');
 /**
  * @description Train the brain
  * @example
@@ -45,7 +45,9 @@ async function train() {
     });
   });
 
+  logger.debug(`Training brain...`);
   await this.nlpManager.train();
+  logger.debug(`Brain trained!`);
 }
 
 module.exports = {

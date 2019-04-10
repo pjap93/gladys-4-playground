@@ -24,6 +24,7 @@ describe('POST /api/v1/login', () => {
           updated_at: '2019-02-12T07:49:07.556Z',
           refresh_token: res.body.refresh_token,
           access_token: res.body.access_token,
+          session_id: res.body.session_id,
         });
       });
   });

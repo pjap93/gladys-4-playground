@@ -39,8 +39,8 @@ function setupRoutes(gladys) {
   const sceneController = SceneController(gladys);
   const triggerController = TriggerController(gladys);
   const weatherController = WeatherController(gladys);
-  const authMiddleware = AuthMiddleware(gladys.config.jwtSecret, 'dashboard:write', gladys.cache, gladys.user);
-  const resetPasswordAuthMiddleware = AuthMiddleware(gladys.config.jwtSecret, 'reset-password:write', gladys.cache, gladys.user);
+  const authMiddleware = AuthMiddleware('dashboard:write', gladys);
+  const resetPasswordAuthMiddleware = AuthMiddleware('reset-password:write', gladys);
 
   // enable cross origin requests
   router.use(CorsMiddleware);

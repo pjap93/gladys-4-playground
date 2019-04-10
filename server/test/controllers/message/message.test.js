@@ -17,6 +17,7 @@ describe('POST /api/v1/message', () => {
           source_user_id: '0cd30aef-9c4e-4a23-88e3-3547971296e5',
           user_id: '0cd30aef-9c4e-4a23-88e3-3547971296e5',
           language: 'en',
+          created_at: res.body.created_at,
         });
       });
   });
