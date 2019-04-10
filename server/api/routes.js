@@ -85,6 +85,7 @@ function setupRoutes(gladys) {
 
   // message
   router.post('/api/v1/message', messageController.create);
+  router.get('/api/v1/message', messageController.get);
 
   // service
   router.post('/api/v1/service/:service_name/start', serviceController.start);

@@ -21,7 +21,19 @@ module.exports = function MessageController(gladys) {
     res.status(201).json(message);
   }
 
+  /**
+   * @api {get} /api/v1/message get
+   * @apiName get
+   * @apiGroup Message
+   *
+   */
+  async function get(req, res) {
+    const messages = await gladys.message.get(req.user.id);
+    res.json(messages);
+  }
+
   return Object.freeze({
     create: asyncMiddleware(create),
+    get: asyncMiddleware(get),
   });
 };
