@@ -20,7 +20,10 @@ const db = require('../../models');
  *
  */
 async function create(user) {
-  return db.User.create(user);
+  const createdUser = await db.User.create(user);
+  const plainUser = createdUser.get({ plain: true });
+  this.stateManager.setState('user', plainUser.selector, plainUser);
+  return plainUser;
 }
 
 module.exports = {

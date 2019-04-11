@@ -1,9 +1,14 @@
 const { assert } = require('chai');
-
+const EventEmitter = require('events');
 const User = require('../../../lib/user');
+const StateManager = require('../../../lib/state');
+
+const event = new EventEmitter();
+
+const stateManager = new StateManager(event);
 
 describe('user.create', () => {
-  const user = new User();
+  const user = new User({}, stateManager);
   it('should create user', async () => {
     await user.create({
       firstname: 'Tony',

@@ -1,28 +1,10 @@
 import { connect } from 'unistore/preact';
-import actions from '../../../actions/integration';
+import actions from '../../../actions/scene';
 import ActionColumn from './ActionColumn';
 import { Link } from 'preact-router/match';
 
-const actionsColumns = [
-  [{
-    type: 'Lock the door',
-    icon: 'fe fe-lock'
-  },{
-    type: 'Lock the windows',
-    icon: 'fe fe-lock'
-  }],
-  [{
-    type: 'Wait',
-    icon: 'fe fe-clock'
-  }],
-  [{
-    type: 'Arm Home',
-    icon: 'fe fe-home'
-  }]
-];
-
-const ScenePage = connect('user,scene', actions)(
-  ({ user, scene, search }) => (
+const ScenePage = connect('user,scene,highLightedActions', actions)(
+  ({ user, highLightedActions, scene, startScene, saveScene, addAction, deleteAction, updateActionProperty, updateSelectedNewAction }) => (
  
     <div class="page">
       <div class="page-main">
@@ -33,10 +15,11 @@ const ScenePage = connect('user,scene', actions)(
                 <Link href="/dashboard/scene" class="btn btn-secondary btn-sm btn-block" >◀️️ Back</Link>
               </h1>
               <h1 class="page-title">
-                Leaving home
+                {scene && scene.name}
               </h1>
               <div class="page-options d-flex">
-                <button class="btn btn-sm btn-primary ml-2">Run <i class="fe fe-play" /></button>
+                <button onClick={startScene} class="btn btn-sm btn-primary ml-2">Run <i class="fe fe-play" /></button>
+                <button onClick={saveScene} class="btn btn-sm btn-success ml-2">Save <i class="fe fe-save" /></button>
                 <button class="btn btn-sm btn-danger ml-2">Delete <i class="fe fe-trash" /></button>
               </div>
             </div>
@@ -45,8 +28,16 @@ const ScenePage = connect('user,scene', actions)(
                 <div class="card">
                   <div class="card-body">
                     <div class="row flex-nowrap" style="overflow-x: auto;">
-                      {actionsColumns.map((actionColumn, index) => (
-                        <ActionColumn actions={actionColumn} index={index} />
+                      {scene && scene.actions.map((parallelActions, index) => (
+                        <ActionColumn
+                          addAction={addAction}
+                          actions={parallelActions}
+                          deleteAction={deleteAction}
+                          updateSelectedNewAction={updateSelectedNewAction}
+                          updateActionProperty={updateActionProperty}
+                          highLightedActions={highLightedActions}
+                          index={index}
+                        />
                       ))}
                     </div>
                   </div>

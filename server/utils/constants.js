@@ -85,6 +85,7 @@ const EVENTS = {
   },
   WEBSOCKET: {
     SEND: 'websocket.send',
+    SEND_ALL: 'websocket.send-all',
   },
 };
 
@@ -174,6 +175,9 @@ const ACTIONS = {
     START: 'scene.start',
     STOP: 'scene.stop',
   },
+  TELEGRAM: {
+    SEND: 'telegram.send',
+  },
 };
 
 const INTENTS = {
@@ -211,6 +215,10 @@ const WEBSOCKET_MESSAGE_TYPES = {
   },
   AUTHENTICATION: {
     REQUEST: 'authenticate.request',
+  },
+  SCENE: {
+    EXECUTING_ACTION: 'scene.executing-action',
+    FINISHED_EXECUTING_ACTION: 'scene.finished-executing-action',
   },
 };
 

@@ -25,7 +25,9 @@ const Weather = require('./weather');
  * @param {boolean} [config.disableService] - If true, disable the loading of services.
  * @param {boolean} [config.disableBrainLoading] - If true, disable the loading of the brain.
  * @param {boolean} [config.disableTriggerLoading] - If true, disable the loading of the triggers.
- * @param {boolean} [config.disableDeviceLoading] - If true, disabvle the loading of devices in RAM.
+ * @param {boolean} [config.disableSceneLoading] - If true, disable the loading of the scenes.
+ * @param {boolean} [config.disableDeviceLoading] - If true, disable the loading of devices in RAM.
+ * @param {boolean} [config.disableUserLoading] - If true, disable the loading of users in RAM.
  * @example
  * const gladys = Gladys();
  */
@@ -43,9 +45,9 @@ function Gladys(config = {}) {
   const location = new Location();
   const message = new MessageHandler(event, brain, service);
   const session = new Session(config.jwtSecret, cache);
-  const user = new User(session);
+  const user = new User(session, stateManager);
   const device = new Device(event, message, stateManager, service);
-  const scene = new Scene(stateManager);
+  const scene = new Scene(stateManager, event);
   const trigger = new TriggerManager(event, stateManager, scene);
   const variable = new Variable();
   const weather = new Weather(service);
@@ -80,8 +82,14 @@ function Gladys(config = {}) {
       if (!config.disableTriggerLoading) {
         await trigger.init();
       }
+      if (!config.disableSceneLoading) {
+        await scene.init();
+      }
       if (!config.disableDeviceLoading) {
         await device.init();
+      }
+      if (!config.disableUserLoading) {
+        await user.init();
       }
     },
   };

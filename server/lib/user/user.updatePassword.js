@@ -20,6 +20,8 @@ async function updatePassword(userId, newPassword) {
 
   await user.update({ password: newPassword });
 
+  this.stateManager.setState('user', user.selector, user.get({ plain: true }));
+
   return {
     id: userId,
   };

@@ -1,23 +1,5 @@
 import { RequestStatus } from '../utils/consts';
-
-const actionsColumns = [
-  { actions: [{
-    type: 'Lock the door',
-    icon: 'fe fe-lock'
-  },{
-    type: 'Lock the windows',
-    icon: 'fe fe-lock'
-  }]
-  },
-  { actions: [{
-    type: 'Wait',
-    icon: 'fe fe-clock'
-  }] },
-  { actions: [{
-    type: 'Arm Home',
-    icon: 'fe fe-home'
-  }] }
-];
+import update from 'immutability-helper';
 
 function createActions(store) {
 
@@ -35,10 +17,91 @@ function createActions(store) {
       store.setState({ SceneGetStatus: RequestStatus.Getting });
       try {
         const scene = await state.httpClient.get(`/api/v1/scene/${sceneSelector}`);
+        if (scene.actions[scene.actions.length - 1].length > 0) {
+          scene.actions.push([]);
+        }
         store.setState({ scene, SceneGetStatus: RequestStatus.Success });
       } catch (e) {
         store.setState({ SceneGetStatus: RequestStatus.Error });
       }
+    },
+    async startScene(state) {
+      store.setState({ SceneStartStatus: RequestStatus.Getting });
+      try {
+        await state.httpClient.post(`/api/v1/scene/${state.scene.selector}/start`);
+        store.setState({ SceneStartStatus: RequestStatus.Success });
+      } catch (e) {
+        store.setState({ SceneStartStatus: RequestStatus.Error });
+      }
+    },
+    async saveScene(state) {
+      store.setState({ SceneSaveStatus: RequestStatus.Getting });
+      try {
+        await state.httpClient.patch(`/api/v1/scene/${state.scene.selector}`, state.scene);
+        store.setState({ SceneSaveStatus: RequestStatus.Success });
+      } catch (e) {
+        store.setState({ SceneSaveStatus: RequestStatus.Error });
+      }
+    },
+    addAction (state, columnIndex) {
+      let newState = update(state, {
+        scene: {
+          actions: {
+            [columnIndex]: { $push: [{ type: state.selectedNewAction }] }
+          }
+        }
+      });
+      if (state.scene.actions[columnIndex].length === 0) {
+        newState = update(newState,  {
+          scene: {
+            actions: { $push: [[]] }
+          }
+        });
+      }
+      store.setState(newState);
+    },
+    deleteAction (state, columnIndex, rowIndex) {
+      const newState = update(state, {
+        scene: {
+          actions: {
+            [columnIndex]: { $splice: [[rowIndex, 1]] }
+          }
+        }
+      });
+      store.setState(newState);
+    },
+    updateActionProperty (state, columnIndex, rowIndex, property, value) {
+      const newState = update(state, {
+        scene: {
+          actions: {
+            [columnIndex]: {
+              [rowIndex]: {
+                [property]: { $set: value }
+              }
+            }
+          }
+        }
+      });
+      store.setState(newState);
+    },
+    updateSelectedNewAction (state, e) {
+      store.setState({ selectedNewAction: e.target.value });
+    },
+    highlighCurrentlyExecutedAction (state, { columnIndex, rowIndex }) {
+      store.setState({
+        highLightedActions: {
+          [`${columnIndex}:${rowIndex}`]: true
+        }
+      });
+    },
+    removeHighlighAction (state, { columnIndex, rowIndex }) {
+      setTimeout(() => {
+        store.setState({
+          highLightedActions: {
+            [`${columnIndex}:${rowIndex}`]: false
+          }
+        });
+      }, 500);
     }
   };
   return actions;

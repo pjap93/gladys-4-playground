@@ -15,26 +15,26 @@ describe('scene.executeActions', () => {
     };
     const stateManager = new StateManager(event);
     stateManager.setState('device', 'light-1', light);
-    await executeActions({ stateManager }, [[{
+    await executeActions({ stateManager, event }, [[{
       type: ACTIONS.LIGHT.TURN_ON,
       device: 'light-1',
     }]], {});
     assert.calledOnce(light.turnOn);
   });
   it('should execute wait 5 ms', async () => {
-    await executeActions({}, [[{
+    await executeActions({ event }, [[{
       type: ACTIONS.TIME.DELAY,
       milliseconds: 5,
     }]], {});
-    await executeActions({}, [[{
+    await executeActions({ event }, [[{
       type: ACTIONS.TIME.DELAY,
       seconds: 5 / 1000,
     }]], {});
-    await executeActions({}, [[{
+    await executeActions({ event }, [[{
       type: ACTIONS.TIME.DELAY,
       minutes: 5 / 1000 / 60,
     }]], {});
-    await executeActions({}, [[{
+    await executeActions({ event }, [[{
       type: ACTIONS.TIME.DELAY,
       hours: 5 / 1000 / 60 / 60,
     }]], {});
@@ -45,7 +45,7 @@ describe('scene.executeActions', () => {
     };
     const stateManager = new StateManager(event);
     stateManager.setState('service', 'example', example);
-    await executeActions({ stateManager }, [[{
+    await executeActions({ stateManager, event }, [[{
       type: ACTIONS.SERVICE.START,
       service: 'example',
     }]], {});
@@ -57,7 +57,7 @@ describe('scene.executeActions', () => {
     };
     const stateManager = new StateManager(event);
     stateManager.setState('service', 'example', example);
-    await executeActions({ stateManager }, [[{
+    await executeActions({ stateManager, event }, [[{
       type: ACTIONS.SERVICE.STOP,
       service: 'example',
     }]], {});
@@ -69,7 +69,7 @@ describe('scene.executeActions', () => {
     };
     const stateManager = new StateManager(event);
     stateManager.setState('device', 'light-1', light);
-    await executeActions({ stateManager }, [[{
+    await executeActions({ stateManager, event }, [[{
       type: ACTIONS.LIGHT.TURN_ON,
       device: 'light-1',
     }], [{
@@ -84,7 +84,7 @@ describe('scene.executeActions', () => {
     };
     const stateManager = new StateManager(event);
     stateManager.setState('device', 'light-1', light);
-    const promise = executeActions({ stateManager }, [[{
+    const promise = executeActions({ stateManager, event }, [[{
       type: 'THISDOESNOTEXIST',
       device: 'light-1',
     }]], {});

@@ -20,6 +20,8 @@ async function update(userId, newUser) {
 
   await user.update(newUser);
 
+  this.stateManager.setState('user', user.selector, user.get({ plain: true }));
+
   return {
     id: userId,
   };

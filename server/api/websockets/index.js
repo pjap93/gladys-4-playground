@@ -7,6 +7,7 @@ const WebsocketManager = function WebsocketManager(wss, gladys) {
   this.gladys = gladys;
   this.connections = {};
   this.gladys.event.on(EVENTS.WEBSOCKET.SEND, event => this.sendMessageUser(event));
+  this.gladys.event.on(EVENTS.WEBSOCKET.SEND_ALL, event => this.sendMessageAllUsers(event));
 };
 
 /**
@@ -21,6 +22,21 @@ function sendMessageUser({ type, payload, userId }) {
   }
   this.connections[userId].forEach((userConnection) => {
     userConnection.client.send(formatWebsocketMessage(type, payload));
+  });
+}
+
+/**
+ * @description Send a websocket message to all user.
+ * @param {Object} event - Event.
+ * @example
+ * sendMessageAllUsers(event);
+ */
+function sendMessageAllUsers({ type, payload }) {
+  const usersIds = Object.keys(this.connections);
+  usersIds.forEach((userId) => {
+    this.connections[userId].forEach((userConnection) => {
+      userConnection.client.send(formatWebsocketMessage(type, payload));
+    });
   });
 }
 
@@ -116,5 +132,6 @@ WebsocketManager.prototype.init = init;
 WebsocketManager.prototype.userConnected = userConnected;
 WebsocketManager.prototype.userDisconnected = userDisconnected;
 WebsocketManager.prototype.sendMessageUser = sendMessageUser;
+WebsocketManager.prototype.sendMessageAllUsers = sendMessageAllUsers;
 
 module.exports = WebsocketManager;

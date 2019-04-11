@@ -1,4 +1,5 @@
 const logger = require('../../utils/logger');
+const { EVENTS } = require('../../utils/constants');
 
 module.exports = function TelegramService(gladys, serviceId) {
   // See https://github.com/yagop/node-telegram-bot-api/issues/540
@@ -13,7 +14,7 @@ module.exports = function TelegramService(gladys, serviceId) {
    */
   async function start() {
     logger.info('Starting telegram service');
-    const token = gladys.stateManager.get('variable', 'TELEGRAM_API_TOKEN');
+    const token = await gladys.variable.getValue('TELEGRAM_API_KEY', serviceId);
     if (!token) {
       throw new Error('No telegram api token found. Not starting telegram service');
     }
@@ -31,7 +32,7 @@ module.exports = function TelegramService(gladys, serviceId) {
         date: msg.date,
         text: msg.text,
       };
-      gladys.event.emit('new-message', message);
+      gladys.event.emit(EVENTS.MESSAGE.NEW, message);
     });
   }
 
@@ -50,6 +51,7 @@ module.exports = function TelegramService(gladys, serviceId) {
     stop,
     message: {
       send: (chatId, text, options) => {
+        logger.debug(`Sending Telegram message to user with chatId = ${chatId}.`);
         const telegramOptions = {};
         if (options && options.suggestion) {
           telegramOptions.reply_markup = {

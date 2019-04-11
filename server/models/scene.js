@@ -6,6 +6,9 @@ const actionSchema = Joi.array().items(
   Joi.array().items(Joi.object().keys({
     type: Joi.string().valid(ACTION_LIST).required(),
     deviceFeature: Joi.string(),
+    device: Joi.string(),
+    user: Joi.string(),
+    text: Joi.string(),
     milliseconds: Joi.number(),
     seconds: Joi.number(),
     minutes: Joi.number(),

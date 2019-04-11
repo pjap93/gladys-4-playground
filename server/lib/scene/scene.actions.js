@@ -1,4 +1,5 @@
 const { ACTIONS } = require('../../utils/constants');
+const logger = require('../../utils/logger');
 
 const actionsFunc = {
   [ACTIONS.LIGHT.TURN_ON]: async (self, action, scope) => {
@@ -9,6 +10,7 @@ const actionsFunc = {
     if (action.milliseconds) {
       setTimeout(resolve, action.milliseconds);
     } else if (action.seconds) {
+      logger.debug(`Waiting ${action.seconds} seconds...`);
       setTimeout(resolve, action.seconds * 1000);
     } else if (action.minutes) {
       setTimeout(resolve, action.minutes * 1000 * 60);
@@ -19,6 +21,10 @@ const actionsFunc = {
   [ACTIONS.SERVICE.START]: async (self, action, scope) => self.stateManager.get('service', action.service).start(),
   [ACTIONS.SERVICE.STOP]: async (self, action, scope) => self.stateManager.get('service', action.service).stop(),
   [ACTIONS.SCENE.START]: async (self, action, scope) => self.execute(action.scene, scope),
+  [ACTIONS.TELEGRAM.SEND]: async (self, action, scope) => {
+    const user = self.stateManager.get('user', action.user);
+    await self.stateManager.get('service', 'telegram').message.send(user.telegram_user_id, action.text);
+  },
 };
 
 module.exports = {

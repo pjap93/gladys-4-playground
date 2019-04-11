@@ -10,7 +10,7 @@ const seeds = files.map(file => require(join(SEEDERS_PATH, file))); // eslint-di
 const reversedSeed = seeds.slice().reverse();
 
 const callLater = () => (new Promise((resolve) => {
-  setTimeout(resolve, 1);
+  setTimeout(resolve, 10);
 }));
 
 module.exports.seedDb = async () => {
