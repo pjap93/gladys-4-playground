@@ -1,7 +1,7 @@
 import { Component } from 'preact';
 import { connect } from 'unistore/preact';
 import EditScenePage from './EditScenePage';
-import actions from '../../../actions/device';
+import actions from '../../../actions/scene';
 
 @connect(
   '',
@@ -10,7 +10,7 @@ import actions from '../../../actions/device';
 class EditScene extends Component {
 
   componentWillMount() {
-    
+    this.props.getSceneBySelector(this.props.scene_selector);
   }
 
   render({}, { }) {

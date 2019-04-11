@@ -17,10 +17,10 @@ describe('SceneManager', () => {
     const sceneManager = new SceneManager(stateManager);
     const scene = {
       selector: 'my-scene',
-      actions: [{
+      actions: [[{
         type: ACTIONS.LIGHT.TURN_ON,
         device: 'light-1',
-      }],
+      }]],
     };
     sceneManager.addScene(scene);
     await sceneManager.execute('my-scene');

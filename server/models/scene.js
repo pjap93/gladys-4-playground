@@ -2,14 +2,16 @@ const Joi = require('joi');
 const { ACTION_LIST } = require('../utils/constants');
 const { addSelector } = require('../utils/addSelector');
 
-const actionSchema = Joi.array().items(Joi.object().keys({
-  type: Joi.string().valid(ACTION_LIST).required(),
-  deviceFeature: Joi.string(),
-  milliseconds: Joi.number(),
-  seconds: Joi.number(),
-  minutes: Joi.number(),
-  hours: Joi.number(),
-}));
+const actionSchema = Joi.array().items(
+  Joi.array().items(Joi.object().keys({
+    type: Joi.string().valid(ACTION_LIST).required(),
+    deviceFeature: Joi.string(),
+    milliseconds: Joi.number(),
+    seconds: Joi.number(),
+    minutes: Joi.number(),
+    hours: Joi.number(),
+  })),
+);
 
 module.exports = (sequelize, DataTypes) => {
   const scene = sequelize.define('t_scene', {
@@ -21,6 +23,10 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       allowNull: false,
       unique: true,
+      type: DataTypes.STRING,
+    },
+    icon: {
+      allowNull: false,
       type: DataTypes.STRING,
     },
     selector: {

@@ -1,6 +1,5 @@
+const Promise = require('bluebird');
 const { actionsFunc } = require('./scene.actions');
-
-let executeActions;
 
 /**
  * @description Execute one action.
@@ -15,24 +14,31 @@ async function executeAction(self, action, scope) {
   if (!actionsFunc[action.type]) {
     throw new Error(`Action type "${action.type}" does not exist.`);
   }
-  // logger.debug(`Executing action ${action.type}`);
   // execute action
   await actionsFunc[action.type](self, action, scope);
-
-  // if action has an sequential action
-  if (action.then) {
-    await executeActions(self, action.then, scope);
-  }
 
   return null;
 }
 
-executeActions = async function executeActionsFunc(self, actions, scope) {
-  const promises = [];
-  actions.forEach(action => promises.push(executeAction(self, action, scope)));
-  await Promise.all(promises);
+/**
+ * @description Execute an array of array of action.
+ * @param {Object} self - Reference to the SceneManager.
+ * @param {Object} actions - An array of array of actions from the db.
+ * @param {Object} scope - The scope passed to all actions.
+ * @returns {Promise} Resolve if the action was executed with success.
+ * @example
+ * executeActions(this, actions, {});
+ */
+async function executeActions(self, actions, scope) {
+  // first array level should be executed in serie
+  await Promise.mapSeries(actions, async (parallelActions) => {
+    // then, second level is executed in parallel
+    await Promise.map(parallelActions, async (action) => {
+      await executeAction(self, action, scope);
+    });
+  });
   return null;
-};
+}
 
 module.exports = {
   executeAction,

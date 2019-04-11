@@ -9,9 +9,10 @@ describe('SceneManager', () => {
     const sceneManager = new SceneManager(light);
     const scene = await sceneManager.create({
       name: 'My living room',
-      actions: [{
+      icon: 'fe fe-bell',
+      actions: [[{
         type: ACTIONS.HOUSE_ALARM.ARM,
-      }],
+      }]],
     });
     expect(scene).to.have.property('selector', 'my-living-room');
   });
@@ -19,19 +20,21 @@ describe('SceneManager', () => {
     const sceneManager = new SceneManager(light);
     const scene = await sceneManager.create({
       name: 'My living room',
+      icon: 'fe fe-bell',
       selector: 'my-custom-selector',
-      actions: [{
+      actions: [[{
         type: ACTIONS.HOUSE_ALARM.ARM,
-      }],
+      }]],
     });
     expect(scene).to.have.property('selector', 'my-custom-selector');
   });
-  it('should return validation error', async () => {
+  it('should return validation error, invalid actions', async () => {
     const sceneManager = new SceneManager(light);
     const promise = sceneManager.create({
       name: 'My living room',
+      icon: 'fe fe-bell',
       actions: [{
-        type: 'THIS_DOES_NOT_EXIST',
+        type: ACTIONS.HOUSE_ALARM.ARM,
       }],
     });
     return assert.isRejected(promise);

@@ -78,7 +78,7 @@ const Main = connect('currentUrl,user,showDropDown', actions)(
           <MapPage path="/dashboard/maps" />
           <CalendarPage path="/dashboard/calendar" />
           <ScenePage path="/dashboard/scene" />
-          <EditScenePage path="/dashboard/scene/:scene_id" />
+          <EditScenePage path="/dashboard/scene/:scene_selector" />
           <TriggerPage path="/dashboard/trigger" />
 
           <ProfilePage path="/dashboard/profile" />

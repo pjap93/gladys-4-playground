@@ -1,7 +1,7 @@
 import { Component } from 'preact';
 import { connect } from 'unistore/preact';
 import ScenePage from './ScenePage';
-import actions from '../../actions/device';
+import actions from '../../actions/scene';
 
 @connect(
   '',
@@ -10,7 +10,7 @@ import actions from '../../actions/device';
 class Scene extends Component {
 
   componentWillMount() {
-    
+    this.props.getScenes();
   }
 
   render({}, { }) {

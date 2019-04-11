@@ -1,7 +1,7 @@
 module.exports = {
   development: {
     dialect: 'sqlite',
-    storage: './gladys-development.db',
+    storage: process.env.SQLITE_FILE_PATH || './gladys-development.db',
     operatorsAliases: false,
     define: {
       underscored: true,
@@ -10,7 +10,7 @@ module.exports = {
   },
   test: {
     dialect: 'sqlite',
-    storage: './gladys-test.db',
+    storage: process.env.SQLITE_FILE_PATH || './gladys-test.db',
     operatorsAliases: false,
     logging: false,
     define: {

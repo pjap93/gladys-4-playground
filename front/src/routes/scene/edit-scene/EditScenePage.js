@@ -4,26 +4,25 @@ import ActionColumn from './ActionColumn';
 import { Link } from 'preact-router/match';
 
 const actionsColumns = [
-  { actions: [{
+  [{
     type: 'Lock the door',
     icon: 'fe fe-lock'
   },{
     type: 'Lock the windows',
     icon: 'fe fe-lock'
-  }]
-  },
-  { actions: [{
+  }],
+  [{
     type: 'Wait',
     icon: 'fe fe-clock'
-  }] },
-  { actions: [{
+  }],
+  [{
     type: 'Arm Home',
     icon: 'fe fe-home'
-  }] }
+  }]
 ];
 
-const ScenePage = connect('user,scenes,totalSize', actions)(
-  ({ user, scenes, search }) => (
+const ScenePage = connect('user,scene', actions)(
+  ({ user, scene, search }) => (
  
     <div class="page">
       <div class="page-main">
@@ -47,7 +46,7 @@ const ScenePage = connect('user,scenes,totalSize', actions)(
                   <div class="card-body">
                     <div class="row flex-nowrap" style="overflow-x: auto;">
                       {actionsColumns.map((actionColumn, index) => (
-                        <ActionColumn actions={actionColumn.actions} index={index} />
+                        <ActionColumn actions={actionColumn} index={index} />
                       ))}
                     </div>
                   </div>

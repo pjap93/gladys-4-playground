@@ -27,8 +27,11 @@ describe('trigger.init', () => {
         expect(scene).to.have.property('selector');
         expect(scene).to.have.property('actions');
         expect(scene.actions).to.be.instanceOf(Array);
-        scene.actions.forEach((action) => {
-          expect(action).to.have.property('type');
+        scene.actions.forEach((parallelActions) => {
+          expect(parallelActions).to.be.instanceOf(Array);
+          parallelActions.forEach((action) => {
+            expect(action).to.have.property('type');
+          });
         });
       });
     });

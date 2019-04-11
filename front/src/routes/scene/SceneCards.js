@@ -16,7 +16,7 @@ const SceneCards = ({ children, ...props }) => (
           </div>
           <div class="card-footer">
             <div class="btn-list text-center">
-              <Link href={`${props.currentUrl}/${scene.id}`} class="btn btn-outline-primary btn-sm"><i class="fe fe-edit" />Edit</Link>
+              <Link href={`${props.currentUrl}/${scene.selector}`} class="btn btn-outline-primary btn-sm"><i class="fe fe-edit" />Edit</Link>
               <button type="button" class="btn btn-outline-success btn-sm" id={scene.selector}><i class="fe fe-play" />Play</button>
             </div>
           </div>

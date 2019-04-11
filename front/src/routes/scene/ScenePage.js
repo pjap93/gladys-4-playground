@@ -2,21 +2,6 @@ import { connect } from 'unistore/preact';
 import SceneCards from './SceneCards';
 import actions from '../../actions/integration';
 
-const someScenes = [{
-  id: '6a37dd9d-48c7-4d09-a7bb-33f257edb78d',
-  name: 'Wake Up',
-  description: 'When it\'s time to wake up',
-  icon: 'fe fe-bell',
-  img: '/assets/integrations/cover/wemo.jpg'
-}, {
-  id: '064df5f5-6813-4ad5-836c-2967b2b8dcd9',
-  name: 'Night',
-  description: 'When we party',
-  icon: 'fe fe-moon',
-  img: '/assets/integrations/cover/wemo.jpg'
-}
-];
-
 const ScenePage = connect('user,scenes,totalSize,currentUrl', actions)(
   ({ user, scenes, search, currentUrl }) => (
  
@@ -44,7 +29,7 @@ const ScenePage = connect('user,scenes,totalSize,currentUrl', actions)(
             </div>
             <div class="row">
               <div class="col-lg-12">
-                <SceneCards scenes={someScenes} currentUrl={currentUrl} />
+                { scenes && <SceneCards scenes={scenes} currentUrl={currentUrl} /> }
               </div>
             </div>
           </div>

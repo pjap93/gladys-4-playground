@@ -15,29 +15,29 @@ describe('scene.executeActions', () => {
     };
     const stateManager = new StateManager(event);
     stateManager.setState('device', 'light-1', light);
-    await executeActions({ stateManager }, [{
+    await executeActions({ stateManager }, [[{
       type: ACTIONS.LIGHT.TURN_ON,
       device: 'light-1',
-    }], {});
+    }]], {});
     assert.calledOnce(light.turnOn);
   });
   it('should execute wait 5 ms', async () => {
-    await executeActions({}, [{
+    await executeActions({}, [[{
       type: ACTIONS.TIME.DELAY,
       milliseconds: 5,
-    }], {});
-    await executeActions({}, [{
+    }]], {});
+    await executeActions({}, [[{
       type: ACTIONS.TIME.DELAY,
       seconds: 5 / 1000,
-    }], {});
-    await executeActions({}, [{
+    }]], {});
+    await executeActions({}, [[{
       type: ACTIONS.TIME.DELAY,
       minutes: 5 / 1000 / 60,
-    }], {});
-    await executeActions({}, [{
+    }]], {});
+    await executeActions({}, [[{
       type: ACTIONS.TIME.DELAY,
       hours: 5 / 1000 / 60 / 60,
-    }], {});
+    }]], {});
   });
   it('should execute start service', async () => {
     const example = {
@@ -45,10 +45,10 @@ describe('scene.executeActions', () => {
     };
     const stateManager = new StateManager(event);
     stateManager.setState('service', 'example', example);
-    await executeActions({ stateManager }, [{
+    await executeActions({ stateManager }, [[{
       type: ACTIONS.SERVICE.START,
       service: 'example',
-    }], {});
+    }]], {});
     assert.calledOnce(example.start);
   });
   it('should execute stop service', async () => {
@@ -57,10 +57,10 @@ describe('scene.executeActions', () => {
     };
     const stateManager = new StateManager(event);
     stateManager.setState('service', 'example', example);
-    await executeActions({ stateManager }, [{
+    await executeActions({ stateManager }, [[{
       type: ACTIONS.SERVICE.STOP,
       service: 'example',
-    }], {});
+    }]], {});
     assert.calledOnce(example.stop);
   });
   it('should execute sequential actions', async () => {
@@ -69,14 +69,13 @@ describe('scene.executeActions', () => {
     };
     const stateManager = new StateManager(event);
     stateManager.setState('device', 'light-1', light);
-    await executeActions({ stateManager }, [{
+    await executeActions({ stateManager }, [[{
       type: ACTIONS.LIGHT.TURN_ON,
       device: 'light-1',
-      then: [{
-        type: ACTIONS.LIGHT.TURN_ON,
-        device: 'light-1',
-      }],
-    }], {});
+    }], [{
+      type: ACTIONS.LIGHT.TURN_ON,
+      device: 'light-1',
+    }]], {});
     assert.calledTwice(light.turnOn);
   });
   it('should throw error, action type does not exist', async () => {
@@ -85,10 +84,10 @@ describe('scene.executeActions', () => {
     };
     const stateManager = new StateManager(event);
     stateManager.setState('device', 'light-1', light);
-    const promise = executeActions({ stateManager }, [{
+    const promise = executeActions({ stateManager }, [[{
       type: 'THISDOESNOTEXIST',
       device: 'light-1',
-    }], {});
+    }]], {});
     return chaiAssert.isRejected(promise, 'Action type "THISDOESNOTEXIST" does not exist.');
   });
 });
