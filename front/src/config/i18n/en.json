@@ -36,5 +36,16 @@
         "introduction": "Configure here your Philips Hue lights. Gladys is compatible with <a href=\"{{link}}\">this set of Philips Hue lights</a>",
         "searchForBridgesButton": "Scan network for bridges"
       }
+    },
+    "editScene": {
+      "actions": {
+        "telegram": {
+          "send": "Send Telegram Message"
+        },
+        "delay": "Wait",
+        "light": {
+          "turn-on": "Turn On the Lights"
+        }
+      }
     }
 }

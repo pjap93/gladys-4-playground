@@ -3,8 +3,8 @@ import actions from '../../../actions/scene';
 import ActionColumn from './ActionColumn';
 import { Link } from 'preact-router/match';
 
-const ScenePage = connect('user,scene,highLightedActions', actions)(
-  ({ user, highLightedActions, scene, startScene, saveScene, addAction, deleteAction, updateActionProperty, updateSelectedNewAction }) => (
+const ScenePage = connect('sceneParamsData,scene,highLightedActions', actions)(
+  ({ sceneParamsData, highLightedActions, scene, startScene, saveScene, addAction, deleteAction, updateActionProperty, updateSelectedNewAction }) => (
  
     <div class="page">
       <div class="page-main">
@@ -36,6 +36,7 @@ const ScenePage = connect('user,scene,highLightedActions', actions)(
                           updateSelectedNewAction={updateSelectedNewAction}
                           updateActionProperty={updateActionProperty}
                           highLightedActions={highLightedActions}
+                          sceneParamsData={sceneParamsData}
                           index={index}
                         />
                       ))}

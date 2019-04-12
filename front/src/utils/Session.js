@@ -11,6 +11,9 @@ class Session {
   }
 
   init() {
+    if (process.env.DEMO_MODE === 'true') {
+      return null;
+    }
     if (this.initialized) {
       return null;
     }

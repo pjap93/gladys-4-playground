@@ -102,6 +102,16 @@ function createActions(store) {
           }
         });
       }, 500);
+    },
+    async getUsers (state) {
+      store.setState({ GetUsersStatus: RequestStatus.Getting });
+      try {
+        const users = await state.httpClient.get(`/api/v1/user`);
+        const sceneParamsData = { users };
+        store.setState({ sceneParamsData, GetUsersStatus: RequestStatus.Success });
+      } catch (e) {
+        store.setState({ GetUsersStatus: RequestStatus.Error });
+      }
     }
   };
   return actions;
