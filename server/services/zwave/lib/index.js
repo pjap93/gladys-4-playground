@@ -15,7 +15,8 @@ const { controllerCommand } = require('./events/zwave.controllerCommand');
 const { connect } = require('./commands/zwave.connect');
 const { disconnect } = require('./commands/zwave.disconnect');
 const { healNetwork } = require('./commands/zwave.healNetwork');
-const { getNodeParams } = require('./commands/zwave.getNodeParams');
+const { refreshNodeParams } = require('./commands/zwave.refreshNodeParams');
+const { getNodes } = require('./commands/zwave.getNodes');
 
 const DEFAULT_ZWAVE_OPTIONS = {
   Logging: false,
@@ -57,6 +58,7 @@ ZwaveManager.prototype.controllerCommand = controllerCommand;
 ZwaveManager.prototype.connect = connect;
 ZwaveManager.prototype.disconnect = disconnect;
 ZwaveManager.prototype.healNetwork = healNetwork;
-ZwaveManager.prototype.getNodeParams = getNodeParams;
+ZwaveManager.prototype.refreshNodeParams = refreshNodeParams;
+ZwaveManager.prototype.getNodes = getNodes;
 
 module.exports = ZwaveManager;

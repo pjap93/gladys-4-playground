@@ -1,3 +1,4 @@
+const { expect } = require('chai');
 const { assert } = require('sinon');
 
 const ZwaveManager = require('../../../../services/zwave/lib');
@@ -17,8 +18,8 @@ describe('zwaveManager commands', () => {
     zwaveManager.healNetwork();
     assert.calledOnce(zwaveManager.zwave.healNetwork);
   });
-  it('should get node params', () => {
-    zwaveManager.getNodeParams(1);
+  it('should refresh node params', () => {
+    zwaveManager.refreshNodeParams(1);
     assert.calledWith(zwaveManager.zwave.requestAllConfigParams, 1);
   });
 });
@@ -100,5 +101,10 @@ describe('zwaveManager events', () => {
   });
   it('should receive value removed', () => {
     zwaveManager.valueRemoved(1, 10, 0);
+  });
+  it('should return array of nodes', () => {
+    const nodes = zwaveManager.getNodes();
+    expect(nodes).to.be.instanceOf(Array);
+    expect(nodes).to.deep.equal(zwaveManager.nodes);
   });
 });
