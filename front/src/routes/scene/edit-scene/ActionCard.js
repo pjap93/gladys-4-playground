@@ -18,7 +18,8 @@ const ActionCard = ({ children, ...props }) => (
       </div>
       { props.highLightedActions && props.highLightedActions[`${props.columnIndex}:${props.index}`] && <div class="card-status bg-blue" /> }
       <div class="card-options">
-        <button onClick={deleteActionFromColumn(props.columnIndex, props.index, props.deleteAction)} class="btn btn-sm btn-outline-danger"><i class="fe fe-trash" /></button>
+        <a class="card-options-collapse"><i class="fe fe-chevron-down" /></a>
+        <a onClick={deleteActionFromColumn(props.columnIndex, props.index, props.deleteAction)} class="card-options-remove" ><i class="fe fe-x" /></a>
       </div>
     </div>
     <div class="card-body">
