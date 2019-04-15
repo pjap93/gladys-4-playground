@@ -14,11 +14,14 @@ module.exports = function TelegramService(gladys, serviceId) {
    */
   async function start() {
     logger.info('Starting telegram service');
-    const token = await gladys.variable.getValue('TELEGRAM_API_KEY', serviceId);
+    const token = await gladys.variable.getValue('TELEGRAM_API_KEY1', serviceId);
     if (!token) {
       throw new Error('No telegram api token found. Not starting telegram service');
     }
     bot = new TelegramBot(token, { polling: true });
+    bot.on('error', (e) => {
+      throw e;
+    });
     bot.on('message', async (msg) => {
       logger.debug(`new message from telegram, ${msg.text}`);
       const telegramUserId = msg.from.id;
