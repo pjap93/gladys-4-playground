@@ -20,6 +20,11 @@ const SESSION_TOKEN_TYPES = {
 };
 
 const EVENTS = {
+  DEVICE: {
+    NEW: 'device.new',
+    ADD_FEATURE: 'device.add-feature',
+    ADD_PARAM: 'device.add-param',
+  },
   USER_SLEEP: {
     TIME_TO_WAKE_UP: 'user.time-to-wake-up',
     CANCELED_WAKE_UP: 'user.canceled-wake-up',
@@ -188,6 +193,7 @@ const INTENTS = {
 
 const DEVICE_FEATURE_CATEGORIES = {
   LIGHT: 'light',
+  TEMPERATURE_SENSOR: 'temperature-sensor',
 };
 
 const DEVICE_FEATURE_TYPES = {

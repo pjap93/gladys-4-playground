@@ -2,12 +2,15 @@ const logger = require('../../../../utils/logger');
 
 /**
  * @description Connect to Zwave USB driver
+ * @param {string} driverPath - Path to the USB driver.
  * @example
- * zwave.connect();
+ * zwave.connect(driverPath);
  */
-function connect() {
+function connect(driverPath) {
   logger.debug(`Zwave : Connecting to USB = ${this.driverPath}`);
-  this.zwave.connect(this.driverPath);
+  this.zwave.connect(driverPath);
+  const results = this.zwave.getNodeNeighbors();
+  console.log(results);
 }
 
 module.exports = {

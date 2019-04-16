@@ -67,6 +67,11 @@ module.exports = (sequelize, DataTypes) => {
       sourceKey: 'id',
       as: 'features',
     });
+    device.hasMany(models.DeviceParam, {
+      foreignKey: 'device_id',
+      sourceKey: 'id',
+      as: 'params',
+    });
   };
 
   return device;

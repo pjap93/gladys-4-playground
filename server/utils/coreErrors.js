@@ -20,8 +20,16 @@ class ServiceNotConfiguredError extends Error {
   }
 }
 
+class BadParameters extends Error {
+  constructor(message) {
+    super();
+    this.message = message;
+  }
+}
+
 module.exports = {
   PasswordNotMatchingError,
   NotFoundError,
   ServiceNotConfiguredError,
+  BadParameters,
 };

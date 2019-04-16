@@ -10,5 +10,11 @@
     "name": "Philips Hue",
     "description": "Control your Philips Hue lights.",
     "img": "/assets/integrations/cover/philips-hue.jpg"
+  },
+  {
+    "key": "zwave",
+    "name": "Z-Wave",
+    "description": "Control your Z-Wave devices.",
+    "img": "/assets/integrations/cover/zwave.jpg"
   }
 ]

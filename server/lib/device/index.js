@@ -1,6 +1,9 @@
 const { EVENTS } = require('../../utils/constants');
+const { eventFunctionWrapper } = require('../../utils/functionsWrapper');
 const LightManager = require('./light');
 const { add } = require('./device.add');
+const { addFeature } = require('./device.addFeature');
+const { addParam } = require('./device.addParam');
 const { create } = require('./device.create');
 const { init } = require('./device.init');
 const { poll } = require('./device.poll');
@@ -17,11 +20,17 @@ const DeviceManager = function DeviceManager(eventManager, messageManager, state
   this.stateManager = stateManager;
   this.serviceManager = serviceManager;
   this.lightManager = new LightManager(eventManager, messageManager, this);
-  this.eventManager.on(EVENTS.SENSOR.STATE_CHANGED, this.newStateEvent);
   this.devicesByPollFrequency = {};
+  // listen to events
+  this.eventManager.on(EVENTS.SENSOR.STATE_CHANGED, this.newStateEvent);
+  this.eventManager.on(EVENTS.DEVICE.NEW, eventFunctionWrapper(this.create.bind(this)));
+  this.eventManager.on(EVENTS.DEVICE.ADD_FEATURE, eventFunctionWrapper(this.addFeature.bind(this)));
+  this.eventManager.on(EVENTS.DEVICE.ADD_PARAM, eventFunctionWrapper(this.addParam.bind(this)));
 };
 
 DeviceManager.prototype.add = add;
+DeviceManager.prototype.addFeature = addFeature;
+DeviceManager.prototype.addParam = addParam;
 DeviceManager.prototype.create = create;
 DeviceManager.prototype.init = init;
 DeviceManager.prototype.poll = poll;

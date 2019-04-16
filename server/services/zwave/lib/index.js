@@ -17,6 +17,7 @@ const { disconnect } = require('./commands/zwave.disconnect');
 const { healNetwork } = require('./commands/zwave.healNetwork');
 const { refreshNodeParams } = require('./commands/zwave.refreshNodeParams');
 const { getNodes } = require('./commands/zwave.getNodes');
+const { getNodeNeighbors } = require('./commands/zwave.getNodeNeighbors');
 
 const DEFAULT_ZWAVE_OPTIONS = {
   Logging: false,
@@ -24,10 +25,11 @@ const DEFAULT_ZWAVE_OPTIONS = {
   SaveConfiguration: true,
 };
 
-const ZwaveManager = function ZwaveManager(Zwave, driverPath) {
-  this.driverPath = driverPath;
+const ZwaveManager = function ZwaveManager(Zwave, eventManager, serviceId) {
   this.zwave = new Zwave(DEFAULT_ZWAVE_OPTIONS);
-  this.nodes = [];
+  this.eventManager = eventManager;
+  this.serviceId = serviceId;
+  this.nodes = {};
   // setup all events listener
   this.zwave.on('driver ready', this.driverReady.bind(this));
   this.zwave.on('driver failed', this.driverFailed.bind(this));
@@ -60,5 +62,6 @@ ZwaveManager.prototype.disconnect = disconnect;
 ZwaveManager.prototype.healNetwork = healNetwork;
 ZwaveManager.prototype.refreshNodeParams = refreshNodeParams;
 ZwaveManager.prototype.getNodes = getNodes;
+ZwaveManager.prototype.getNodeNeighbors = getNodeNeighbors;
 
 module.exports = ZwaveManager;

@@ -6,7 +6,8 @@
  * const nodes = zwaveManager.getNodes();
  */
 function getNodes() {
-  return this.nodes;
+  const nodeIds = Object.keys(this.nodes);
+  return nodeIds.map(nodeId => Object.assign({}, { id: nodeId }, this.nodes[nodeId]));
 }
 
 module.exports = {

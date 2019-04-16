@@ -29,6 +29,8 @@ import SettingsSystemPage from '../routes/settings/settings-system';
 // Integrations
 import TelegramPage from '../routes/integration/all/telegram';
 import PhilipsHuePage from '../routes/integration/all/philips-hue';
+import ZwavePage from '../routes/integration/all/zwave';
+
 
 const httpClient = (process.env.DEMO_MODE === 'true') ? new DemoHttpClient() : new HttpClient();
 const session = new Session(httpClient);
@@ -73,6 +75,7 @@ const Main = connect('currentUrl,user,showDropDown', actions)(
 
           <TelegramPage path="/dashboard/integration/communication/telegram" />
           <PhilipsHuePage path="/dashboard/integration/device/philips-hue" />
+          <ZwavePage path="/dashboard/integration/device/zwave" />
 
           <ChatPage path="/dashboard/chat" />
           <MapPage path="/dashboard/maps" />

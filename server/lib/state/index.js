@@ -54,6 +54,7 @@ const StateManager = function StateManager(event) {
     house: {},
     user: {},
     device: {},
+    deviceByExternalId: {},
     deviceFeature: {},
     service: {},
     sun: {},

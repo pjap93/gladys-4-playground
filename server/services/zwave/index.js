@@ -1,10 +1,11 @@
 const logger = require('../../utils/logger');
 const ZwaveManager = require('./lib');
+const ZwaveController = require('./api/zwave.controller');
 const { ServiceNotConfiguredError } = require('../../utils/coreErrors');
 
 module.exports = function ZwaveService(gladys, serviceId) {
   const Zwave = require('openzwave-shared');
-  let zwaveManager;
+  const zwaveManager = new ZwaveManager(Zwave, gladys.event, serviceId);
   /**
    * @public
    * @description This function starts the service
@@ -17,8 +18,7 @@ module.exports = function ZwaveService(gladys, serviceId) {
     if (!zwaveDriverPath) {
       throw new ServiceNotConfiguredError('No zwave driver path found. Not starting ZWave service.');
     }
-    zwaveManager = new ZwaveManager(Zwave, zwaveDriverPath);
-    zwaveManager.connect();
+    zwaveManager.connect(zwaveDriverPath);
   }
 
   /**
@@ -35,5 +35,6 @@ module.exports = function ZwaveService(gladys, serviceId) {
   return Object.freeze({
     start,
     stop,
+    controllers: ZwaveController(zwaveManager),
   });
 };

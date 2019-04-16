@@ -15,16 +15,17 @@ function setupServiceRoutes(gladys, router, authMiddleware) {
   // foreach service
   services.forEach((service) => {
     // if the service has a controllers object
-    if (service[1].controllers) {
+    if (service[1].get().controllers) {
+      const { controllers } = service[1].get();
       logger.debug(`servicesRoutes: Loading controllers of service "${service[0]}"`);
       // we load each controller
-      Object.keys(service[1].controllers).forEach((routeKey) => {
+      Object.keys(controllers).forEach((routeKey) => {
         logger.debug(`servicesRoutes: Loading controller "${routeKey}"`);
         // we get the method and path from the route key
         const routeKeySplitted = routeKey.split(' ');
         const method = routeKeySplitted[0];
         const path = routeKeySplitted[1];
-        const route = service[1].controllers[routeKey];
+        const route = controllers[routeKey];
         // load the authentication middleware if needed
         if (route.authenticated) {
           router[method](path, authMiddleware, asyncMiddleware(route.controller));

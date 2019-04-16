@@ -1,4 +1,5 @@
 const Promise = require('bluebird');
+const { BadParameters } = require('../../utils/coreErrors');
 const db = require('../../models');
 
 /**
@@ -29,32 +30,44 @@ const db = require('../../models');
  */
 async function create(device, features = [], params = []) {
   return db.sequelize.transaction(async (transaction) => {
-    const deviceCreated = (await db.Device.create(device, { transaction })).get({ plain: true });
+    // external_id is a required parameter
+    if (!device.external_id) {
+      throw new BadParameters('A device must have an external_id.');
+    }
+    // first verify that device doesn't already exist
+    let deviceInDatabase = this.stateManager.get('deviceByExternalId', device.external_id);
+
+    // if it doesn't exist, we create it
+    if (deviceInDatabase === null) {
+      deviceInDatabase = (await db.Device.create(device, { transaction })).get({ plain: true });
+    }
+
     // if we need to create features
     if (features && features.length) {
-      deviceCreated.features = await Promise.map(features, async (feature) => {
-        feature.device_id = deviceCreated.id;
+      deviceInDatabase.features = await Promise.map(features, async (feature) => {
+        feature.device_id = deviceInDatabase.id;
         const featureCreated = await db.DeviceFeature.create(feature, { transaction });
         return featureCreated.get({ plain: true });
       });
     } else {
-      deviceCreated.features = [];
+      deviceInDatabase.features = [];
     }
 
     // if we need to create param
     if (params && params.length) {
-      deviceCreated.params = await Promise.map(params, async (param) => {
-        param.device_id = deviceCreated.id;
+      deviceInDatabase.params = await Promise.map(params, async (param) => {
+        param.device_id = deviceInDatabase.id;
         const paramCreated = await db.DeviceParam.create(param, { transaction });
         return paramCreated.get({ plain: true });
       });
     } else {
-      deviceCreated.params = [];
+      deviceInDatabase.params = [];
     }
-    // save created device in RAM
-    this.add(deviceCreated);
 
-    return deviceCreated;
+    // save created device in RAM
+    this.add(deviceInDatabase);
+
+    return deviceInDatabase;
   });
 }
 
