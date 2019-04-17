@@ -31,7 +31,7 @@ describe('services', () => {
         expect(indexFileExist).to.be.true; // eslint-disable-line
       });
       const index = require(indexFilePath); // eslint-disable-line
-      const service = index();
+      const service = index({}, 'd07bf09b-2846-4c94-8191-026ba7d62bf0');
       it('index.js should expose start function', () => {
         expect(service).to.have.property('start');
         expect(service.start).to.be.instanceOf(Function);

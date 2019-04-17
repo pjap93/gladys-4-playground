@@ -12,6 +12,7 @@ describe('Device', () => {
     const newDevice = await device.create({
       service_id: 'a810b8db-6d04-4697-bed3-c4b72c996279',
       name: 'Philips Hue 1',
+      external_id: 'philips-hue-new',
     });
     expect(newDevice).to.have.property('name', 'Philips Hue 1');
     expect(newDevice).to.have.property('selector', 'philips-hue-1');

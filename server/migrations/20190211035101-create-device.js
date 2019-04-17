@@ -37,6 +37,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       external_id: {
+        allowNull: false,
         unique: true,
         type: Sequelize.STRING,
       },

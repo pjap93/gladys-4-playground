@@ -1,5 +1,7 @@
 const logger = require('../../../../utils/logger');
 const { EVENTS } = require('../../../../utils/constants');
+const { getCategory } = require('../utils/getCategory');
+const { getDeviceFeatureExternalId } = require('../utils/externalId');
 
 /**
  * @description When a node is ready.
@@ -41,17 +43,14 @@ function nodeReady(nodeId, nodeInfo) {
     const indexes = Object.keys(values);
     indexes.forEach((idx) => {
       const { min, max } = values[idx];
-      let { type } = values[idx];
-
-      if (type === 'bool') {
-        type = 'binary';
-      }
 
       if (values[idx].genre === 'user') {
+        const { category, type } = getCategory(values[idx]);
         features.push({
-          name: `${values[idx].label} - ${this.nodes[nodeId].product} - ${nodeId}`,
+          name: `${values[idx].label} - ${this.nodes[nodeId].product} -  Node ${nodeId}`,
+          category,
           type,
-          external_id: `zwave:node_id:${nodeId}:comclass:${comclass}:index:${values[idx].index}`,
+          external_id: getDeviceFeatureExternalId(values[idx]),
           read_only: values[idx].read_only,
           unit: values[idx].units,
           has_feedback: true,
@@ -60,8 +59,8 @@ function nodeReady(nodeId, nodeInfo) {
         });
       } else {
         params.push({
-          name: values[idx].label,
-          value: values[idx].value,
+          name: `${values[idx].label}-${values[idx].value_id}`,
+          value: values[idx].value || '',
         });
       }
     });

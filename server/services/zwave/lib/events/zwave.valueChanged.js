@@ -1,4 +1,6 @@
 const logger = require('../../../../utils/logger');
+const { EVENTS } = require('../../../../utils/constants');
+const { getDeviceFeatureExternalId } = require('../utils/externalId');
 
 /**
  * @description When a value changed.
@@ -16,6 +18,10 @@ function valueChanged(nodeId, comClass, value) {
       value.value);
   }
   this.nodes[nodeId].classes[comClass][value.index] = value;
+  this.eventManager.emit(EVENTS.DEVICE.NEW_STATE, {
+    device_feature_external_id: getDeviceFeatureExternalId(value),
+    state: value.value,
+  });
 }
 
 module.exports = {

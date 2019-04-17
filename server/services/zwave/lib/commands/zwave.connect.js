@@ -9,8 +9,6 @@ const logger = require('../../../../utils/logger');
 function connect(driverPath) {
   logger.debug(`Zwave : Connecting to USB = ${this.driverPath}`);
   this.zwave.connect(driverPath);
-  const results = this.zwave.getNodeNeighbors();
-  console.log(results);
 }
 
 module.exports = {

@@ -10,6 +10,7 @@ function add(device) {
   this.stateManager.setState('deviceByExternalId', device.external_id, device);
   device.features.forEach((feature) => {
     this.stateManager.setState('deviceFeature', feature.selector, feature);
+    this.stateManager.setState('deviceFeatureByExternalId', feature.external_id, feature);
   });
   if (device.should_poll === true && device.poll_frequency) {
     if (!this.devicesByPollFrequency[device.poll_frequency]) {

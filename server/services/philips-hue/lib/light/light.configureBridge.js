@@ -1,5 +1,7 @@
 const logger = require('../../../../utils/logger');
 
+const EXTERNAL_ID_BASE = 'philips-hue:bridge';
+
 /**
  * @description Configure the philips hue bridge.
  * @param {string} name - Name of the bridge.
@@ -16,6 +18,7 @@ async function configureBridge(name, ipAddress) {
   return this.gladys.device.create({
     name,
     service_id: this.serviceId,
+    external_id: `${EXTERNAL_ID_BASE}:${ipAddress}:${userId}`,
   }, [], [{
     name: 'BRIDGE_IP_ADDRESS',
     value: ipAddress,

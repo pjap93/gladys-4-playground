@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     external_id: {
+      allowNull: false,
       unique: true,
       type: DataTypes.STRING,
     },

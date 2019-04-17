@@ -35,39 +35,58 @@ async function create(device, features = [], params = []) {
       throw new BadParameters('A device must have an external_id.');
     }
     // first verify that device doesn't already exist
-    let deviceInDatabase = this.stateManager.get('deviceByExternalId', device.external_id);
+    const deviceInStore = this.stateManager.get('deviceByExternalId', device.external_id);
+    let deviceToReturn = deviceInStore;
 
     // if it doesn't exist, we create it
-    if (deviceInDatabase === null) {
-      deviceInDatabase = (await db.Device.create(device, { transaction })).get({ plain: true });
+    if (deviceInStore === null) {
+      deviceToReturn = (await db.Device.create(device, { transaction })).get({ plain: true });
     }
 
     // if we need to create features
     if (features && features.length) {
-      deviceInDatabase.features = await Promise.map(features, async (feature) => {
-        feature.device_id = deviceInDatabase.id;
+      const newFeatures = await Promise.map(features, async (feature) => {
+        if (deviceInStore !== null) {
+          // if the device feature already exist
+          const featureIndex = deviceInStore.features.findIndex(f => f.external_id === feature.external_id);
+          if (featureIndex !== -1) {
+            return device.features[featureIndex];
+          }
+        }
+        // if not, we create it
+        feature.device_id = deviceToReturn.id;
         const featureCreated = await db.DeviceFeature.create(feature, { transaction });
         return featureCreated.get({ plain: true });
       });
+      deviceToReturn.features = newFeatures;
     } else {
-      deviceInDatabase.features = [];
+      deviceToReturn.features = [];
     }
 
     // if we need to create param
     if (params && params.length) {
-      deviceInDatabase.params = await Promise.map(params, async (param) => {
-        param.device_id = deviceInDatabase.id;
+      const newParams = await Promise.map(params, async (param) => {
+        if (deviceInStore !== null) {
+          // if the param already already exist
+          const paramIndex = deviceInStore.params.findIndex(p => p.name === param.name);
+          if (paramIndex !== -1) {
+            return deviceInStore.params[paramIndex];
+          }
+        }
+        // if not, we create it.
+        param.device_id = deviceToReturn.id;
         const paramCreated = await db.DeviceParam.create(param, { transaction });
         return paramCreated.get({ plain: true });
       });
+      deviceToReturn.params = newParams;
     } else {
-      deviceInDatabase.params = [];
+      deviceToReturn.params = [];
     }
 
     // save created device in RAM
-    this.add(deviceInDatabase);
+    this.add(deviceToReturn);
 
-    return deviceInDatabase;
+    return deviceToReturn;
   });
 }
 

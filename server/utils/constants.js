@@ -24,6 +24,7 @@ const EVENTS = {
     NEW: 'device.new',
     ADD_FEATURE: 'device.add-feature',
     ADD_PARAM: 'device.add-param',
+    NEW_STATE: 'device.new-state',
   },
   USER_SLEEP: {
     TIME_TO_WAKE_UP: 'user.time-to-wake-up',
@@ -73,9 +74,6 @@ const EVENTS = {
     BRIGHTNESS_CHANGED: 'light.brightness-changed',
     HUE_CHANGED: 'light.hue-changed',
     SATURATION_CHANGED: 'light.saturation-changed',
-  },
-  SENSOR: {
-    STATE_CHANGED: 'sensor.state-changed',
   },
   TEMPERATURE_SENSOR: {
     TEMPERATURE_CHANGED: 'temperature.changed',
@@ -193,7 +191,11 @@ const INTENTS = {
 
 const DEVICE_FEATURE_CATEGORIES = {
   LIGHT: 'light',
+  BATTERY: 'battery',
   TEMPERATURE_SENSOR: 'temperature-sensor',
+  MOTION_SENSOR: 'motion-sensor',
+  LIGHT_SENSOR: 'light-sensor',
+  UNKNOWN: 'unknown',
 };
 
 const DEVICE_FEATURE_TYPES = {
@@ -202,6 +204,13 @@ const DEVICE_FEATURE_TYPES = {
     BRIGHTNESS: 'brightness',
     HUE: 'hue',
     SATURATION: 'saturation',
+  },
+  SENSOR: {
+    DECIMAL: 'decimal',
+    INTEGER: 'integer',
+    BINARY: 'binary',
+    PUSH: 'push',
+    UNKNOWN: 'unknown',
   },
 };
 

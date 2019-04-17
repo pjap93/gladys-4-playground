@@ -22,7 +22,7 @@ const DeviceManager = function DeviceManager(eventManager, messageManager, state
   this.lightManager = new LightManager(eventManager, messageManager, this);
   this.devicesByPollFrequency = {};
   // listen to events
-  this.eventManager.on(EVENTS.SENSOR.STATE_CHANGED, this.newStateEvent);
+  this.eventManager.on(EVENTS.DEVICE.NEW_STATE, this.newStateEvent.bind(this));
   this.eventManager.on(EVENTS.DEVICE.NEW, eventFunctionWrapper(this.create.bind(this)));
   this.eventManager.on(EVENTS.DEVICE.ADD_FEATURE, eventFunctionWrapper(this.addFeature.bind(this)));
   this.eventManager.on(EVENTS.DEVICE.ADD_PARAM, eventFunctionWrapper(this.addParam.bind(this)));

@@ -1,13 +1,15 @@
 const { expect } = require('chai');
 const { assert } = require('sinon');
+const EventEmitter = require('events');
 
+const event = new EventEmitter();
 const ZwaveManager = require('../../../../services/zwave/lib');
 const ZwaveMock = require('../ZwaveMock.test');
 
 describe('zwaveManager commands', () => {
-  const zwaveManager = new ZwaveManager(ZwaveMock, '/dev/tty1');
+  const zwaveManager = new ZwaveManager(ZwaveMock, event, 'de051f90-f34a-4fd5-be2e-e502339ec9bc');
   it('should connect to zwave driver', () => {
-    zwaveManager.connect();
+    zwaveManager.connect('/dev/tty1');
     assert.calledWith(zwaveManager.zwave.connect, '/dev/tty1');
   });
   it('should disconnect', () => {
@@ -25,7 +27,7 @@ describe('zwaveManager commands', () => {
 });
 
 describe('zwaveManager events', () => {
-  const zwaveManager = new ZwaveManager(ZwaveMock, '/dev/tty1');
+  const zwaveManager = new ZwaveManager(ZwaveMock, event, 'de051f90-f34a-4fd5-be2e-e502339ec9bc');
   it('should receive controllerCommand', () => {
     zwaveManager.controllerCommand(1, 1, 1, 'message');
   });
@@ -105,6 +107,5 @@ describe('zwaveManager events', () => {
   it('should return array of nodes', () => {
     const nodes = zwaveManager.getNodes();
     expect(nodes).to.be.instanceOf(Array);
-    expect(nodes).to.deep.equal(zwaveManager.nodes);
   });
 });
