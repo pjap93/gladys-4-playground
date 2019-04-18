@@ -24,6 +24,19 @@ describe('zwaveManager commands', () => {
     zwaveManager.refreshNodeParams(1);
     assert.calledWith(zwaveManager.zwave.requestAllConfigParams, 1);
   });
+  it('should return Z-Wave informations', () => {
+    const infos = zwaveManager.getInfos();
+    expect(infos).to.deep.equal({
+      controller_node_id: 1,
+      suc_node_id: 1,
+      is_primary_controller: true,
+      is_static_update_controller: true,
+      is_bridge_controller: false,
+      zwave_library_version: 'Z-Wave 3.99',
+      library_type_name: 'Static Controller',
+      send_queue_count: 3,
+    });
+  });
 });
 
 describe('zwaveManager events', () => {

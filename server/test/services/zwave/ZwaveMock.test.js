@@ -15,4 +15,13 @@ ZwaveMock.prototype.healNetwork = fake.returns(null);
 ZwaveMock.prototype.requestAllConfigParams = fake.returns(null);
 ZwaveMock.prototype.setNodeName = fake.returns(null);
 
+ZwaveMock.prototype.getControllerNodeId = fake.returns(1);
+ZwaveMock.prototype.getSUCNodeId = fake.returns(1);
+ZwaveMock.prototype.isPrimaryController = fake.returns(true);
+ZwaveMock.prototype.isStaticUpdateController = fake.returns(true);
+ZwaveMock.prototype.isBridgeController = fake.returns(false);
+ZwaveMock.prototype.getLibraryVersion = fake.returns('Z-Wave 3.99');
+ZwaveMock.prototype.getLibraryTypeName = fake.returns('Static Controller');
+ZwaveMock.prototype.getSendQueueCount = fake.returns(3);
+
 module.exports = ZwaveMock;

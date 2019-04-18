@@ -16,6 +16,7 @@ const { connect } = require('./commands/zwave.connect');
 const { disconnect } = require('./commands/zwave.disconnect');
 const { healNetwork } = require('./commands/zwave.healNetwork');
 const { refreshNodeParams } = require('./commands/zwave.refreshNodeParams');
+const { getInfos } = require('./commands/zwave.getInfos');
 const { getNodes } = require('./commands/zwave.getNodes');
 const { getNodeNeighbors } = require('./commands/zwave.getNodeNeighbors');
 
@@ -61,6 +62,7 @@ ZwaveManager.prototype.connect = connect;
 ZwaveManager.prototype.disconnect = disconnect;
 ZwaveManager.prototype.healNetwork = healNetwork;
 ZwaveManager.prototype.refreshNodeParams = refreshNodeParams;
+ZwaveManager.prototype.getInfos = getInfos;
 ZwaveManager.prototype.getNodes = getNodes;
 ZwaveManager.prototype.getNodeNeighbors = getNodeNeighbors;
 
