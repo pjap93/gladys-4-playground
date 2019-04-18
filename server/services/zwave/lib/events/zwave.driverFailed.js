@@ -7,7 +7,6 @@ const logger = require('../../../../utils/logger');
  */
 function driverFailed() {
   logger.debug(`Zwave : Failed to start driver.`);
-  this.zwave.disconnect();
 }
 
 module.exports = {
