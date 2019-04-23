@@ -11,13 +11,13 @@ module.exports = function ZwaveController(zwaveManager) {
   }
 
   /**
-   * @api {get} /api/v1/service/zwave/node/:zwave_node_id/neighbor Get Zwave node neighbors
+   * @api {get} /api/v1/service/zwave/neighbor Get Zwave node neighbors
    * @apiName getNodeNeighbors
    * @apiGroup Zwave
    */
   async function getNodeNeighbors(req, res) {
-    const neighbors = zwaveManager.getNodeNeighbors(req.params.zwave_node_id);
-    res.json(neighbors);
+    const nodes = zwaveManager.getNodeNeighbors();
+    res.json(nodes);
   }
 
   /**
@@ -35,7 +35,7 @@ module.exports = function ZwaveController(zwaveManager) {
       authenticated: true,
       controller: getNodes,
     },
-    'get /api/v1/service/zwave/node/:zwave_node_id/neighbor': {
+    'get /api/v1/service/zwave/neighbor': {
       authenticated: true,
       controller: getNodeNeighbors,
     },
