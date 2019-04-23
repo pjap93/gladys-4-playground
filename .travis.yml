@@ -21,7 +21,7 @@ env:
 before_install:
   - wget https://github.com/OpenZWave/open-zwave/archive/V1.5.zip
   - unzip V1.5.zip
-  - cd V1.5
+  - cd open-zwave-1.5
   - sudo make install
   - sudo ldconfig /usr/local/lib /usr/local/lib64
   - cd ..
