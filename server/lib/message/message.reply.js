@@ -15,13 +15,13 @@ async function reply(originalMessage, text) {
     const messageToInsert = {
       text,
       sender_id: null, // message sent by gladys
-      receiver_id: originalMessage.user_id,
+      receiver_id: originalMessage.user.id,
     };
     const messageCreated = await db.Message.create(messageToInsert);
     // send the message through websocket
     this.event.emit(EVENTS.WEBSOCKET.SEND, {
       type: WEBSOCKET_MESSAGE_TYPES.MESSAGE.NEW,
-      userId: originalMessage.user_id,
+      userId: originalMessage.user.id,
       payload: messageCreated,
     });
     // then, we get the service sending the original message

@@ -44,6 +44,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
+      temperature_unit_preference: {
+        allowNull: false,
+        type: Sequelize.STRING,
+      },
       telegram_user_id: {
         allowNull: true,
         type: Sequelize.STRING,

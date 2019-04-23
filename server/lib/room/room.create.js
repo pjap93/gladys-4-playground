@@ -23,7 +23,12 @@ async function create(selector, room) {
 
   room.house_id = house.id;
   const roomCreated = await db.Room.create(room);
-  return roomCreated.get({ plain: true });
+  const roomPlain = roomCreated.get({ plain: true });
+
+  // add room to the brain
+  this.brain.addRoom(roomPlain);
+
+  return roomPlain;
 }
 
 module.exports = {

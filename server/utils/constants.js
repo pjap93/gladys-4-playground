@@ -187,6 +187,9 @@ const INTENTS = {
   LIGHT: {
     TURN_ON: 'intent.light.turn-on',
   },
+  TEMPERATURE_SENSOR: {
+    GET_IN_ROOM: 'intent.temperature-sensor.get-in-room',
+  },
   WEATHER: {
     GET: 'intent.weather.get',
   },
@@ -215,6 +218,12 @@ const DEVICE_FEATURE_TYPES = {
     PUSH: 'push',
     UNKNOWN: 'unknown',
   },
+};
+
+const DEVICE_FEATURE_UNITS = {
+  CELSIUS: 'celsius',
+  FAHRENHEIT: 'fahrenheit',
+  PERCENT: 'percent',
 };
 
 const ACTIONS_STATUS = {
@@ -264,6 +273,7 @@ const DEVICE_FEATURE_TYPES_LIST = createList(DEVICE_FEATURE_TYPES);
 const USER_ROLE_LIST = createList(USER_ROLE);
 const AVAILABLE_LANGUAGES_LIST = createList(AVAILABLE_LANGUAGES);
 const SESSION_TOKEN_TYPE_LIST = createList(SESSION_TOKEN_TYPES);
+const DEVICE_FEATURE_UNITS_LIST = createList(DEVICE_FEATURE_UNITS);
 
 module.exports.STATE = STATE;
 module.exports.EVENTS = EVENTS;
@@ -293,3 +303,6 @@ module.exports.DEVICE_POLL_FREQUENCIES = DEVICE_POLL_FREQUENCIES;
 module.exports.DEVICE_POLL_FREQUENCIES_LIST = createList(DEVICE_POLL_FREQUENCIES);
 
 module.exports.WEBSOCKET_MESSAGE_TYPES = WEBSOCKET_MESSAGE_TYPES;
+
+module.exports.DEVICE_FEATURE_UNITS = DEVICE_FEATURE_UNITS;
+module.exports.DEVICE_FEATURE_UNITS_LIST = DEVICE_FEATURE_UNITS_LIST;

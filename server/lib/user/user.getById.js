@@ -13,7 +13,7 @@ const { NotFoundError } = require('../../utils/coreErrors');
  */
 async function getById(id) {
   const user = await db.User.findByPk(id, {
-    attributes: ['id', 'firstname', 'lastname', 'email', 'language', 'birthdate', 'role', 'created_at', 'updated_at'],
+    attributes: ['id', 'firstname', 'lastname', 'email', 'language', 'birthdate', 'role', 'temperature_unit_preference', 'created_at', 'updated_at'],
   });
   if (user === null) {
     throw new NotFoundError(`User "${id}" not found`);

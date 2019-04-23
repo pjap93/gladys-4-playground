@@ -5,6 +5,7 @@
  * @param {string} originalMessage.language - The language of the message.
  * @param {string} originalMessage.source - The service which received the message.
  * @param {string} originalMessage.source_user_id - The unique identifier of the user on the source platform.
+ * @param {Object} originalMessage.user - The user asking.
  * @param {string} intent - The intent to send.
  * @param {Object} context - The context of the reply.
  * @example

@@ -45,6 +45,7 @@ async function train() {
     });
   });
 
+  // training
   logger.debug(`Training brain...`);
   await this.nlpManager.train();
   logger.debug(`Brain trained!`);

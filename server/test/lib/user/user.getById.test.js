@@ -13,6 +13,7 @@ describe('user.getById', () => {
       email: 'demo@demo.com',
       language: 'en',
       birthdate: '12/12/1990',
+      temperature_unit_preference: 'celsius',
       role: 'admin',
       created_at: new Date('2019-02-12T07:49:07.556Z'),
       updated_at: new Date('2019-02-12T07:49:07.556Z'),

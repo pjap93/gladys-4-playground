@@ -1,5 +1,12 @@
 const { expect } = require('chai');
 const { fake, assert } = require('sinon');
+const EvenEmitter = require('events');
+
+const event = new EvenEmitter();
+
+const messageManager = {
+  replyByIntent: fake.resolves(true),
+};
 
 const fakeWeather = {
   temperature: 54.87,
@@ -30,7 +37,7 @@ const serviceWithoutDarkSky = {
 
 describe('weather.get', () => {
   it('should get the weather', async () => {
-    const weather = new Weather(service);
+    const weather = new Weather(service, event, messageManager);
     const options = {
       latitude: 112,
       longitude: -2,
@@ -51,7 +58,7 @@ describe('weather.get', () => {
     assert.calledWith(darkSky.weather.get, options);
   });
   it('should throw an error, service not configured', async () => {
-    const weather = new Weather(serviceWithoutDarkSky);
+    const weather = new Weather(serviceWithoutDarkSky, event);
     const options = {
       latitude: 112,
       longitude: -2,

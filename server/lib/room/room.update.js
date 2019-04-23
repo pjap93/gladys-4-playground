@@ -21,9 +21,21 @@ async function update(selector, room) {
     throw new NotFoundError('Room not found');
   }
 
+  const oldName = existingRoom.name;
+
   await existingRoom.update(room);
 
-  return existingRoom.get({ plain: true });
+  const updatedRoomPlain = existingRoom.get({ plain: true });
+
+  if (oldName !== updatedRoomPlain.name) {
+    this.brain.removeRoom({
+      id: updatedRoomPlain.id,
+      name: oldName,
+    });
+    this.brain.addRoom(updatedRoomPlain);
+  }
+
+  return updatedRoomPlain;
 }
 
 module.exports = {

@@ -1,55 +1,77 @@
-const { expect, assert } = require('chai');
+const { expect } = require('chai');
+const assertChai = require('chai').assert;
+const { assert, fake } = require('sinon');
 
 const Room = require('../../../lib/room');
 
 describe('room.create', () => {
-  const room = new Room();
+  const brain = {
+    addRoom: fake.returns(null),
+    removeRoom: fake.returns(null),
+  };
+  const room = new Room(brain);
   it('should create a room', async () => {
     const newRoom = await room.create('test-house', {
       name: 'My test room',
     });
     expect(newRoom).to.have.property('name', 'My test room');
     expect(newRoom).to.have.property('selector', 'my-test-room');
+    assert.calledOnce(brain.addRoom);
   });
   it('should return house not found', async () => {
     const promise = room.create('house-does-not-exist', {
       name: 'My test room',
     });
-    return assert.isRejected(promise, 'House not found');
+    return assertChai.isRejected(promise, 'House not found');
   });
 });
 
 describe('room.update', () => {
-  const room = new Room();
+  const brain = {
+    addRoom: fake.returns(null),
+    removeRoom: fake.returns(null),
+  };
+  const room = new Room(brain);
   it('should update a room', async () => {
     const newRoom = await room.update('test-room', {
       name: 'New name',
     });
     expect(newRoom).to.have.property('name', 'New name');
     expect(newRoom).to.have.property('selector', 'test-room');
+    assert.calledOnce(brain.removeRoom);
+    assert.calledOnce(brain.addRoom);
   });
   it('should return room not found', async () => {
     const promise = room.update('room-does-not-exist', {
       name: 'My test room',
     });
-    return assert.isRejected(promise, 'Room not found');
+    return assertChai.isRejected(promise, 'Room not found');
   });
 });
 
 
 describe('room.destroy', () => {
-  const room = new Room();
+  const brain = {
+    addRoom: fake.returns(null),
+    removeRoom: fake.returns(null),
+  };
+  const room = new Room(brain);
   it('should destroy a room', async () => {
     await room.destroy('test-room');
+    assert.calledOnce(brain.removeRoom);
   });
   it('should return room not found', async () => {
     const promise = room.destroy('room-does-not-exist');
-    return assert.isRejected(promise, 'Room not found');
+    return assertChai.isRejected(promise, 'Room not found');
   });
 });
 
 describe('room.getByName', () => {
-  const room = new Room();
+  const brain = {
+    addRoom: fake.returns(null),
+    removeRoom: fake.returns(null),
+  };
+  const room = new Room(brain);
   it('should get a room by name', async () => {
     const roomFound = await room.getByName('Test room');
     expect(roomFound).to.deep.equal({
@@ -74,6 +96,6 @@ describe('room.getByName', () => {
   });
   it('should return room not found', async () => {
     const promise = room.getByName('Room does not exist');
-    return assert.isRejected(promise, 'Room not found');
+    return assertChai.isRejected(promise, 'Room not found');
   });
 });

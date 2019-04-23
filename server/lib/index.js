@@ -24,6 +24,7 @@ const Weather = require('./weather');
  * @param {string} [config.jwtSecret] - A secret to generate jsonwebtoken.
  * @param {boolean} [config.disableService] - If true, disable the loading of services.
  * @param {boolean} [config.disableBrainLoading] - If true, disable the loading of the brain.
+ * @param {boolean} [config.disableRoomLoading] - If true, disable the loading of the rooms.
  * @param {boolean} [config.disableTriggerLoading] - If true, disable the loading of the triggers.
  * @param {boolean} [config.disableSceneLoading] - If true, disable the loading of the scenes.
  * @param {boolean} [config.disableDeviceLoading] - If true, disable the loading of devices in RAM.
@@ -40,7 +41,7 @@ function Gladys(config = {}) {
   const event = new Event();
   const stateManager = new StateManager(event);
   const house = new House(event);
-  const room = new Room();
+  const room = new Room(brain);
   const service = new Service(services, stateManager);
   const location = new Location();
   const message = new MessageHandler(event, brain, service);
@@ -90,6 +91,9 @@ function Gladys(config = {}) {
       }
       if (!config.disableUserLoading) {
         await user.init();
+      }
+      if (!config.disableRoomLoading) {
+        await room.init();
       }
     },
   };

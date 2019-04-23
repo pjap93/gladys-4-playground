@@ -13,6 +13,13 @@ class NotFoundError extends Error {
   }
 }
 
+class NoValuesFoundError extends Error {
+  constructor(message) {
+    super();
+    this.message = message;
+  }
+}
+
 class ServiceNotConfiguredError extends Error {
   constructor(message) {
     super();
@@ -32,4 +39,5 @@ module.exports = {
   NotFoundError,
   ServiceNotConfiguredError,
   BadParameters,
+  NoValuesFoundError,
 };

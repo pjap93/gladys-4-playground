@@ -13,9 +13,9 @@ module.exports = function MessageController(gladys) {
     const messageToSend = {
       text: req.body.text,
       source: 'api_client',
-      source_user_id: req.user.id,
-      user_id: req.user.id,
       language: req.user.language,
+      source_user_id: req.user.id,
+      user: req.user,
       created_at: new Date(),
     };
     gladys.event.emit(EVENTS.MESSAGE.NEW, messageToSend);

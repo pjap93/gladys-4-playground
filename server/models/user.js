@@ -56,6 +56,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.ENUM(USER_ROLE_LIST),
     },
+    temperature_unit_preference: {
+      allowNull: false,
+      type: DataTypes.ENUM(['celsius', 'fahrenheit']),
+      defaultValue: 'celsius',
+    },
     telegram_user_id: {
       allowNull: true,
       type: DataTypes.STRING,

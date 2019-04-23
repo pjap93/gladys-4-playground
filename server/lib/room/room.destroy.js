@@ -19,6 +19,8 @@ async function destroy(selector) {
     throw new NotFoundError('Room not found');
   }
 
+  this.brain.removeRoom(room);
+
   await room.destroy();
 }
 

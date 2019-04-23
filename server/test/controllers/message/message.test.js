@@ -15,7 +15,7 @@ describe('POST /api/v1/message', () => {
           text: 'What time is it?',
           source: 'api_client',
           source_user_id: '0cd30aef-9c4e-4a23-88e3-3547971296e5',
-          user_id: '0cd30aef-9c4e-4a23-88e3-3547971296e5',
+          user: res.body.user,
           language: 'en',
           created_at: res.body.created_at,
         });

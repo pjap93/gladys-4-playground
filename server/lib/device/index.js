@@ -1,6 +1,7 @@
 const { EVENTS } = require('../../utils/constants');
 const { eventFunctionWrapper } = require('../../utils/functionsWrapper');
 const LightManager = require('./light');
+const TemperatureSensorManager = require('./temperature-sensor');
 const { add } = require('./device.add');
 const { addFeature } = require('./device.addFeature');
 const { addParam } = require('./device.addParam');
@@ -14,12 +15,14 @@ const { setValue } = require('./device.setValue');
 const { setupPoll } = require('./device.setupPoll');
 const { newStateEvent } = require('./device.newStateEvent');
 
-const DeviceManager = function DeviceManager(eventManager, messageManager, stateManager, serviceManager) {
+const DeviceManager = function DeviceManager(eventManager, messageManager, stateManager, serviceManager, roomManager) {
   this.eventManager = eventManager;
   this.messageManager = messageManager;
   this.stateManager = stateManager;
   this.serviceManager = serviceManager;
+  this.roomManager = roomManager;
   this.lightManager = new LightManager(eventManager, messageManager, this);
+  this.temperatureSensorManager = new TemperatureSensorManager(eventManager, messageManager, this);
   this.devicesByPollFrequency = {};
   // listen to events
   this.eventManager.on(EVENTS.DEVICE.NEW_STATE, this.newStateEvent.bind(this));

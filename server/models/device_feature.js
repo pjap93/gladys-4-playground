@@ -1,5 +1,5 @@
 const { addSelector } = require('../utils/addSelector');
-const { DEVICE_FEATURE_CATEGORIES_LIST, DEVICE_FEATURE_TYPES_LIST } = require('../utils/constants');
+const { DEVICE_FEATURE_CATEGORIES_LIST, DEVICE_FEATURE_TYPES_LIST, DEVICE_FEATURE_UNITS_LIST } = require('../utils/constants');
 
 module.exports = (sequelize, DataTypes) => {
   const deviceFeature = sequelize.define('t_device_feature', {
@@ -54,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     unit: {
       allowNull: true,
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM(DEVICE_FEATURE_UNITS_LIST),
     },
     min: {
       allowNull: false,

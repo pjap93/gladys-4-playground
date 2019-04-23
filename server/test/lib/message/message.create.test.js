@@ -19,7 +19,10 @@ describe('message.create', () => {
       language: 'en',
       source: 'client-api',
       source_user_id: '0cd30aef-9c4e-4a23-88e3-3547971296e5',
-      user_id: '0cd30aef-9c4e-4a23-88e3-3547971296e5',
+      user: {
+        id: '0cd30aef-9c4e-4a23-88e3-3547971296e5',
+        language: 'en',
+      },
     });
     expect(newMessage).to.have.property('message');
   });
