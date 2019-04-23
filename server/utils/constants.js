@@ -187,6 +187,9 @@ const INTENTS = {
   LIGHT: {
     TURN_ON: 'intent.light.turn-on',
   },
+  WEATHER: {
+    GET: 'intent.weather.get',
+  },
 };
 
 const DEVICE_FEATURE_CATEGORIES = {

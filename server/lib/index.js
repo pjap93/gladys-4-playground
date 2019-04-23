@@ -50,7 +50,7 @@ function Gladys(config = {}) {
   const scene = new Scene(stateManager, event);
   const trigger = new TriggerManager(event, stateManager, scene);
   const variable = new Variable();
-  const weather = new Weather(service);
+  const weather = new Weather(service, event, message);
 
   const gladys = {
     version: '0.1.0', // todo, read package.json
