@@ -10,6 +10,7 @@ import translationEn from '../config/i18n/en.json';
 
 import Header from './header';
 import Layout from './layout';
+import Redirect from './router/Redirect';
 import Login from '../routes/login/LoginPage';
 import Dashboard from '../routes/dashboard/DashboardPage';
 import Device from '../routes/device';
@@ -29,7 +30,9 @@ import SettingsSystemPage from '../routes/settings/settings-system';
 // Integrations
 import TelegramPage from '../routes/integration/all/telegram';
 import PhilipsHuePage from '../routes/integration/all/philips-hue';
-import ZwavePage from '../routes/integration/all/zwave';
+import ZwaveNodePage from '../routes/integration/all/zwave/node-page';
+import ZwaveNetworkPage from '../routes/integration/all/zwave/network-page';
+import ZwaveSettingsPage from '../routes/integration/all/zwave/settings-page';
 
 
 const httpClient = (process.env.DEMO_MODE === 'true') ? new DemoHttpClient() : new HttpClient();
@@ -75,7 +78,10 @@ const Main = connect('currentUrl,user,showDropDown', actions)(
 
           <TelegramPage path="/dashboard/integration/communication/telegram" />
           <PhilipsHuePage path="/dashboard/integration/device/philips-hue" />
-          <ZwavePage path="/dashboard/integration/device/zwave" />
+          <Redirect path="/dashboard/integration/device/zwave" to="/dashboard/integration/device/zwave/node" />
+          <ZwaveNodePage path="/dashboard/integration/device/zwave/node" />
+          <ZwaveNetworkPage path="/dashboard/integration/device/zwave/network" />
+          <ZwaveSettingsPage path="/dashboard/integration/device/zwave/settings" />
 
           <ChatPage path="/dashboard/chat" />
           <MapPage path="/dashboard/maps" />

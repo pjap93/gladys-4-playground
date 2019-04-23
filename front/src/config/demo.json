@@ -136,5 +136,80 @@
       "user": "tony",
       "text": "Time to wake up!"
     }]]
-  }
+  },
+  "get /api/v1/service/zwave/node": [],
+  "get /api/v1/service/zwave/neighbor": [
+    {
+      "id": "1",
+      "manufacturer": "Z-Wave.Me",
+      "product": "ZME_UZB1 USB Stick",
+      "neighbors": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        10
+      ]
+    },
+    {
+      "id": "2",
+      "manufacturer": "",
+      "product": "",
+      "neighbors": []
+    },
+    {
+      "id": "3",
+      "manufacturer": "",
+      "product": "",
+      "neighbors": []
+    },
+    {
+      "id": "4",
+      "manufacturer": "",
+      "product": "",
+      "neighbors": []
+    },
+    {
+      "id": "5",
+      "manufacturer": "",
+      "product": "",
+      "neighbors": []
+    },
+    {
+      "id": "6",
+      "manufacturer": "",
+      "product": "",
+      "neighbors": []
+    },
+    {
+      "id": "7",
+      "manufacturer": "",
+      "product": "",
+      "neighbors": []
+    },
+    {
+      "id": "8",
+      "manufacturer": "",
+      "product": "",
+      "neighbors": []
+    },
+    {
+      "id": "10",
+      "manufacturer": "FIBARO System",
+      "product": "FGMS001-ZW5 Motion Sensor",
+      "neighbors": [
+        1
+      ]
+    }
+  ],  
+  "get /api/v1/service/usb/port": [ {
+    "comName": "/dev/tty.usbmodem145301",
+    "serialNumber": "f75ab720-bbb3-4a1c-8729-84aa02ebdca0",
+    "locationId": "14530000",
+    "vendorId": "0658",
+    "productId": "0200"
+  }]
 }

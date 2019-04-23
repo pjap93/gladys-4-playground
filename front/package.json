@@ -35,7 +35,8 @@
     "preact-router": "^2.5.7",
     "react-big-calendar": "^0.20.3",
     "tabler-ui": "0.0.32",
-    "unistore": "^3.2.1"
+    "unistore": "^3.2.1",
+    "vis": "^4.21.0"
   },
   "jest": {
     "coverageDirectory": "./coverage/",
