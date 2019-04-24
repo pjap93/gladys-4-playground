@@ -1,4 +1,13 @@
+FROM node:8
+
+WORKDIR /src
+ADD . /src
+
+RUN cd front && npm install && cd ..
+RUN npm run build
+
 FROM node:8-alpine
+
 
 # System dependencies
 RUN apk add --no-cache tzdata nmap
@@ -8,6 +17,7 @@ RUN mkdir /src
 
 WORKDIR /src
 ADD . /src
+COPY --from=0 /src/front/build /src/server/static
 WORKDIR /src/server
 
 RUN apk add --no-cache --virtual .build-deps make gcc g++ python git \
