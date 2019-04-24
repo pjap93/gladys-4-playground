@@ -3,11 +3,11 @@ FROM node:8
 WORKDIR /src
 ADD . /src
 
-RUN cd front && npm install && cd ..
+WORKDIR /src/front
+RUN npm install
 RUN npm run build
 
 FROM node:8-alpine
-
 
 # System dependencies
 RUN apk add --no-cache tzdata nmap
