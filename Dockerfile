@@ -3,9 +3,8 @@ FROM node:8
 WORKDIR /src
 ADD . /src
 
-WORKDIR /src/front
-RUN npm install
-RUN npm run build
+RUN ls
+RUN cd front && npm install && npm run build
 
 FROM node:8-alpine
 
