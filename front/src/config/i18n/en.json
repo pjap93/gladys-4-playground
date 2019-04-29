@@ -12,6 +12,63 @@
       "invalidEmail": "Invalid email",
       "needHelpText": "Need help? Join us on <a href=\"https://community.gladysassistant.com/\"> Gladys Community</a>."
     },
+    "signup": {
+      "welcome": {
+        "title": "Welcome in Gladys 🙋",
+        "introSentence": "First, thank you for choosing me. I'm Gladys, a privacy-friendly home assistant for your house.",
+        "introTimeToCreateAccount": "It's time to create a local account for your Gladys setup.",
+        "introDontWorryLocal": "Don't worry: Gladys is fully self-hosted, and all the informations you'll enter are just saved in the local database of Gladys.",
+        "introInCaseOfIssues": "In case you have issues installing Gladys, check out our <a href=\"\">documentation</a> or ask a question on <a href=\"\">Gladys community</a>.",
+        "introReadMoreGladysGateway": "Read more about the <a href=\"\">Gladys Gateway.</a>",
+        "buttonCreateAccountGladysGateway": "Create account with Gladys Gateway",
+        "buttonCreateAccountWithEmail": "Create local account with your Email",
+        "buttonCreateAccountWithBlockstack" : "Create account with Blockstack"
+      },
+      "createLocalAccount": {
+        "title": "Create your local Gladys account",
+        "description": "All informations entered here are only saved locally in Gladys database. You can update them later at any time. Your email is just used as login identifier.",
+        "firstnameLabel": "Firstname",
+        "firstnamePlaceHolder": "Enter your Firstname",
+        "lastnameLabel": "Lastname",
+        "lastnamePlaceHolder": "Enter your Lastname",
+        "emailLabel": "Email",
+        "emailPlaceHolder": "Enter your Email",
+        "passwordLabel": "Password (min 8 characters)",
+        "passwordPlaceHolder": "Enter a password",
+        "passwordRepeatLabel": "Repeat your password",
+        "passwordRepeatPlaceHolder": "Repeat your password",
+        "createAccountButton": "Create Account"
+      },
+      "preferences": {
+        "title": "Your preferences",
+        "description": "You can modify those settings anytime later.",
+        "temperatureUnitsLabel": "Temperature unit",
+        "temperatureUnitsCelsius": "Celsius (°C)",
+        "temperatureUnitsFahrenheit": "Fahrenheit (°F)",
+        "distanceUnit": "Distance unit",
+        "distanceUnitMeter": "SI (Meter)",
+        "distanceUnitUs": "Imperial/US (Miles)",
+        "deviceStateHistoryDuration": "Keep Device State History",
+        "saveSettingsButton": "Save settings"
+      },
+      "configureHouse": {
+        "title": "Configure your house",
+        "description": "I need some informations about your house. All those informations are saved only in Gladys local database.",
+        "houseNameLabel": "Name",
+        "houseNamePlaceHolder": "Enter your house name",
+        "houseLocationLabel": "Click where you house is located",
+        "roomsLabel": "Add all rooms in your house",
+        "roomNamePlaceHolder": "Type a new room to add",
+        "saveHouse": "Save house"
+      },
+      "success": {
+        "title": "Allow me to thank you 🙏",
+        "introduction": "I'm <a href=\"https://twitter.com/pierregillesl\">Pierre-Gilles Leymarie</a>, and I founded Gladys Assistant in 2013.",
+        "thanksForChoosingOpenSource": "I would like to thank you for choosing Gladys 🙌 I hope you'll enjoy using this software as much as I enjoyed building it.",
+        "ifYouWantToSupportThisSotware": "As Gladys is now my main job, I rely on contribution to make this project substainable. If you want to access to additionnal features and support Gladys, read more about the <a href=\"\">Gladys community package</a>.",
+        "goToDashboardButton": "Go to Dashboard"
+      }
+    },
     "integration": {
       "root": {
         "title": "Integrations",

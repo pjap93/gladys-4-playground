@@ -12,6 +12,13 @@ import Header from './header';
 import Layout from './layout';
 import Redirect from './router/Redirect';
 import Login from '../routes/login/LoginPage';
+
+import SignupWelcomePage from '../routes/signup/1-welcome';
+import SignupCreateAccountLocal from '../routes/signup/2-create-account-local';
+import SignupPreferences from '../routes/signup/3-preferences';
+import SignupConfigureHouse from '../routes/signup/4-configure-house';
+import SignupSuccess from '../routes/signup/5-success';
+
 import Dashboard from '../routes/dashboard/DashboardPage';
 import Device from '../routes/device';
 import IntegrationPage from '../routes/integration';
@@ -65,6 +72,13 @@ const Main = connect('currentUrl,user,showDropDown', actions)(
         <Header currentUrl={currentUrl} user={user} toggleDropDown={toggleDropDown} showDropDown={showDropDown} />
         <Router onChange={handleRoute}>
           <Login path="/login" />
+          
+          <SignupWelcomePage path="/signup" />
+          <SignupCreateAccountLocal path="/signup/create-account-local" />
+          <SignupPreferences path="/signup/preference" />
+          <SignupConfigureHouse path="/signup/configure-house" />
+          <SignupSuccess path="/signup/success" />
+
           <Dashboard path="/dashboard" />
           <Device path="/dashboard/device" />
           <IntegrationPage path="/dashboard/integration" />

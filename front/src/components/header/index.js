@@ -1,7 +1,14 @@
 import { h } from 'preact';
 import { Link } from 'preact-router/match';
 
-const PAGES_WITHOUT_HEADER = ['/login'];
+const PAGES_WITHOUT_HEADER = [
+  '/login',
+  '/signup',
+  '/signup/create-account-local',
+  '/signup/preference',
+  '/signup/configure-house',
+  '/signup/success'
+];
 
 const Header = ({ ...props }) => {
   if (PAGES_WITHOUT_HEADER.includes(props.currentUrl)) {
