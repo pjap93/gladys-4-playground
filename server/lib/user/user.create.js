@@ -22,6 +22,7 @@ const db = require('../../models');
 async function create(user) {
   const createdUser = await db.User.create(user);
   const plainUser = createdUser.get({ plain: true });
+  delete plainUser.password;
   this.stateManager.setState('user', plainUser.selector, plainUser);
   return plainUser;
 }
