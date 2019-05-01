@@ -20,8 +20,11 @@ module.exports = function UserController(gladys) {
    * @apiSuccess {String} id id of the created user
    */
   async function create(req, res, next) {
-    const newUser = await gladys.user.create(req.body);
-    res.status(201).json(newUser);
+    const user = await gladys.user.create(req.body);
+    const scope = req.body.scope || ['dashboard:write', 'dashboard:read'];
+    const session = await gladys.session.create(user.id, scope, LOGIN_SESSION_VALIDITY_IN_SECONDS);
+    const response = Object.assign({}, user, session);
+    res.status(201).json(response);
   }
 
   /**
