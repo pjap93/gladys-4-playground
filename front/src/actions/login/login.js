@@ -1,10 +1,12 @@
-import { LoginStatus } from '../utils/consts';
-import { validateEmail } from '../utils/validator';
+import { LoginStatus } from '../../utils/consts';
+import { validateEmail } from '../../utils/validator';
 import { route } from 'preact-router';
 
 const actions = store => ({
   async login(state, e) {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     if (!validateEmail(state.loginFormEmailValue)) {
       return store.setState({ loginStatus: LoginStatus.WrongEmailError });
     }

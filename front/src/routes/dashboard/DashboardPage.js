@@ -1,6 +1,6 @@
 import { connect } from 'unistore/preact';
 import PageLayout from '../../components/layout/page';
-import loginActions from '../../actions/login';
+import loginActions from '../../actions/login/login';
 import WeatherBox from '../../components/boxs/weather/WeatherBox';
 import RoomTemperatureBox from '../../components/boxs/room-temperature/RoomTemperature';
 import CameraBox from '../../components/boxs/camera/Camera';

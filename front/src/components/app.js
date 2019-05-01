@@ -13,6 +13,7 @@ import Header from './header';
 import Layout from './layout';
 import Redirect from './router/Redirect';
 import Login from '../routes/login/LoginPage';
+import LoginBlockstack from '../routes/login/login-blockstack';
 
 import SignupWelcomePage from '../routes/signup/1-welcome';
 import SignupCreateAccountLocal from '../routes/signup/2-create-account-local';
@@ -79,10 +80,11 @@ const actions = store => ({
 const Main = connect('currentUrl,user,showDropDown', actions)(
   ({ currentUrl, user, showDropDown, handleRoute, toggleDropDown }) => (
     <div id="app">
-      <Layout main={currentUrl !== '/login'}>
+      <Layout currentUrl={currentUrl}>
         <Header currentUrl={currentUrl} user={user} toggleDropDown={toggleDropDown} showDropDown={showDropDown} />
         <Router onChange={handleRoute}>
           <Login path="/login" />
+          <LoginBlockstack path="/login/blockstack" />
           
           <SignupWelcomePage path="/signup" />
           <SignupCreateAccountLocal path="/signup/create-account-local" />

@@ -3,6 +3,7 @@ import { Link } from 'preact-router/match';
 
 const PAGES_WITHOUT_HEADER = [
   '/login',
+  '/login/blockstack',
   '/signup',
   '/signup/create-account-local',
   '/signup/create-account-gladys-gateway',

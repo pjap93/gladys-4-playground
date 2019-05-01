@@ -1,7 +1,8 @@
 import { connect } from 'unistore/preact';
 import { Text, MarkupText, Localizer } from 'preact-i18n';
+import { Link } from 'preact-router/match';
 import * as consts from '../../utils/consts';
-import loginActions from '../../actions/login';
+import loginActions from '../../actions/login/login';
 
 const LoginPage = connect('loginFormEmailValue,loginFormPasswordValue,loginStatus', loginActions)(
   ({ loginFormEmailValue, loginFormPasswordValue, loginStatus, login, onEmailChange, onPasswordChange }) => (
@@ -15,6 +16,16 @@ const LoginPage = connect('loginFormEmailValue,loginFormPasswordValue,loginStatu
           <form onSubmit={login} class="card">
             <div class="card-body p-6">
               <div class="card-title"><Text id="login.cardTitle" /></div>
+
+              <div class="form-group">
+                <Link class="btn btn-info btn-block" href="/login/gladys-gateway"><i class="fe fe-activity" /> <Text id="login.loginWithGladysGatewayButton" /></Link>
+              </div>
+
+              <div class="form-group">
+                <Link class="btn btn-primary btn-block" href="/login/blockstack"><i class="fe fe-box" /> <Text id="login.loginWithBlockstackButton" /></Link>
+              </div>
+
+              <hr />
 
               { loginStatus === consts.LoginStatus.WrongCredentialsError &&
                     <div class="alert alert-danger" role="alert">
@@ -61,6 +72,7 @@ const LoginPage = connect('loginFormEmailValue,loginFormPasswordValue,loginStatu
                   <Text id="login.loginButtonText" />
                 </button>
               </div>
+
             </div>
           </form>
           <div class="text-center text-muted">

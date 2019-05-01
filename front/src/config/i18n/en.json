@@ -2,6 +2,8 @@
     "login": {
       "title": "Gladys Assistant",
       "cardTitle": "Login to your account",
+      "loginWithGladysGatewayButton": "Login with Gladys Gateway",
+      "loginWithBlockstackButton": "Login with Blockstack",
       "emailLabel": "Email Address",
       "emailPlaceholder": "Enter your email",
       "passwordLabel": "Password",
