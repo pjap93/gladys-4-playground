@@ -1,4 +1,4 @@
-const { assert } = require('chai');
+const { expect, assert } = require('chai');
 const EventEmitter = require('events');
 const User = require('../../../lib/user');
 const StateManager = require('../../../lib/state');
@@ -10,7 +10,7 @@ const stateManager = new StateManager(event);
 describe('user.create', () => {
   const user = new User({}, stateManager);
   it('should create user', async () => {
-    await user.create({
+    const createdUser = await user.create({
       firstname: 'Tony',
       lastname: 'Stark',
       email: 'tony.stark@gladysassistant.com',
@@ -19,6 +19,7 @@ describe('user.create', () => {
       language: 'en',
       role: 'admin',
     });
+    expect(createdUser).not.to.have.property('password');
   });
   it('should not create user, wrong email', async () => {
     const promise = user.create({
