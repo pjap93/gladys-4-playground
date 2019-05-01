@@ -61,6 +61,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.ENUM(['celsius', 'fahrenheit']),
       defaultValue: 'celsius',
     },
+    distance_unit_preference: {
+      allowNull: false,
+      type: DataTypes.ENUM(['metric', 'us']),
+      defaultValue: 'metric',
+    },
     telegram_user_id: {
       allowNull: true,
       type: DataTypes.STRING,
