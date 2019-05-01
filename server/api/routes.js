@@ -102,7 +102,8 @@ function setupRoutes(gladys) {
   router.get('/api/v1/user/:user_selector/location', locationController.getLocationsUser);
 
   // variable
-  router.post('/api/v1/service/:service_name/:variable_key', variableController.setForLocalService);
+  router.post('/api/v1/service/:service_name/variable/:variable_key', variableController.setForLocalService);
+  router.post('/api/v1/variable/:variable_key', variableController.setValue);
 
   // session
   router.post('/api/v1/session/:session_id/revoke', sessionController.revoke);
