@@ -5,6 +5,12 @@ export const LoginStatus = {
   LoginSuccess: 'LoginSuccess'
 };
 
+export const CreateUserErrors = {
+  PasswordTooShort: 'PasswordTooShort',
+  PasswordNotMatching: 'PasswordNotMatching',
+  InvalidEmail: 'InvalidEmail'
+};
+
 export const TelegramGetApiKeyStatus = {
   Getting: 'Getting',
   GetError: 'GetError',
@@ -38,5 +44,7 @@ export const SceneGetStatus = {
 export const RequestStatus = {
   Getting: 'Getting',
   Success: 'Success',
-  Error: 'Error'
+  Error: 'Error',
+  NetworkError: 'NetworkError',
+  ConflictError: 'ConflictError'
 };

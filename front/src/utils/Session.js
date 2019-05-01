@@ -1,4 +1,5 @@
 import config from '../../config';
+import { Dispatcher } from './Dispatcher';
 
 class Session {
 
@@ -6,7 +7,7 @@ class Session {
     this.user = null;
     this.initialized = false;
     this.httpClient = httpClient;
-    this.event = new EventTarget();
+    this.dispatcher = new Dispatcher();
     this.websocketConnected = false;
   }
 
@@ -44,7 +45,7 @@ class Session {
       ws.onmessage = (e) => {
         const { data } = e;
         const { type, payload } = JSON.parse(data);
-        this.event.dispatchEvent(new CustomEvent(type, { detail: payload }));
+        this.dispatcher.dispatch(type, payload);
       };
     };
     ws.onerror = (e) => {

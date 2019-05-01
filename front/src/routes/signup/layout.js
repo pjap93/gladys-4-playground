@@ -14,27 +14,27 @@ const SignupLayout = ({ children, ...props }) => (
               <div class="card-body">
                 <ul class="nav nav-pills nav-fill">
                   <li class="nav-item">
-                    <Link class="nav-link" activeClassName="active" href="/signup">
+                    <Link class={props.currentUrl && props.currentUrl === '/signup' ? 'active nav-link' : 'nav-link'} href="#">
                       Welcome
                     </Link>
                   </li>
                   <li class="nav-item">
-                    <Link class={props.currentUrl && props.currentUrl.startsWith('/signup/create-account') ? 'active nav-link' : 'nav-link'} href="/signup">
+                    <Link class={props.currentUrl && props.currentUrl.startsWith('/signup/create-account') ? 'active nav-link' : 'nav-link'} href="#">
                       Create account
                     </Link>
                   </li>
                   <li class="nav-item">
-                    <Link class="nav-link" activeClassName="active" href="/signup/preference">
+                    <Link class={props.currentUrl && props.currentUrl.startsWith('/signup/preference') ? 'active nav-link' : 'nav-link'} href="#">
                       Your preferences
                     </Link>
                   </li>
                   <li class="nav-item">
-                    <Link class="nav-link" activeClassName="active" href="/signup/configure-house">
+                    <Link class={props.currentUrl && props.currentUrl.startsWith('/signup/configure-house') ? 'active nav-link' : 'nav-link'} href="#">
                       Configure house
                     </Link>
                   </li>
                   <li class="nav-item">
-                    <Link class="nav-link" activeClassName="active" href="/signup/success">
+                    <Link class={props.currentUrl && props.currentUrl.startsWith('/signup/success') ? 'active nav-link' : 'nav-link'} href="#">
                       Success!
                     </Link>
                   </li>

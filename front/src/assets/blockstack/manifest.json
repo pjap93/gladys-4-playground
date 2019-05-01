@@ -1,0 +1,10 @@
+{
+  "name": "Gladys Assistant",
+  "start_url": "localhost:1337",
+  "description": "An open-source privacy-friendly home assistant",
+  "icons": [{
+    "src": "https://gladysassistant.com/assets/images/favicon/android-icon-192x192.png",
+    "sizes": "192x192",
+    "type": "image/png"
+  }]
+}

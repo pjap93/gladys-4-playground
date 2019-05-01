@@ -7,6 +7,7 @@ import { HttpClient } from '../utils/HttpClient';
 import { DemoHttpClient } from '../utils/DemoHttpClient';
 import { Session } from '../utils/Session';
 import translationEn from '../config/i18n/en.json';
+import { SYSTEM_VARIABLE_NAMES } from '../../../server/utils/constants';
 
 import Header from './header';
 import Layout from './layout';
@@ -15,6 +16,8 @@ import Login from '../routes/login/LoginPage';
 
 import SignupWelcomePage from '../routes/signup/1-welcome';
 import SignupCreateAccountLocal from '../routes/signup/2-create-account-local';
+import SignupCreateAccountGladysGateway from '../routes/signup/2-create-account-gladys-gateway';
+import SignupCreateAccountBlockstack from '../routes/signup/2-create-account-blockstack';
 import SignupPreferences from '../routes/signup/3-preferences';
 import SignupConfigureHouse from '../routes/signup/4-configure-house';
 import SignupSuccess from '../routes/signup/5-success';
@@ -41,7 +44,6 @@ import ZwaveNodePage from '../routes/integration/all/zwave/node-page';
 import ZwaveNetworkPage from '../routes/integration/all/zwave/network-page';
 import ZwaveSettingsPage from '../routes/integration/all/zwave/settings-page';
 
-
 const httpClient = (process.env.DEMO_MODE === 'true') ? new DemoHttpClient() : new HttpClient();
 const session = new Session(httpClient);
 
@@ -52,6 +54,15 @@ const store = createStore({
   user: {
     language: 'en'
   },
+  signupNewUser: {},
+  signupUserPreferences: {
+    temperature_unit_preference: 'celsius',
+    distance_unit_preference: 'metric'
+  },
+  signupSystemPreferences: {
+    [SYSTEM_VARIABLE_NAMES.DEVICE_STATE_HISTORY_IN_DAYS]: 90
+  },
+  signupRooms: [],
   showDropDown: false
 });
 
@@ -75,6 +86,8 @@ const Main = connect('currentUrl,user,showDropDown', actions)(
           
           <SignupWelcomePage path="/signup" />
           <SignupCreateAccountLocal path="/signup/create-account-local" />
+          <SignupCreateAccountGladysGateway path="/signup/create-account-gladys-gateway" />
+          <SignupCreateAccountBlockstack path="/signup/create-account-blockstack" />
           <SignupPreferences path="/signup/preference" />
           <SignupConfigureHouse path="/signup/configure-house" />
           <SignupSuccess path="/signup/success" />

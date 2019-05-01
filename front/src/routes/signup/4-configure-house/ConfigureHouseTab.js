@@ -1,5 +1,9 @@
 import { Text, Localizer } from 'preact-i18n';
 
+const removeRoomLocal = (index, removeRoom) => () => {
+  removeRoom(index);
+};
+
 const ConfigureHouseTab = ({ children, ...props }) => (
   <div class="row">
     <div class="col-md-8 mx-auto">
@@ -7,7 +11,8 @@ const ConfigureHouseTab = ({ children, ...props }) => (
       <p><Text id="signup.configureHouse.description" /></p>
       <div class="form-group">
         <label class="form-label"><Text id="signup.configureHouse.houseNameLabel" /></label>
-        <Localizer><input type="text" class="form-control" placeholder={<Text id="signup.configureHouse.houseNamePlaceHolder" />} /></Localizer>
+        <Localizer><input type="text" value={props.signupNewHouseName} class={props.signupConfigureHouseErrors && props.signupConfigureHouseErrors.houseName ? 'form-control is-invalid' : 'form-control'} onInput={props.updateNewHouseName} placeholder={<Text id="signup.configureHouse.houseNamePlaceHolder" />} /></Localizer>
+        <div class="invalid-feedback"><Text id="signup.configureHouse.houseNameError" /></div>
       </div>
       <div class="form-group">
         <label class="form-label"><Text id="signup.configureHouse.houseLocationLabel" /></label>
@@ -15,17 +20,24 @@ const ConfigureHouseTab = ({ children, ...props }) => (
       </div>
       <div class="form-group">
         <label class="form-label"><Text id="signup.configureHouse.roomsLabel" /></label>
-        <div class="tags">
-          <span class="tag">
-            Living Room
-            <a href="#" class="tag-addon"><i class="fe fe-x" /></a>
+        <div class="tags" style={{ marginBottom: '10px' }}>
+          { props.signupRooms.map((room, index) => (
+            <span class="tag">
+              {room}
+              <a onClick={removeRoomLocal(index, props.removeRoom)} class="tag-addon"><i class="fe fe-x" /></a>
+            </span>
+          ))}
+        </div>
+        <div class="input-group">
+          <Localizer><input type="text" value={props.signupNewRoomName} onKeyPress={props.onKeyPressRoomInput} onInput={props.updateNewRoomName} class="form-control" placeholder={<Text id="signup.configureHouse.roomNamePlaceHolder" />} /> </Localizer>
+          <span class="input-group-append">
+            <button onClick={props.addRoom} class="btn btn-primary" type="button"><Text id="signup.configureHouse.addRoomButton" /></button>
           </span>
         </div>
-        <Localizer><input type="text" style={{ marginTop: '10px' }} class="form-control" placeholder={<Text id="signup.configureHouse.roomNamePlaceHolder" />} /></Localizer>
       </div>
       
       <div class="form-group">
-        <button class="btn btn-success"><Text id="signup.configureHouse.saveHouse" /></button>
+        <button onClick={props.saveHouse} class="btn btn-success"><Text id="signup.configureHouse.saveHouse" /></button>
       </div>
     </div>
   </div>

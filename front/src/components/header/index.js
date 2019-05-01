@@ -5,13 +5,19 @@ const PAGES_WITHOUT_HEADER = [
   '/login',
   '/signup',
   '/signup/create-account-local',
+  '/signup/create-account-gladys-gateway',
+  '/signup/create-account-blockstack',
   '/signup/preference',
   '/signup/configure-house',
   '/signup/success'
 ];
 
 const Header = ({ ...props }) => {
-  if (PAGES_WITHOUT_HEADER.includes(props.currentUrl)) {
+  let url = props.currentUrl.split('?')[0];
+  if (url.substring(url.length-1) === '/') {
+    url = url.substring(0, url.length-1);
+  }
+  if (PAGES_WITHOUT_HEADER.includes(url)) {
     return null;
   }
   return (

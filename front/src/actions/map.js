@@ -1,5 +1,3 @@
-import { RequestStatus } from '../utils/consts';
-import update from 'immutability-helper';
 import leaflet from 'leaflet';
 
 const icon = leaflet.icon({

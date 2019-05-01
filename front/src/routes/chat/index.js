@@ -11,7 +11,7 @@ class Chat extends Component {
 
   componentWillMount() {
     this.props.getMessages();
-    this.props.session.event.addEventListener('message.new', (event) => this.props.pushMessage(event.detail));
+    this.props.session.dispatcher.addListener('message.new', (payload) => this.props.pushMessage(payload));
   }
 
   render({}, { }) {

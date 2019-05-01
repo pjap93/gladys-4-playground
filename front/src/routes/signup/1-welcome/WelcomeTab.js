@@ -15,7 +15,7 @@ const WelcomeStep = ({ children, ...props }) => (
     <div class="col-lg-6">
       <div class="row" style={{ marginTop: '70px' }}>
         <div class="col text-center">
-          <button type="button" class="btn btn-info btn-block"><i class="fe fe-activity" /> <Text id="signup.welcome.buttonCreateAccountGladysGateway" /></button>
+          <Link class="btn btn-info btn-block" href="/signup/create-account-gladys-gateway"><i class="fe fe-activity" /> <Text id="signup.welcome.buttonCreateAccountGladysGateway" /></Link>
         </div>
       </div>
       <div class="row" style={{ marginTop: '20px' }}>
