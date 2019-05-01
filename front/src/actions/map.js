@@ -1,6 +1,6 @@
 import leaflet from 'leaflet';
 
-const icon = leaflet.icon({
+/* const icon = leaflet.icon({
   iconUrl: '/assets/leaflet/marker-icon.png',
   iconRetinaUrl: '/assets/leaflet/marker-icon-2x.png',
   shadowUrl: '/assets/leaflet/marker-shadow.png',
@@ -9,7 +9,7 @@ const icon = leaflet.icon({
   popupAnchor: [1,-34],
   tooltipAnchor: [16,-28],
   shadowSize: [41,41]
-});
+}); */
 
 function createActions(store) {
 

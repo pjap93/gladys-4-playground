@@ -1,7 +1,6 @@
 import { Component } from 'preact';
 import { connect } from 'unistore/preact';
 import actions from '../../actions/map';
-import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 @connect(
