@@ -16,7 +16,7 @@ const actions = store => ({
         email: state.loginFormEmailValue,
         password: state.loginFormPasswordValue
       });
-      store.setState({ user, loginStatus: LoginStatus.LoginSuccess });
+      store.setState({ user, loginStatus: LoginStatus.LoginSuccess, loginFormEmailValue: '', loginFormPasswordValue: '' });
       state.session.saveUser(user);
       state.session.init();
       route('/dashboard');
