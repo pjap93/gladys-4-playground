@@ -39,14 +39,10 @@ const Header = ({ ...props }) => {
                 >
                   <span
                     class="avatar"
-                    style={
-                      'background-image: url(' +
-                    (props.user.profile_url || '/assets/images/undraw_profile_pic.svg') +
-                    ')'
-                    }
+                    style={`background-image: url(${props.profilePicture})`}
                   />
                   <span class="ml-2 d-none d-lg-block">
-                    <span class="text-default">{props.user.name}</span>
+                    <span class="text-default">{props.user.firstname}</span>
                     <small class="text-muted d-block mt-1">{props.user.role === 'admin' ? 'Administrator' : 'User' }</small>
                   </span>
                 </a>

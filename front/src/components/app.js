@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { h, Component } from 'preact';
 import { Router, getCurrentUrl } from 'preact-router';
 import createStore from 'unistore';
 import { Provider, connect } from 'unistore/preact';
@@ -7,6 +7,7 @@ import { HttpClient } from '../utils/HttpClient';
 import { DemoHttpClient } from '../utils/DemoHttpClient';
 import { Session } from '../utils/Session';
 import translationEn from '../config/i18n/en.json';
+import actions from '../actions/main';
 import { SYSTEM_VARIABLE_NAMES } from '../../../server/utils/constants';
 
 import Header from './header';
@@ -67,21 +68,11 @@ const store = createStore({
   showDropDown: false
 });
 
-const actions = store => ({
-  handleRoute(state, e) {
-    session.init();
-    store.setState({ currentUrl: e.url, showDropDown: false });
-  },
-  toggleDropDown(state) {
-    store.setState({ showDropDown: !state.showDropDown });
-  }
-});
-
-const Main = connect('currentUrl,user,showDropDown', actions)(
-  ({ currentUrl, user, showDropDown, handleRoute, toggleDropDown }) => (
+const AppRouter = connect('currentUrl,user,profilePicture,showDropDown,', actions)(
+  ({ currentUrl, user, profilePicture, showDropDown, handleRoute, toggleDropDown }) => (
     <div id="app">
       <Layout currentUrl={currentUrl}>
-        <Header currentUrl={currentUrl} user={user} toggleDropDown={toggleDropDown} showDropDown={showDropDown} />
+        <Header currentUrl={currentUrl} user={user} profilePicture={profilePicture} toggleDropDown={toggleDropDown} showDropDown={showDropDown} />
         <Router onChange={handleRoute}>
           <Login path="/login" />
           <LoginBlockstack path="/login/blockstack" />
@@ -130,10 +121,27 @@ const Main = connect('currentUrl,user,showDropDown', actions)(
   )
 );
 
+@connect(
+  'session',
+  actions
+)
+class MainApp extends Component {
+
+  componentWillMount() {
+    this.props.loadProfilePicture();
+  }
+
+  render({}, { }) {
+    return (
+      <AppRouter />
+    );
+  }
+}
+
 const App = () => (
   <Provider store={store}>
     <IntlProvider definition={translationEn}>
-      <Main />
+      <MainApp />
     </IntlProvider>
   </Provider>
 );

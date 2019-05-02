@@ -5,6 +5,7 @@ class Session {
 
   constructor(httpClient) {
     this.user = null;
+    this.profilePicture = null;
     this.initialized = false;
     this.httpClient = httpClient;
     this.dispatcher = new Dispatcher();
@@ -71,9 +72,26 @@ class Session {
     return this.user;
   }
 
+  getProfilePicture() {
+    if (this.profilePicture) {
+      return this.profilePicture;
+    }
+    const data = localStorage.getItem('profile_picture');
+    if (data) {
+      this.profilePicture = data;
+    }
+
+    return this.profilePicture;
+  }
+
   saveUser (user) {
     this.user = user;
     localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  saveProfilePicture(profilePicture) {
+    this.profilePicture = profilePicture;
+    localStorage.setItem('profile_picture', profilePicture);
   }
 }
 

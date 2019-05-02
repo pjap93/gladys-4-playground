@@ -1,3 +1,4 @@
+import createActionsProfilePicture from '../profilePicture';
 import { RequestStatus } from '../../utils/consts';
 import update from 'immutability-helper';
 import { route } from 'preact-router';
@@ -7,6 +8,8 @@ function validateEmail(email) {
 }
 
 function createActions(store) {
+
+  const actionsProfilePicture = createActionsProfilePicture(store);
 
   const actions = {
     resetNewUser (state) {
@@ -68,6 +71,7 @@ function createActions(store) {
         const user = await state.httpClient.post(`/api/v1/user`, userToCreate);
         store.setState({ user, createLocalAccountStatus: RequestStatus.Success });
         state.session.saveUser(user);
+        actionsProfilePicture.loadProfilePicture(state);
         route('/signup/preference');
       } catch (e) {
         if (!e.response) {

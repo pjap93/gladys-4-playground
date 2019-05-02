@@ -16,7 +16,7 @@ class Preferences extends Component {
 
   render({ signupUserPreferences, signupSystemPreferences, updateUserPreferences, updateSystemPreferences, savePreferences }, { }) {
     return (
-      <SignupLayout>
+      <SignupLayout currentUrl="/signup/preference">
         { signupUserPreferences && signupSystemPreferences &&
           <PreferencesTab
             signupUserPreferences={signupUserPreferences}

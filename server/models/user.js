@@ -1,8 +1,11 @@
+const fs = require('fs');
+const path = require('path');
 const passwordUtils = require('../utils/password');
 const { addSelector } = require('../utils/addSelector');
 const { AVAILABLE_LANGUAGES_LIST, USER_ROLE_LIST } = require('../utils/constants');
 
 const MAX_SIZE_PROFILE_PICTURE = 30 * 1000; // 30 ko
+const DEFAULT_PROFILE_PICTURE = fs.readFileSync(path.resolve(__dirname, '../config/default-profile-picture.b64'));
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('t_user', {
@@ -41,6 +44,7 @@ module.exports = (sequelize, DataTypes) => {
     picture: {
       allowNull: true,
       type: DataTypes.TEXT,
+      defaultValue: DEFAULT_PROFILE_PICTURE,
       validate: {
         len: [0, MAX_SIZE_PROFILE_PICTURE],
       },
