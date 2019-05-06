@@ -39,3 +39,17 @@ describe('dashboard.getBySelector', () => {
     return assert.isRejected(promise, 'Dashboard not found');
   });
 });
+
+describe('dashboard.get', () => {
+  const dashboard = new Dashboard();
+  it('should return list of dashboard', async () => {
+    const dashboards = await dashboard.get();
+    expect(dashboards).to.deep.equal([{
+      id: '854dda11-80c0-4476-843b-65cbc95c6a85',
+      name: 'Test dashboard',
+      type: 'main',
+      selector: 'test-dashboard',
+      updated_at: new Date('2019-02-12T07:49:07.556Z'),
+    }]);
+  });
+});
