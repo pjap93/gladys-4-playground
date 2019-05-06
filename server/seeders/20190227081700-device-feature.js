@@ -1,3 +1,4 @@
+const RANDOM_IMAGE = 'image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z/C/HgAGgwJ/lK3Q6wAAAABJRU5ErkJggg==';
 
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.bulkInsert('t_device_feature', [{
@@ -67,6 +68,25 @@ module.exports = {
     last_value: 100,
     last_value_changed: new Date().toISOString(),
     device_id: '7f85c2f8-86cc-4600-84db-6c074dadb4e8',
+    created_at: '2019-02-12 07:49:07.556 +00:00',
+    updated_at: '2019-02-12 07:49:07.556 +00:00',
+  },
+  {
+    id: '565d05fc-1736-4b76-99ca-581232901d96',
+    name: 'Test camera image',
+    selector: 'test-camera-image',
+    external_id: 'camera:image',
+    category: 'camera',
+    type: 'image',
+    unit: null,
+    read_only: false,
+    has_feedback: false,
+    min: 0,
+    max: 0,
+    last_value: null,
+    last_value_string: RANDOM_IMAGE,
+    last_value_changed: new Date().toISOString(),
+    device_id: 'fbedb47f-4d25-4381-8923-2633b23192a0',
     created_at: '2019-02-12 07:49:07.556 +00:00',
     updated_at: '2019-02-12 07:49:07.556 +00:00',
   }], {}),

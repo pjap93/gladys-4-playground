@@ -67,6 +67,9 @@ module.exports = (sequelize, DataTypes) => {
     last_value: {
       type: DataTypes.DOUBLE,
     },
+    last_value_string: {
+      type: DataTypes.TEXT,
+    },
     last_value_changed: {
       type: DataTypes.DATE,
     },

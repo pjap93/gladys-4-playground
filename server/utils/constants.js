@@ -205,6 +205,7 @@ const DEVICE_FEATURE_CATEGORIES = {
   TEMPERATURE_SENSOR: 'temperature-sensor',
   MOTION_SENSOR: 'motion-sensor',
   LIGHT_SENSOR: 'light-sensor',
+  CAMERA: 'camera',
   UNKNOWN: 'unknown',
 };
 
@@ -221,6 +222,9 @@ const DEVICE_FEATURE_TYPES = {
     BINARY: 'binary',
     PUSH: 'push',
     UNKNOWN: 'unknown',
+  },
+  CAMERA: {
+    IMAGE: 'image',
   },
 };
 

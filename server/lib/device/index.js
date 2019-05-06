@@ -1,7 +1,12 @@
 const { EVENTS } = require('../../utils/constants');
 const { eventFunctionWrapper } = require('../../utils/functionsWrapper');
+
+// Categories of DeviceFeatures
+const CameraManager = require('./camera');
 const LightManager = require('./light');
 const TemperatureSensorManager = require('./temperature-sensor');
+
+// Functions
 const { add } = require('./device.add');
 const { addFeature } = require('./device.addFeature');
 const { addParam } = require('./device.addParam');
@@ -10,6 +15,7 @@ const { init } = require('./device.init');
 const { poll } = require('./device.poll');
 const { pollAll } = require('./device.pollAll');
 const { saveState } = require('./device.saveState');
+const { saveStringState } = require('./device.saveStringState');
 const { setParam } = require('./device.setParam');
 const { setValue } = require('./device.setValue');
 const { setupPoll } = require('./device.setupPoll');
@@ -21,8 +27,12 @@ const DeviceManager = function DeviceManager(eventManager, messageManager, state
   this.stateManager = stateManager;
   this.serviceManager = serviceManager;
   this.roomManager = roomManager;
+
+  // initalize all types of device feature categories
+  this.cameraManager = new CameraManager(this.stateManager, this);
   this.lightManager = new LightManager(eventManager, messageManager, this);
   this.temperatureSensorManager = new TemperatureSensorManager(eventManager, messageManager, this);
+
   this.devicesByPollFrequency = {};
   // listen to events
   this.eventManager.on(EVENTS.DEVICE.NEW_STATE, this.newStateEvent.bind(this));
@@ -40,6 +50,7 @@ DeviceManager.prototype.poll = poll;
 DeviceManager.prototype.pollAll = pollAll;
 DeviceManager.prototype.newStateEvent = newStateEvent;
 DeviceManager.prototype.saveState = saveState;
+DeviceManager.prototype.saveStringState = saveStringState;
 DeviceManager.prototype.setParam = setParam;
 DeviceManager.prototype.setupPoll = setupPoll;
 DeviceManager.prototype.setValue = setValue;

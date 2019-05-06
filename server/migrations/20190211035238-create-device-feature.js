@@ -68,6 +68,9 @@ module.exports = {
       last_value: {
         type: Sequelize.DOUBLE,
       },
+      last_value_string: {
+        type: Sequelize.TEXT,
+      },
       last_value_changed: {
         type: Sequelize.DATE,
       },
