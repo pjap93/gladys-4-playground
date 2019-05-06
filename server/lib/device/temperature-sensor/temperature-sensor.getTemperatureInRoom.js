@@ -1,7 +1,6 @@
 const { Op } = require('sequelize');
 const logger = require('../../../utils/logger');
 const db = require('../../../models');
-const { NoValuesFoundError } = require('../../../utils/coreErrors');
 const { DEVICE_FEATURE_CATEGORIES, DEVICE_FEATURE_UNITS } = require('../../../utils/constants');
 const { celsiusToFahrenheit, fahrenheitToCelsius } = require('../../../utils/units');
 
@@ -45,7 +44,10 @@ async function getTemperatureInRoom(roomId, options) {
   });
 
   if (deviceFeatures.length === 0) {
-    throw new NoValuesFoundError('No temperature values found in this room.');
+    return {
+      temperature: null,
+      unit: optionsWithDefault.unit,
+    };
   }
 
   let total = 0;

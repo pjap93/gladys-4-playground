@@ -1,6 +1,5 @@
 const EventEmitter = require('events');
 const { expect } = require('chai');
-const assertChai = require('chai').assert;
 const { assert, fake } = require('sinon');
 const Device = require('../../../../lib/device');
 const StateManager = require('../../../../lib/state');
@@ -37,10 +36,13 @@ describe('TemperatureSensor.getTemperatureInRoom', () => {
   it('should return not found error', async () => {
     const stateManager = new StateManager(event);
     const deviceManager = new Device(event, {}, stateManager, {});
-    const promise = deviceManager.temperatureSensorManager.getTemperatureInRoom('f08337ff-206e-4bd7-86c4-6d63d793d58e', {
+    const temperatureResult = await deviceManager.temperatureSensorManager.getTemperatureInRoom('f08337ff-206e-4bd7-86c4-6d63d793d58e', {
       unit: 'fahrenheit',
     });
-    return assertChai.isRejected(promise, 'No temperature values found in this room.');
+    expect(temperatureResult).to.deep.equal({
+      temperature: null,
+      unit: 'fahrenheit',
+    });
   });
 });
 

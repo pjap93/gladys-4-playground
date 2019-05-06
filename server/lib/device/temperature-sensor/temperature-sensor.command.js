@@ -22,6 +22,9 @@ async function command(message, classification, context) {
       temperatureResult = await this.getTemperatureInRoom(context.room, {
         unit: context.user.temperature_unit_preference,
       });
+      if (temperatureResult.temperature === null) {
+        throw new NoValuesFoundError('No temperature values found in this room.');
+      }
       context.temperature = Math.round(temperatureResult.temperature);
       context.unit = temperatureResult.unit === DEVICE_FEATURE_UNITS.CELSIUS ? '°C' : '°F';
       context.roomName = roomEntity.sourceText;

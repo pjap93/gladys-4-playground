@@ -1,5 +1,5 @@
 const asyncMiddleware = require('../middlewares/asyncMiddleware');
-
+const { buildExpandObject } = require('../../utils/buildExpandObject');
 /**
  * @apiDefine RoomParam
  * @apiParam {String} name Name of the room.
@@ -50,9 +50,28 @@ module.exports = function RoomController(gladys) {
     });
   }
 
+  /**
+   * @api {get} /api/v1/room/:room_selector getBySelector
+   * @apiName getBySelector
+   * @apiGroup Room
+   *
+   */
+  async function getBySelector(req, res) {
+    const room = await gladys.room.getBySelector(req.params.room_selector);
+    const expandFields = buildExpandObject(req.query.expand);
+    // if the user wants the temperature in the room
+    if (expandFields.temperature) {
+      room.temperature = await gladys.device.temperatureSensorManager.getTemperatureInRoom(room.id, {
+        unit: req.user.temperature_unit_preference,
+      });
+    }
+    res.json(room);
+  }
+
   return Object.freeze({
     create: asyncMiddleware(create),
     destroy: asyncMiddleware(destroy),
     update: asyncMiddleware(update),
+    getBySelector: asyncMiddleware(getBySelector),
   });
 };
