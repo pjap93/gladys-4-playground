@@ -53,3 +53,31 @@ describe('dashboard.get', () => {
     }]);
   });
 });
+
+describe('dashboard.update', () => {
+  const dashboard = new Dashboard();
+  it('should update a dashoard', async () => {
+    const updatedDashboard = await dashboard.update('test-dashboard', {
+      name: 'New name',
+    });
+    expect(updatedDashboard).to.have.property('name', 'New name');
+    expect(updatedDashboard).to.have.property('selector', 'test-dashboard');
+  });
+  it('should return not found', async () => {
+    const promise = dashboard.update('not-found-dashboard', {
+      name: 'new name',
+    });
+    return assert.isRejected(promise, 'Dashboard not found');
+  });
+});
+
+describe('dashboard.destroy', () => {
+  const dashboard = new Dashboard();
+  it('should destroy a dashoard', async () => {
+    await dashboard.destroy('test-dashboard');
+  });
+  it('should return not found', async () => {
+    const promise = dashboard.destroy('not-found-dashboard');
+    return assert.isRejected(promise, 'Dashboard not found');
+  });
+});
