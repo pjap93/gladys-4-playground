@@ -1,5 +1,6 @@
 const express = require('express');
 const CalendarController = require('./controllers/calendar.controller');
+const DashboardController = require('./controllers/dashboard.controller');
 const UserController = require('./controllers/user.controller');
 const HouseController = require('./controllers/house.controller');
 const LightController = require('./controllers/light.controller');
@@ -27,6 +28,7 @@ function setupRoutes(gladys) {
   const router = express.Router();
   // Configure router
   const calendarController = CalendarController(gladys);
+  const dashboardController = DashboardController(gladys);
   const lightController = LightController(gladys);
   const locationController = LocationController(gladys);
   const userController = UserController(gladys);
@@ -69,6 +71,13 @@ function setupRoutes(gladys) {
   router.post('/api/v1/calendar/:calendar_selector/event', calendarController.createEvent);
   router.patch('/api/v1/calendar/event/:calendar_event_selector', calendarController.updateEvent);
   router.delete('/api/v1/calendar/event/:calendar_event_selector', calendarController.destroyEvent);
+
+  // dashboard
+  router.get('/api/v1/dashboard', dashboardController.get);
+  router.post('/api/v1/dashboard', dashboardController.create);
+  router.get('/api/v1/dashboard/:dashboard_selector', dashboardController.getBySelector);
+  router.patch('/api/v1/dashboard/:dashboard_selector', dashboardController.update);
+  router.delete('/api/v1/dashboard/:dashboard_selector', dashboardController.destroy);
 
   // house
   router.post('/api/v1/house', houseController.create);
