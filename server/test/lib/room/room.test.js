@@ -66,25 +66,14 @@ describe('room.destroy', () => {
   });
 });
 
-describe('room.getByName', () => {
+describe('room.getBySelector', () => {
   const brain = {
     addRoom: fake.returns(null),
     removeRoom: fake.returns(null),
   };
   const room = new Room(brain);
-  it('should get a room by name', async () => {
-    const roomFound = await room.getByName('Test room');
-    expect(roomFound).to.deep.equal({
-      id: '2398c689-8b47-43cc-ad32-e98d9be098b5',
-      house_id: 'a741dfa6-24de-4b46-afc7-370772f068d5',
-      name: 'Test room',
-      selector: 'test-room',
-      created_at: new Date('2019-02-12T07:49:07.556Z'),
-      updated_at: new Date('2019-02-12T07:49:07.556Z'),
-    });
-  });
-  it('should get a room by name, case insensitive', async () => {
-    const roomFound = await room.getByName('test ROOM');
+  it('should get a room by selector', async () => {
+    const roomFound = await room.getBySelector('test-room');
     expect(roomFound).to.deep.equal({
       id: '2398c689-8b47-43cc-ad32-e98d9be098b5',
       house_id: 'a741dfa6-24de-4b46-afc7-370772f068d5',
@@ -95,7 +84,7 @@ describe('room.getByName', () => {
     });
   });
   it('should return room not found', async () => {
-    const promise = room.getByName('Room does not exist');
+    const promise = room.getBySelector('Room does not exist');
     return assertChai.isRejected(promise, 'Room not found');
   });
 });
