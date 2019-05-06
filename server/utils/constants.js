@@ -253,6 +253,16 @@ const WEBSOCKET_MESSAGE_TYPES = {
   },
 };
 
+const DASHBOARD_TYPE = {
+  MAIN: 'main',
+};
+
+const DASHBOARD_BOX_TYPE = {
+  WEATHER: 'weather',
+  TEMPERATURE_IN_ROOM: 'temperature-in-room',
+  USER_PRESENCE: 'user-presence',
+};
+
 const createList = (obj) => {
   const list = [];
   Object.keys(obj).forEach((key) => {
@@ -278,6 +288,8 @@ const USER_ROLE_LIST = createList(USER_ROLE);
 const AVAILABLE_LANGUAGES_LIST = createList(AVAILABLE_LANGUAGES);
 const SESSION_TOKEN_TYPE_LIST = createList(SESSION_TOKEN_TYPES);
 const DEVICE_FEATURE_UNITS_LIST = createList(DEVICE_FEATURE_UNITS);
+const DASHBOARD_TYPE_LIST = createList(DASHBOARD_TYPE);
+const DASHBOARD_BOX_TYPE_LIST = createList(DASHBOARD_BOX_TYPE);
 
 module.exports.STATE = STATE;
 module.exports.EVENTS = EVENTS;
@@ -312,3 +324,8 @@ module.exports.DEVICE_FEATURE_UNITS = DEVICE_FEATURE_UNITS;
 module.exports.DEVICE_FEATURE_UNITS_LIST = DEVICE_FEATURE_UNITS_LIST;
 
 module.exports.SYSTEM_VARIABLE_NAMES = SYSTEM_VARIABLE_NAMES;
+
+module.exports.DASHBOARD_TYPE = DASHBOARD_TYPE;
+module.exports.DASHBOARD_TYPE_LIST = DASHBOARD_TYPE_LIST;
+module.exports.DASHBOARD_BOX_TYPE = DASHBOARD_BOX_TYPE;
+module.exports.DASHBOARD_BOX_TYPE_LIST = DASHBOARD_BOX_TYPE_LIST;

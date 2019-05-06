@@ -1,7 +1,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('t_custom_dashboard', {
+    await queryInterface.createTable('t_dashboard', {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -10,6 +10,10 @@ module.exports = {
       name: {
         allowNull: false,
         unique: true,
+        type: Sequelize.STRING,
+      },
+      type: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       selector: {
@@ -31,5 +35,5 @@ module.exports = {
       },
     });
   },
-  down: (queryInterface, Sequelize) => queryInterface.dropTable('t_custom_dashboard'),
+  down: (queryInterface, Sequelize) => queryInterface.dropTable('t_dashboard'),
 };
