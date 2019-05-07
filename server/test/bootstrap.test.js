@@ -13,7 +13,8 @@ const SERVER_PORT = 6500;
 
 process.env.JWT_SECRET = 'secret';
 
-before(async () => {
+before(async function before() {
+  this.timeout(8000);
   const config = {
     disableService: true,
     disableBrainLoading: true,
@@ -21,6 +22,8 @@ before(async () => {
     jwtSecret: 'secret',
   };
   const gladys = Gladys(config);
+  await cleanDb();
+  await seedDb();
   await gladys.start();
   gladys.stateManager.setState('service', 'darksky', fakeDarkSkyService);
   // @ts-ignore
