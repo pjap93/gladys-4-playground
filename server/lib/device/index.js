@@ -29,7 +29,7 @@ const DeviceManager = function DeviceManager(eventManager, messageManager, state
   this.roomManager = roomManager;
 
   // initalize all types of device feature categories
-  this.cameraManager = new CameraManager(this.stateManager, this);
+  this.camera = new CameraManager(this.stateManager, this);
   this.lightManager = new LightManager(eventManager, messageManager, this);
   this.temperatureSensorManager = new TemperatureSensorManager(eventManager, messageManager, this);
 

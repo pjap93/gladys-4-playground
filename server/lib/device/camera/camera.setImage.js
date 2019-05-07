@@ -1,4 +1,5 @@
 const { NotFoundError, BadParameters } = require('../../../utils/coreErrors');
+const { DEVICE_FEATURE_CATEGORIES, DEVICE_FEATURE_TYPES } = require('../../../utils/constants');
 
 // Image should be < 50ko
 const MAX_SIZE_IMAGE = 50 * 1024;
@@ -14,9 +15,15 @@ async function setImage(selector, image) {
   if (image.length > MAX_SIZE_IMAGE) {
     throw new BadParameters('Image is too big');
   }
-  const deviceFeature = this.stateManager.get('deviceFeature', selector);
-  if (deviceFeature === null) {
+  const device = this.stateManager.get('device', selector);
+  if (device === null) {
     throw new NotFoundError('Camera not found');
+  }
+  const deviceFeature = device.features.find(
+    dF => (dF.category === DEVICE_FEATURE_CATEGORIES.CAMERA && dF.type === DEVICE_FEATURE_TYPES.CAMERA.IMAGE),
+  );
+  if (!deviceFeature) {
+    throw new NotFoundError('Camera image feature not found');
   }
   await this.deviceManager.saveStringState(deviceFeature, image);
 }
