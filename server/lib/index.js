@@ -1,5 +1,6 @@
 const { generateJwtSecret } = require('../utils/jwtSecret');
 const { Cache } = require('../utils/cache');
+const Area = require('./area');
 const Brain = require('./brain');
 const Calendar = require('./calendar');
 const Dashboard = require('./dashboard');
@@ -40,6 +41,7 @@ function Gladys(config = {}) {
   const cache = new Cache();
   const calendar = new Calendar();
   const event = new Event();
+  const area = new Area();
   const dashboard = new Dashboard();
   const stateManager = new StateManager(event);
   const house = new House(event);
@@ -57,6 +59,7 @@ function Gladys(config = {}) {
 
   const gladys = {
     version: '0.1.0', // todo, read package.json
+    area,
     calendar,
     dashboard,
     event,

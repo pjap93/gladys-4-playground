@@ -1,4 +1,5 @@
 const express = require('express');
+const AreaController = require('./controllers/area.controller');
 const CalendarController = require('./controllers/calendar.controller');
 const CameraController = require('./controllers/camera.controller');
 const DashboardController = require('./controllers/dashboard.controller');
@@ -28,6 +29,7 @@ const setupServiceRoutes = require('./servicesRoutes');
 function setupRoutes(gladys) {
   const router = express.Router();
   // Configure router
+  const areaController = AreaController(gladys);
   const calendarController = CalendarController(gladys);
   const cameraController = CameraController(gladys);
   const dashboardController = DashboardController(gladys);
@@ -63,6 +65,12 @@ function setupRoutes(gladys) {
 
   // after this, all requests to /api must have authenticated
   router.use('/api/*', authMiddleware);
+
+  // area
+  router.post('/api/v1/area', areaController.create);
+  router.get('/api/v1/area', areaController.get);
+  router.patch('/api/v1/area/:area_selector', areaController.update);
+  router.delete('/api/v1/area/:area_selector', areaController.destroy);
 
   // calendar
   router.post('/api/v1/calendar', calendarController.create);
