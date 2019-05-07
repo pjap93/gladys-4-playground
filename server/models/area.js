@@ -1,3 +1,4 @@
+const { addSelector } = require('../utils/addSelector');
 
 module.exports = (sequelize, DataTypes) => {
   const area = sequelize.define('t_area', {
@@ -30,8 +31,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     color: {
       allowNull: false,
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
     },
   }, {});
+
+  area.beforeValidate(addSelector);
+
   return area;
 };
