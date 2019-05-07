@@ -88,3 +88,51 @@ describe('room.getBySelector', () => {
     return assertChai.isRejected(promise, 'Room not found');
   });
 });
+
+describe('room.getAll', () => {
+  const brain = {
+    addRoom: fake.returns(null),
+    removeRoom: fake.returns(null),
+  };
+  const room = new Room(brain);
+  it('should get all rooms', async () => {
+    const rooms = await room.getAll();
+    expect(rooms).to.be.instanceOf(Array);
+    rooms.forEach((oneRoom) => {
+      expect(oneRoom).to.have.property('name');
+    });
+  });
+});
+
+describe('room.get', () => {
+  const brain = {
+    addRoom: fake.returns(null),
+    removeRoom: fake.returns(null),
+  };
+  const room = new Room(brain);
+  it('should get rooms with expanded devices + features', async () => {
+    const rooms = await room.get({
+      expand: ['devices'],
+    });
+    expect(rooms).to.be.instanceOf(Array);
+    rooms.forEach((oneRoom) => {
+      expect(oneRoom).to.have.property('name');
+      expect(oneRoom).to.have.property('devices');
+      oneRoom.devices.forEach((oneDevice) => {
+        expect(oneDevice).to.have.property('name');
+        expect(oneDevice).to.have.property('selector');
+        expect(oneDevice).to.have.property('features');
+        oneDevice.features.forEach((oneFeature) => {
+          expect(oneFeature).to.have.property('last_value');
+          expect(oneFeature).to.have.property('last_value_changed');
+          expect(oneFeature).to.have.property('type');
+          expect(oneFeature).to.have.property('unit');
+          expect(oneFeature).to.have.property('min');
+          expect(oneFeature).to.have.property('max');
+          expect(oneFeature).not.to.have.property('id');
+          expect(oneFeature).not.to.have.property('device_id');
+        });
+      });
+    });
+  });
+});
