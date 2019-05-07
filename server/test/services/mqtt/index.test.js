@@ -1,6 +1,6 @@
 const { assert, fake } = require('sinon');
 const proxyquire = require('proxyquire').noCallThru();
-const MockedMqttClient = require('./mocks.test');
+const { MockedMqttClient } = require('./mocks.test');
 
 const MqttService = proxyquire('../../../services/mqtt/index', {
   mqtt: MockedMqttClient,

@@ -1,6 +1,6 @@
 const { assert, fake } = require('sinon');
 const { EVENTS } = require('../../../utils/constants');
-const MockedMqttClient = require('./mocks.test');
+const { MockedMqttClient, event } = require('./mocks.test');
 
 const gladys = {
   variable: {
@@ -18,6 +18,9 @@ describe('MqttHandler', () => {
   it('should call connect function', () => {
     mqttHandler.connect();
     assert.called(MockedMqttClient.connect);
+    event.emit('connect');
+    event.emit('error', 'this is an error');
+    event.emit('message', 'test', 'test');
   });
   it('should create device', () => {
     mqttHandler.handleNewMessage('gladys/master/device/create', '{}');
@@ -25,5 +28,8 @@ describe('MqttHandler', () => {
   });
   it('should not do anything, topic not found', () => {
     mqttHandler.handleNewMessage('UNKNOWN_TOPIC', '{}');
+  });
+  it('should not do anything, JSON parsing failed', () => {
+    mqttHandler.handleNewMessage('gladys/master/device/create', 'thisisnotjson');
   });
 });

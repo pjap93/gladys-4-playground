@@ -1,10 +1,18 @@
 const { fake } = require('sinon');
 
+const EventEmitter = require('events');
+
+const event = new EventEmitter();
+
+const mqttApi = Object.assign(event, {
+  subscribe: fake.resolves(null),
+});
+
 const MockedMqttClient = {
-  connect: fake.returns({
-    on: fake.returns(null),
-    emit: fake.returns(null),
-  }),
+  connect: fake.returns(mqttApi),
 };
 
-module.exports = MockedMqttClient;
+module.exports = {
+  MockedMqttClient,
+  event,
+};
