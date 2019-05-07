@@ -5,15 +5,13 @@ const db = require('../../models');
 /**
  * @description Create a device, its feature and params
  * @param {Object} device - The device object to create.
- * @param {Array} features - An array of features to create for this device.
- * @param {Array} params - An array of params to create for this device.
  * @returns {Promise} Resolve with the device created.
  * @example
  * gladys.device.create({
  *  service_id: '90946a0d-5be2-4740-ac8b-26a2d78f12dd',
  *  name: 'Philips Hue Lamp 1',
  *  external_id: 'philips-hue:1'
- * }, [{
+ *  features: [{
  *    name: 'On/Off',
  *    external_id: 'philips-hue:1:binary',
  *    category: 'light',
@@ -23,12 +21,19 @@ const db = require('../../models');
  *    has_feedback: false,
  *    min: 0,
  *    max: 1
- * }], [{
+ *  }],
+ *  params: [{
  *    name: 'IP_ADDRESS',
  *    value: '192.168.1.1'
- * }])
+ *  }]
+ * });
  */
-async function create(device, features = [], params = []) {
+async function create(device) {
+  // separate object
+  const features = device.features || [];
+  const params = device.params || [];
+  delete device.features;
+  delete device.params;
   return db.sequelize.transaction(async (transaction) => {
     // external_id is a required parameter
     if (!device.external_id) {
