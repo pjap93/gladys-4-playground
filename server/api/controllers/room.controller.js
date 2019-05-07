@@ -68,10 +68,26 @@ module.exports = function RoomController(gladys) {
     res.json(room);
   }
 
+  /**
+   * @api {get} /api/v1/room get
+   * @apiName get
+   * @apiGroup Room
+   *
+   */
+  async function get(req, res) {
+    const options = req.query;
+    if (options.expand) {
+      options.expand = options.expand.split(',');
+    }
+    const rooms = await gladys.room.get(options);
+    res.json(rooms);
+  }
+
   return Object.freeze({
     create: asyncMiddleware(create),
     destroy: asyncMiddleware(destroy),
     update: asyncMiddleware(update),
     getBySelector: asyncMiddleware(getBySelector),
+    get: asyncMiddleware(get),
   });
 };

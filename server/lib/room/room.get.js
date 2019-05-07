@@ -8,6 +8,7 @@ const DEFAULT_OPTIONS = {
   order_dir: 'asc',
 };
 
+const DEVICE_ATTRIBUTES = ['name', 'selector'];
 const DEVICE_FEATURES_ATTRIBUTES = ['name', 'selector', 'category', 'type', 'read_only', 'unit', 'min', 'max', 'last_value', 'last_value_changed'];
 
 /**
@@ -23,6 +24,7 @@ async function get(options) {
     include.push({
       model: db.Device,
       as: 'devices',
+      attributes: DEVICE_ATTRIBUTES,
       include: {
         model: db.DeviceFeature,
         as: 'features',

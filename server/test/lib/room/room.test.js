@@ -122,6 +122,10 @@ describe('room.get', () => {
         expect(oneDevice).to.have.property('name');
         expect(oneDevice).to.have.property('selector');
         expect(oneDevice).to.have.property('features');
+        expect(oneDevice).not.to.have.property('id');
+        expect(oneDevice).not.to.have.property('room_id');
+        expect(oneDevice).not.to.have.property('created_at');
+        expect(oneDevice).not.to.have.property('updated_at');
         oneDevice.features.forEach((oneFeature) => {
           expect(oneFeature).to.have.property('last_value');
           expect(oneFeature).to.have.property('last_value_changed');
@@ -131,6 +135,8 @@ describe('room.get', () => {
           expect(oneFeature).to.have.property('max');
           expect(oneFeature).not.to.have.property('id');
           expect(oneFeature).not.to.have.property('device_id');
+          expect(oneFeature).not.to.have.property('created_at');
+          expect(oneFeature).not.to.have.property('updated_at');
         });
       });
     });

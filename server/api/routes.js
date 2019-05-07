@@ -102,6 +102,7 @@ function setupRoutes(gladys) {
   router.post('/api/v1/house/:house_selector/user/:user_selector/seen', houseController.userSeen);
 
   // room
+  router.get('/api/v1/room', roomController.get);
   router.get('/api/v1/room/:room_selector', roomController.getBySelector);
   router.post('/api/v1/house/:house_selector/room', roomController.create);
   router.patch('/api/v1/room/:room_selector', roomController.update);

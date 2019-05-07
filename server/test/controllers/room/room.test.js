@@ -83,3 +83,18 @@ describe('GET /api/v1/room/:room_selector', () => {
       });
   });
 });
+
+describe('GET /api/v1/room', () => {
+  it('should get rooms with pagination and devices', async () => {
+    await authenticatedRequest
+      .get('/api/v1/room?expand=devices')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then((res) => {
+        expect(res.body).to.be.instanceOf(Array);
+        res.body.forEach((room) => {
+          expect(room).to.have.property('devices');
+        });
+      });
+  });
+});
