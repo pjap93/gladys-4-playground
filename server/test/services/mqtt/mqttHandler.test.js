@@ -17,7 +17,7 @@ describe('MqttHandler', () => {
   const mqttHandler = new MqttHandler(gladys, MockedMqttClient, 'url', 'username', 'password', 'faea9c35-759a-44d5-bcc9-2af1de37b8b4');
   it('should call connect function', () => {
     mqttHandler.connect();
-    assert.calledOnce(MockedMqttClient.connect);
+    assert.called(MockedMqttClient.connect);
   });
   it('should create device', () => {
     mqttHandler.handleNewMessage('gladys/master/device/create', '{}');
