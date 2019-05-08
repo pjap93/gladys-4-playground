@@ -17,6 +17,7 @@ const AVAILABLE_LANGUAGES = {
 const SESSION_TOKEN_TYPES = {
   ACCESS_TOKEN: 'access_token',
   REFRESH_TOKEN: 'refresh_token',
+  API_KEY: 'api_key',
 };
 
 const SYSTEM_VARIABLE_NAMES = {

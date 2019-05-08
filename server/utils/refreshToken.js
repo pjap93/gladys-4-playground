@@ -4,6 +4,7 @@ const crypto = require('crypto');
 const randomBytes = Promise.promisify(crypto.randomBytes);
 
 const REFRESH_TOKEN_LENGTH = 500;
+const API_KEY_LENGTH = 32;
 
 /**
  * @description Hash a refresh token.
@@ -34,7 +35,25 @@ async function generateRefreshToken() {
   };
 }
 
+/**
+ * @private
+ * @description Generate a refresh token and its hash.
+ * @example
+ * const { apiKey, apiKeyHash } = await generateApiKey();
+ * @returns {Promise} Resolving with apiKey and apiKeyHash.
+ */
+async function generateApiKey() {
+  const apiKey = (await randomBytes(Math.ceil(API_KEY_LENGTH / 2))).toString('hex').slice(0, API_KEY_LENGTH);
+  const apiKeyHash = hashRefreshToken(apiKey);
+
+  return {
+    apiKey,
+    apiKeyHash,
+  };
+}
+
 module.exports = {
   generateRefreshToken,
+  generateApiKey,
   hashRefreshToken,
 };

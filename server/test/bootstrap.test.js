@@ -22,8 +22,13 @@ before(async function before() {
     jwtSecret: 'secret',
   };
   const gladys = Gladys(config);
-  await cleanDb();
-  await seedDb();
+  try {
+    await cleanDb();
+    await seedDb();
+  } catch (e) {
+    logger.trace(e);
+    throw e;
+  }
   await gladys.start();
   gladys.stateManager.setState('service', 'darksky', fakeDarkSkyService);
   // @ts-ignore

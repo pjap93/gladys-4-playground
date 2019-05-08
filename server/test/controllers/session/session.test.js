@@ -25,3 +25,42 @@ describe('POST /api/v1/session/:session_id/revoke', () => {
       });
   });
 });
+
+describe('POST /api/v1/session/api_key', () => {
+  it('should create api key', async () => {
+    await authenticatedRequest
+      .post('/api/v1/session/api_key')
+      .expect('Content-Type', /json/)
+      .expect(201)
+      .then((res) => {
+        expect(res.body).to.have.property('api_key');
+        expect(res.body).to.have.property('session_id');
+      });
+  });
+});
+
+describe('GET /api/v1/session', () => {
+  it('should get api key list', async () => {
+    await authenticatedRequest
+      .get('/api/v1/session')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then((res) => {
+        expect(res.body).to.be.instanceOf(Array);
+        res.body.forEach((oneSession) => {
+          expect(oneSession).to.have.property('token_type');
+          expect(oneSession).not.to.have.property('token_hash');
+        });
+      });
+  });
+  it('should return empty array', async () => {
+    await authenticatedRequest
+      .get('/api/v1/session?skip=10000')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .then((res) => {
+        expect(res.body).to.be.instanceOf(Array);
+        expect(res.body).to.have.lengthOf(0);
+      });
+  });
+});

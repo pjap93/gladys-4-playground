@@ -6,13 +6,21 @@ module.exports = function AuthMiddleware(scope, gladys) {
   return asyncMiddleware(async (req, res, next) => {
     try {
       const authHeader = req.headers.authorization;
+      let userId;
 
-      if (!authHeader || !authHeader.startsWith('Bearer ')) {
-        throw new Error401('Missing Bearer header');
+      // if it's an access token
+      if (authHeader && authHeader.startsWith('Bearer ')) {
+        const token = authHeader.substring(7, authHeader.length);
+        // we validate the token
+        userId = gladys.session.validateAccessToken(token, scope);
+      } else if (authHeader || req.body.api_key || req.query.api_key) {
+        const token = authHeader || req.body.api_key || req.query.api_key;
+        // we validate the token
+        userId = await gladys.session.validateApiKey(token, scope);
+      } else {
+        throw new Error401('No authorization header or api key found');
       }
-      const token = authHeader.substring(7, authHeader.length);
-      // we validate the token
-      const userId = gladys.session.validateAccessToken(token, scope);
+
       // we get the user in DB
       req.user = await gladys.user.getById(userId);
 

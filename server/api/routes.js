@@ -132,6 +132,8 @@ function setupRoutes(gladys) {
 
   // session
   router.post('/api/v1/session/:session_id/revoke', sessionController.revoke);
+  router.post('/api/v1/session/api_key', sessionController.createApiKey);
+  router.get('/api/v1/session', sessionController.get);
 
   // light
   router.post('/api/v1/light/:device_selector/on', lightController.turnOn);

@@ -30,6 +30,10 @@ async function getAccessToken(refreshToken, scope) {
     throw new Error401(`Session has expired`);
   }
 
+  if (session.revoked) {
+    throw new Error401(`Session was revoked`);
+  }
+
   const accessToken = generateAccessToken(session.user_id, scope, session.id, this.jwtSecret);
 
   return {
