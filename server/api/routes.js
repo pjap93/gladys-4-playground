@@ -3,6 +3,7 @@ const AreaController = require('./controllers/area.controller');
 const CalendarController = require('./controllers/calendar.controller');
 const CameraController = require('./controllers/camera.controller');
 const DashboardController = require('./controllers/dashboard.controller');
+const DeviceController = require('./controllers/device.controller');
 const UserController = require('./controllers/user.controller');
 const HouseController = require('./controllers/house.controller');
 const LightController = require('./controllers/light.controller');
@@ -33,6 +34,7 @@ function setupRoutes(gladys) {
   const calendarController = CalendarController(gladys);
   const cameraController = CameraController(gladys);
   const dashboardController = DashboardController(gladys);
+  const deviceController = DeviceController(gladys);
   const lightController = LightController(gladys);
   const locationController = LocationController(gladys);
   const userController = UserController(gladys);
@@ -92,6 +94,9 @@ function setupRoutes(gladys) {
   router.get('/api/v1/dashboard/:dashboard_selector', dashboardController.getBySelector);
   router.patch('/api/v1/dashboard/:dashboard_selector', dashboardController.update);
   router.delete('/api/v1/dashboard/:dashboard_selector', dashboardController.destroy);
+
+  // device
+  router.get('/api/v1/device/:device_selector', deviceController.getBySelector);
 
   // house
   router.post('/api/v1/house', houseController.create);
