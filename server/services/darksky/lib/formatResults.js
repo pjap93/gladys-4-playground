@@ -40,7 +40,7 @@ function formatResults(options, result) {
   dataToReturn.pressure = dataPoint.pressure;
   dataToReturn.datetime = new Date(dataPoint.time * 1000);
   dataToReturn.units = options.units;
-  dataToReturn.windSpeed = dataPoint.windSpeed;
+  dataToReturn.wind_speed = dataPoint.windSpeed;
 
   if (dataPoint.icon.search('snow') !== -1) {
     dataToReturn.weather = 'snow';

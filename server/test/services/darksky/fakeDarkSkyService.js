@@ -7,7 +7,7 @@ const service = {
       pressure: 1019.4,
       datetime: new Date('2019-03-28T07:50:18.000Z'),
       units: 'si',
-      windSpeed: 5.25,
+      wind_speed: 5.25,
       weather: 'cloud',
     }),
   },
