@@ -11,16 +11,6 @@ const asyncMiddleware = require('../middlewares/asyncMiddleware');
  */
 
 /**
- * @apiDefine CalendarSuccess
- * @apiSuccess {String} name Name of the calendar.
- * @apiSuccess {String} description Description of the calendar
- * @apiSuccess {String} [selector] Selector of the calendar.
- * @apiSuccess {String} [external_id] External id of the calendar
- * @apiSuccess {Boolean} [sync] If Gladys need to sync the calendar or not
- * @apiSuccess {Boolean} [notify] If Gladys should by default notify the user about this calendar or not
- */
-
-/**
  * @apiDefine CalendarEventParam
  * @apiParam {String} name Name of the event.
  * @apiParam {String} [selector] Selector of the event.
@@ -32,25 +22,24 @@ const asyncMiddleware = require('../middlewares/asyncMiddleware');
  * @apiParam {Boolean} [full_day] If the event takes the full day
  */
 
-/**
- * @apiDefine CalendarEventSuccess
- * @apiSuccess {String} name Name of the event.
- * @apiSuccess {String} [selector] Selector of the event.
- * @apiSuccess {String} [external_id] External id of the calendar
- * @apiSuccess {String} [location] Location of the event
- * @apiSuccess {String} start datetime when the event start
- * @apiSuccess {String} [end] datetime when the event ends
- * @apiSuccess {String} [external_id] External id of the calendar
- * @apiSuccess {Boolean} [full_day] If the event takes the full day
- */
-
 module.exports = function CalendarController(gladys) {
   /**
    * @api {post} /api/v1/calendar create
    * @apiName create
    * @apiGroup Calendar
    * @apiUse CalendarParam
-   * @apiUse CalendarSuccess
+   * @apiSuccessExample {json} Success-Example
+   * {
+   *   "id": "b3eeebd8-58f2-4694-83a6-0b2cca871a5d",
+   *   "name": "My calendar",
+   *   "selector": "my-calendar"
+   *   "description": "My personal events",
+   *   "sync": true,
+   *   "notify": false,
+   *   "user_id": "e4e3f03e-60b9-485e-bc0a-c582b69089bd",
+   *   "updated_at": "2019-05-09T03:14:29.820Z",
+   *   "created_at": "2019-05-09T03:14:29.820Z"
+   * }
    */
   async function create(req, res) {
     req.body.user_id = req.user.id;
@@ -64,7 +53,18 @@ module.exports = function CalendarController(gladys) {
    * @apiGroup Calendar
    *
    * @apiUse CalendarParam
-   * @apiUse CalendarSuccess
+   * @apiSuccessExample {json} Success-Example
+   * {
+   *   "id": "b3eeebd8-58f2-4694-83a6-0b2cca871a5d",
+   *   "name": "My calendar",
+   *   "selector": "my-calendar"
+   *   "description": "My personal events",
+   *   "sync": true,
+   *   "notify": false,
+   *   "user_id": "e4e3f03e-60b9-485e-bc0a-c582b69089bd",
+   *   "updated_at": "2019-05-09T03:14:29.820Z",
+   *   "created_at": "2019-05-09T03:14:29.820Z"
+   * }
    */
   async function update(req, res) {
     const calendar = await gladys.calendar.update(req.params.calendar_selector, req.body);
@@ -88,7 +88,18 @@ module.exports = function CalendarController(gladys) {
    * @apiName create event
    * @apiGroup Calendar
    * @apiUse CalendarEventParam
-   * @apiUse CalendarEventSuccess
+   * @apiSuccessExample {json} Success-Example
+   * {
+   *   "id": "f014c7e2-4e7d-422d-ac83-02d688e686b0",
+   *   "full_day": false,
+   *   "name": "Code on Gladys",
+   *   "start": "2019-02-11T23:00:00.000Z",
+   *   "end": "2019-02-12T09:00:00.000Z",
+   *   "selector": "code-on-gladys",
+   *   "calendar_id": "8afba93a-e94f-4255-9d8b-db9e605e10b6",
+   *   "updated_at": "2019-05-09T03:22:47.150Z",
+   *   "created_at": "2019-05-09T03:22:47.150Z"
+   * }
    */
   async function createEvent(req, res) {
     const calendarEvent = await gladys.calendar.createEvent(req.params.calendar_selector, req.body);
@@ -100,7 +111,18 @@ module.exports = function CalendarController(gladys) {
    * @apiName update event
    * @apiGroup Calendar
    * @apiUse CalendarEventParam
-   * @apiUse CalendarEventSuccess
+   * @apiSuccessExample {json} Success-Example
+   * {
+   *   "id": "f014c7e2-4e7d-422d-ac83-02d688e686b0",
+   *   "full_day": false,
+   *   "name": "Code on Gladys",
+   *   "start": "2019-02-11T23:00:00.000Z",
+   *   "end": "2019-02-12T09:00:00.000Z",
+   *   "selector": "code-on-gladys",
+   *   "calendar_id": "8afba93a-e94f-4255-9d8b-db9e605e10b6",
+   *   "updated_at": "2019-05-09T03:22:47.150Z",
+   *   "created_at": "2019-05-09T03:22:47.150Z"
+   * }
    */
   async function updateEvent(req, res) {
     const calendarEvent = await gladys.calendar.updateEvent(req.params.calendar_event_selector, req.body);
@@ -123,6 +145,18 @@ module.exports = function CalendarController(gladys) {
    * @api {get} /api/v1/calendar get
    * @apiName get
    * @apiGroup Calendar
+   * @apiSuccessExample {json} Success-Example
+   * [{
+   *   "id": "b3eeebd8-58f2-4694-83a6-0b2cca871a5d",
+   *   "name": "My calendar",
+   *   "selector": "my-calendar"
+   *   "description": "My personal events",
+   *   "sync": true,
+   *   "notify": false,
+   *   "user_id": "e4e3f03e-60b9-485e-bc0a-c582b69089bd",
+   *   "updated_at": "2019-05-09T03:14:29.820Z",
+   *   "created_at": "2019-05-09T03:14:29.820Z"
+   * }]
    */
   async function get(req, res) {
     const calendars = await gladys.calendar.get(req.user.id);
@@ -133,6 +167,26 @@ module.exports = function CalendarController(gladys) {
    * @api {get} /api/v1/calendar/event get events
    * @apiName getEvents
    * @apiGroup Calendar
+   * @apiSuccessExample {json} Success-Example
+   * [
+   *   {
+   *     "id": "f014c7e2-4e7d-422d-ac83-02d688e686b0",
+   *     "calendar_id": "8afba93a-e94f-4255-9d8b-db9e605e10b6",
+   *     "name": "Code on Gladys",
+   *     "selector": "code-on-gladys",
+   *     "external_id": null,
+   *     "location": null,
+   *     "start": "2019-05-09T00:00:00.000Z",
+   *     "end": "2019-05-09T23:00:00.000Z",
+   *     "full_day": false,
+   *     "created_at": "2019-05-09T03:22:47.150Z",
+   *     "updated_at": "2019-05-09T03:22:47.150Z",
+   *     "calendar": {
+   *       "name": "My calendar",
+   *       "selector": "my-calendar"
+   *     }
+   *   }
+   * ]
    */
   async function getEvents(req, res) {
     const calendarEvents = await gladys.calendar.getEvents(req.user.id, req.query);

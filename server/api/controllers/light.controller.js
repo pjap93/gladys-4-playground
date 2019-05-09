@@ -6,6 +6,12 @@ module.exports = function LightController(gladys) {
    * @api {post} /api/v1/light/:device_selector/on Turn On
    * @apiName TurnOn
    * @apiGroup Light
+   * @apiSuccessExample {json} Success-Example
+   * {
+   *   "type": "light.turn-on",
+   *   "device": "test",
+   *   "status": "pending"
+   * }
    */
   async function turnOn(req, res) {
     const action = {

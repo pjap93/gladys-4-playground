@@ -113,7 +113,11 @@ module.exports = function UserController(gladys) {
    * @api {post} /api/v1/forgot_password forgotPassword
    * @apiName forgotPassword
    * @apiGroup User
-   *
+   * @apiParam {string} email Email of the user
+   * @apiSuccessExample {json} Success-Example
+   * {
+   *   "success": true
+   * }
    */
   async function forgotPassword(req, res) {
     const session = await gladys.user.forgotPassword(req.body.email);

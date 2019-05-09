@@ -6,7 +6,12 @@ module.exports = function ServiceController(gladys) {
    * @api {post} /api/v1/service/:service_name/start start
    * @apiName start
    * @apiGroup Service
-   *
+   * @apiSuccessExample {json} Success-Example
+   * {
+   *   "type": "service.start",
+   *   "service": "mqtt",
+   *   "status": "pending"
+   * }
    */
   async function start(req, res) {
     const action = {
@@ -22,7 +27,12 @@ module.exports = function ServiceController(gladys) {
    * @api {post} /api/v1/service/:service_name/stop stop
    * @apiName stop
    * @apiGroup Service
-   *
+   * @apiSuccessExample {json} Success-Example
+   * {
+   *   "type": "service.stop",
+   *   "service": "mqtt",
+   *   "status": "pending"
+   * }
    */
   async function stop(req, res) {
     const action = {

@@ -6,19 +6,21 @@ const { buildExpandObject } = require('../../utils/buildExpandObject');
  * @apiParam {String} [selector] Selector of the room
  */
 
-/**
- * @apiDefine RoomSuccess
- * @apiSuccess {String} name Name of the room.
- * @apiSuccess {String} [selector] Selector of the room
- */
-
 module.exports = function RoomController(gladys) {
   /**
    * @api {post} /api/v1/house/:house_selector/room create
    * @apiName create
    * @apiGroup Room
    * @apiUse RoomParam
-   * @apiUse RoomSuccess
+   * @apiSuccessExample {json} Success-Example
+   * {
+   *   "id": "ac7f1ab2-0468-4750-bcdd-7e43b34e136a",
+   *   "name": "my room",
+   *   "selector": "my-room",
+   *   "house_id": "7932e6b3-b944-49a9-8d63-b98b8ecb2509",
+   *   "updated_at": "2019-05-09T04:01:48.983Z",
+   *   "created_at": "2019-05-09T04:01:48.983Z"
+   * }
    */
   async function create(req, res) {
     const newRoom = await gladys.room.create(req.params.house_selector, req.body);
@@ -30,7 +32,15 @@ module.exports = function RoomController(gladys) {
    * @apiName update
    * @apiGroup Room
    * @apiUse RoomParam
-   * @apiUse RoomSuccess
+   * @apiSuccessExample {json} Success-Example
+   * {
+   *   "id": "ac7f1ab2-0468-4750-bcdd-7e43b34e136a",
+   *   "name": "my room",
+   *   "selector": "my-room",
+   *   "house_id": "7932e6b3-b944-49a9-8d63-b98b8ecb2509",
+   *   "updated_at": "2019-05-09T04:01:48.983Z",
+   *   "created_at": "2019-05-09T04:01:48.983Z"
+   * }
    */
   async function update(req, res) {
     const newRoom = await gladys.room.update(req.params.room_selector, req.body);
@@ -51,9 +61,23 @@ module.exports = function RoomController(gladys) {
   }
 
   /**
-   * @api {get} /api/v1/room/:room_selector getBySelector
+   * @api {get} /api/v1/room/:room_selector get by selector
    * @apiName getBySelector
    * @apiGroup Room
+   * @apiParam {string=temperature} [expand] Expand fields
+   * @apiSuccessExample {json} Success-Example
+   * {
+   *   "id": "ac7f1ab2-0468-4750-bcdd-7e43b34e136a",
+   *   "name": "my room",
+   *   "selector": "my-room",
+   *   "house_id": "7932e6b3-b944-49a9-8d63-b98b8ecb2509",
+   *   "updated_at": "2019-05-09T04:01:48.983Z",
+   *   "created_at": "2019-05-09T04:01:48.983Z",
+   *   "temperature": {
+   *     "temperature": 29,
+   *     "unit": "celsius"
+   *   }
+   * }
    *
    */
   async function getBySelector(req, res) {
@@ -73,6 +97,37 @@ module.exports = function RoomController(gladys) {
    * @apiName get
    * @apiGroup Room
    *
+   * @apiSuccessExample {json} Success-Response:
+   * [
+   *   {
+   *   "id": "2398c689-8b47-43cc-ad32-e98d9be098b5",
+   *   "house_id": "a741dfa6-24de-4b46-afc7-370772f068d5",
+   *   "name": "Test room",
+   *   "selector": "test-room",
+   *   "created_at": "2019-02-12T07:49:07.556Z",
+   *   "updated_at": "2019-02-12T07:49:07.556Z",
+   *   "devices": [
+   *     {
+   *       "name": "Test device",
+   *       "selector": "test-device",
+   *       "features": [
+   *         {
+   *           "name": "Test device feature",
+   *           "selector": "test-device-feature",
+   *           "category": "light",
+   *           "type": "binary",
+   *           "read_only": false,
+   *           "unit": null,
+   *           "min": 0,
+   *           "max": 1,
+   *           "last_value": 0,
+   *           "last_value_changed": "2019-02-12T07:49:07.556Z"
+   *         }
+   *       ]
+   *     }
+   *   ]
+   * }
+   * ]
    */
   async function get(req, res) {
     const options = req.query;

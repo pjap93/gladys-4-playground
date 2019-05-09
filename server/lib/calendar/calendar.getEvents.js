@@ -9,6 +9,11 @@ const db = require('../../models');
  * gladys.calendar.getEvents();
  */
 async function getEvents(userId, options) {
+  const oneWeekAgo = new Date(new Date().getTime() - (7 * 24 * 60 * 60 * 1000));
+  // Default from date is one week ago
+  const fromDate = options.from ? new Date(options.from) : new Date(oneWeekAgo);
+  // default end date is now
+  const toDate = options.to ? new Date(options.to) : new Date();
   const calendarEvents = await db.CalendarEvent.findAll({
     include: [{
       model: db.Calendar,
@@ -20,8 +25,8 @@ async function getEvents(userId, options) {
     }],
     where: {
       start: {
-        [Op.gte]: new Date(options.from),
-        [Op.lte]: new Date(options.to),
+        [Op.gte]: new Date(fromDate),
+        [Op.lte]: new Date(toDate),
       },
     },
   });
