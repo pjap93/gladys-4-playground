@@ -31,8 +31,8 @@ describe('GET /api/v1/user/:user_selector/location', () => {
       .expect(200)
       .then((res) => {
         res.body.forEach((location) => {
-          expect(location).to.have.property('latitude', 12);
-          expect(location).to.have.property('longitude', 12);
+          expect(location).to.have.property('latitude');
+          expect(location).to.have.property('longitude');
           expect(location).to.have.property('user_id', '0cd30aef-9c4e-4a23-88e3-3547971296e5');
         });
       });
