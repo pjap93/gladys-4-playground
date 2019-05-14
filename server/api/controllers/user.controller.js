@@ -138,6 +138,20 @@ module.exports = function UserController(gladys) {
     res.json(user);
   }
 
+  /**
+   * @api {get} /api/v1/setup getSetupState
+   * @apiName getSetupState
+   * @apiGroup Setup
+   *
+   */
+  async function getSetupState(req, res) {
+    const userCount = gladys.user.getUserCount();
+    const accountConfigured = (userCount > 0);
+    res.json({
+      account_configured: accountConfigured,
+    });
+  }
+
   return Object.freeze({
     create: asyncMiddleware(create),
     login: asyncMiddleware(login),
@@ -148,5 +162,6 @@ module.exports = function UserController(gladys) {
     getAccessToken: asyncMiddleware(getAccessToken),
     forgotPassword: asyncMiddleware(forgotPassword),
     resetPassword: asyncMiddleware(resetPassword),
+    getSetupState: asyncMiddleware(getSetupState),
   });
 };

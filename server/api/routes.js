@@ -60,6 +60,7 @@ function setupRoutes(gladys) {
   router.post('/api/v1/access_token', userController.getAccessToken);
   router.post('/api/v1/forgot_password', userController.forgotPassword);
   router.post('/api/v1/reset_password', resetPasswordAuthMiddleware, userController.resetPassword);
+  router.get('/api/v1/setup', userController.getSetupState);
 
   // this route is only useful for first signup
   // we check that no account already exist
