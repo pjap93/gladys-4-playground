@@ -3,11 +3,10 @@ import { Dispatcher } from './Dispatcher';
 
 class Session {
 
-  constructor(httpClient) {
+  constructor() {
     this.user = null;
     this.profilePicture = null;
     this.initialized = false;
-    this.httpClient = httpClient;
     this.dispatcher = new Dispatcher();
     this.websocketConnected = false;
   }
@@ -22,13 +21,12 @@ class Session {
     const user = this.getUser();
     if (user) {
       this.connect();
-      this.httpClient.setToken(user.refresh_token, user.access_token);
       this.initialized = true;
     }
   }
 
-  connectAndRetry() {
-    
+  isConnected() {
+    return (this.user !== null);
   }
 
   connect () {
@@ -70,6 +68,29 @@ class Session {
       this.user = JSON.parse(data);
     }
     return this.user;
+  }
+
+  getRefreshToken () {
+    if (this.user) {
+      return this.user.refresh_token;
+    }
+    return null;
+  }
+
+  getAccessToken () {
+    if (this.user) {
+      return this.user.access_token;
+    }
+    return null;
+  }
+
+  setAccessToken (accessToken) {
+    if (this.user) {
+      const newUser = Object.assign({}, this.user,  {
+        access_token: accessToken
+      });
+      this.saveUser(newUser);
+    }
   }
 
   getProfilePicture() {

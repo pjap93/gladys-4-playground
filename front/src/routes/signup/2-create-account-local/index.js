@@ -12,6 +12,7 @@ class CreateAccountLocal extends Component {
 
   componentWillMount() {
     this.props.resetNewUser();
+    this.props.checkIfInstanceIsConfigured();
   }
 
   render({ signupNewUser, updateNewUser, createUser, signupErrors, createLocalAccountStatus, createLocalAccountError }, {}) {

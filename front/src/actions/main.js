@@ -1,4 +1,5 @@
 import createActionsProfilePicture from './profilePicture';
+import { route } from 'preact-router';
 
 function createActions(store) {
 
@@ -6,11 +7,21 @@ function createActions(store) {
 
   const actions = {
     handleRoute(state, e) {
-      state.session.init();
       store.setState({ currentUrl: e.url, showDropDown: false });
     },
     toggleDropDown(state) {
       store.setState({ showDropDown: !state.showDropDown });
+    },
+    async checkSession(state) {
+      state.session.init();
+      if (!state.session.isConnected() && state.currentUrl.url !== '/login') {
+        route('/login');
+      }
+      try {
+        await state.httpClient.get('/api/v1/me');
+      } catch (e) {
+        route('/login');
+      }
     }
   };
 

@@ -2,6 +2,7 @@ import createActionsProfilePicture from '../profilePicture';
 import { RequestStatus } from '../../utils/consts';
 import update from 'immutability-helper';
 import { route } from 'preact-router';
+import createActionsWelcome from './welcome';
 
 function validateEmail(email) {
   return email.match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
@@ -10,6 +11,7 @@ function validateEmail(email) {
 function createActions(store) {
 
   const actionsProfilePicture = createActionsProfilePicture(store);
+  const welcomeActions = createActionsWelcome(store);
 
   const actions = {
     resetNewUser (state) {
@@ -68,7 +70,7 @@ function createActions(store) {
       });
       store.setState({ createLocalAccountStatus: RequestStatus.Getting });
       try {
-        const user = await state.httpClient.post(`/api/v1/user`, userToCreate);
+        const user = await state.httpClient.post(`/api/v1/signup`, userToCreate);
         store.setState({ user, createLocalAccountStatus: RequestStatus.Success });
         state.session.saveUser(user);
         actionsProfilePicture.loadProfilePicture(state);
@@ -95,7 +97,7 @@ function createActions(store) {
       }
     }
   };
-  return actions;
+  return Object.assign(actions, welcomeActions);
 }
 
 export default createActions;

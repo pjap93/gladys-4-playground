@@ -11,7 +11,7 @@ import actions from '../../../actions/signup/signupCreateLocalAccount';
 class CreateAccountGladysGateway extends Component {
 
   componentWillMount() {
-
+    this.props.checkIfInstanceIsConfigured();
   }
 
   render({ }, {}) {

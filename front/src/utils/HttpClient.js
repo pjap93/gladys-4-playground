@@ -1,70 +1,66 @@
 import axios from 'axios';
 import config from '../../config';
-import gladysGatewayClient from '@gladysassistant/gladys-gateway-js';
 
 export class HttpClient {
-  constructor(isGateway = false){
-    this.isGateway = isGateway;
-    if (this.isGateway) {
-      this.gatewayClient = gladysGatewayClient({ serverUrl: config.serverUrl, cryptoLib: window.crypto });
-    }
-  }
 
-  setToken(refreshToken, accessToken) {
-    this.refreshToken = refreshToken;
-    this.accessToken = accessToken;
+  constructor(session) {
+    this.session = session;
   }
 
   getAxiosHeaders() {
     const headers = {};
-    if (this.accessToken) {
-      headers.authorization = `Bearer ${this.accessToken}`;
+    if (this.session.getAccessToken()) {
+      headers.authorization = `Bearer ${this.session.getAccessToken()}`;
     }
     return headers;
   }
 
-  async get(url, query) {
-    if (!this.isGateway) {
+  async refreshAccessToken() {
+    const { data } = await axios({
+      baseURL: config.localApiUrl,
+      url: '/api/v1/access_token',
+      method: 'post',
+      data: {
+        refresh_token: this.session.getRefreshToken()
+      }
+    });
+    this.session.setAccessToken(data.access_token);
+  }
+
+  async executeQuery(method, url, query, body) {
+    try {
       const { data } = await axios({
         baseURL: config.localApiUrl,
         url,
-        method: 'get',
+        method,
         params: query,
+        data: body,
         headers: this.getAxiosHeaders()
       });
       return data;
+    } catch (e) {
+      if (e.response && e.response.status === 401) {
+        await this.refreshAccessToken();
+        return this.executeQuery(method, url, query, body);
+      }
+      throw e;
     }
+  }
 
-    return this.gatewayClient.request.get(url, query);
+  async get(url, query) {
+    return this.executeQuery('get', url, query);
   }
 
   async post(url, body) {
-    if (!this.isGateway) {
-      const { data } = await axios({
-        baseURL: config.localApiUrl,
-        url,
-        method: 'post',
-        data: body,
-        headers: this.getAxiosHeaders()
-      });
-      return data;
-    }
-
-    return this.gatewayClient.request.post(url, body);
+    return this.executeQuery('post', url, {}, body);
   }
 
   async patch(url, body) {
-    if (!this.isGateway) {
-      const { data } = await axios({
-        baseURL: config.localApiUrl,
-        url,
-        method: 'patch',
-        data: body,
-        headers: this.getAxiosHeaders()
-      });
-      return data;
-    }
+    return this.executeQuery('patch', url, {}, body);
+  }
 
-    return this.gatewayClient.request.patch(url, body);
+  async delete(url, body) {
+    return this.executeQuery('delete', url);
   }
 }
+

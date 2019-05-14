@@ -1,4 +1,4 @@
-import { LoginStatus } from '../../utils/consts';
+import { LoginStatus, RequestStatus } from '../../utils/consts';
 import { validateEmail } from '../../utils/validator';
 import createActionsProfilePicture from '../profilePicture';
 import { route } from 'preact-router';
@@ -35,6 +35,19 @@ function createActions(store) {
     },
     onPasswordChange(state, event) {
       store.setState({ loginFormPasswordValue: event.target.value });
+    },
+    async checkIfInstanceIsConfigured(state) {
+      // check instance state
+      store.setState({ checkIfInstanceIsConfiguredRequestState: RequestStatus.Getting });
+      try {
+        const instanceState = await state.httpClient.get('/api/v1/setup');
+        if (!instanceState.account_configured) {
+          route('/signup');
+        }
+        store.setState({ checkIfInstanceIsConfiguredRequestState: RequestStatus.Success });
+      } catch (e) {
+        store.setState({ checkIfInstanceIsConfiguredRequestState: RequestStatus.Error });
+      }
     }
   };
 

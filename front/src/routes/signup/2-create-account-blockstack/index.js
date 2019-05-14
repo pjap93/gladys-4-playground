@@ -12,6 +12,7 @@ import actions from '../../../actions/signup/signupBlockstack';
 class CreateAccountBlockstack extends Component {
 
   componentWillMount() {
+    this.props.checkIfInstanceIsConfigured();
     this.props.init();
   }
 

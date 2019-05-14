@@ -1,9 +1,11 @@
 import { loadBlockstack, getAuthInfos } from '../../utils/blockstack';
 import createActionSignupCreateLocalAccount from './signupCreateLocalAccount';
+import createActionsWelcome from './welcome';
 
 function createActions(store) {
 
   const signupLocalAccountActions = createActionSignupCreateLocalAccount(store);
+  const welcomeActions = createActionsWelcome(store);
 
   const actions = {
     async init(state) {
@@ -40,7 +42,7 @@ function createActions(store) {
     }
   };
 
-  return Object.assign(actions, signupLocalAccountActions);
+  return Object.assign(actions, signupLocalAccountActions, welcomeActions);
 }
 
 export default createActions;

@@ -13,7 +13,7 @@ import { SYSTEM_VARIABLE_NAMES } from '../../../server/utils/constants';
 import Header from './header';
 import Layout from './layout';
 import Redirect from './router/Redirect';
-import Login from '../routes/login/LoginPage';
+import Login from '../routes/login';
 import LoginBlockstack from '../routes/login/login-blockstack';
 
 import SignupWelcomePage from '../routes/signup/1-welcome';
@@ -46,8 +46,8 @@ import ZwaveNodePage from '../routes/integration/all/zwave/node-page';
 import ZwaveNetworkPage from '../routes/integration/all/zwave/network-page';
 import ZwaveSettingsPage from '../routes/integration/all/zwave/settings-page';
 
-const httpClient = (process.env.DEMO_MODE === 'true') ? new DemoHttpClient() : new HttpClient();
-const session = new Session(httpClient);
+const session = new Session();
+const httpClient = (process.env.DEMO_MODE === 'true') ? new DemoHttpClient() : new HttpClient(session);
 
 const store = createStore({
   httpClient,
@@ -128,6 +128,7 @@ const AppRouter = connect('currentUrl,user,profilePicture,showDropDown,', action
 class MainApp extends Component {
 
   componentWillMount() {
+    this.props.checkSession();
     this.props.loadProfilePicture();
   }
 
