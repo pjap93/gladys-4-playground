@@ -1,9 +1,9 @@
 const { expect } = require('chai');
-const { request } = require('../request.test');
+const { authenticatedRequest, request } = require('../request.test');
 
 describe('POST /user', () => {
   it('should create user', async () => {
-    await request
+    await authenticatedRequest
       .post('/api/v1/user')
       .send({
         firstname: 'Tony',
@@ -21,7 +21,7 @@ describe('POST /user', () => {
       });
   });
   it('should not create user, missing email', async () => {
-    await request
+    await authenticatedRequest
       .post('/api/v1/user')
       .send({
         firstname: 'Tony',
@@ -35,7 +35,7 @@ describe('POST /user', () => {
       .expect(422);
   });
   it('should not create user, duplicate email', async () => {
-    await request
+    await authenticatedRequest
       .post('/api/v1/user')
       .send({
         firstname: 'Tony',
@@ -48,5 +48,26 @@ describe('POST /user', () => {
       })
       .expect('Content-Type', /json/)
       .expect(409);
+  });
+});
+
+describe('POST /signup', () => {
+  it('should not create user, instance already configured', async () => {
+    await request
+      .post('/api/v1/signup')
+      .send({
+        firstname: 'Tony',
+        lastname: 'Stark',
+        email: 'tony.stark@gladysassistant.com',
+        password: 'testststs',
+        birthdate: '01/01/2019',
+        language: 'en',
+        role: 'admin',
+      })
+      .expect('Content-Type', /json/)
+      .expect(401)
+      .then((res) => {
+        expect(res.body).to.have.property('message', 'INSTANCE_ALREADY_CONFIGURED');
+      });
   });
 });

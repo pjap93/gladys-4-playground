@@ -17,6 +17,7 @@ const TriggerController = require('./controllers/trigger.controller');
 const VariableController = require('./controllers/variable.controller');
 const WeatherController = require('./controllers/weather.controller');
 const AuthMiddleware = require('./middlewares/authMiddleware');
+const IsInstanceConfiguredMiddleware = require('./middlewares/isInstanceConfigured');
 const CorsMiddleware = require('./middlewares/corsMiddleware');
 const setupServiceRoutes = require('./servicesRoutes');
 
@@ -48,6 +49,7 @@ function setupRoutes(gladys) {
   const triggerController = TriggerController(gladys);
   const weatherController = WeatherController(gladys);
   const authMiddleware = AuthMiddleware('dashboard:write', gladys);
+  const isInstanceConfiguredMiddleware = IsInstanceConfiguredMiddleware(gladys);
   const resetPasswordAuthMiddleware = AuthMiddleware('reset-password:write', gladys);
 
   // enable cross origin requests
@@ -59,8 +61,9 @@ function setupRoutes(gladys) {
   router.post('/api/v1/forgot_password', userController.forgotPassword);
   router.post('/api/v1/reset_password', resetPasswordAuthMiddleware, userController.resetPassword);
 
-  // todo: add check if one account already exist.
-  router.post('/api/v1/user', userController.create);
+  // this route is only useful for first signup
+  // we check that no account already exist
+  router.post('/api/v1/signup', isInstanceConfiguredMiddleware, userController.create);
 
   // we load all services routes
   setupServiceRoutes(gladys, router, authMiddleware);
@@ -156,6 +159,9 @@ function setupRoutes(gladys) {
   router.get('/api/v1/trigger', triggerController.get);
   router.patch('/api/v1/trigger/:trigger_selector', triggerController.update);
   router.delete('/api/v1/trigger/:trigger_selector', triggerController.destroy);
+
+  // user
+  router.post('/api/v1/user', userController.create);
 
   // weather
   router.get('/api/v1/user/:user_selector/weather', weatherController.getByUser);
