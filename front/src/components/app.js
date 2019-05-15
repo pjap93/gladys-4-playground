@@ -24,7 +24,7 @@ import SignupPreferences from '../routes/signup/3-preferences';
 import SignupConfigureHouse from '../routes/signup/4-configure-house';
 import SignupSuccess from '../routes/signup/5-success';
 
-import Dashboard from '../routes/dashboard/DashboardPage';
+import Dashboard from '../routes/dashboard';
 import Device from '../routes/device';
 import IntegrationPage from '../routes/integration';
 import ChatPage from '../routes/chat';

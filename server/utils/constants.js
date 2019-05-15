@@ -266,6 +266,8 @@ const DASHBOARD_BOX_TYPE = {
   WEATHER: 'weather',
   TEMPERATURE_IN_ROOM: 'temperature-in-room',
   USER_PRESENCE: 'user-presence',
+  CAMERA: 'camera',
+  DEVICES_IN_ROOM: 'devices-in-room',
 };
 
 const createList = (obj) => {

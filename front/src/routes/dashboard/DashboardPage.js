@@ -1,98 +1,57 @@
 import { connect } from 'unistore/preact';
-import PageLayout from '../../components/layout/page';
-import loginActions from '../../actions/login/login';
-import WeatherBox from '../../components/boxs/weather/WeatherBox';
-import RoomTemperatureBox from '../../components/boxs/room-temperature/RoomTemperature';
-import CameraBox from '../../components/boxs/camera/Camera';
-import HumidityBox from '../../components/boxs/humidity/HumidityBox';
-import AtHomeBox from '../../components/boxs/at-home/AtHomeBox';
-import StartSceneBox from '../../components/boxs/start-scene/StartSceneBox';
+import actions from '../../actions/dashboard';
+import BoxColumns from './BoxColumns';
+import EditBoxColumns from './EditBoxColumns';
+import EmptyState from './EmptyState';
 
-const DashboardPage = connect('user', loginActions)(
-  ({ user }) => (
-    <PageLayout>
-      <div class="card-columns">
-
-        <WeatherBox  temperature={27} unit={'C'} date={'Fri 20/5'} weather="sun" />
-
-        <RoomTemperatureBox temperature={22} unit="C" roomName="Living Room" />
-
-        <CameraBox roomName="Living Room" url="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?cs=srgb&dl=apartment-ceiling-chairs-1571460.jpg&fm=jpg?dl&fit=crop&crop=entropy&w=640&h=411"  />
-
-        <HumidityBox />
-
-        <AtHomeBox />
-
-        <StartSceneBox />
-
-        <div class="card" style="display: inline-block; min-width: 300px;">
-          <div class="card-header"><h3 class="card-title">Main room</h3>
-            <div class="card-options">
-              <label class="custom-switch m-0">
-                <input type="checkbox" value="1" class="custom-switch-input" checked="checked" />
-                <span class="custom-switch-indicator" />
-              </label>
+const DashboardPage = connect('user,dashboardEditMode,dashboardNotConfigured,editDashboardDragEnable,homeDashboard', actions)(
+  ({ user, editDashboard, dashboardEditMode, dashboardNotConfigured, onDragStart, editDashboardDragEnable, moveCard, homeDashboard, addBox, moveBoxUp, moveBoxDown, updateNewSelectedBox, removeBox, saveDashboard, cancelDashboardEdit, onDragOver, onDrop }) => (
+    <div class="page">
+      <div class="page-main">
+        <div class="my-3 my-md-5">
+          <div class="container">
+            <div class="page-header">
+              <h1 class="page-title">
+              Dashboard
+              </h1>
+              <div class="page-options d-flex">
+                {!dashboardEditMode &&
+                  <button onClick={editDashboard} class="btn btn-outline-primary btn-sm ml-2">
+                    <span>Edit  <i class="fe fe-edit" /></span>
+                  </button>
+                }
+                { dashboardEditMode &&
+                  <button onClick={cancelDashboardEdit} class="btn btn-outline-danger btn-sm ml-2">
+                    <span>Cancel  <i class="fe fe-slash" /></span>
+                  </button>
+                }
+                {dashboardEditMode &&
+                  <button onClick={saveDashboard} class="btn btn-outline-primary btn-sm ml-2">
+                    <span>Save  <i class="fe fe-check" /></span>
+                  </button>
+                }
+              </div>
             </div>
+            {dashboardNotConfigured && !dashboardEditMode && <EmptyState />}
+            {!dashboardNotConfigured && !dashboardEditMode && <BoxColumns homeDashboard={homeDashboard} />}
+            {dashboardEditMode &&
+              <EditBoxColumns
+                onDragStart={onDragStart}
+                onDrop={onDrop}
+                onDragOver={onDragOver}
+                editDashboardDragEnable={editDashboardDragEnable}
+                moveCard={moveCard}
+                moveBoxUp={moveBoxUp}
+                moveBoxDown={moveBoxDown}
+                addBox={addBox}
+                homeDashboard={homeDashboard}
+                updateNewSelectedBox={updateNewSelectedBox}
+                removeBox={removeBox}
+              />}
           </div>
-          <div class="table-responsive">
-            <table class="table card-table table-vcenter"><tbody>
-              <tr><td><i class="fe fe-toggle-right" /></td>
-                <td>Main Lamp</td><td class="text-right"><label class="custom-switch"><input type="radio" name="16" value="1" class="custom-switch-input" checked /><span class="custom-switch-indicator" /></label>
-                </td></tr>
-              <tr>
-                <td><i class="fe fe-thermometer" /></td>
-                <td>Temperature</td>
-                <td class="text-right">22°C</td>
-              </tr>
-              <tr>
-                <td><i class="fe fe-home" /></td>
-                <td>Window</td>
-                <td class="text-right"><i class="fe fe-shield" /></td>
-              </tr>
-            </tbody>
-            </table></div></div>
-
-        <div class="card" style="display: inline-block; min-width: 300px;">
-          <div class="card-header"><h3 class="card-title">Chambre</h3>
-            <div class="card-options"><a href="" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up" /></a></div></div><div class="table-responsive">
-            <table class="table card-table table-vcenter"><tbody>
-              <tr><td><i class="fe fe-toggle-right" /></td>
-                <td>Main light</td><td class="text-right"><label class="custom-switch"><input type="radio" name="16" value="1" class="custom-switch-input" /><span class="custom-switch-indicator" /></label>
-                </td></tr>
-              <tr><td><i class="fe fe-toggle-right" /></td>
-                <td>Christmas tree</td><td class="text-right"><label class="custom-switch"><input type="radio" name="16" value="1" class="custom-switch-input" /><span class="custom-switch-indicator" /></label>
-                </td></tr>
-            </tbody>
-            </table></div></div>
-
-
-        <div class="card" style="display: inline-block; min-width: 300px;">
-          <div class="card-header"><h3 class="card-title">Chambre</h3>
-            <div class="card-options"><a href="" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up" /></a></div></div><div class="table-responsive">
-            <table class="table card-table table-vcenter"><tbody>
-              <tr><td><i class="fe fe-toggle-right" /></td>
-                <td>Main light</td><td class="text-right"><label class="custom-switch"><input type="radio" name="16" value="1" class="custom-switch-input" /><span class="custom-switch-indicator" /></label>
-                </td></tr>
-              <tr><td><i class="fe fe-toggle-right" /></td>
-                <td>Christmas tree</td><td class="text-right"><label class="custom-switch"><input type="radio" name="16" value="1" class="custom-switch-input" /><span class="custom-switch-indicator" /></label>
-                </td></tr>
-            </tbody>
-            </table></div></div>
-
-        <div class="card" style="display: inline-block; min-width: 300px;">
-          <div class="card-header"><h3 class="card-title">Chambre</h3>
-            <div class="card-options"><a href="" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up" /></a></div></div><div class="table-responsive">
-            <table class="table card-table table-vcenter"><tbody>
-              <tr><td><i class="fe fe-toggle-right" /></td>
-                <td>Main light</td><td class="text-right"><label class="custom-switch"><input type="radio" name="16" value="1" class="custom-switch-input" /><span class="custom-switch-indicator" /></label>
-                </td></tr>
-              <tr><td><i class="fe fe-toggle-right" /></td>
-                <td>Christmas tree</td><td class="text-right"><label class="custom-switch"><input type="radio" name="16" value="1" class="custom-switch-input" /><span class="custom-switch-indicator" /></label>
-                </td></tr>
-            </tbody>
-            </table></div></div>
+        </div>
       </div>
-    </PageLayout>
+    </div>
   )
 );
 

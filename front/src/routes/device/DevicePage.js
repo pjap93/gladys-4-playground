@@ -1,8 +1,8 @@
 import { connect } from 'unistore/preact';
 import PageLayout from '../../components/layout/page';
 import deviceActions from '../../actions/device';
-import EmptyState from '../../components/boxs/device/EmptyState';
-import DeviceList from '../../components/boxs/device/DeviceList';
+import EmptyState from '../../components/boxs/device-in-room/EmptyState';
+import DeviceList from '../../components/boxs/device-in-room/DeviceList';
 
 const DevicePage = connect('user,rooms', deviceActions)(
   ({ rooms, updateValue, collapseRoom }) => (

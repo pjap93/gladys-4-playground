@@ -6,7 +6,7 @@ const padding = {
 };
 
 const WeatherBox = ({ children, ...props }) => (
-  <div class={'card '}>
+  <div class="card">
     <div style={padding} class="card-block px-30 py-10">
       <div class="row">
         <div class="col-6">
