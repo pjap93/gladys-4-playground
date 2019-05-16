@@ -5,8 +5,8 @@ import actions from '../../../actions/dashboard/boxes/userPresence';
 import { RequestStatus } from '../../../utils/consts';
 import { WEBSOCKET_MESSAGE_TYPES } from '../../../../../server/utils/constants';
 
-const zeroPaddingBottom = {
-  paddingBottom: '0rem'
+const zeroMarginBottom = {
+  marginBottom: '0rem'
 };
 
 const UserPresence = ({ children, ...props }) => (
@@ -28,7 +28,7 @@ const UserPresence = ({ children, ...props }) => (
               <i class="fe fe-bell mr-2" />  <Text id="dashboard.boxes.userPresence.emptyText" />
             </div>
           </div>}
-          <ul class="list-unstyled list-separated" style={zeroPaddingBottom}>
+          <ul class="list-unstyled list-separated" style={zeroMarginBottom}>
             {props.usersWithPresence && props.usersWithPresence.map((user) => (
               <li class="list-separated-item">
                 <div class="row align-items-center">
