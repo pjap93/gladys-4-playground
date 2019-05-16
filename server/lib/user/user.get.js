@@ -10,6 +10,7 @@ const DEFAULT_OPTIONS = {
 /**
  * @description Get list of users
  * @param {Object} options - Options of the query.
+ * @returns {Promise} Return list of users.
  * @example
  * const users = await gladys.user.get({
  *  take: 20,
@@ -38,7 +39,15 @@ async function get(options) {
     ],
   });
 
-  const usersPlain = users.map(user => user.get({ plain: true }));
+  const usersPlain = users.map((user) => {
+    // we converted the user to plain object
+    const userPlain = user.get({ plain: true });
+    // we make sure the image is a string if it's present
+    if (userPlain.picture && userPlain.picture.toString) {
+      userPlain.picture = userPlain.picture.toString('utf8');
+    }
+    return userPlain;
+  });
 
   return usersPlain;
 }
