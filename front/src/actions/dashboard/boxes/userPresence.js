@@ -25,7 +25,7 @@ function createActions(store) {
     async getUsersWithPresence (state) {
       store.setState({ DashboardUserPresenceGetUsersStatus: RequestStatus.Getting });
       try {
-        let usersWithPresence = await state.httpClient.get('/api/v1/user?fields=firstname,lastname,role,selector,picture,current_house_id,last_house_changed');
+        const usersWithPresence = await state.httpClient.get('/api/v1/user?fields=firstname,lastname,role,selector,picture,current_house_id,last_house_changed');
         // calculate relative date
         usersWithPresence.forEach((user) => {
           if (user.last_house_changed) {

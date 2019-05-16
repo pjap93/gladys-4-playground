@@ -130,7 +130,8 @@
           "left": "Left",
           "atHome": "At Home",
           "neverSeenAtHome": "Never Seen At Home",
-          "error": "There was an error fetching the list of user. Please refresh."
+          "error": "There was a network error fetching the list of user. Please refresh.",
+          "emptyText": "There are no users to display here. You can add users in Gladys settings."
         },
         "camera": {
           "editCameraLabel": "Select the camera you want to display here."

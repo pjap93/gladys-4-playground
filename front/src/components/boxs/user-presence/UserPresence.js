@@ -18,6 +18,12 @@ const UserPresence = ({ children, ...props }) => (
         <div class="loader" />
         <div class="dimmer-content">
           { !props.usersWithPresence && <div style={{ minHeight: '5rem' }} />}
+          {props.usersWithPresence && props.usersWithPresence.length === 0 &&
+          <div>
+            <div class="alert alert-icon alert-primary" role="alert">
+              <i class="fe fe-bell mr-2" />  <Text id="dashboard.boxes.userPresence.emptyText" />
+            </div>
+          </div>}
           <ul class="list-unstyled list-separated">
             {props.usersWithPresence && props.usersWithPresence.map((user) => (
               <li class="list-separated-item">
@@ -30,8 +36,8 @@ const UserPresence = ({ children, ...props }) => (
                   </div>
                   <div class="col-auto">
                     {user.current_house_id && <span class="badge badge-success"><Text id="dashboard.boxes.userPresence.atHome" /></span>}
-                    {user.current_house_id === null && user.last_house_changed && <span class="badge badge-danger"><Text id="dashboard.boxes.userPresence.left" /> ({user.last_house_changed_relative_to_now})</span>}
-                    {user.current_house_id === null && user.last_house_changed === null && <span class="badge badge-danger"> <Text id="dashboard.boxes.userPresence.neverSeenAtHome" /></span>}
+                    {!user.current_house_id && user.last_house_changed && <span class="badge badge-danger"><Text id="dashboard.boxes.userPresence.left" /> ({user.last_house_changed_relative_to_now})</span>}
+                    {!user.current_house_id && user.last_house_changed === null && <span class="badge badge-danger"> <Text id="dashboard.boxes.userPresence.neverSeenAtHome" /></span>}
                   </div>
                 </div>
               </li>
