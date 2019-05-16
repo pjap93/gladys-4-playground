@@ -30,6 +30,17 @@ function createActions(store) {
     onDrop (state, x, y) {
       actions.moveCard(state, state.currentDragBoxX, state.currentDragBoxY, x, y);
     },
+    setDashboardConfigured (state) {
+      const homeDashboard = state.homeDashboard;
+      const dashboardConfigured = homeDashboard && homeDashboard.boxes && (
+        (homeDashboard.boxes[0] && homeDashboard.boxes[0].length > 0)
+        || (homeDashboard.boxes[1] && homeDashboard.boxes[1].length > 0)
+        || (homeDashboard.boxes[2] && homeDashboard.boxes[2].length > 0)
+      );
+      store.setState({
+        dashboardNotConfigured: !dashboardConfigured
+      });
+    },
     moveCard (state, originalX, originalY, destX, destY) {
       // incorrect coordinates
       if (destX < 0 || destY < 0) {
@@ -112,6 +123,7 @@ function createActions(store) {
           store.setState({ DashboardGetBoxesStatus: RequestStatus.Error });
         }
       }
+      actions.setDashboardConfigured(store.getState());
     },
     async cancelDashboardEdit(state) {
       await actions.getBoxes(state);
@@ -134,6 +146,7 @@ function createActions(store) {
           store.setState({ DashboardSavingStatus: RequestStatus.Error });
         }
       }
+      actions.setDashboardConfigured(store.getState());
     }
   };
   return actions;
