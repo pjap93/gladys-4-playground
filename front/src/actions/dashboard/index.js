@@ -1,6 +1,6 @@
-import { RequestStatus } from '../utils/consts';
+import { RequestStatus } from '../../utils/consts';
 import update from 'immutability-helper';
-import { DASHBOARD_TYPE } from '../../../server/utils/constants';
+import { DASHBOARD_TYPE } from '../../../../server/utils/constants';
 
 const EMPTY_DASHBOARD = {
   name: 'Home',
