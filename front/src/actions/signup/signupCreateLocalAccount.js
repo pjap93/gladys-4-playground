@@ -56,11 +56,15 @@ function createActions(store) {
         errored = true;
         errors.birthdate = true;
       }
-      store.setState({ signupErrors: errors });
+      store.setState({
+        signupErrors: errors 
+      });
       return errored;
     },
     async createUser (state) {
-      store.setState({ signupAlreadySubmitted: true });
+      store.setState({
+        signupAlreadySubmitted: true 
+      });
       const errored = actions.validateUser(state);
       if (errored) {
         return ;
@@ -68,27 +72,39 @@ function createActions(store) {
       const userToCreate = Object.assign({}, state.signupNewUser, {
         birthdate: `${state.signupNewUser.birthdateYear}-${state.signupNewUser.birthdateMonth}-${state.signupNewUser.birthdateDay}`
       });
-      store.setState({ createLocalAccountStatus: RequestStatus.Getting });
+      store.setState({
+        createLocalAccountStatus: RequestStatus.Getting 
+      });
       try {
         const user = await state.httpClient.post(`/api/v1/signup`, userToCreate);
-        store.setState({ user, createLocalAccountStatus: RequestStatus.Success });
+        store.setState({
+          user, createLocalAccountStatus: RequestStatus.Success 
+        });
         state.session.saveUser(user);
         actionsProfilePicture.loadProfilePicture(state);
         route('/signup/preference');
       } catch (e) {
         if (!e.response) {
-          store.setState({ createLocalAccountStatus: RequestStatus.NetworkError });
+          store.setState({
+            createLocalAccountStatus: RequestStatus.NetworkError 
+          });
         } else if (e.response && e.response.status === 409) {
-          store.setState({ createLocalAccountStatus: RequestStatus.ConflictError, createLocalAccountError: e.response.data });
+          store.setState({
+            createLocalAccountStatus: RequestStatus.ConflictError, createLocalAccountError: e.response.data 
+          });
         } else {
-          store.setState({ createLocalAccountStatus: RequestStatus.Error });
+          store.setState({
+            createLocalAccountStatus: RequestStatus.Error 
+          });
         }
       }
     },
     updateNewUser (state, property, value) {
       const newState = update(state, {
         signupNewUser: {
-          [property]: { $set: value }
+          [property]: {
+            $set: value 
+          }
         }
       });
       store.setState(newState);

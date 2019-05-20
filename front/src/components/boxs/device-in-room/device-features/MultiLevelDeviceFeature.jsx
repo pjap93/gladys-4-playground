@@ -14,7 +14,9 @@ const MultiLevelDeviceType = ({ children, ...props }) => {
       <td class="text-right" style="padding-top: 0px; padding-bottom: 0px">
         <div class="col">
           <input
-            style={{ minHeight: '30px' }}
+            style={{
+              minHeight: '30px' 
+            }}
             type="range"
             value={props.deviceFeature.lastValue}
             onChange={updateValue}

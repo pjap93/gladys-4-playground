@@ -6,7 +6,10 @@ const CreateAccountGladysGateway = ({ children, ...props }) => (
     <div>
       <Link href="/signup" class="btn btn-secondary btn-sm" >◀️️  <Text id="signup.createLocalAccount.backButton" /></Link>
     </div>
-    <p style={{ marginTop: '30px' }}>Work in progress...</p>
+    <p style={{
+      marginTop: '30px' 
+    }}
+    >Work in progress...</p>
   </div>
 );
 

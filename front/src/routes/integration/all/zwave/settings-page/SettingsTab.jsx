@@ -1,6 +1,9 @@
 
 const SettingsTab = ({ children, ...props }) => (
-  <div class="dimmer" style={{ marginTop: '20px' }}>
+  <div class="dimmer" style={{
+    marginTop: '20px' 
+  }}
+  >
     <div class="dimmer-content">
       <h2>Settings</h2>
       <div class="form-group">

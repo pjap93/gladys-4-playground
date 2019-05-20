@@ -20,7 +20,9 @@ function createActions(store) {
     updateUserPreferences (state, property, value) {
       const newState = update(state, {
         signupUserPreferences: {
-          [property]: { $set: value }
+          [property]: {
+            $set: value 
+          }
         }
       });
       store.setState(newState);
@@ -28,30 +30,44 @@ function createActions(store) {
     updateSystemPreferences (state, property, value) {
       const newState = update(state, {
         signupSystemPreferences: {
-          [property]: { $set: value }
+          [property]: {
+            $set: value 
+          }
         }
       });
       store.setState(newState);
     },
     async savePreferences (state) {
       // saving user preferences
-      store.setState({ signupSaveUserPreferences: RequestStatus.Getting });
+      store.setState({
+        signupSaveUserPreferences: RequestStatus.Getting 
+      });
       try {
         await state.httpClient.patch(`/api/v1/me`, state.signupUserPreferences);
-        store.setState({ signupSaveUserPreferences: RequestStatus.Success });
+        store.setState({
+          signupSaveUserPreferences: RequestStatus.Success 
+        });
       } catch (e) {
-        store.setState({ signupSaveUserPreferences: RequestStatus.Error });
+        store.setState({
+          signupSaveUserPreferences: RequestStatus.Error 
+        });
       }
       // saving system preferences
-      store.setState({ signupSaveSystemPreferences: RequestStatus.Getting });
+      store.setState({
+        signupSaveSystemPreferences: RequestStatus.Getting 
+      });
       try {
         await state.httpClient.post(`/api/v1/variable/${SYSTEM_VARIABLE_NAMES.DEVICE_STATE_HISTORY_IN_DAYS}`, {
           value: state.signupSystemPreferences[SYSTEM_VARIABLE_NAMES.DEVICE_STATE_HISTORY_IN_DAYS]
         });
-        store.setState({ signupSaveSystemPreferences: RequestStatus.Success });
+        store.setState({
+          signupSaveSystemPreferences: RequestStatus.Success 
+        });
         route('/signup/configure-house');
       } catch (e) {
-        store.setState({ signupSaveSystemPreferences: RequestStatus.Error });
+        store.setState({
+          signupSaveSystemPreferences: RequestStatus.Error 
+        });
       }
     }
   };

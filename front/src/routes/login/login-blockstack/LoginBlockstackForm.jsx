@@ -9,7 +9,10 @@ const LoginBlockstackForm = ({ children, ...props }) => (
         </div>
         <form class="card">
           <div class="card-body p-6">
-            <div class="dimmer active" style={{ height: '300px' }}>
+            <div class="dimmer active" style={{
+              height: '300px' 
+            }}
+            >
               <div class="loader" />
             </div>
           </div>

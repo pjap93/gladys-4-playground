@@ -48,8 +48,11 @@ const TelegramPage = ({ children, ...props }) => (
                           </span>
                         </div>
                       </div>
-                      <p><MarkupText id="integration.telegram.link" fields={{ link: 'https://telegram.org' }} />
-                        {' '} <Text id="integration.telegram.note" />
+                      <p><MarkupText id="integration.telegram.link" fields={{
+                        link: 'https://telegram.org' 
+                      }}
+                         />
+                      {' '} <Text id="integration.telegram.note" />
                       </p>
                     </div>
                   </div>

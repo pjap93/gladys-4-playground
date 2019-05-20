@@ -1,6 +1,8 @@
 import style from './style.css';
 
-const dateDisplayOptions = { hour: 'numeric', minute: 'numeric' };
+const dateDisplayOptions = {
+  hour: 'numeric', minute: 'numeric' 
+};
 
 const IncomingMessage = ({ children, ...props }) => (
   <div class={style.incoming_msg}>

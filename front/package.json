@@ -7,7 +7,7 @@
     "build": "preact build --no-prerender",
     "serve": "preact build && preact serve",
     "dev": "preact watch -p 1444",
-    "eslint": "eslint src --ext .json --ext .js",
+    "eslint": "eslint src --ext .json --ext .js --fix",
     "test": "jest --coverage"
   },
   "devDependencies": {

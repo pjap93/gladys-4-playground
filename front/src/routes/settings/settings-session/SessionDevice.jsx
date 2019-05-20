@@ -1,4 +1,6 @@
-const dateDisplayOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+const dateDisplayOptions = {
+  weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
+};
 
 const SessionDevice = ({ children, ...props }) => {
   
@@ -23,7 +25,10 @@ const SessionDevice = ({ children, ...props }) => {
         <div>{lastSeen}</div>
       </td>
       <td >
-        <i style={{ cursor: 'pointer' }} onClick={revokeDevice} class="fe fe-trash-2" />
+        <i style={{
+          cursor: 'pointer' 
+        }} onClick={revokeDevice} class="fe fe-trash-2"
+        />
       </td>
     </tr>
   );

@@ -5,56 +5,86 @@ function createActions(store) {
 
   const actions = {
     async getScenes(state) {
-      store.setState({ ScenesGetStatus: RequestStatus.Getting });
+      store.setState({
+        ScenesGetStatus: RequestStatus.Getting 
+      });
       try {
         const scenes = await state.httpClient.get('/api/v1/scene');
-        store.setState({ scenes, ScenesGetStatus: RequestStatus.Success });
+        store.setState({
+          scenes, ScenesGetStatus: RequestStatus.Success 
+        });
       } catch (e) {
-        store.setState({ ScenesGetStatus: RequestStatus.Error });
+        store.setState({
+          ScenesGetStatus: RequestStatus.Error 
+        });
       }
     },
     async getSceneBySelector(state, sceneSelector) {
-      store.setState({ SceneGetStatus: RequestStatus.Getting });
+      store.setState({
+        SceneGetStatus: RequestStatus.Getting 
+      });
       try {
         const scene = await state.httpClient.get(`/api/v1/scene/${sceneSelector}`);
         if (scene.actions[scene.actions.length - 1].length > 0) {
           scene.actions.push([]);
         }
-        store.setState({ scene, SceneGetStatus: RequestStatus.Success });
+        store.setState({
+          scene, SceneGetStatus: RequestStatus.Success 
+        });
       } catch (e) {
-        store.setState({ SceneGetStatus: RequestStatus.Error });
+        store.setState({
+          SceneGetStatus: RequestStatus.Error 
+        });
       }
     },
     async startScene(state) {
-      store.setState({ SceneStartStatus: RequestStatus.Getting });
+      store.setState({
+        SceneStartStatus: RequestStatus.Getting 
+      });
       try {
         await state.httpClient.post(`/api/v1/scene/${state.scene.selector}/start`);
-        store.setState({ SceneStartStatus: RequestStatus.Success });
+        store.setState({
+          SceneStartStatus: RequestStatus.Success 
+        });
       } catch (e) {
-        store.setState({ SceneStartStatus: RequestStatus.Error });
+        store.setState({
+          SceneStartStatus: RequestStatus.Error 
+        });
       }
     },
     async saveScene(state) {
-      store.setState({ SceneSaveStatus: RequestStatus.Getting });
+      store.setState({
+        SceneSaveStatus: RequestStatus.Getting 
+      });
       try {
         await state.httpClient.patch(`/api/v1/scene/${state.scene.selector}`, state.scene);
-        store.setState({ SceneSaveStatus: RequestStatus.Success });
+        store.setState({
+          SceneSaveStatus: RequestStatus.Success 
+        });
       } catch (e) {
-        store.setState({ SceneSaveStatus: RequestStatus.Error });
+        store.setState({
+          SceneSaveStatus: RequestStatus.Error 
+        });
       }
     },
     addAction (state, columnIndex) {
       let newState = update(state, {
         scene: {
           actions: {
-            [columnIndex]: { $push: [{ type: state.selectedNewAction }] }
+            [columnIndex]: {
+              $push: [{
+                type: state.selectedNewAction 
+              }] 
+            }
           }
         }
       });
       if (state.scene.actions[columnIndex].length === 0) {
         newState = update(newState,  {
           scene: {
-            actions: { $push: [[]] }
+            actions: {
+              $push: [[]] 
+            }
           }
         });
       }
@@ -64,7 +94,9 @@ function createActions(store) {
       const newState = update(state, {
         scene: {
           actions: {
-            [columnIndex]: { $splice: [[rowIndex, 1]] }
+            [columnIndex]: {
+              $splice: [[rowIndex, 1]] 
+            }
           }
         }
       });
@@ -76,7 +108,9 @@ function createActions(store) {
           actions: {
             [columnIndex]: {
               [rowIndex]: {
-                [property]: { $set: value }
+                [property]: {
+                  $set: value 
+                }
               }
             }
           }
@@ -85,7 +119,9 @@ function createActions(store) {
       store.setState(newState);
     },
     updateSelectedNewAction (state, e) {
-      store.setState({ selectedNewAction: e.target.value });
+      store.setState({
+        selectedNewAction: e.target.value 
+      });
     },
     highlighCurrentlyExecutedAction (state, { columnIndex, rowIndex }) {
       store.setState({
@@ -104,13 +140,21 @@ function createActions(store) {
       }, 500);
     },
     async getUsers (state) {
-      store.setState({ GetUsersStatus: RequestStatus.Getting });
+      store.setState({
+        GetUsersStatus: RequestStatus.Getting 
+      });
       try {
         const users = await state.httpClient.get(`/api/v1/user`);
-        const sceneParamsData = { users };
-        store.setState({ sceneParamsData, GetUsersStatus: RequestStatus.Success });
+        const sceneParamsData = {
+          users 
+        };
+        store.setState({
+          sceneParamsData, GetUsersStatus: RequestStatus.Success 
+        });
       } catch (e) {
-        store.setState({ GetUsersStatus: RequestStatus.Error });
+        store.setState({
+          GetUsersStatus: RequestStatus.Error 
+        });
       }
     }
   };

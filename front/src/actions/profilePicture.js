@@ -11,16 +11,24 @@ function createActions(store) {
       // test if profile picture is present locally
       const localProfilePicture = state.session.getProfilePicture();
       if (localProfilePicture) {
-        return store.setState({ profilePicture: localProfilePicture });
+        return store.setState({
+          profilePicture: localProfilePicture 
+        });
       }
       // if not, we get them from the server
-      store.setState({ GetProfilePictureStatus: RequestStatus.Getting });
+      store.setState({
+        GetProfilePictureStatus: RequestStatus.Getting 
+      });
       try {
         const profilePicture = await state.httpClient.get(`/api/v1/me/picture`);
         state.session.saveProfilePicture(profilePicture);
-        store.setState({ profilePicture, GetProfilePictureStatus: RequestStatus.Success });
+        store.setState({
+          profilePicture, GetProfilePictureStatus: RequestStatus.Success 
+        });
       } catch (e) {
-        store.setState({ GetProfilePictureStatus: RequestStatus.Error });
+        store.setState({
+          GetProfilePictureStatus: RequestStatus.Error 
+        });
       }
     }
   };

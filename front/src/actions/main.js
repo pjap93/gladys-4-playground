@@ -7,10 +7,14 @@ function createActions(store) {
 
   const actions = {
     handleRoute(state, e) {
-      store.setState({ currentUrl: e.url, showDropDown: false });
+      store.setState({
+        currentUrl: e.url, showDropDown: false 
+      });
     },
     toggleDropDown(state) {
-      store.setState({ showDropDown: !state.showDropDown });
+      store.setState({
+        showDropDown: !state.showDropDown 
+      });
     },
     async checkSession(state) {
       state.session.init();

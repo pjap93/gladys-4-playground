@@ -24,7 +24,9 @@ function createActions(store) {
         subdomains: 'abcd',
         maxZoom: 19
       }).addTo(leafletMap);
-      store.setState({ mapTabLeafletMap: leafletMap });
+      store.setState({
+        mapTabLeafletMap: leafletMap 
+      });
     }
   };
   return actions;

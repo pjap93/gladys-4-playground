@@ -31,12 +31,20 @@ function createActions(store) {
         if (store.getState().signupNewHouseMarker) {
           store.getState().signupNewHouseMarker.setLatLng(e.latlng);
         } else {
-          const marker = leaflet.marker([e.latlng.lat, e.latlng.lng], { icon }).addTo(leafletMap);
-          store.setState({ signupNewHouseMarker: marker, signupNewHouseLatitude: e.latlng.lat, signupNewHouseLongitude: e.latlng.lng });
+          const marker = leaflet.marker([e.latlng.lat, e.latlng.lng], {
+            icon 
+          }).addTo(leafletMap);
+          store.setState({
+            signupNewHouseMarker: marker, signupNewHouseLatitude: e.latlng.lat, signupNewHouseLongitude: e.latlng.lng 
+          });
         }
-        store.setState({ signupNewHouseLatitude: e.latlng.lat, signupNewHouseLongitude: e.latlng.lng });
+        store.setState({
+          signupNewHouseLatitude: e.latlng.lat, signupNewHouseLongitude: e.latlng.lng 
+        });
       });
-      store.setState({ signupHouseLeafletMap: leafletMap });
+      store.setState({
+        signupHouseLeafletMap: leafletMap 
+      });
     },
     onKeyPressRoomInput(state, e) {
       if (e.keyCode === 13) {
@@ -47,23 +55,33 @@ function createActions(store) {
       const alreadyInArray = (state.signupRooms && state.signupRooms.indexOf(state.signupNewRoomName) !== - 1);
       if (state.signupNewRoomName && state.signupNewRoomName.length > 0 && !alreadyInArray) {
         const newState = update(state, {
-          signupRooms: { $push: [state.signupNewRoomName] },
-          signupNewRoomName: { $set: '' }
+          signupRooms: {
+            $push: [state.signupNewRoomName] 
+          },
+          signupNewRoomName: {
+            $set: '' 
+          }
         });
         store.setState(newState);
       }
     },
     removeRoom(state, index) {
       const newState = update(state, {
-        signupRooms: { $splice: [[index, 1]] }
+        signupRooms: {
+          $splice: [[index, 1]] 
+        }
       });
       store.setState(newState);
     },
     updateNewRoomName(state, e) {
-      store.setState({ signupNewRoomName: e.target.value });
+      store.setState({
+        signupNewRoomName: e.target.value 
+      });
     },
     updateNewHouseName(state, e) {
-      store.setState({ signupNewHouseName: e.target.value });
+      store.setState({
+        signupNewHouseName: e.target.value 
+      });
     },
     async saveHouse(state) {
       // validate new house
@@ -75,11 +93,15 @@ function createActions(store) {
       }
       // if house is errored
       if (errored) {
-        return store.setState({ signupConfigureHouseErrors: errors });
+        return store.setState({
+          signupConfigureHouseErrors: errors 
+        });
       }
 
       // create house
-      store.setState({ signupSaveHouse: RequestStatus.Getting });
+      store.setState({
+        signupSaveHouse: RequestStatus.Getting 
+      });
       try {
         const createdHouse = await state.httpClient.post(`/api/v1/house`, {
           name: state.signupNewHouseName,
@@ -93,10 +115,14 @@ function createActions(store) {
         }));
         await Promise.all(promises);
         
-        store.setState({ signupSaveHouse: RequestStatus.Success });
+        store.setState({
+          signupSaveHouse: RequestStatus.Success 
+        });
         route('/signup/success');
       } catch (e) {
-        store.setState({ signupSaveHouse: RequestStatus.Error });
+        store.setState({
+          signupSaveHouse: RequestStatus.Error 
+        });
       }
     }
   };

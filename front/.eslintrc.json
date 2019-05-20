@@ -4,13 +4,6 @@
     "prettier"
   ],
   "rules": {
-    "indent": [
-      "error",
-      2,
-      {
-        "SwitchCase": 1
-      }
-    ],
     "react/jsx-indent-props": [
       "enabled",
       2

@@ -4,22 +4,27 @@ import ActionColumn from './ActionColumn';
 import { Link } from 'preact-router/match';
 
 const actionsColumns = [
-  { actions: [{
-    type: 'Lock the door',
-    icon: 'fe fe-lock'
-  },{
-    type: 'Lock the windows',
-    icon: 'fe fe-lock'
-  }]
+  {
+    actions: [{
+      type: 'Lock the door',
+      icon: 'fe fe-lock'
+    },{
+      type: 'Lock the windows',
+      icon: 'fe fe-lock'
+    }]
   },
-  { actions: [{
-    type: 'Wait',
-    icon: 'fe fe-clock'
-  }] },
-  { actions: [{
-    type: 'Arm Home',
-    icon: 'fe fe-home'
-  }] }
+  {
+    actions: [{
+      type: 'Wait',
+      icon: 'fe fe-clock'
+    }] 
+  },
+  {
+    actions: [{
+      type: 'Arm Home',
+      icon: 'fe fe-home'
+    }] 
+  }
 ];
 
 const ScenePage = connect('user,scenes,totalSize', actions)(
@@ -30,7 +35,10 @@ const ScenePage = connect('user,scenes,totalSize', actions)(
         <div class="my-3 my-md-5">
           <div class="container">
             <div class="page-header">
-              <h1 class="page-title" style={{ marginRight: '20px' }}>
+              <h1 class="page-title" style={{
+                marginRight: '20px' 
+              }}
+              >
                 <Link href="/dashboard/scene" class="btn btn-secondary btn-sm btn-block" >◀️️ Back</Link>
               </h1>
               <h1 class="page-title">

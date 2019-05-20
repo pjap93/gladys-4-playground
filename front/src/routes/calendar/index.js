@@ -41,7 +41,9 @@ class Map extends Component {
                         }]}
                         startAccessor="start"
                         endAccessor="end"
-                        style={{ height: '550px' }}
+                        style={{
+                          height: '550px' 
+                        }}
                         onSelectSlot={this.onSelectSlot}
                         selectable
                       />

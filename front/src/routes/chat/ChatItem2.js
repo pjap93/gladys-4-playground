@@ -6,7 +6,10 @@ const IntegrationPage = connect('integrations,currentUrl,integrationsFiltered,to
   ({ integrations, integrationsFiltered, totalSize, currentUrl, search }) => (
 
     
-    <ul class="list-group card-list-group" style={{ height: '400px', overflow: 'auto' }}>
+    <ul class="list-group card-list-group" style={{
+      height: '400px', overflow: 'auto' 
+    }}
+    >
       <li class="list-group-item py-5">
         <div class="media">
           <div class="media-object avatar avatar-md mr-4" style="background-image: url(https://www.gravatar.com/avatar/3704fd91da1bfad756b6457a4f373ebd)" />

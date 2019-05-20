@@ -9,14 +9,25 @@ const ConfigureHouseTab = ({ children, ...props }) => (
         <div class="col-md">
           <img src="/assets/images/pierre-gilles-bali.jpg" />
         </div>
-        <div class="col-md" style={{ height: '100%' }}>
+        <div
+          class="col-md"
+          style={{
+            height: '100%'
+          }}
+        >
           <div class="d-flex flex-column">
-            <h4><Text id="signup.success.title" /></h4>
+            <h4>
+              <Text id="signup.success.title" />
+            </h4>
             <p class="text">
               <MarkupText id="signup.success.introduction" />
             </p>
-            <p class="text"><MarkupText id="signup.success.thanksForChoosingOpenSource" /></p>
-            <p class="text"><MarkupText id="signup.success.ifYouWantToSupportThisSotware" /></p>
+            <p class="text">
+              <MarkupText id="signup.success.thanksForChoosingOpenSource" />
+            </p>
+            <p class="text">
+              <MarkupText id="signup.success.ifYouWantToSupportThisSotware" />
+            </p>
           </div>
           <div class="text-right align-items-end">
             <Link class="btn btn-primary" href="/dashboard">

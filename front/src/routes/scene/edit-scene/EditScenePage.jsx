@@ -11,7 +11,10 @@ const ScenePage = connect('sceneParamsData,scene,highLightedActions', actions)(
         <div class="my-3 my-md-5">
           <div class="container">
             <div class="page-header">
-              <h1 class="page-title" style={{ marginRight: '20px' }}>
+              <h1 class="page-title" style={{
+                marginRight: '20px' 
+              }}
+              >
                 <Link href="/dashboard/scene" class="btn btn-secondary btn-sm btn-block" >◀️️ Back</Link>
               </h1>
               <h1 class="page-title">

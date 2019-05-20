@@ -3,10 +3,16 @@ import { Link } from 'preact-router/match';
 
 const SignupLayout = ({ children, ...props }) => (
   <div class="page">
-    <div class="page-single" style={{ marginTop: '10px' }}>
+    <div class="page-single" style={{
+      marginTop: '10px' 
+    }}
+    >
       <div class="container">
         <div class="row">
-          <div class="col mx-auto" style={{ maxWidth: '60rem' }}>
+          <div class="col mx-auto" style={{
+            maxWidth: '60rem' 
+          }}
+          >
             <div class="text-center mb-6">
               <h2><img src="/assets/icons/favicon-96x96.png" class="header-brand-img" alt="Gladys logo" /><Text id="login.title" /></h2>
             </div>

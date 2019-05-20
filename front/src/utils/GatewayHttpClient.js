@@ -3,7 +3,9 @@ import gladysGatewayClient from '@gladysassistant/gladys-gateway-js';
 
 export class GatewayHttpClient {
   constructor(){
-    this.gatewayClient = gladysGatewayClient({ serverUrl: config.serverUrl, cryptoLib: window.crypto });
+    this.gatewayClient = gladysGatewayClient({
+      serverUrl: config.serverUrl, cryptoLib: window.crypto 
+    });
   }
 
   async get(url, query) {

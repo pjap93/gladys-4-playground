@@ -19,7 +19,10 @@ class Map extends Component {
         <div class="page-main">
           <div class="my-3 my-md-5">
             <div class="map-header">
-              <div id="map-tab-leaflet" style={{ height: '550px' }} />
+              <div id="map-tab-leaflet" style={{
+                height: '550px' 
+              }}
+              />
             </div>
           </div>
         </div>
