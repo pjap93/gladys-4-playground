@@ -2,9 +2,7 @@ const { NotFoundError } = require('../../utils/coreErrors');
 const { areObjectsEqual, pick } = require('../../utils/objects');
 const db = require('../../models');
 
-const UPDATABLE_FIELDS = [
-  'value',
-];
+const UPDATABLE_FIELDS = ['value'];
 
 /**
  * @description Add a param to a device
@@ -24,7 +22,7 @@ async function addParam(deviceSelector, param) {
     throw new NotFoundError('Device not found');
   }
   // if the device exists, we find the param exist
-  const paramIndex = device.params.findIndex(p => p.name === param.name);
+  const paramIndex = device.params.findIndex((p) => p.name === param.name);
   let paramInStore = device.params[paramIndex];
 
   // if the param does not already exist, we create it.

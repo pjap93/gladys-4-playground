@@ -14,7 +14,10 @@ const API_KEY_LENGTH = 32;
  * hashRefreshToken('xx');
  */
 function hashRefreshToken(refreshToken) {
-  const refreshTokenHash = crypto.createHash('sha256').update(refreshToken).digest('hex');
+  const refreshTokenHash = crypto
+    .createHash('sha256')
+    .update(refreshToken)
+    .digest('hex');
   return refreshTokenHash;
 }
 
@@ -26,7 +29,9 @@ function hashRefreshToken(refreshToken) {
  * @returns {Promise} Resolving with refreshToken and refreshTokenHash.
  */
 async function generateRefreshToken() {
-  const refreshToken = (await randomBytes(Math.ceil(REFRESH_TOKEN_LENGTH / 2))).toString('hex').slice(0, REFRESH_TOKEN_LENGTH);
+  const refreshToken = (await randomBytes(Math.ceil(REFRESH_TOKEN_LENGTH / 2)))
+    .toString('hex')
+    .slice(0, REFRESH_TOKEN_LENGTH);
   const refreshTokenHash = hashRefreshToken(refreshToken);
 
   return {

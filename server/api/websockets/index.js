@@ -6,8 +6,8 @@ const WebsocketManager = function WebsocketManager(wss, gladys) {
   this.wss = wss;
   this.gladys = gladys;
   this.connections = {};
-  this.gladys.event.on(EVENTS.WEBSOCKET.SEND, event => this.sendMessageUser(event));
-  this.gladys.event.on(EVENTS.WEBSOCKET.SEND_ALL, event => this.sendMessageAllUsers(event));
+  this.gladys.event.on(EVENTS.WEBSOCKET.SEND, (event) => this.sendMessageUser(event));
+  this.gladys.event.on(EVENTS.WEBSOCKET.SEND_ALL, (event) => this.sendMessageAllUsers(event));
 };
 
 /**
@@ -52,7 +52,7 @@ function userConnected(user, client) {
   if (!this.connections[user.id]) {
     this.connections[user.id] = [];
   }
-  const connectionIndex = this.connections[user.id].findIndex(elem => elem.client === client);
+  const connectionIndex = this.connections[user.id].findIndex((elem) => elem.client === client);
 
   if (connectionIndex === -1) {
     this.connections[user.id].push({
@@ -76,7 +76,7 @@ function userDisconnected(user, client) {
   if (!this.connections[user.id]) {
     this.connections[user.id] = [];
   }
-  const connectionIndex = this.connections[user.id].findIndex(elem => elem.client === client);
+  const connectionIndex = this.connections[user.id].findIndex((elem) => elem.client === client);
 
   if (connectionIndex !== -1) {
     this.connections[user.id].splice(connectionIndex, 1);
@@ -103,20 +103,23 @@ function init() {
     ws.on('message', async (data) => {
       const parsedMessage = parseWebsocketMessage(data);
       switch (parsedMessage.type) {
-      case WEBSOCKET_MESSAGE_TYPES.AUTHENTICATION.REQUEST:
-        try {
-        // we validate the token
-          const userId = this.gladys.session.validateAccessToken(parsedMessage.payload.accessToken, 'dashboard:write');
-          user = await this.gladys.user.getById(userId);
-          authenticated = true;
-          this.userConnected(user, ws);
-        } catch (e) {
-          logger.warn(e);
-          ws.terminate();
-        }
-        break;
-      default:
-        logger.debug(`Message type not handled`);
+        case WEBSOCKET_MESSAGE_TYPES.AUTHENTICATION.REQUEST:
+          try {
+            // we validate the token
+            const userId = this.gladys.session.validateAccessToken(
+              parsedMessage.payload.accessToken,
+              'dashboard:write',
+            );
+            user = await this.gladys.user.getById(userId);
+            authenticated = true;
+            this.userConnected(user, ws);
+          } catch (e) {
+            logger.warn(e);
+            ws.terminate();
+          }
+          break;
+        default:
+          logger.debug(`Message type not handled`);
       }
     });
     setTimeout(() => {

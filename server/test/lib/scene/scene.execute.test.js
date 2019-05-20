@@ -17,19 +17,23 @@ describe('SceneManager', () => {
     const sceneManager = new SceneManager(stateManager, event);
     const scene = {
       selector: 'my-scene',
-      actions: [[{
-        type: ACTIONS.LIGHT.TURN_ON,
-        device: 'light-1',
-      }]],
+      actions: [
+        [
+          {
+            type: ACTIONS.LIGHT.TURN_ON,
+            device: 'light-1',
+          },
+        ],
+      ],
     };
     sceneManager.addScene(scene);
     await sceneManager.execute('my-scene');
-    return new Promise(((resolve) => {
+    return new Promise((resolve) => {
       sceneManager.queue.start(() => {
         assert.calledOnce(light.turnOn);
         resolve();
       });
-    }));
+    });
   });
   it('scene does not exist', async () => {
     const sceneManager = new SceneManager(light, event);

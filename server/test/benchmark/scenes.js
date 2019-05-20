@@ -19,10 +19,12 @@ const NUMBER_OF_ACTIONS_PER_SCENE = 1000;
 const displayNumberOfEventProcessedBySeconds = (time) => {
   const seconds = process.hrtime(time)[0];
   const elapsed = seconds + process.hrtime(time)[1] / 1000000 / 1000;
-  const perSecond = (NUMBER_OF_SCENE_TO_REGISTER * NUMBER_OF_ACTIONS_PER_SCENE / elapsed);
+  const perSecond = (NUMBER_OF_SCENE_TO_REGISTER * NUMBER_OF_ACTIONS_PER_SCENE) / elapsed;
   const millionsEventProcessedPerSecond = perSecond / 1000000;
   const millionsEventProcessedPerSecondBeautiful = Math.round(millionsEventProcessedPerSecond * 100) / 100;
-  logger.info(`Executed 1 million actions in ${elapsed} s, so ${millionsEventProcessedPerSecondBeautiful}M actions/per second`);
+  logger.info(
+    `Executed 1 million actions in ${elapsed} s, so ${millionsEventProcessedPerSecondBeautiful}M actions/per second`,
+  );
 };
 
 const scenes = [];

@@ -1,4 +1,3 @@
-
 module.exports = function ZwaveController(zwaveManager) {
   /**
    * @api {get} /api/v1/service/zwave/node Get Zwave nodes

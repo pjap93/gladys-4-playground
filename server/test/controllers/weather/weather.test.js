@@ -27,7 +27,6 @@ describe('GET /api/v1/user/:selector/weather', () => {
   });
 });
 
-
 describe('GET /api/v1/house/:selector/weather', () => {
   it('should return 400, house has no latitude/longitude specified', async () => {
     await authenticatedRequest

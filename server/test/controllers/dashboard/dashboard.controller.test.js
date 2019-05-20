@@ -8,9 +8,13 @@ describe('POST /api/v1/dashboard', () => {
       .send({
         name: 'my dashboard',
         type: 'main',
-        boxes: [[{
-          type: 'weather',
-        }]],
+        boxes: [
+          [
+            {
+              type: 'weather',
+            },
+          ],
+        ],
       })
       .expect('Content-Type', /json/)
       .expect(201)
@@ -28,13 +32,15 @@ describe('GET /api/v1/dashboard', () => {
       .expect('Content-Type', /json/)
       .expect(200)
       .then((res) => {
-        expect(res.body).to.deep.equal([{
-          id: '854dda11-80c0-4476-843b-65cbc95c6a85',
-          name: 'Test dashboard',
-          selector: 'test-dashboard',
-          type: 'main',
-          updated_at: '2019-02-12T07:49:07.556Z',
-        }]);
+        expect(res.body).to.deep.equal([
+          {
+            id: '854dda11-80c0-4476-843b-65cbc95c6a85',
+            name: 'Test dashboard',
+            selector: 'test-dashboard',
+            type: 'main',
+            updated_at: '2019-02-12T07:49:07.556Z',
+          },
+        ]);
       });
   });
 });
@@ -51,9 +57,13 @@ describe('GET /api/v1/dashboard/:dashboard_selector', () => {
           name: 'Test dashboard',
           selector: 'test-dashboard',
           type: 'main',
-          boxes: [[{
-            type: 'weather',
-          }]],
+          boxes: [
+            [
+              {
+                type: 'weather',
+              },
+            ],
+          ],
           updated_at: '2019-02-12T07:49:07.556Z',
           created_at: '2019-02-12T07:49:07.556Z',
         });
@@ -76,9 +86,13 @@ describe('PATCH /api/v1/dashboard/:dashboard_selector', () => {
           name: 'new name',
           selector: 'test-dashboard',
           type: 'main',
-          boxes: [[{
-            type: 'weather',
-          }]],
+          boxes: [
+            [
+              {
+                type: 'weather',
+              },
+            ],
+          ],
           updated_at: res.body.updated_at,
           created_at: '2019-02-12T07:49:07.556Z',
         });

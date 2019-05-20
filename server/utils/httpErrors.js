@@ -60,7 +60,6 @@ class Error422 extends HttpError {
   }
 }
 
-
 class Error500 extends HttpError {
   constructor(error) {
     super();

@@ -9,12 +9,12 @@ const { ServiceNotConfiguredError } = require('../../utils/coreErrors');
  * @param {string} [options.units] - Units of the weather [auto, si, us].
  * @example
  * gladys.weather.get({
-  *   latitude: 112,
-  *   longitude: -2,
-  *   offset: 0,
-  *   language: 'fr',
-  *   units: 'si'
-  * });
+ *   latitude: 112,
+ *   longitude: -2,
+ *   offset: 0,
+ *   language: 'fr',
+ *   units: 'si'
+ * });
  */
 function get(options) {
   const darkSkyService = this.service.getService('darksky');

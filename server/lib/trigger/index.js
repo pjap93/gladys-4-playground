@@ -12,7 +12,7 @@ const TriggerManager = function Trigger(event, stateManager, scene) {
   this.stateManager = stateManager;
   this.scene = scene;
   this.triggerDictionnary = {};
-  this.event.on(EVENTS.ACTION.TRIGGERED, action => this.scene.executeSingleAction(action));
+  this.event.on(EVENTS.ACTION.TRIGGERED, (action) => this.scene.executeSingleAction(action));
 };
 
 TriggerManager.prototype.addToListeners = addToListeners;

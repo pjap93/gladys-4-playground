@@ -9,7 +9,18 @@ const DEFAULT_OPTIONS = {
 };
 
 const DEVICE_ATTRIBUTES = ['name', 'selector'];
-const DEVICE_FEATURES_ATTRIBUTES = ['name', 'selector', 'category', 'type', 'read_only', 'unit', 'min', 'max', 'last_value', 'last_value_changed'];
+const DEVICE_FEATURES_ATTRIBUTES = [
+  'name',
+  'selector',
+  'category',
+  'type',
+  'read_only',
+  'unit',
+  'min',
+  'max',
+  'last_value',
+  'last_value_changed',
+];
 
 /**
  * @description Get all rooms
@@ -36,11 +47,9 @@ async function get(options) {
     include,
     limit: optionsWithDefault.take,
     offset: optionsWithDefault.skip,
-    order: [
-      [optionsWithDefault.order_by, optionsWithDefault.order_dir],
-    ],
+    order: [[optionsWithDefault.order_by, optionsWithDefault.order_dir]],
   });
-  const roomsPlain = rooms.map(room => room.get({ plain: true }));
+  const roomsPlain = rooms.map((room) => room.get({ plain: true }));
   return roomsPlain;
 }
 

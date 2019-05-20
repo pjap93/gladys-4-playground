@@ -43,13 +43,19 @@ function renderGraph (zwaveNodes) {
 
 const actions = store => ({
   async getNeighbors (state) {
-    store.setState({ zwaveGetNeighborsStatus: RequestStatus.Getting });
+    store.setState({
+      zwaveGetNeighborsStatus: RequestStatus.Getting 
+    });
     try {
       const zwaveNodesNeighbors = await state.httpClient.get('/api/v1/service/zwave/neighbor');
-      store.setState({ zwaveNodesNeighbors, zwaveGetNeighborsStatus: RequestStatus.Success });
+      store.setState({
+        zwaveNodesNeighbors, zwaveGetNeighborsStatus: RequestStatus.Success 
+      });
       renderGraph(zwaveNodesNeighbors);
     } catch (e) {
-      store.setState({ zwaveGetNeighborsStatus: RequestStatus.Error });
+      store.setState({
+        zwaveGetNeighborsStatus: RequestStatus.Error 
+      });
     }
   }
 });

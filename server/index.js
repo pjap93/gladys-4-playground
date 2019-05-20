@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const SERVER_PORT = parseInt(process.env.SERVER_PORT, 10) || 1443;
-const SERVE_FRONT = process.env.NODE_ENV === 'production' ? true : (process.env.SERVE_FRONT === 'true');
+const SERVE_FRONT = process.env.NODE_ENV === 'production' ? true : process.env.SERVE_FRONT === 'true';
 
 (async () => {
   // create Gladys object

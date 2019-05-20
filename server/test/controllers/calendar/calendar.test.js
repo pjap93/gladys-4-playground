@@ -33,7 +33,6 @@ describe('PATCH /api/v1/calendar/:calendar_selector', () => {
   });
 });
 
-
 describe('DELETE /api/v1/calendar/:calendar_selector', () => {
   it('should delete a calendar', async () => {
     await authenticatedRequest
@@ -76,7 +75,6 @@ describe('PATCH /api/v1/calendar/event/:calendar_event_selector', () => {
       });
   });
 });
-
 
 describe('DELETE /api/v1/calendar/event/:calendar_event_selector', () => {
   it('should delete a calendar event', async () => {

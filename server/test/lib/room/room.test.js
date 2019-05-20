@@ -49,7 +49,6 @@ describe('room.update', () => {
   });
 });
 
-
 describe('room.destroy', () => {
   const brain = {
     addRoom: fake.returns(null),
@@ -81,6 +80,25 @@ describe('room.getBySelector', () => {
       selector: 'test-room',
       created_at: new Date('2019-02-12T07:49:07.556Z'),
       updated_at: new Date('2019-02-12T07:49:07.556Z'),
+    });
+  });
+  it('should get a room by selector with devices', async () => {
+    const roomFound = await room.getBySelector('test-room', {
+      expand: ['devices'],
+    });
+    expect(roomFound).to.deep.equal({
+      id: '2398c689-8b47-43cc-ad32-e98d9be098b5',
+      house_id: 'a741dfa6-24de-4b46-afc7-370772f068d5',
+      name: 'Test room',
+      selector: 'test-room',
+      created_at: new Date('2019-02-12T07:49:07.556Z'),
+      updated_at: new Date('2019-02-12T07:49:07.556Z'),
+      devices: roomFound.devices,
+    });
+    roomFound.devices.forEach((device) => {
+      expect(device).to.have.property('name');
+      expect(device).to.have.property('selector');
+      expect(device).to.have.property('features');
     });
   });
   it('should return room not found', async () => {

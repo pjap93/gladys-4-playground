@@ -30,15 +30,18 @@ async function create(userSelector, location) {
     const createdLocation = await db.Location.create(locationWithUserId, {
       transaction: t,
     });
-    await user.update({
-      last_latitude: createdLocation.latitude,
-      last_longitude: createdLocation.longitude,
-      last_altitude: createdLocation.altitude,
-      last_accuracy: createdLocation.accuracy,
-      last_location_changed: createdLocation.created_at,
-    }, {
-      transaction: t,
-    });
+    await user.update(
+      {
+        last_latitude: createdLocation.latitude,
+        last_longitude: createdLocation.longitude,
+        last_altitude: createdLocation.altitude,
+        last_accuracy: createdLocation.accuracy,
+        last_location_changed: createdLocation.created_at,
+      },
+      {
+        transaction: t,
+      },
+    );
     return createdLocation.get({ plain: true });
   });
 }

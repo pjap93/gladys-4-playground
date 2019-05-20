@@ -46,5 +46,6 @@ export const RequestStatus = {
   Success: 'Success',
   Error: 'Error',
   NetworkError: 'NetworkError',
-  ConflictError: 'ConflictError'
+  ConflictError: 'ConflictError',
+  ValidationError: 'ValidationError'
 };

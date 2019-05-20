@@ -1,4 +1,3 @@
-
 /**
  * @description Format a websocket message.
  * @param {string} type - The type of the websocket message.

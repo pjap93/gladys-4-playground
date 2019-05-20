@@ -20,7 +20,7 @@ async function create(userId, scope, validityInSeconds) {
     token_type: SESSION_TOKEN_TYPES.REFRESH_TOKEN,
     token_hash: refreshTokenHash,
     scope: scope.join(','),
-    valid_until: new Date(Date.now() + (validityInSeconds * 1000)),
+    valid_until: new Date(Date.now() + validityInSeconds * 1000),
   };
 
   const session = await db.Session.create(newSession);

@@ -6,10 +6,10 @@ node_js:
 addons:
   apt:
     sources:
-    - ubuntu-toolchain-r-test
+      - ubuntu-toolchain-r-test
     packages:
-    - g++-4.8
-    - libudev-dev
+      - g++-4.8
+      - libudev-dev
 
 services:
   - docker
@@ -29,8 +29,10 @@ before_install:
   - npm install codecov typescript node-gyp -g
 
 script:
+  - cd server && npm run prettier-check && cd ..
   - cd server && npm run eslint && cd ..
   - cd server && npm run checkjs && cd ..
   - cd server && npm run coverage && codecov -F server && cd ..
+  - cd front && npm run prettier-check && cd ..
   - cd front && npm run eslint && cd ..
   - cd front && npm run test && codecov -F front && cd ..

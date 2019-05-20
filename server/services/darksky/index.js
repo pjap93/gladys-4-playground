@@ -56,12 +56,7 @@ module.exports = function DarkSkyService(gladys, serviceId) {
       offset: 0,
     };
     const optionsMerged = Object.assign({}, DEFAULT, options);
-    const {
-      latitude,
-      longitude,
-      language,
-      units,
-    } = optionsMerged;
+    const { latitude, longitude, language, units } = optionsMerged;
 
     if (!darkSkyApiKey) {
       throw new ServiceNotConfiguredError('Dark Sky API Key not found');

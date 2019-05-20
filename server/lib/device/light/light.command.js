@@ -11,12 +11,12 @@ const logger = require('../../../utils/logger');
 async function command(message, classification, context) {
   try {
     switch (classification.intent) {
-    case 'light.turnon':
-      await this.turnOn(context.device, context.deviceFeature);
-      this.messageManager.replyByIntent(message, 'light.turn-on.success', context);
-      break;
-    default:
-      throw new Error('Not found');
+      case 'light.turnon':
+        await this.turnOn(context.device, context.deviceFeature);
+        this.messageManager.replyByIntent(message, 'light.turn-on.success', context);
+        break;
+      default:
+        throw new Error('Not found');
     }
   } catch (e) {
     logger.debug(e);

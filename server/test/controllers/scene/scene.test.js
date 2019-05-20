@@ -9,9 +9,13 @@ describe('POST /api/v1/scene', () => {
       .send({
         name: 'New Scene',
         icon: 'fe fe-bell',
-        actions: [[{
-          type: ACTIONS.HOUSE_ALARM.ARM,
-        }]],
+        actions: [
+          [
+            {
+              type: ACTIONS.HOUSE_ALARM.ARM,
+            },
+          ],
+        ],
       })
       .expect('Content-Type', /json/)
       .expect(201)
@@ -32,14 +36,16 @@ describe('GET /api/v1/scene', () => {
       .expect('Content-Type', /json/)
       .expect(200)
       .then((res) => {
-        expect(res.body).to.deep.equal([{
-          id: '3a30636c-b3f0-4251-a347-90787f0fe940',
-          name: 'Test scene',
-          icon: 'fe fe-bell',
-          selector: 'test-scene',
-          last_executed: null,
-          updated_at: '2019-02-12T07:49:07.556Z',
-        }]);
+        expect(res.body).to.deep.equal([
+          {
+            id: '3a30636c-b3f0-4251-a347-90787f0fe940',
+            name: 'Test scene',
+            icon: 'fe fe-bell',
+            selector: 'test-scene',
+            last_executed: null,
+            updated_at: '2019-02-12T07:49:07.556Z',
+          },
+        ]);
       });
   });
   it('should return 0 scenes', async () => {

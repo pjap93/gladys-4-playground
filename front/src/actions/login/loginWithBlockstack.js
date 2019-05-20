@@ -12,10 +12,14 @@ function createActions(store) {
       // handle blockstack login
       if (userSession.isUserSignedIn()) {
         const blockstackUserData = userSession.loadUserData();
-        store.setState({ blockstackUserData });
+        store.setState({
+          blockstackUserData 
+        });
       } else if (userSession.isSignInPending()) {
         const blockstackUserData = await userSession.handlePendingSignIn();
-        store.setState({ blockstackUserData });
+        store.setState({
+          blockstackUserData 
+        });
       } else {
         const redirectURI = `${window.location.href}`;
         const manifestURI = `${window.location.origin}/assets/blockstack/manifest.json`;

@@ -12,26 +12,26 @@ const { NotFoundError, NoValuesFoundError } = require('../../../utils/coreErrors
  */
 async function command(message, classification, context) {
   let temperatureResult;
-  const roomEntity = classification.entities.find(entity => entity.entity === 'room');
+  const roomEntity = classification.entities.find((entity) => entity.entity === 'room');
   try {
     switch (classification.intent) {
-    case 'temperature-sensor.get-in-room':
-      if (!context.room) {
-        throw new NotFoundError('Room not found');
-      }
-      temperatureResult = await this.getTemperatureInRoom(context.room, {
-        unit: context.user.temperature_unit_preference,
-      });
-      if (temperatureResult.temperature === null) {
-        throw new NoValuesFoundError('No temperature values found in this room.');
-      }
-      context.temperature = Math.round(temperatureResult.temperature);
-      context.unit = temperatureResult.unit === DEVICE_FEATURE_UNITS.CELSIUS ? '°C' : '°F';
-      context.roomName = roomEntity.sourceText;
-      this.messageManager.replyByIntent(message, `temperature-sensor.get-in-room.success`, context);
-      break;
-    default:
-      throw new Error('Not found');
+      case 'temperature-sensor.get-in-room':
+        if (!context.room) {
+          throw new NotFoundError('Room not found');
+        }
+        temperatureResult = await this.getTemperatureInRoom(context.room, {
+          unit: context.user.temperature_unit_preference,
+        });
+        if (temperatureResult.temperature === null) {
+          throw new NoValuesFoundError('No temperature values found in this room.');
+        }
+        context.temperature = Math.round(temperatureResult.temperature);
+        context.unit = temperatureResult.unit === DEVICE_FEATURE_UNITS.CELSIUS ? '°C' : '°F';
+        context.roomName = roomEntity.sourceText;
+        this.messageManager.replyByIntent(message, `temperature-sensor.get-in-room.success`, context);
+        break;
+      default:
+        throw new Error('Not found');
     }
   } catch (e) {
     logger.debug(e);

@@ -13,7 +13,7 @@ async function get() {
     attributes: DEFAULT_FIELDS,
   });
 
-  const plainDashboards = dashboards.map(d => d.get({ plain: true }));
+  const plainDashboards = dashboards.map((d) => d.get({ plain: true }));
   return plainDashboards;
 }
 

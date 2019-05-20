@@ -100,6 +100,44 @@
         "goToDashboardButton": "Go to Dashboard"
       }
     },
+    "dashboard": {
+      "title": "Dashboard",
+      "editDashboardButton": "Edit",
+      "editDashboardCancelButton": "Cancel",
+      "editDashboardSaveButton": "Save",
+      "emptyDashboardSentenceTop": "Looks like your dashboard is not configured yet.",
+      "emptyDashboardSentenceBottom": "Click on the \"Edit\" button to design your dashboard.",
+      "boxTitle": {
+        "weather": "Weather",
+        "temperature-in-room": "Temperature in room",
+        "user-presence": "User presence",
+        "camera": "Camera",
+        "devices-in-room": "Devices in room"
+      },
+      "boxes": {
+        "deleteButton": "Delete",
+        "weather": {
+          "editHouseLabel": "Select a house. I will use its latitude/longitude to get the weather."
+        },
+        "devicesInRoom": {
+          "editRoomLabel": "Select the room you want to display here."
+        },
+        "temperatureInRoom": {
+          "editRoomLabel": "Select the room you want to display here."
+        },
+        "userPresence": {
+          "description": "Display who's at home and who is not.",
+          "left": "Left",
+          "atHome": "At Home",
+          "neverSeenAtHome": "Never Seen At Home",
+          "error": "There was a network error fetching the list of user. Please refresh.",
+          "emptyText": "There are no users to display here. You can add users in Gladys settings."
+        },
+        "camera": {
+          "editCameraLabel": "Select the camera you want to display here."
+        }
+      }
+    },
     "integration": {
       "root": {
         "title": "Integrations",

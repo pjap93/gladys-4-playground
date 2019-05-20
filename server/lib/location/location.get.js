@@ -11,7 +11,7 @@ const { NotFoundError } = require('../../utils/coreErrors');
  * gladys.location.get('tony', '2019-04-02 04:41:09', '2019-04-02 04:41:09');
  */
 async function get(userSelector, from, to) {
-  const oneWeekAgo = new Date(new Date().getTime() - (7 * 24 * 60 * 60 * 1000));
+  const oneWeekAgo = new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000);
   // Default from date is one week ago
   const fromDate = from ? new Date(from) : new Date(oneWeekAgo);
   // default end date is now
@@ -36,7 +36,7 @@ async function get(userSelector, from, to) {
     },
   });
 
-  const locationsPlain = locations.map(location => location.get({ plain: true }));
+  const locationsPlain = locations.map((location) => location.get({ plain: true }));
 
   return locationsPlain;
 }

@@ -1,4 +1,3 @@
-
 /**
  * @description Return an object of expanded fields.
  * @param {string} expand - The expand string.

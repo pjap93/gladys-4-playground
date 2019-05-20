@@ -256,6 +256,11 @@ const WEBSOCKET_MESSAGE_TYPES = {
     EXECUTING_ACTION: 'scene.executing-action',
     FINISHED_EXECUTING_ACTION: 'scene.finished-executing-action',
   },
+  USER_PRESENCE: {
+    LEFT_HOME: 'user.left-home',
+    BACK_HOME: 'user.back-home',
+    SEEN_AT_HOME: 'user.seen-at-home',
+  },
 };
 
 const DASHBOARD_TYPE = {
@@ -266,6 +271,8 @@ const DASHBOARD_BOX_TYPE = {
   WEATHER: 'weather',
   TEMPERATURE_IN_ROOM: 'temperature-in-room',
   USER_PRESENCE: 'user-presence',
+  CAMERA: 'camera',
+  DEVICES_IN_ROOM: 'devices-in-room',
 };
 
 const createList = (obj) => {

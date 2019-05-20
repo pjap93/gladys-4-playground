@@ -1,4 +1,3 @@
-
 /**
  * @description Convert celsius to fahrenheit.
  * @param {number} celsius - Temperature to convert.
@@ -7,7 +6,7 @@
  * const tempF = celsiusToFahrenheit(12);
  */
 function celsiusToFahrenheit(celsius) {
-  return celsius * 9 / 5 + 32;
+  return (celsius * 9) / 5 + 32;
 }
 
 /**
@@ -18,7 +17,7 @@ function celsiusToFahrenheit(celsius) {
  * const tempC = fahrenheitToCelsius(100);
  */
 function fahrenheitToCelsius(fahrenheit) {
-  return (fahrenheit - 32) * 5 / 9;
+  return ((fahrenheit - 32) * 5) / 9;
 }
 
 module.exports = {

@@ -1,16 +1,18 @@
-const {
-  lstatSync, readdirSync, readFileSync, existsSync,
-} = require('fs');
+const { lstatSync, readdirSync, readFileSync, existsSync } = require('fs');
 const { join, dirname } = require('path');
 
 const SUPPORTED_LANGUAGES = ['en', 'fr'];
 
-const isDirectory = source => lstatSync(source).isDirectory();
-const getDirectories = source => readdirSync(source).map(name => join(source, name)).filter(isDirectory);
-const addLanguage = (arr, language) => arr.map((el) => {
-  el.language = language;
-  return el;
-});
+const isDirectory = (source) => lstatSync(source).isDirectory();
+const getDirectories = (source) =>
+  readdirSync(source)
+    .map((name) => join(source, name))
+    .filter(isDirectory);
+const addLanguage = (arr, language) =>
+  arr.map((el) => {
+    el.language = language;
+    return el;
+  });
 
 /**
  * @description return brain configuration.

@@ -12,14 +12,16 @@ describe('trigger.get', () => {
     const triggers = await triggerManager.get({
       search: 'Test trigger',
     });
-    expect(triggers).to.deep.equal([{
-      id: '1763b345-b2b6-4c9b-8fed-ae017109956c',
-      name: 'Test trigger',
-      selector: 'test-trigger',
-      type: 'light.turned-on',
-      active: true,
-      last_triggered: null,
-      updated_at: new Date('2019-02-12T07:49:07.556Z'),
-    }]);
+    expect(triggers).to.deep.equal([
+      {
+        id: '1763b345-b2b6-4c9b-8fed-ae017109956c',
+        name: 'Test trigger',
+        selector: 'test-trigger',
+        type: 'light.turned-on',
+        active: true,
+        last_triggered: null,
+        updated_at: new Date('2019-02-12T07:49:07.556Z'),
+      },
+    ]);
   });
 });

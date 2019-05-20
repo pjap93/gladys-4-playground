@@ -14,10 +14,12 @@ describe('trigger.create', () => {
       name: 'My trigger',
       type: EVENTS.LIGHT.TURNED_ON,
       rule: {
-        conditions: [{
-          type: CONDITIONS.HOUSE_ALARM.IS_ARMED,
-          house: 'my-house',
-        }],
+        conditions: [
+          {
+            type: CONDITIONS.HOUSE_ALARM.IS_ARMED,
+            house: 'my-house',
+          },
+        ],
       },
     });
     expect(createdTrigger).to.deep.equal({
@@ -26,10 +28,12 @@ describe('trigger.create', () => {
       name: 'My trigger',
       type: EVENTS.LIGHT.TURNED_ON,
       rule: {
-        conditions: [{
-          type: CONDITIONS.HOUSE_ALARM.IS_ARMED,
-          house: 'my-house',
-        }],
+        conditions: [
+          {
+            type: CONDITIONS.HOUSE_ALARM.IS_ARMED,
+            house: 'my-house',
+          },
+        ],
       },
       updated_at: createdTrigger.updated_at,
       created_at: createdTrigger.created_at,
@@ -43,10 +47,12 @@ describe('trigger.create', () => {
       name: 'My trigger',
       type: EVENTS.LIGHT.TURNED_ON,
       rule: {
-        conditions: [{
-          type: 'UNKOWN',
-          house: 'my-house',
-        }],
+        conditions: [
+          {
+            type: 'UNKOWN',
+            house: 'my-house',
+          },
+        ],
       },
     });
     assert.isRejected(promise);

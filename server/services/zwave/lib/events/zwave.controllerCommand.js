@@ -40,7 +40,11 @@ const CTRL_ERRORS = {
  * zwave.on('controller command', this.zwave.controllerCommand);
  */
 function controllerCommand(nodeId, ctrlState, ctrlError, helpMsg) {
-  logger.debug(`Zwave.controllerCommand : NodeId = ${nodeId}, ctrlState = ${CTRL_STATES[ctrlState]}, ctrlError = ${CTRL_ERRORS[ctrlError]}, helpMsg = ${helpMsg}`);
+  logger.debug(
+    `Zwave.controllerCommand : NodeId = ${nodeId}, ctrlState = ${CTRL_STATES[ctrlState]}, ctrlError = ${
+      CTRL_ERRORS[ctrlError]
+    }, helpMsg = ${helpMsg}`,
+  );
 }
 
 module.exports = {

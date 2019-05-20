@@ -2,7 +2,6 @@ import axios from 'axios';
 import config from '../../config';
 
 export class HttpClient {
-
   constructor(session) {
     this.session = session;
   }
@@ -63,4 +62,3 @@ export class HttpClient {
     return this.executeQuery('delete', url);
   }
 }
-

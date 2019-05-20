@@ -1,4 +1,3 @@
-
 /**
  * @description Return the number of users in this instance.
  * @returns {number} Return the number of users.

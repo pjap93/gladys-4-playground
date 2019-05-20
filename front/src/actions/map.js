@@ -12,19 +12,23 @@ import leaflet from 'leaflet';
 }); */
 
 function createActions(store) {
-
   const actions = {
     async initLeafletMap(state) {
       if (state.mapTabLeafletMap) {
         state.mapTabLeafletMap.remove();
       }
       const leafletMap = leaflet.map('map-tab-leaflet').setView([48.8583, 2.2945], 2);
-      leaflet.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://cartodb.com/attributions">CartoDB</a>',
-        subdomains: 'abcd',
-        maxZoom: 19
-      }).addTo(leafletMap);
-      store.setState({ mapTabLeafletMap: leafletMap });
+      leaflet
+        .tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+          attribution:
+            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://cartodb.com/attributions">CartoDB</a>',
+          subdomains: 'abcd',
+          maxZoom: 19
+        })
+        .addTo(leafletMap);
+      store.setState({
+        mapTabLeafletMap: leafletMap
+      });
     }
   };
   return actions;

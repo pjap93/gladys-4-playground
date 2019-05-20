@@ -1,4 +1,3 @@
-
 /**
  * @description Add a scene to the scene manager.
  * @param {Object} scene - Scene object from DB.

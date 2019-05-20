@@ -13,40 +13,58 @@ function createActions(store) {
         e.preventDefault();
       }
       if (!validateEmail(state.loginFormEmailValue)) {
-        return store.setState({ loginStatus: LoginStatus.WrongEmailError });
+        return store.setState({
+          loginStatus: LoginStatus.WrongEmailError 
+        });
       }
-      store.setState({ loginStatus: LoginStatus.Processing });
+      store.setState({
+        loginStatus: LoginStatus.Processing 
+      });
       try {
         const user = await state.httpClient.post('/api/v1/login', {
           email: state.loginFormEmailValue,
           password: state.loginFormPasswordValue
         });
-        store.setState({ user, loginStatus: LoginStatus.LoginSuccess, loginFormEmailValue: '', loginFormPasswordValue: '' });
+        store.setState({
+          user, loginStatus: LoginStatus.LoginSuccess, loginFormEmailValue: '', loginFormPasswordValue: '' 
+        });
         state.session.saveUser(user);
         state.session.init();
         actionsProfilePicture.loadProfilePicture(state);
         route('/dashboard');
       } catch (e) {
-        store.setState({ loginStatus: LoginStatus.WrongCredentialsError });
+        store.setState({
+          loginStatus: LoginStatus.WrongCredentialsError 
+        });
       }
     },
     onEmailChange(state, event) {
-      store.setState({ loginFormEmailValue: event.target.value });
+      store.setState({
+        loginFormEmailValue: event.target.value 
+      });
     },
     onPasswordChange(state, event) {
-      store.setState({ loginFormPasswordValue: event.target.value });
+      store.setState({
+        loginFormPasswordValue: event.target.value 
+      });
     },
     async checkIfInstanceIsConfigured(state) {
       // check instance state
-      store.setState({ checkIfInstanceIsConfiguredRequestState: RequestStatus.Getting });
+      store.setState({
+        checkIfInstanceIsConfiguredRequestState: RequestStatus.Getting 
+      });
       try {
         const instanceState = await state.httpClient.get('/api/v1/setup');
         if (!instanceState.account_configured) {
           route('/signup');
         }
-        store.setState({ checkIfInstanceIsConfiguredRequestState: RequestStatus.Success });
+        store.setState({
+          checkIfInstanceIsConfiguredRequestState: RequestStatus.Success 
+        });
       } catch (e) {
-        store.setState({ checkIfInstanceIsConfiguredRequestState: RequestStatus.Error });
+        store.setState({
+          checkIfInstanceIsConfiguredRequestState: RequestStatus.Error 
+        });
       }
     }
   };

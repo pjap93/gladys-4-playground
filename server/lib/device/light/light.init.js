@@ -10,21 +10,23 @@ const { DEVICE_FEATURE_CATEGORIES } = require('../../../utils/constants');
  */
 async function init() {
   const lights = await db.Device.findAll({
-    include: [{
-      model: db.DeviceFeature,
-      as: 'features',
-      where: {
-        category: DEVICE_FEATURE_CATEGORIES.LIGHT,
+    include: [
+      {
+        model: db.DeviceFeature,
+        as: 'features',
+        where: {
+          category: DEVICE_FEATURE_CATEGORIES.LIGHT,
+        },
       },
-    },
-    {
-      model: db.Room,
-      as: 'room',
-    },
-    {
-      model: db.Service,
-      as: 'service',
-    }],
+      {
+        model: db.Room,
+        as: 'room',
+      },
+      {
+        model: db.Service,
+        as: 'service',
+      },
+    ],
   });
   logger.debug(`Light : init : Found ${lights.length} light devices`);
   const plainLights = lights.map((light) => {

@@ -20,13 +20,16 @@ async function configureBridge(name, ipAddress) {
     service_id: this.serviceId,
     external_id: `${EXTERNAL_ID_BASE}:${ipAddress}:${userId}`,
     features: [],
-    params: [{
-      name: 'BRIDGE_IP_ADDRESS',
-      value: ipAddress,
-    }, {
-      name: 'BRIDGE_USER_ID',
-      value: userId,
-    }],
+    params: [
+      {
+        name: 'BRIDGE_IP_ADDRESS',
+        value: ipAddress,
+      },
+      {
+        name: 'BRIDGE_USER_ID',
+        value: userId,
+      },
+    ],
   });
 }
 

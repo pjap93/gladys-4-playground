@@ -1,4 +1,3 @@
-
 const Store = function Store() {
   this.state = {};
 };

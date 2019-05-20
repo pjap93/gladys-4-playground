@@ -64,7 +64,10 @@ describe('session.revoke', () => {
   const cache = new Cache();
   it('should revoke a session', async () => {
     const session = new Session('secret', cache);
-    const revokedSession = await session.revoke('0cd30aef-9c4e-4a23-88e3-3547971296e5', 'ada07710-5f25-4510-ac63-b002aca3bd32');
+    const revokedSession = await session.revoke(
+      '0cd30aef-9c4e-4a23-88e3-3547971296e5',
+      'ada07710-5f25-4510-ac63-b002aca3bd32',
+    );
     expect(revokedSession).to.deep.equal({
       id: 'ada07710-5f25-4510-ac63-b002aca3bd32',
       revoked: true,

@@ -4,10 +4,12 @@ const { formatWebsocketMessage, parseWebsocketMessage } = require('../../utils/w
 describe('formatWebsocketMessage', () => {
   it('should format websocket message', async () => {
     const message = formatWebsocketMessage('test', {});
-    expect(message).to.deep.equal(JSON.stringify({
-      type: 'test',
-      payload: {},
-    }));
+    expect(message).to.deep.equal(
+      JSON.stringify({
+        type: 'test',
+        payload: {},
+      }),
+    );
   });
 });
 

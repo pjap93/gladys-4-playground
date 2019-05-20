@@ -1,6 +1,4 @@
-const {
-  HttpError, Error403, Error404, Error409, Error422, Error500,
-} = require('../../utils/httpErrors');
+const { HttpError, Error403, Error404, Error409, Error422, Error500 } = require('../../utils/httpErrors');
 const { PasswordNotMatchingError, NotFoundError } = require('../../utils/coreErrors');
 const logger = require('../../utils/logger');
 

@@ -10,7 +10,7 @@ function areObjectsEqual(actual, newObject, fields) {
   let equal = true;
   let i = 0;
   while (equal && i < fields.length) {
-    equal = (actual[fields[i]] === newObject[fields[i]]);
+    equal = actual[fields[i]] === newObject[fields[i]];
     i += 1;
   }
   return equal;

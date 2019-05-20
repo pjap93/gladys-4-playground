@@ -11,12 +11,12 @@ const { EVENTS } = require('../../../utils/constants');
 function handleNewMessage(topic, message) {
   try {
     switch (topic) {
-    case 'gladys/master/device/create':
-      this.gladys.event.emit(EVENTS.DEVICE.NEW, JSON.parse(message));
-      break;
-    default:
-      logger.info(`MQTT : Topic ${topic} not handled.`);
-      break;
+      case 'gladys/master/device/create':
+        this.gladys.event.emit(EVENTS.DEVICE.NEW, JSON.parse(message));
+        break;
+      default:
+        logger.info(`MQTT : Topic ${topic} not handled.`);
+        break;
     }
   } catch (e) {
     logger.warn(`Unable to handle new MQTT message in topic ${topic}`);

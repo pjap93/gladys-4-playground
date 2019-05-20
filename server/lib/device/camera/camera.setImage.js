@@ -20,12 +20,13 @@ async function setImage(selector, image) {
     throw new NotFoundError('Camera not found');
   }
   const deviceFeature = device.features.find(
-    dF => (dF.category === DEVICE_FEATURE_CATEGORIES.CAMERA && dF.type === DEVICE_FEATURE_TYPES.CAMERA.IMAGE),
+    (dF) => dF.category === DEVICE_FEATURE_CATEGORIES.CAMERA && dF.type === DEVICE_FEATURE_TYPES.CAMERA.IMAGE,
   );
   if (!deviceFeature) {
     throw new NotFoundError('Camera image feature not found');
   }
   await this.deviceManager.saveStringState(deviceFeature, image);
+  return null;
 }
 
 module.exports = {

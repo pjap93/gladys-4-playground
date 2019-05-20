@@ -13,12 +13,19 @@ describe('trigger.verifyTrigger', () => {
     stateManager.setState('house', 'main-house', {
       alarm: STATES.HOUSE_ALARM.ARMED,
     });
-    const result = verifyTrigger(stateManager, EVENTS.LIGHT.TURNED_ON, {
-      conditions: [{
-        type: CONDITIONS.HOUSE_ALARM.IS_ARMED,
-        house: 'main-house',
-      }],
-    }, {});
+    const result = verifyTrigger(
+      stateManager,
+      EVENTS.LIGHT.TURNED_ON,
+      {
+        conditions: [
+          {
+            type: CONDITIONS.HOUSE_ALARM.IS_ARMED,
+            house: 'main-house',
+          },
+        ],
+      },
+      {},
+    );
     expect(result).to.be.true; // eslint-disable-line
   });
   it('should return condition true', async () => {
@@ -26,16 +33,25 @@ describe('trigger.verifyTrigger', () => {
     stateManager.setState('house', 'main-house', {
       alarm: STATES.HOUSE_ALARM.ARMED,
     });
-    const result = verifyTrigger(stateManager, EVENTS.LIGHT.TURNED_ON, {
-      conditions: [{
-        type: CONDITIONS.HOUSE_ALARM.IS_DISARMED,
-        house: 'main-house',
-        or: [{
-          type: CONDITIONS.HOUSE_ALARM.IS_ARMED,
-          house: 'main-house',
-        }],
-      }],
-    }, {});
+    const result = verifyTrigger(
+      stateManager,
+      EVENTS.LIGHT.TURNED_ON,
+      {
+        conditions: [
+          {
+            type: CONDITIONS.HOUSE_ALARM.IS_DISARMED,
+            house: 'main-house',
+            or: [
+              {
+                type: CONDITIONS.HOUSE_ALARM.IS_ARMED,
+                house: 'main-house',
+              },
+            ],
+          },
+        ],
+      },
+      {},
+    );
     expect(result).to.be.true; // eslint-disable-line
   });
   it('should return condition false', async () => {
@@ -43,16 +59,22 @@ describe('trigger.verifyTrigger', () => {
     stateManager.setState('house', 'main-house', {
       alarm: STATES.HOUSE_ALARM.DISARMED,
     });
-    const result = verifyTrigger(stateManager, EVENTS.LIGHT.TURNED_ON, {
-      conditions: [{
-        type: CONDITIONS.HOUSE_ALARM.IS_ARMED,
-        house: 'main-house',
-      }],
-    }, {});
+    const result = verifyTrigger(
+      stateManager,
+      EVENTS.LIGHT.TURNED_ON,
+      {
+        conditions: [
+          {
+            type: CONDITIONS.HOUSE_ALARM.IS_ARMED,
+            house: 'main-house',
+          },
+        ],
+      },
+      {},
+    );
     expect(result).to.be.false; // eslint-disable-line
   });
 });
-
 
 describe('triggerManager.handleEvent', () => {
   it('should handle new event without any trigger', async () => {

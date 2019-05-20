@@ -17,7 +17,8 @@ function slugify(str) {
     newString = newString.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
   }
 
-  newString = newString.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+  newString = newString
+    .replace(/[^a-z0-9 -]/g, '') // remove invalid chars
     .replace(/\s+/g, '-') // collapse whitespace and replace by -
     .replace(/-+/g, '-'); // collapse dashes
 

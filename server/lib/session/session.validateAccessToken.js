@@ -11,7 +11,7 @@ const { Error401 } = require('../../utils/httpErrors');
 function validateAccessToken(accessToken, scope) {
   /**
    * @type {Object} decoded
-  */
+   */
   const decoded = jwt.verify(accessToken, this.jwtSecret, {
     issuer: 'gladys',
     audience: 'user',

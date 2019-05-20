@@ -26,12 +26,14 @@ describe('POST /api/v1/reset_password', () => {
         expect(res.body).to.deep.equal({
           status: 422,
           code: 'UNPROCESSABLE_ENTITY',
-          properties: [{
-            message: 'Validation len on password failed',
-            attribute: 'password',
-            value: 'short',
-            type: 'Validation error',
-          }],
+          properties: [
+            {
+              message: 'Validation len on password failed',
+              attribute: 'password',
+              value: 'short',
+              type: 'Validation error',
+            },
+          ],
         });
       });
   });

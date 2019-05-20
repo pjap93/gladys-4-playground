@@ -15,7 +15,7 @@ function buildLightObject(device) {
   const self = this;
   // find binary deviceType
   const binaryDeviceFeature = device.features.find(
-    deviceFeature => deviceFeature.type === DEVICE_FEATURE_TYPES.LIGHT.BINARY,
+    (deviceFeature) => deviceFeature.type === DEVICE_FEATURE_TYPES.LIGHT.BINARY,
   );
   if (binaryDeviceFeature) {
     device.turnOn = async () => self.turnOn(device, binaryDeviceFeature);

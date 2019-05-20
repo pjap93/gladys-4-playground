@@ -1,50 +1,53 @@
-
 module.exports = (sequelize, DataTypes) => {
-  const message = sequelize.define('t_message', {
-    id: {
-      type: DataTypes.UUID,
-      primaryKey: true,
-      defaultValue: DataTypes.UUIDV4,
-    },
-    sender_id: {
-      allowNull: true,
-      type: DataTypes.UUID,
-      references: {
-        model: 't_user',
-        key: 'id',
+  const message = sequelize.define(
+    't_message',
+    {
+      id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4,
+      },
+      sender_id: {
+        allowNull: true,
+        type: DataTypes.UUID,
+        references: {
+          model: 't_user',
+          key: 'id',
+        },
+      },
+      receiver_id: {
+        allowNull: true,
+        type: DataTypes.UUID,
+        references: {
+          model: 't_user',
+          key: 'id',
+        },
+      },
+      text: {
+        allowNull: false,
+        type: DataTypes.TEXT,
+      },
+      conversation_id: {
+        allowNull: false,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+      },
+      is_read: {
+        allowNull: false,
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
     },
-    receiver_id: {
-      allowNull: true,
-      type: DataTypes.UUID,
-      references: {
-        model: 't_user',
-        key: 'id',
+    {
+      validate: {
+        atLeastOneUserId() {
+          if (!this.sender_id && !this.receiver_id) {
+            throw new Error('sender_id and receiver_id cannot be both null');
+          }
+        },
       },
     },
-    text: {
-      allowNull: false,
-      type: DataTypes.TEXT,
-    },
-    conversation_id: {
-      allowNull: false,
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-    },
-    is_read: {
-      allowNull: false,
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
-    },
-  }, {
-    validate: {
-      atLeastOneUserId() {
-        if (!this.sender_id && !this.receiver_id) {
-          throw new Error('sender_id and receiver_id cannot be both null');
-        }
-      },
-    },
-  });
+  );
 
   message.associate = (models) => {
     message.belongsTo(models.User, {

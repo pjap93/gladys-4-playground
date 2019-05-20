@@ -21,12 +21,18 @@ describe('Device', () => {
       getService: () => null,
     };
     const device = new Device(event, {}, stateManager, service);
-    const promise = device.setValue({
-      service: {
-        name: 'doesnotexist',
+    const promise = device.setValue(
+      {
+        service: {
+          name: 'doesnotexist',
+        },
+        external_id: 'test',
       },
-      external_id: 'test',
-    }, {}, 'light', 'turnOn', 1);
+      {},
+      'light',
+      'turnOn',
+      1,
+    );
     return assert.isRejected(promise, 'Service doesnotexist was not found.');
   });
   it('should throw an error, service is not able to control this category of device', async () => {
@@ -35,12 +41,18 @@ describe('Device', () => {
       getService: () => testService,
     };
     const device = new Device(event, {}, stateManager, service);
-    const promise = device.setValue({
-      service: {
-        name: 'test',
+    const promise = device.setValue(
+      {
+        service: {
+          name: 'test',
+        },
+        external_id: 'test',
       },
-      external_id: 'test',
-    }, {}, 'doesnotexist', 'turnOn', 1);
+      {},
+      'doesnotexist',
+      'turnOn',
+      1,
+    );
     return assert.isRejected(promise, 'Service test is not able to control device of category doesnotexist');
   });
   it('should throw an error, service does not have this function', async () => {
@@ -49,12 +61,18 @@ describe('Device', () => {
       getService: () => testService,
     };
     const device = new Device(event, {}, stateManager, service);
-    const promise = device.setValue({
-      service: {
-        name: 'test',
+    const promise = device.setValue(
+      {
+        service: {
+          name: 'test',
+        },
+        external_id: 'test',
       },
-      external_id: 'test',
-    }, {}, 'light', 'doesnotexist', 1);
+      {},
+      'light',
+      'doesnotexist',
+      1,
+    );
     return assert.isRejected(promise, 'Function light.doesnotexist in service test does not exist.');
   });
 });

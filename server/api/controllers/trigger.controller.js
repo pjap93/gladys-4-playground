@@ -15,7 +15,6 @@ const asyncMiddleware = require('../middlewares/asyncMiddleware');
  *  }
  */
 
-
 module.exports = function TriggerController(gladys) {
   /**
    * @api {post} /api/v1/trigger create

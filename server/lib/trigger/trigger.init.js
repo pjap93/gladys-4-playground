@@ -11,13 +11,15 @@ async function init() {
     where: {
       active: true,
     },
-    include: [{
-      model: db.Scene,
-      as: 'scenes',
-    }],
+    include: [
+      {
+        model: db.Scene,
+        as: 'scenes',
+      },
+    ],
   });
-  const plainTriggers = triggers.map(trigger => trigger.get({ plain: true }));
-  plainTriggers.forEach(trigger => this.addToListeners(trigger));
+  const plainTriggers = triggers.map((trigger) => trigger.get({ plain: true }));
+  plainTriggers.forEach((trigger) => this.addToListeners(trigger));
   return plainTriggers;
 }
 

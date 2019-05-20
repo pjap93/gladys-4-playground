@@ -1,4 +1,3 @@
-
 /**
  * @description Return array of Nodes.
  * @returns {Array} Return list of nodes.
@@ -7,7 +6,7 @@
  */
 function getNodes() {
   const nodeIds = Object.keys(this.nodes);
-  return nodeIds.map(nodeId => Object.assign({}, { id: nodeId }, this.nodes[nodeId]));
+  return nodeIds.map((nodeId) => Object.assign({}, { id: nodeId }, this.nodes[nodeId]));
 }
 
 module.exports = {

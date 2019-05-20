@@ -23,20 +23,15 @@ async function get(userId, options) {
     attributes: optionsWithDefault.fields,
     limit: optionsWithDefault.take,
     offset: optionsWithDefault.skip,
-    order: [
-      [optionsWithDefault.order_by, optionsWithDefault.order_dir],
-    ],
+    order: [[optionsWithDefault.order_by, optionsWithDefault.order_dir]],
     where: {
-      [Op.or]: [
-        { sender_id: userId },
-        { receiver_id: userId },
-      ],
+      [Op.or]: [{ sender_id: userId }, { receiver_id: userId }],
     },
   };
 
   const messages = await db.Message.findAll(queryParams);
 
-  const plainMessages = messages.map(message => message.get({ plain: true }));
+  const plainMessages = messages.map((message) => message.get({ plain: true }));
 
   return plainMessages;
 }

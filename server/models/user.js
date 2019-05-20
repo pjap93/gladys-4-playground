@@ -8,106 +8,110 @@ const MAX_SIZE_PROFILE_PICTURE = 30 * 1000; // 30 ko
 const DEFAULT_PROFILE_PICTURE = fs.readFileSync(path.resolve(__dirname, '../config/default-profile-picture.b64'));
 
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('t_user', {
-    id: {
-      type: DataTypes.UUID,
-      primaryKey: true,
-      defaultValue: DataTypes.UUIDV4,
-    },
-    firstname: {
-      type: DataTypes.STRING,
-    },
-    lastname: {
-      type: DataTypes.STRING,
-    },
-    selector: {
-      allowNull: false,
-      unique: true,
-      type: DataTypes.STRING,
-    },
-    email: {
-      type: DataTypes.STRING,
-      unique: true,
-      validate: {
-        isEmail: true,
-        isLowercase: true,
+  const User = sequelize.define(
+    't_user',
+    {
+      id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4,
+      },
+      firstname: {
+        type: DataTypes.STRING,
+      },
+      lastname: {
+        type: DataTypes.STRING,
+      },
+      selector: {
+        allowNull: false,
+        unique: true,
+        type: DataTypes.STRING,
+      },
+      email: {
+        type: DataTypes.STRING,
+        unique: true,
+        validate: {
+          isEmail: true,
+          isLowercase: true,
+        },
+      },
+      birthdate: {
+        allowNull: false,
+        type: DataTypes.DATEONLY,
+      },
+      language: {
+        allowNull: false,
+        type: DataTypes.ENUM(AVAILABLE_LANGUAGES_LIST),
+      },
+      picture: {
+        allowNull: true,
+        type: DataTypes.TEXT,
+        defaultValue: DEFAULT_PROFILE_PICTURE,
+        validate: {
+          len: [0, MAX_SIZE_PROFILE_PICTURE],
+        },
+      },
+      password: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        validate: {
+          len: [8],
+        },
+      },
+      role: {
+        allowNull: false,
+        type: DataTypes.ENUM(USER_ROLE_LIST),
+      },
+      temperature_unit_preference: {
+        allowNull: false,
+        type: DataTypes.ENUM(['celsius', 'fahrenheit']),
+        defaultValue: 'celsius',
+      },
+      distance_unit_preference: {
+        allowNull: false,
+        type: DataTypes.ENUM(['metric', 'us']),
+        defaultValue: 'metric',
+      },
+      telegram_user_id: {
+        allowNull: true,
+        type: DataTypes.STRING,
+        unique: true,
+      },
+      last_latitude: {
+        allowNull: true,
+        type: DataTypes.DOUBLE,
+      },
+      last_longitude: {
+        allowNull: true,
+        type: DataTypes.DOUBLE,
+      },
+      last_altitude: {
+        allowNull: true,
+        type: DataTypes.DOUBLE,
+      },
+      last_accuracy: {
+        allowNull: true,
+        type: DataTypes.DOUBLE,
+      },
+      last_location_changed: {
+        allowNull: true,
+        type: DataTypes.DATE,
+      },
+      current_house_id: {
+        allowNull: true,
+        type: DataTypes.UUID,
+        references: {
+          model: 't_house',
+          key: 'id',
+        },
+      },
+      last_house_changed: {
+        allowNull: true,
+        type: DataTypes.DATE,
       },
     },
-    birthdate: {
-      allowNull: false,
-      type: DataTypes.DATEONLY,
-    },
-    language: {
-      allowNull: false,
-      type: DataTypes.ENUM(AVAILABLE_LANGUAGES_LIST),
-    },
-    picture: {
-      allowNull: true,
-      type: DataTypes.TEXT,
-      defaultValue: DEFAULT_PROFILE_PICTURE,
-      validate: {
-        len: [0, MAX_SIZE_PROFILE_PICTURE],
-      },
-    },
-    password: {
-      allowNull: false,
-      type: DataTypes.STRING,
-      validate: {
-        len: [8],
-      },
-    },
-    role: {
-      allowNull: false,
-      type: DataTypes.ENUM(USER_ROLE_LIST),
-    },
-    temperature_unit_preference: {
-      allowNull: false,
-      type: DataTypes.ENUM(['celsius', 'fahrenheit']),
-      defaultValue: 'celsius',
-    },
-    distance_unit_preference: {
-      allowNull: false,
-      type: DataTypes.ENUM(['metric', 'us']),
-      defaultValue: 'metric',
-    },
-    telegram_user_id: {
-      allowNull: true,
-      type: DataTypes.STRING,
-      unique: true,
-    },
-    last_latitude: {
-      allowNull: true,
-      type: DataTypes.DOUBLE,
-    },
-    last_longitude: {
-      allowNull: true,
-      type: DataTypes.DOUBLE,
-    },
-    last_altitude: {
-      allowNull: true,
-      type: DataTypes.DOUBLE,
-    },
-    last_accuracy: {
-      allowNull: true,
-      type: DataTypes.DOUBLE,
-    },
-    last_location_changed: {
-      allowNull: true,
-      type: DataTypes.DATE,
-    },
-    current_house_id: {
-      allowNull: true,
-      type: DataTypes.UUID,
-      references: {
-        model: 't_house',
-        key: 'id',
-      },
-    },
-    last_house_changed: {
-      allowNull: true,
-      type: DataTypes.DATE,
-    },
-  }, {});
+    {},
+  );
 
   // ensure email is in lowercase
   User.beforeValidate((user) => {

@@ -20,14 +20,16 @@ describe('SceneManager.get', () => {
       search: 'test',
     });
     expect(scenes).to.be.instanceOf(Array);
-    expect(scenes).to.deep.equal([{
-      id: '3a30636c-b3f0-4251-a347-90787f0fe940',
-      name: 'Test scene',
-      icon: 'fe fe-bell',
-      selector: 'test-scene',
-      last_executed: null,
-      updated_at: new Date('2019-02-12T07:49:07.556Z'),
-    }]);
+    expect(scenes).to.deep.equal([
+      {
+        id: '3a30636c-b3f0-4251-a347-90787f0fe940',
+        name: 'Test scene',
+        icon: 'fe fe-bell',
+        selector: 'test-scene',
+        last_executed: null,
+        updated_at: new Date('2019-02-12T07:49:07.556Z'),
+      },
+    ]);
   });
   it('should return 0 result in search', async () => {
     const sceneManager = new SceneManager();

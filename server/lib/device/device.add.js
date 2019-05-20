@@ -1,4 +1,3 @@
-
 /**
  * @description Load device in memory.
  * @param {Object} device - Device object.

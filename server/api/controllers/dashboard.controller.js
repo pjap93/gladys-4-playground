@@ -16,7 +16,6 @@ const asyncMiddleware = require('../middlewares/asyncMiddleware');
  * @apiSuccess {Array} [boxes] Array of boxes in the dashboard.
  */
 
-
 module.exports = function HouseController(gladys) {
   /**
    * @api {post} /api/v1/dashboard create

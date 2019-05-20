@@ -1,4 +1,3 @@
-
 module.exports = function HueController(philipsHueLightHandler) {
   /**
    * @api {get} /api/v1/service/philips-hue/bridge Get Philips Hue bridges

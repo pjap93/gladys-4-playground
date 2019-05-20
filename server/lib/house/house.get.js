@@ -25,7 +25,7 @@ async function get(options) {
   const houses = await db.House.findAll({
     include,
   });
-  const housesPlain = houses.map(house => house.get({ plain: true }));
+  const housesPlain = houses.map((house) => house.get({ plain: true }));
   return housesPlain;
 }
 
