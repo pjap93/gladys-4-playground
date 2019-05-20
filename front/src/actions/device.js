@@ -35,6 +35,9 @@ function createActions(store) {
     async turnOnLight(state, deviceSelector) {
       await state.httpClient.post(`/api/v1/light/${deviceSelector}/on`);
     },
+    async turnOffLight(state, deviceSelector) {
+      await state.httpClient.post(`/api/v1/light/${deviceSelector}/off`);
+    },
     async updateValue(state, device, deviceFeature, roomIndex, deviceIndex, deviceFeatureIndex, value, oldValue) {
       actions.updateLocalValue(state, roomIndex, deviceIndex, deviceFeatureIndex, value);
       if (deviceFeature.category === 'light' && deviceFeature.type === 'binary') {

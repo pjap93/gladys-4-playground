@@ -3,13 +3,12 @@ import SensorDeviceFeature from './device-features/SensorDeviceFeature';
 import MultilevelDeviceFeature from './device-features/MultiLevelDeviceFeature';
 
 const DeviceRow = ({ children, ...props }) => {
-  
   if (props.deviceFeature.display === 0) {
-    return (null);
+    return null;
   }
-  
+
   // if device is a sensor, we display the sensor deviceFeature
-  if (props.deviceFeature.sensor) {
+  if (props.deviceFeature.read_only) {
     return <SensorDeviceFeature deviceFeature={props.deviceFeature} />;
   }
 
