@@ -1,10 +1,7 @@
 import responses from '../config/demo.json';
 
 export class DemoHttpClient {
-
-  setToken(refreshToken, accessToken) {
-
-  }
+  setToken(refreshToken, accessToken) {}
 
   async get(url, query) {
     const key = `get ${url}`;

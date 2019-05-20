@@ -1,9 +1,8 @@
 import { RequestStatus } from '../utils/consts';
 
 function createActions(store) {
-
   const actions = {
-    async loadProfilePicture (state) {
+    async loadProfilePicture(state) {
       // if a profile picture already exist
       if (state.profilePicture) {
         return;
@@ -12,22 +11,23 @@ function createActions(store) {
       const localProfilePicture = state.session.getProfilePicture();
       if (localProfilePicture) {
         return store.setState({
-          profilePicture: localProfilePicture 
+          profilePicture: localProfilePicture
         });
       }
       // if not, we get them from the server
       store.setState({
-        GetProfilePictureStatus: RequestStatus.Getting 
+        GetProfilePictureStatus: RequestStatus.Getting
       });
       try {
         const profilePicture = await state.httpClient.get(`/api/v1/me/picture`);
         state.session.saveProfilePicture(profilePicture);
         store.setState({
-          profilePicture, GetProfilePictureStatus: RequestStatus.Success 
+          profilePicture,
+          GetProfilePictureStatus: RequestStatus.Success
         });
       } catch (e) {
         store.setState({
-          GetProfilePictureStatus: RequestStatus.Error 
+          GetProfilePictureStatus: RequestStatus.Error
         });
       }
     }

@@ -5,37 +5,37 @@ const TYPING_MIN_TIME = 300;
 const TYPING_MAX_TIME = 600;
 
 function createActions(store) {
-
   const actions = {
-    scrollToBottom () {
+    scrollToBottom() {
       const chatWindow = document.getElementById('chat-window');
       setTimeout(() => chatWindow.scrollTo(0, chatWindow.scrollHeight), 10);
     },
     async getMessages(state) {
       store.setState({
-        MessageGetStatus: RequestStatus.Getting 
+        MessageGetStatus: RequestStatus.Getting
       });
       try {
         const messages = await state.httpClient.get('/api/v1/message');
         messages.reverse();
         store.setState({
-          messages, MessageGetStatus: RequestStatus.Success 
+          messages,
+          MessageGetStatus: RequestStatus.Success
         });
         actions.scrollToBottom();
       } catch (e) {
         store.setState({
-          MessageGetStatus: RequestStatus.Error 
+          MessageGetStatus: RequestStatus.Error
         });
       }
     },
-    updateMessageTextInput (state, e) {
+    updateMessageTextInput(state, e) {
       store.setState({
-        currentMessageTextInput: e.target.value 
+        currentMessageTextInput: e.target.value
       });
     },
-    pushMessage (state, message) {
+    pushMessage(state, message) {
       store.setState({
-        gladysIsTyping: true 
+        gladysIsTyping: true
       });
       actions.scrollToBottom();
       const randomWait = Math.floor(Math.random() * TYPING_MAX_TIME) + TYPING_MIN_TIME;
@@ -48,35 +48,35 @@ function createActions(store) {
         actions.scrollToBottom();
       }, randomWait);
     },
-    onKeyPress (state, e) {
+    onKeyPress(state, e) {
       if (e.key === 'Enter') {
         actions.sendMessage(state);
       }
     },
     async sendMessage(state) {
       store.setState({
-        MessageSendStatus: RequestStatus.Getting 
+        MessageSendStatus: RequestStatus.Getting
       });
       try {
         const message = await state.httpClient.post('/api/v1/message', {
-          text: state.currentMessageTextInput 
+          text: state.currentMessageTextInput
         });
         const newState = update(state, {
           messages: {
-            $push: [message] 
+            $push: [message]
           },
           MessageSendStatus: {
-            $set: RequestStatus.Success 
+            $set: RequestStatus.Success
           },
           currentMessageTextInput: {
-            $set: '' 
+            $set: ''
           }
         });
         store.setState(newState);
         actions.scrollToBottom();
       } catch (e) {
         store.setState({
-          MessageSendStatus: RequestStatus.Error 
+          MessageSendStatus: RequestStatus.Error
         });
       }
     }

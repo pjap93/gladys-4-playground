@@ -2,9 +2,10 @@ import config from '../../config';
 import gladysGatewayClient from '@gladysassistant/gladys-gateway-js';
 
 export class GatewayHttpClient {
-  constructor(){
+  constructor() {
     this.gatewayClient = gladysGatewayClient({
-      serverUrl: config.serverUrl, cryptoLib: window.crypto 
+      serverUrl: config.serverUrl,
+      cryptoLib: window.crypto
     });
   }
 

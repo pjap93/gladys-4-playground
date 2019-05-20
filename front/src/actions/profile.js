@@ -4,16 +4,17 @@ function createActions(store) {
   const actions = {
     async getMySelf(state) {
       store.setState({
-        ProfileGetStatus: RequestStatus.Getting 
+        ProfileGetStatus: RequestStatus.Getting
       });
       try {
         const user = await state.httpClient.get('/api/v1/me');
         store.setState({
-          user, SceneGetStatus: RequestStatus.Success 
+          user,
+          SceneGetStatus: RequestStatus.Success
         });
       } catch (e) {
         store.setState({
-          ProfileGetStatus: RequestStatus.Error 
+          ProfileGetStatus: RequestStatus.Error
         });
       }
     }

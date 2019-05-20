@@ -1,22 +1,31 @@
 const AUTH_FILE = '/authentication.json';
 
-const loadBlockstack = () => (new Promise((resolve, reject) => {
-  const script = document.createElement('script');
-  script.src = '/assets/blockstack/blockstack-bundle.js';
-  document.body.appendChild(script);
-    
-  script.onload = () => {
-    resolve();
-  };
-}));
+const loadBlockstack = () =>
+  new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = '/assets/blockstack/blockstack-bundle.js';
+    document.body.appendChild(script);
 
-const generateToken = () => (Math.random().toString(36).slice(-8)
-    + Math.random().toString(36).slice(-8)
-    + Math.random().toString(36).slice(-8)
-    + Math.random().toString(36).slice(-8)
-);
+    script.onload = () => {
+      resolve();
+    };
+  });
 
-const getAuthInfos = async (userSession) => {
+const generateToken = () =>
+  Math.random()
+    .toString(36)
+    .slice(-8) +
+  Math.random()
+    .toString(36)
+    .slice(-8) +
+  Math.random()
+    .toString(36)
+    .slice(-8) +
+  Math.random()
+    .toString(36)
+    .slice(-8);
+
+const getAuthInfos = async userSession => {
   const userData = userSession.loadUserData();
   // we check if the auth informations exists on Blockstack side.
   let authInfos = await userSession.getFile(AUTH_FILE);
@@ -29,9 +38,7 @@ const getAuthInfos = async (userSession) => {
         // we return them
         return parsedInfos;
       }
-    } catch (e) {
-      
-    }
+    } catch (e) {}
   }
 
   authInfos = {
@@ -43,8 +50,4 @@ const getAuthInfos = async (userSession) => {
   return authInfos;
 };
 
-export {
-  loadBlockstack,
-  getAuthInfos
-};
-
+export { loadBlockstack, getAuthInfos };
