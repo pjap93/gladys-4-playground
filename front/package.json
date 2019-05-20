@@ -7,15 +7,17 @@
     "build": "preact build --no-prerender",
     "serve": "preact build && preact serve",
     "dev": "preact watch -p 1444",
-    "eslint": "eslint src",
+    "eslint": "eslint src --ext .json --ext .js",
     "test": "jest --coverage"
   },
   "devDependencies": {
-    "eslint": "^4.9.0",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^4.0.0",
     "eslint-config-synacor": "^2.0.2",
+    "eslint-plugin-json": "^1.4.0",
     "identity-obj-proxy": "^3.0.0",
-    "per-env": "^1.0.2",
     "jest": "^21.2.1",
+    "per-env": "^1.0.2",
     "preact-cli": "^2.1.0",
     "preact-render-spy": "^1.2.1"
   },
