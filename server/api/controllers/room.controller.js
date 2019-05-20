@@ -81,7 +81,7 @@ module.exports = function RoomController(gladys) {
    *
    */
   async function getBySelector(req, res) {
-    const room = await gladys.room.getBySelector(req.params.room_selector);
+    const room = await gladys.room.getBySelector(req.params.room_selector, req.query);
     const expandFields = buildExpandObject(req.query.expand);
     // if the user wants the temperature in the room
     if (expandFields.temperature) {
