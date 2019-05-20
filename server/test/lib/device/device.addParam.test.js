@@ -13,10 +13,12 @@ describe('Device.addParam', () => {
       name: 'Philips Hue',
       selector: 'test-device',
       features: [],
-      params: [{
-        name: 'SENSIBILITY',
-        value: 1,
-      }],
+      params: [
+        {
+          name: 'SENSIBILITY',
+          value: 1,
+        },
+      ],
     });
     const device = new Device(event, {}, stateManager);
     const newDevice = await device.addParam('test-device', {
@@ -26,7 +28,7 @@ describe('Device.addParam', () => {
     expect(newDevice).to.have.property('name', 'Philips Hue');
     expect(newDevice).to.have.property('selector', 'test-device');
     expect(newDevice).to.have.property('params');
-    const newDeviceParam = newDevice.params.find(p => p.name === 'NEW_VALUE');
+    const newDeviceParam = newDevice.params.find((p) => p.name === 'NEW_VALUE');
     expect(newDeviceParam).to.have.property('value', '10');
   });
   it('should update existing param', async () => {
@@ -36,11 +38,13 @@ describe('Device.addParam', () => {
       name: 'Philips Hue',
       selector: 'test-device',
       features: [],
-      params: [{
-        id: 'c24b1f96-69d7-4e6e-aa44-f14406694c59',
-        name: 'TEST_PARAM',
-        value: '1',
-      }],
+      params: [
+        {
+          id: 'c24b1f96-69d7-4e6e-aa44-f14406694c59',
+          name: 'TEST_PARAM',
+          value: '1',
+        },
+      ],
     });
     const device = new Device(event, {}, stateManager);
     const newDevice = await device.addParam('test-device', {
@@ -50,7 +54,7 @@ describe('Device.addParam', () => {
     expect(newDevice).to.have.property('name', 'Philips Hue');
     expect(newDevice).to.have.property('selector', 'test-device');
     expect(newDevice).to.have.property('params');
-    const newDeviceParam = newDevice.params.find(p => p.name === 'TEST_PARAM');
+    const newDeviceParam = newDevice.params.find((p) => p.name === 'TEST_PARAM');
     expect(newDeviceParam).to.have.property('value', '1000');
   });
 });

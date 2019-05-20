@@ -23,7 +23,7 @@ async function destroy(selector) {
   if (this.triggerDictionnary[existingTrigger.type]) {
     // see if the trigger was in the trigger dictionnary
     const triggerIndex = this.triggerDictionnary[existingTrigger.type].findIndex(
-      elem => (elem.id === existingTrigger.id),
+      (elem) => elem.id === existingTrigger.id,
     );
 
     // if yes, we remove it
@@ -31,6 +31,7 @@ async function destroy(selector) {
       this.triggerDictionnary[existingTrigger.type].splice(triggerIndex, 1);
     }
   }
+  return null;
 }
 
 module.exports = {

@@ -1,15 +1,17 @@
 const { assert, fake } = require('sinon');
 const UsbController = require('../../../services/usb/api/usb.controller');
 
-const ports = [{
-  comName: '/dev/tty.HC-05-DevB',
-  manufacturer: undefined,
-  serialNumber: undefined,
-  pnpId: undefined,
-  locationId: undefined,
-  vendorId: undefined,
-  productId: undefined,
-}];
+const ports = [
+  {
+    comName: '/dev/tty.HC-05-DevB',
+    manufacturer: undefined,
+    serialNumber: undefined,
+    pnpId: undefined,
+    locationId: undefined,
+    vendorId: undefined,
+    productId: undefined,
+  },
+];
 
 const list = fake.resolves(ports);
 

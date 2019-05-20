@@ -34,9 +34,7 @@ async function get(options) {
     include: includeExpand,
     limit: optionsWithDefault.take,
     offset: optionsWithDefault.skip,
-    order: [
-      ['created_at', 'ASC'],
-    ],
+    order: [['created_at', 'ASC']],
   });
 
   const usersPlain = users.map((user) => {

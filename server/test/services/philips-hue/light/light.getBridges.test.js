@@ -10,9 +10,11 @@ describe('PhilipsHueService', () => {
   const philipsHueService = PhilipsHueService();
   it('getBridges should return bridges', async () => {
     const bridges = await philipsHueService.light.getBridges();
-    expect(bridges).to.deep.equal([{
-      name: 'Philips hue',
-      ipaddress: '192.168.2.245',
-    }]);
+    expect(bridges).to.deep.equal([
+      {
+        name: 'Philips hue',
+        ipaddress: '192.168.2.245',
+      },
+    ]);
   });
 });

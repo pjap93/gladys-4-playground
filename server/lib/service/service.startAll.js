@@ -1,4 +1,3 @@
-
 /**
  * @public
  * @description Start all services
@@ -7,9 +6,7 @@
  * service.startAll();
  */
 async function startAll() {
-  return Promise.all(
-    Object.keys(this.getServices()).map(serviceKey => this.start(serviceKey)),
-  );
+  return Promise.all(Object.keys(this.getServices()).map((serviceKey) => this.start(serviceKey)));
 }
 
 module.exports = {

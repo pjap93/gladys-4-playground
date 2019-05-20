@@ -9,7 +9,7 @@ const MessageHandler = function MessageHandler(event, brain, service) {
   this.event = event;
   this.brain = brain;
   this.service = service;
-  event.on(EVENTS.MESSAGE.NEW, message => this.handleEvent(message));
+  event.on(EVENTS.MESSAGE.NEW, (message) => this.handleEvent(message));
 };
 
 MessageHandler.prototype.create = create;

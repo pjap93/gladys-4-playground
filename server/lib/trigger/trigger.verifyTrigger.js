@@ -15,7 +15,7 @@ let validateConditions;
 function validateCondition(stateManager, event, condition) {
   const valid = conditionVerifiers[condition.type](stateManager, event, condition);
   if (condition.or) {
-    return (valid || validateConditions(stateManager, event, condition.or));
+    return valid || validateConditions(stateManager, event, condition.or);
   }
 
   return valid;

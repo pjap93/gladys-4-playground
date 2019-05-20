@@ -1,6 +1,4 @@
-const {
-  lstatSync, readdirSync, readFileSync, existsSync,
-} = require('fs');
+const { lstatSync, readdirSync, readFileSync, existsSync } = require('fs');
 const { join } = require('path');
 const { expect } = require('chai');
 
@@ -8,8 +6,11 @@ const { expect } = require('chai');
  * Verify that all services follow the requirements
  */
 describe('services', () => {
-  const isDirectory = source => lstatSync(source).isDirectory();
-  const getDirectories = source => readdirSync(source).map(name => join(source, name)).filter(isDirectory);
+  const isDirectory = (source) => lstatSync(source).isDirectory();
+  const getDirectories = (source) =>
+    readdirSync(source)
+      .map((name) => join(source, name))
+      .filter(isDirectory);
   const folders = getDirectories(join(__dirname, '../../services'));
   folders.forEach((folder) => {
     describe(folder, () => {

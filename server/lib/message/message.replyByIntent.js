@@ -1,4 +1,3 @@
-
 /**
  * @description Reply to the user with a given intent.
  * @param {Object} originalMessage - The original message sent by the user.

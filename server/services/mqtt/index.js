@@ -20,7 +20,7 @@ module.exports = function MqttService(gladys, serviceId) {
     const mqttUrl = await gladys.variable.getValue(MQTT_URL_KEY, serviceId);
     const mqttUsername = await gladys.variable.getValue(MQTT_USERNAME_KEY, serviceId);
     const mqttPassword = await gladys.variable.getValue(MQTT_PASSWORD_KEY, serviceId);
-    const variablesFound = (mqttUrl);
+    const variablesFound = mqttUrl;
     if (!variablesFound) {
       throw new ServiceNotConfiguredError('MQTT is not configured.');
     }

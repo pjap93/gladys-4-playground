@@ -1,6 +1,5 @@
 const asyncMiddleware = require('../middlewares/asyncMiddleware');
 
-
 module.exports = function HouseController(gladys) {
   /**
    * @api {post} /api/v1/camera/:camera_selector/image set Image

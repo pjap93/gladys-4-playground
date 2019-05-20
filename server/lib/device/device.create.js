@@ -53,7 +53,7 @@ async function create(device) {
       const newFeatures = await Promise.map(features, async (feature) => {
         if (deviceInStore !== null) {
           // if the device feature already exist
-          const featureIndex = deviceInStore.features.findIndex(f => f.external_id === feature.external_id);
+          const featureIndex = deviceInStore.features.findIndex((f) => f.external_id === feature.external_id);
           if (featureIndex !== -1) {
             return device.features[featureIndex];
           }
@@ -73,7 +73,7 @@ async function create(device) {
       const newParams = await Promise.map(params, async (param) => {
         if (deviceInStore !== null) {
           // if the param already already exist
-          const paramIndex = deviceInStore.params.findIndex(p => p.name === param.name);
+          const paramIndex = deviceInStore.params.findIndex((p) => p.name === param.name);
           if (paramIndex !== -1) {
             return deviceInStore.params[paramIndex];
           }

@@ -52,29 +52,33 @@ describe('house.get', () => {
   const house = new House(event);
   it('should get list of houses', async () => {
     const houses = await house.get();
-    expect(houses).to.deep.equal([{
-      id: 'a741dfa6-24de-4b46-afc7-370772f068d5',
-      name: 'Test house',
-      selector: 'test-house',
-      latitude: 12,
-      longitude: 12,
-      created_at: new Date('2019-02-12T07:49:07.556Z'),
-      updated_at: new Date('2019-02-12T07:49:07.556Z'),
-    },
-    {
-      id: '6295ad8b-b655-4422-9e6d-b4612da5d55f',
-      name: 'Peppers house',
-      selector: 'pepper-house',
-      latitude: null,
-      longitude: null,
-      created_at: new Date('2019-02-12T07:49:07.556Z'),
-      updated_at: new Date('2019-02-12T07:49:07.556Z'),
-    }]);
+    expect(houses).to.deep.equal([
+      {
+        id: 'a741dfa6-24de-4b46-afc7-370772f068d5',
+        name: 'Test house',
+        selector: 'test-house',
+        latitude: 12,
+        longitude: 12,
+        created_at: new Date('2019-02-12T07:49:07.556Z'),
+        updated_at: new Date('2019-02-12T07:49:07.556Z'),
+      },
+      {
+        id: '6295ad8b-b655-4422-9e6d-b4612da5d55f',
+        name: 'Peppers house',
+        selector: 'pepper-house',
+        latitude: null,
+        longitude: null,
+        created_at: new Date('2019-02-12T07:49:07.556Z'),
+        updated_at: new Date('2019-02-12T07:49:07.556Z'),
+      },
+    ]);
   });
   it('should get list of houses with rooms list', async () => {
     const houses = await house.get({ expand: ['rooms'] });
     houses.forEach((oneHouse) => {
-      expect(oneHouse).to.have.property('rooms').and.to.be.instanceOf(Array);
+      expect(oneHouse)
+        .to.have.property('rooms')
+        .and.to.be.instanceOf(Array);
     });
   });
 });
@@ -83,14 +87,16 @@ describe('house.getRooms', () => {
   const house = new House(event);
   it('should get rooms in a house', async () => {
     const rooms = await house.getRooms('test-house');
-    expect(rooms).to.deep.equal([{
-      id: '2398c689-8b47-43cc-ad32-e98d9be098b5',
-      house_id: 'a741dfa6-24de-4b46-afc7-370772f068d5',
-      name: 'Test room',
-      selector: 'test-room',
-      created_at: new Date('2019-02-12T07:49:07.556Z'),
-      updated_at: new Date('2019-02-12T07:49:07.556Z'),
-    }]);
+    expect(rooms).to.deep.equal([
+      {
+        id: '2398c689-8b47-43cc-ad32-e98d9be098b5',
+        house_id: 'a741dfa6-24de-4b46-afc7-370772f068d5',
+        name: 'Test room',
+        selector: 'test-room',
+        created_at: new Date('2019-02-12T07:49:07.556Z'),
+        updated_at: new Date('2019-02-12T07:49:07.556Z'),
+      },
+    ]);
   });
   it('should return not found', async () => {
     const promise = house.getRooms('house-not-found');

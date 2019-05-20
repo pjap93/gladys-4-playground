@@ -1,7 +1,8 @@
 const { expect } = require('chai');
 const { authenticatedRequest } = require('../request.test');
 
-const RANDOM_IMAGE = 'image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z/C/HgAGgwJ/lK3Q6wAAAABJRU5ErkJggg==';
+const RANDOM_IMAGE =
+  'image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z/C/HgAGgwJ/lK3Q6wAAAABJRU5ErkJggg==';
 
 describe('POST /api/v1/camera/:camera_selector/image', () => {
   it('should set image', async () => {

@@ -19,7 +19,8 @@ async function setParam(device, name, value) {
   if (deviceParam !== null && deviceParam.value !== value) {
     deviceParam.value = value;
     await deviceParam.save();
-  } else if (deviceParam === null) { // if it doesn't exist we create it
+  } else if (deviceParam === null) {
+    // if it doesn't exist we create it
     deviceParam = await db.DeviceParam.create({
       name,
       value,

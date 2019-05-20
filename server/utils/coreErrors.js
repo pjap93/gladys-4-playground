@@ -1,4 +1,3 @@
-
 class PasswordNotMatchingError extends Error {
   constructor() {
     super();

@@ -10,9 +10,11 @@ describe('trigger.destroy', () => {
   it('should destroy trigger', async () => {
     const stateManager = new StateManager();
     const triggerManager = new TriggerManager(event, stateManager, {});
-    triggerManager.triggerDictionnary[EVENTS.LIGHT.TURNED_ON] = [{
-      id: '1763b345-b2b6-4c9b-8fed-ae017109956c',
-    }];
+    triggerManager.triggerDictionnary[EVENTS.LIGHT.TURNED_ON] = [
+      {
+        id: '1763b345-b2b6-4c9b-8fed-ae017109956c',
+      },
+    ];
     await triggerManager.destroy('test-trigger');
     expect(triggerManager.triggerDictionnary[EVENTS.LIGHT.TURNED_ON]).to.deep.equal([]);
   });

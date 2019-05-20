@@ -14,14 +14,17 @@ const logger = require('../../utils/logger');
 async function saveStringState(deviceFeature, newValue) {
   logger.debug(`device.saveStringState of deviceFeature ${deviceFeature.selector}`);
 
-  await db.DeviceFeature.update({
-    last_value_string: newValue,
-    last_value_changed: new Date(),
-  }, {
-    where: {
-      id: deviceFeature.id,
+  await db.DeviceFeature.update(
+    {
+      last_value_string: newValue,
+      last_value_changed: new Date(),
     },
-  });
+    {
+      where: {
+        id: deviceFeature.id,
+      },
+    },
+  );
 
   // save local state in RAM
   this.stateManager.setState('deviceFeature', deviceFeature.selector, {

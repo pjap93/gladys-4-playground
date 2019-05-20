@@ -15,29 +15,69 @@ describe('scene.executeActions', () => {
     };
     const stateManager = new StateManager(event);
     stateManager.setState('device', 'light-1', light);
-    await executeActions({ stateManager, event }, [[{
-      type: ACTIONS.LIGHT.TURN_ON,
-      device: 'light-1',
-    }]], {});
+    await executeActions(
+      { stateManager, event },
+      [
+        [
+          {
+            type: ACTIONS.LIGHT.TURN_ON,
+            device: 'light-1',
+          },
+        ],
+      ],
+      {},
+    );
     assert.calledOnce(light.turnOn);
   });
   it('should execute wait 5 ms', async () => {
-    await executeActions({ event }, [[{
-      type: ACTIONS.TIME.DELAY,
-      milliseconds: 5,
-    }]], {});
-    await executeActions({ event }, [[{
-      type: ACTIONS.TIME.DELAY,
-      seconds: 5 / 1000,
-    }]], {});
-    await executeActions({ event }, [[{
-      type: ACTIONS.TIME.DELAY,
-      minutes: 5 / 1000 / 60,
-    }]], {});
-    await executeActions({ event }, [[{
-      type: ACTIONS.TIME.DELAY,
-      hours: 5 / 1000 / 60 / 60,
-    }]], {});
+    await executeActions(
+      { event },
+      [
+        [
+          {
+            type: ACTIONS.TIME.DELAY,
+            milliseconds: 5,
+          },
+        ],
+      ],
+      {},
+    );
+    await executeActions(
+      { event },
+      [
+        [
+          {
+            type: ACTIONS.TIME.DELAY,
+            seconds: 5 / 1000,
+          },
+        ],
+      ],
+      {},
+    );
+    await executeActions(
+      { event },
+      [
+        [
+          {
+            type: ACTIONS.TIME.DELAY,
+            minutes: 5 / 1000 / 60,
+          },
+        ],
+      ],
+      {},
+    );
+    await executeActions(
+      { event },
+      [
+        [
+          {
+            type: ACTIONS.TIME.DELAY,
+            hours: 5 / 1000 / 60 / 60,
+          },
+        ],
+      ],
+      {},
+    );
   });
   it('should execute start service', async () => {
     const example = {
@@ -45,10 +85,18 @@ describe('scene.executeActions', () => {
     };
     const stateManager = new StateManager(event);
     stateManager.setState('service', 'example', example);
-    await executeActions({ stateManager, event }, [[{
-      type: ACTIONS.SERVICE.START,
-      service: 'example',
-    }]], {});
+    await executeActions(
+      { stateManager, event },
+      [
+        [
+          {
+            type: ACTIONS.SERVICE.START,
+            service: 'example',
+          },
+        ],
+      ],
+      {},
+    );
     assert.calledOnce(example.start);
   });
   it('should execute stop service', async () => {
@@ -57,10 +105,18 @@ describe('scene.executeActions', () => {
     };
     const stateManager = new StateManager(event);
     stateManager.setState('service', 'example', example);
-    await executeActions({ stateManager, event }, [[{
-      type: ACTIONS.SERVICE.STOP,
-      service: 'example',
-    }]], {});
+    await executeActions(
+      { stateManager, event },
+      [
+        [
+          {
+            type: ACTIONS.SERVICE.STOP,
+            service: 'example',
+          },
+        ],
+      ],
+      {},
+    );
     assert.calledOnce(example.stop);
   });
   it('should execute sequential actions', async () => {
@@ -69,13 +125,24 @@ describe('scene.executeActions', () => {
     };
     const stateManager = new StateManager(event);
     stateManager.setState('device', 'light-1', light);
-    await executeActions({ stateManager, event }, [[{
-      type: ACTIONS.LIGHT.TURN_ON,
-      device: 'light-1',
-    }], [{
-      type: ACTIONS.LIGHT.TURN_ON,
-      device: 'light-1',
-    }]], {});
+    await executeActions(
+      { stateManager, event },
+      [
+        [
+          {
+            type: ACTIONS.LIGHT.TURN_ON,
+            device: 'light-1',
+          },
+        ],
+        [
+          {
+            type: ACTIONS.LIGHT.TURN_ON,
+            device: 'light-1',
+          },
+        ],
+      ],
+      {},
+    );
     assert.calledTwice(light.turnOn);
   });
   it('should throw error, action type does not exist', async () => {
@@ -84,10 +151,18 @@ describe('scene.executeActions', () => {
     };
     const stateManager = new StateManager(event);
     stateManager.setState('device', 'light-1', light);
-    const promise = executeActions({ stateManager, event }, [[{
-      type: 'THISDOESNOTEXIST',
-      device: 'light-1',
-    }]], {});
+    const promise = executeActions(
+      { stateManager, event },
+      [
+        [
+          {
+            type: 'THISDOESNOTEXIST',
+            device: 'light-1',
+          },
+        ],
+      ],
+      {},
+    );
     return chaiAssert.isRejected(promise, 'Action type "THISDOESNOTEXIST" does not exist.');
   });
 });

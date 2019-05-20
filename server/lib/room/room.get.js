@@ -49,7 +49,7 @@ async function get(options) {
     offset: optionsWithDefault.skip,
     order: [[optionsWithDefault.order_by, optionsWithDefault.order_dir]],
   });
-  const roomsPlain = rooms.map(room => room.get({ plain: true }));
+  const roomsPlain = rooms.map((room) => room.get({ plain: true }));
   return roomsPlain;
 }
 

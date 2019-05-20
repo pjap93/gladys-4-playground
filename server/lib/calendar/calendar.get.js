@@ -13,7 +13,7 @@ async function get(userId) {
     },
   });
 
-  const plainCalendars = calendars.map(calendar => calendar.get({ plain: true }));
+  const plainCalendars = calendars.map((calendar) => calendar.get({ plain: true }));
 
   return plainCalendars;
 }

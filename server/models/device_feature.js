@@ -1,79 +1,87 @@
 const { addSelector } = require('../utils/addSelector');
-const { DEVICE_FEATURE_CATEGORIES_LIST, DEVICE_FEATURE_TYPES_LIST, DEVICE_FEATURE_UNITS_LIST } = require('../utils/constants');
+const {
+  DEVICE_FEATURE_CATEGORIES_LIST,
+  DEVICE_FEATURE_TYPES_LIST,
+  DEVICE_FEATURE_UNITS_LIST,
+} = require('../utils/constants');
 
 module.exports = (sequelize, DataTypes) => {
-  const deviceFeature = sequelize.define('t_device_feature', {
-    id: {
-      type: DataTypes.UUID,
-      primaryKey: true,
-      defaultValue: DataTypes.UUIDV4,
-    },
-    device_id: {
-      allowNull: false,
-      type: DataTypes.UUID,
-      references: {
-        model: 't_device',
-        key: 'id',
+  const deviceFeature = sequelize.define(
+    't_device_feature',
+    {
+      id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4,
+      },
+      device_id: {
+        allowNull: false,
+        type: DataTypes.UUID,
+        references: {
+          model: 't_device',
+          key: 'id',
+        },
+      },
+      name: {
+        allowNull: false,
+        unique: true,
+        type: DataTypes.STRING,
+      },
+      selector: {
+        allowNull: false,
+        unique: true,
+        type: DataTypes.STRING,
+      },
+      external_id: {
+        allowNull: false,
+        unique: true,
+        type: DataTypes.STRING,
+      },
+      category: {
+        allowNull: false,
+        type: DataTypes.ENUM(DEVICE_FEATURE_CATEGORIES_LIST),
+      },
+      type: {
+        allowNull: false,
+        type: DataTypes.ENUM(DEVICE_FEATURE_TYPES_LIST),
+      },
+      read_only: {
+        allowNull: false,
+        type: DataTypes.BOOLEAN,
+      },
+      keep_history: {
+        allowNull: false,
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
+      has_feedback: {
+        allowNull: false,
+        type: DataTypes.BOOLEAN,
+      },
+      unit: {
+        allowNull: true,
+        type: DataTypes.ENUM(DEVICE_FEATURE_UNITS_LIST),
+      },
+      min: {
+        allowNull: false,
+        type: DataTypes.DOUBLE,
+      },
+      max: {
+        allowNull: false,
+        type: DataTypes.DOUBLE,
+      },
+      last_value: {
+        type: DataTypes.DOUBLE,
+      },
+      last_value_string: {
+        type: DataTypes.TEXT,
+      },
+      last_value_changed: {
+        type: DataTypes.DATE,
       },
     },
-    name: {
-      allowNull: false,
-      unique: true,
-      type: DataTypes.STRING,
-    },
-    selector: {
-      allowNull: false,
-      unique: true,
-      type: DataTypes.STRING,
-    },
-    external_id: {
-      allowNull: false,
-      unique: true,
-      type: DataTypes.STRING,
-    },
-    category: {
-      allowNull: false,
-      type: DataTypes.ENUM(DEVICE_FEATURE_CATEGORIES_LIST),
-    },
-    type: {
-      allowNull: false,
-      type: DataTypes.ENUM(DEVICE_FEATURE_TYPES_LIST),
-    },
-    read_only: {
-      allowNull: false,
-      type: DataTypes.BOOLEAN,
-    },
-    keep_history: {
-      allowNull: false,
-      type: DataTypes.BOOLEAN,
-      defaultValue: true,
-    },
-    has_feedback: {
-      allowNull: false,
-      type: DataTypes.BOOLEAN,
-    },
-    unit: {
-      allowNull: true,
-      type: DataTypes.ENUM(DEVICE_FEATURE_UNITS_LIST),
-    },
-    min: {
-      allowNull: false,
-      type: DataTypes.DOUBLE,
-    },
-    max: {
-      allowNull: false,
-      type: DataTypes.DOUBLE,
-    },
-    last_value: {
-      type: DataTypes.DOUBLE,
-    },
-    last_value_string: {
-      type: DataTypes.TEXT,
-    },
-    last_value_changed: {
-      type: DataTypes.DATE,
-    },
-  }, {});
+    {},
+  );
 
   // add slug if needed
   deviceFeature.beforeValidate(addSelector);

@@ -12,10 +12,12 @@ async function getMessageServices() {
     where: {
       has_message_feature: true,
     },
-    include: [{
-      model: db.Pod,
-      as: 'pod',
-    }],
+    include: [
+      {
+        model: db.Pod,
+        as: 'pod',
+      },
+    ],
   });
 }
 

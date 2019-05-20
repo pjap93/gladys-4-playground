@@ -13,9 +13,14 @@ const { getDeviceFeatureExternalId } = require('../utils/externalId');
 function valueChanged(nodeId, comClass, value) {
   logger.debug(`Zwave : Value Changed, nodeId = ${nodeId}, comClass = ${comClass}, value = ${JSON.stringify(value)}`);
   if (this.nodes[nodeId].ready) {
-    logger.debug('node%d: changed: %d:%s:%s->%s', nodeId, comClass, value.label,
+    logger.debug(
+      'node%d: changed: %d:%s:%s->%s',
+      nodeId,
+      comClass,
+      value.label,
       this.nodes[nodeId].classes[comClass][value.index].value,
-      value.value);
+      value.value,
+    );
   }
   this.nodes[nodeId].classes[comClass][value.index] = value;
   this.eventManager.emit(EVENTS.DEVICE.NEW_STATE, {

@@ -1,10 +1,12 @@
 const { assert, fake } = require('sinon');
 const PhilipsHueControllers = require('../../../../services/philips-hue/api/hue.controller');
 
-const bridges = [{
-  name: 'Philips hue',
-  ipaddress: '192.168.2.245',
-}];
+const bridges = [
+  {
+    name: 'Philips hue',
+    ipaddress: '192.168.2.245',
+  },
+];
 
 const philipsHueLightService = {
   getBridges: fake.resolves(bridges),

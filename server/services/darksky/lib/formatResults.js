@@ -1,4 +1,3 @@
-
 /**
  * @description Transform DarkSky JSON to Gladys data.
  * @param {Object} options - The weather call options.

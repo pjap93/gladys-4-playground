@@ -24,9 +24,7 @@ async function get(userId, options) {
     attributes: FIELDS,
     limit: optionsWithDefault.take,
     offset: optionsWithDefault.skip,
-    order: [
-      [optionsWithDefault.order_by, optionsWithDefault.order_dir],
-    ],
+    order: [[optionsWithDefault.order_by, optionsWithDefault.order_dir]],
   });
 
   const sessionsPlain = sessions.map((s) => {

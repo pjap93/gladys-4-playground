@@ -1,4 +1,3 @@
-
 module.exports = function UsbController({ list }) {
   /**
    * @api {get} /api/v1/service/usb/port List USB ports

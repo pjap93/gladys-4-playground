@@ -33,12 +33,12 @@ function nodeReady(nodeId, nodeInfo) {
     const values = this.nodes[nodeId].classes[comclass];
     // enable poll
     switch (values.class_id) {
-    case 0x25: // COMMAND_CLASS_SWITCH_BINARY
-    case 0x26: // COMMAND_CLASS_SWITCH_MULTILEVEL
-      this.zwave.enablePoll(nodeId, comclass);
-      break;
-    default:
-      break;
+      case 0x25: // COMMAND_CLASS_SWITCH_BINARY
+      case 0x26: // COMMAND_CLASS_SWITCH_MULTILEVEL
+        this.zwave.enablePoll(nodeId, comclass);
+        break;
+      default:
+        break;
     }
     const indexes = Object.keys(values);
     indexes.forEach((idx) => {

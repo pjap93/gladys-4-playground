@@ -37,7 +37,6 @@ describe('PATCH /api/v1/area/:area_selector', () => {
   });
 });
 
-
 describe('DELETE /api/v1/area/:area_selector', () => {
   it('should delete a area', async () => {
     await authenticatedRequest

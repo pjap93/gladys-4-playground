@@ -22,22 +22,25 @@ async function getTemperatureInRoom(roomId, options) {
   logger.debug(`Getting average temperature in room ${roomId}`);
   const optionsWithDefault = Object.assign({}, DEFAULT_PARAMETERS, options);
 
-  const oneHourAgo = new Date(new Date().getTime() - (1 * 60 * 60 * 1000));
+  const oneHourAgo = new Date(new Date().getTime() - 1 * 60 * 60 * 1000);
   const deviceFeatures = await db.DeviceFeature.findAll({
     attributes: ['last_value', 'unit'],
-    include: [{
-      model: db.Device,
-      as: 'device',
-      where: {
-        room_id: roomId,
+    include: [
+      {
+        model: db.Device,
+        as: 'device',
+        where: {
+          room_id: roomId,
+        },
       },
-    }],
+    ],
     where: {
       category: DEVICE_FEATURE_CATEGORIES.TEMPERATURE_SENSOR,
       last_value: {
         [Op.not]: null,
       },
-      last_value_changed: { // we want fresh value, less than 1h
+      last_value_changed: {
+        // we want fresh value, less than 1h
         [Op.gt]: oneHourAgo,
       },
     },
@@ -55,11 +58,15 @@ async function getTemperatureInRoom(roomId, options) {
   deviceFeatures.forEach((deviceFeature) => {
     let temperature;
     // if device feature is in celsius and user want fahrenheit
-    if (deviceFeature.unit === DEVICE_FEATURE_UNITS.CELSIUS
-      && optionsWithDefault.unit === DEVICE_FEATURE_UNITS.FAHRENHEIT) {
+    if (
+      deviceFeature.unit === DEVICE_FEATURE_UNITS.CELSIUS &&
+      optionsWithDefault.unit === DEVICE_FEATURE_UNITS.FAHRENHEIT
+    ) {
       temperature = celsiusToFahrenheit(deviceFeature.last_value);
-    } else if (deviceFeature.unit === DEVICE_FEATURE_UNITS.FAHRENHEIT
-      && optionsWithDefault.unit === DEVICE_FEATURE_UNITS.CELSIUS) {
+    } else if (
+      deviceFeature.unit === DEVICE_FEATURE_UNITS.FAHRENHEIT &&
+      optionsWithDefault.unit === DEVICE_FEATURE_UNITS.CELSIUS
+    ) {
       // if device feature is in fahrenheit and user want celsius
       temperature = fahrenheitToCelsius(deviceFeature.last_value);
     } else {

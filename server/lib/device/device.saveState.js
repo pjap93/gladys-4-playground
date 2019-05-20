@@ -15,24 +15,31 @@ async function saveState(deviceFeature, newValue) {
   logger.debug(`device.saveState of deviceFeature ${deviceFeature.selector}`);
   await db.sequelize.transaction(async (t) => {
     // update deviceFeature lastValue in DB
-    await db.DeviceFeature.update({
-      last_value: newValue,
-      last_value_changed: new Date(),
-    }, {
-      where: {
-        id: deviceFeature.id,
+    await db.DeviceFeature.update(
+      {
+        last_value: newValue,
+        last_value_changed: new Date(),
       },
-    }, {
-      transaction: t,
-    });
+      {
+        where: {
+          id: deviceFeature.id,
+        },
+      },
+      {
+        transaction: t,
+      },
+    );
     // if the deviceFeature should keep history, we save a new deviceFeatureState
     if (deviceFeature.keep_history) {
-      await db.DeviceFeatureState.create({
-        device_feature_id: deviceFeature.id,
-        value: newValue,
-      }, {
-        transaction: t,
-      });
+      await db.DeviceFeatureState.create(
+        {
+          device_feature_id: deviceFeature.id,
+          value: newValue,
+        },
+        {
+          transaction: t,
+        },
+      );
     }
 
     // save local state in RAM

@@ -1,4 +1,3 @@
-
 /**
  * @description Parse the external id and return the lamp ID.
  * @param {string} externalId - External id of the device.

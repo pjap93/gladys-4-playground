@@ -1,8 +1,7 @@
 const { fake } = require('sinon');
 const EventEmitter = require('events');
 
-const ZwaveMock = function ZwaveMock(options) {
-};
+const ZwaveMock = function ZwaveMock(options) {};
 
 ZwaveMock.prototype = Object.create(new EventEmitter());
 

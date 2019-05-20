@@ -10,9 +10,13 @@ describe('SceneManager', () => {
     const scene = await sceneManager.create({
       name: 'My living room',
       icon: 'fe fe-bell',
-      actions: [[{
-        type: ACTIONS.HOUSE_ALARM.ARM,
-      }]],
+      actions: [
+        [
+          {
+            type: ACTIONS.HOUSE_ALARM.ARM,
+          },
+        ],
+      ],
     });
     expect(scene).to.have.property('selector', 'my-living-room');
   });
@@ -22,9 +26,13 @@ describe('SceneManager', () => {
       name: 'My living room',
       icon: 'fe fe-bell',
       selector: 'my-custom-selector',
-      actions: [[{
-        type: ACTIONS.HOUSE_ALARM.ARM,
-      }]],
+      actions: [
+        [
+          {
+            type: ACTIONS.HOUSE_ALARM.ARM,
+          },
+        ],
+      ],
     });
     expect(scene).to.have.property('selector', 'my-custom-selector');
   });
@@ -33,9 +41,11 @@ describe('SceneManager', () => {
     const promise = sceneManager.create({
       name: 'My living room',
       icon: 'fe fe-bell',
-      actions: [{
-        type: ACTIONS.HOUSE_ALARM.ARM,
-      }],
+      actions: [
+        {
+          type: ACTIONS.HOUSE_ALARM.ARM,
+        },
+      ],
     });
     return assert.isRejected(promise);
   });

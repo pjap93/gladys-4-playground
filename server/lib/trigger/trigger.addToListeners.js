@@ -1,4 +1,3 @@
-
 /**
  * @description Add a trigger from the DB to the listeners
  * @param {Object} trigger - A trigger object from the db.
@@ -11,13 +10,14 @@ function addToListeners(trigger) {
     this.triggerDictionnary[trigger.type] = [];
   }
   // we verify that the trigger is not already in the dictionnary
-  const triggerIndex = this.triggerDictionnary[trigger.type].findIndex(elem => (elem.id === trigger.id));
+  const triggerIndex = this.triggerDictionnary[trigger.type].findIndex((elem) => elem.id === trigger.id);
   // if the trigger was found, we replace it. Otherwise, we push it at the end
   if (triggerIndex !== -1) {
     this.triggerDictionnary[trigger.type][triggerIndex] = trigger;
   } else {
     this.triggerDictionnary[trigger.type].push(trigger);
   }
+  return null;
 }
 
 module.exports = {

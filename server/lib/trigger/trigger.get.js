@@ -26,22 +26,18 @@ async function get(options) {
     attributes: optionsWithDefault.fields,
     limit: optionsWithDefault.take,
     offset: optionsWithDefault.skip,
-    order: [
-      [optionsWithDefault.order_by, optionsWithDefault.order_dir],
-    ],
+    order: [[optionsWithDefault.order_by, optionsWithDefault.order_dir]],
   };
 
   if (optionsWithDefault.search) {
-    queryParams.where = Sequelize.where(
-      Sequelize.fn('lower', Sequelize.col('name')), {
-        [Op.like]: `%${optionsWithDefault.search}%`,
-      },
-    );
+    queryParams.where = Sequelize.where(Sequelize.fn('lower', Sequelize.col('name')), {
+      [Op.like]: `%${optionsWithDefault.search}%`,
+    });
   }
 
   const triggers = await db.Trigger.findAll(queryParams);
 
-  const triggersPlain = triggers.map(trigger => trigger.get({ plain: true }));
+  const triggersPlain = triggers.map((trigger) => trigger.get({ plain: true }));
 
   return triggersPlain;
 }

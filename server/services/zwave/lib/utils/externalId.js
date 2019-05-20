@@ -1,4 +1,3 @@
-
 /**
  * @description Return external id of deviceFeature
  * @param {Object} value - The zwave value.

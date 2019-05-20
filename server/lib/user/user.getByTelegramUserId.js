@@ -12,7 +12,11 @@ const { NotFoundError } = require('../../utils/coreErrors');
  *
  */
 async function getByTelegramUserId(telegramUserId) {
-  const user = await db.User.findOne({ where: { telegram_user_id: telegramUserId }, attributes: ['id', 'language'], raw: true });
+  const user = await db.User.findOne({
+    where: { telegram_user_id: telegramUserId },
+    attributes: ['id', 'language'],
+    raw: true,
+  });
   if (user === null) {
     throw new NotFoundError(`User with telegram_user_id "${telegramUserId}" not found`);
   }

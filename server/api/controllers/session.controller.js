@@ -1,6 +1,5 @@
 const asyncMiddleware = require('../middlewares/asyncMiddleware');
 
-
 module.exports = function SessionController(gladys) {
   /**
    * @api {post} /api/v1/session/:session_id/revoke revoke

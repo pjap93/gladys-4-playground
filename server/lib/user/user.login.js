@@ -13,7 +13,21 @@ const { PasswordNotMatchingError, NotFoundError } = require('../../utils/coreErr
  *
  */
 async function login(email, password) {
-  const user = await db.User.findOne({ where: { email }, attributes: ['id', 'firstname', 'lastname', 'email', 'password', 'language', 'birthdate', 'role', 'created_at', 'updated_at'] });
+  const user = await db.User.findOne({
+    where: { email },
+    attributes: [
+      'id',
+      'firstname',
+      'lastname',
+      'email',
+      'password',
+      'language',
+      'birthdate',
+      'role',
+      'created_at',
+      'updated_at',
+    ],
+  });
   if (user === null) {
     throw new NotFoundError(`User "${email}" not found`);
   }

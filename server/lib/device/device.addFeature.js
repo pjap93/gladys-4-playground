@@ -2,13 +2,7 @@ const { NotFoundError, BadParameters } = require('../../utils/coreErrors');
 const { areObjectsEqual, pick } = require('../../utils/objects');
 const db = require('../../models');
 
-const UPDATABLE_FIELDS = [
-  'category',
-  'type',
-  'unit',
-  'min',
-  'max',
-];
+const UPDATABLE_FIELDS = ['category', 'type', 'unit', 'min', 'max'];
 
 /**
  * @description Add a feature to a device
@@ -39,7 +33,7 @@ async function addFeature(deviceSelector, feature) {
     throw new NotFoundError('Device not found');
   }
   // if the device exists, we find the feature based on the external_id
-  const featureIndex = device.features.findIndex(f => f.external_id === feature.external_id);
+  const featureIndex = device.features.findIndex((f) => f.external_id === feature.external_id);
   let featureInStore = device.features[featureIndex];
 
   // if the feature does not already exist, we create it.

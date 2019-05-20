@@ -146,7 +146,7 @@ module.exports = function UserController(gladys) {
    */
   async function getSetupState(req, res) {
     const userCount = gladys.user.getUserCount();
-    const accountConfigured = (userCount > 0);
+    const accountConfigured = userCount > 0;
     res.json({
       account_configured: accountConfigured,
     });

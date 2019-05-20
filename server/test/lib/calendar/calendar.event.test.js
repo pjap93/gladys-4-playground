@@ -56,23 +56,25 @@ describe('calendar.getEvents', () => {
       from: '2019-01-12 07:49:07.556',
       to: '2019-03-12 07:49:07.556',
     });
-    expect(events).to.deep.equal([{
-      id: '2ae9c476-3230-4f82-8f93-5ebfac15e736',
-      calendar_id: '07ec2599-3221-4d6c-ac56-41443973201b',
-      name: 'Test Calendar Event',
-      selector: 'test-calendar-event',
-      external_id: null,
-      location: null,
-      start: new Date('2019-02-12T07:49:07.556Z'),
-      end: new Date('2019-02-12T08:49:07.556Z'),
-      full_day: false,
-      created_at: new Date('2019-02-12T07:49:07.556Z'),
-      updated_at: new Date('2019-02-12T07:49:07.556Z'),
-      calendar: {
-        name: 'Test Calendar',
-        selector: 'test-calendar',
+    expect(events).to.deep.equal([
+      {
+        id: '2ae9c476-3230-4f82-8f93-5ebfac15e736',
+        calendar_id: '07ec2599-3221-4d6c-ac56-41443973201b',
+        name: 'Test Calendar Event',
+        selector: 'test-calendar-event',
+        external_id: null,
+        location: null,
+        start: new Date('2019-02-12T07:49:07.556Z'),
+        end: new Date('2019-02-12T08:49:07.556Z'),
+        full_day: false,
+        created_at: new Date('2019-02-12T07:49:07.556Z'),
+        updated_at: new Date('2019-02-12T07:49:07.556Z'),
+        calendar: {
+          name: 'Test Calendar',
+          selector: 'test-calendar',
+        },
       },
-    }]);
+    ]);
   });
   it('should return 0 events', async () => {
     const events = await calendar.getEvents('0cd30aef-9c4e-4a23-88e3-3547971296e5', {

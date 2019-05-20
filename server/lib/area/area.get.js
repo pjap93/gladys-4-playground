@@ -8,7 +8,7 @@ const db = require('../../models');
 async function get() {
   const areas = await db.Area.findAll();
 
-  const plainAreas = areas.map(area => area.get({ plain: true }));
+  const plainAreas = areas.map((area) => area.get({ plain: true }));
 
   return plainAreas;
 }

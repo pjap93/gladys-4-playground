@@ -9,9 +9,13 @@ describe('dashboard.create', () => {
     const newDashboard = await dashboard.create({
       name: 'My new dashboard',
       type: DASHBOARD_TYPE.MAIN,
-      boxes: [[{
-        type: DASHBOARD_BOX_TYPE.USER_PRESENCE,
-      }]],
+      boxes: [
+        [
+          {
+            type: DASHBOARD_BOX_TYPE.USER_PRESENCE,
+          },
+        ],
+      ],
     });
     expect(newDashboard).to.have.property('name', 'My new dashboard');
     expect(newDashboard).to.have.property('selector', 'my-new-dashboard');
@@ -20,8 +24,7 @@ describe('dashboard.create', () => {
     const promise = dashboard.create({
       name: 'My new dashboard',
       type: DASHBOARD_TYPE.MAIN,
-      boxes: [[{
-      }]],
+      boxes: [[{}]],
     });
     return assert.isRejected(promise);
   });
@@ -44,13 +47,15 @@ describe('dashboard.get', () => {
   const dashboard = new Dashboard();
   it('should return list of dashboard', async () => {
     const dashboards = await dashboard.get();
-    expect(dashboards).to.deep.equal([{
-      id: '854dda11-80c0-4476-843b-65cbc95c6a85',
-      name: 'Test dashboard',
-      type: 'main',
-      selector: 'test-dashboard',
-      updated_at: new Date('2019-02-12T07:49:07.556Z'),
-    }]);
+    expect(dashboards).to.deep.equal([
+      {
+        id: '854dda11-80c0-4476-843b-65cbc95c6a85',
+        name: 'Test dashboard',
+        type: 'main',
+        selector: 'test-dashboard',
+        updated_at: new Date('2019-02-12T07:49:07.556Z'),
+      },
+    ]);
   });
 });
 

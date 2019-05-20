@@ -26,7 +26,12 @@ async function train() {
       question.slots.forEach((slot) => {
         const trimEntity = this.nlpManager.addTrimEntity(slot.key);
         if (slot.betweenCondition) {
-          trimEntity.addBetweenCondition('en', slot.betweenCondition.between[0], slot.betweenCondition.between[1], slot.betweenCondition.options);
+          trimEntity.addBetweenCondition(
+            'en',
+            slot.betweenCondition.between[0],
+            slot.betweenCondition.between[1],
+            slot.betweenCondition.options,
+          );
         }
         if (slot.afterLastCondition) {
           trimEntity.addAfterLastCondition('en', slot.afterLastCondition.after, slot.afterLastCondition.options);

@@ -13,17 +13,19 @@ async function getRooms(selector) {
     where: {
       selector,
     },
-    include: [{
-      model: db.Room,
-      as: 'rooms',
-    }],
+    include: [
+      {
+        model: db.Room,
+        as: 'rooms',
+      },
+    ],
   });
 
   if (house === null) {
     throw new NotFoundError('House not found');
   }
 
-  const roomsPlain = house.rooms.map(room => room.get({ plain: true }));
+  const roomsPlain = house.rooms.map((room) => room.get({ plain: true }));
   return roomsPlain;
 }
 

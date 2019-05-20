@@ -1,4 +1,3 @@
-
 /**
  * @private
  * @description Turn on the light.

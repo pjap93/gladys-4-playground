@@ -1,4 +1,3 @@
-
 /**
  * @description Init room.
  * @example
