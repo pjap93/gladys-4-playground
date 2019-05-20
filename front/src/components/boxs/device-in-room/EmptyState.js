@@ -1,3 +1,7 @@
+const marginTop20px = {
+  marginTop: '20px'
+};
+
 const EmptyState = ({ children, ...props }) => (
   <div
     style={{
@@ -17,7 +21,7 @@ const EmptyState = ({ children, ...props }) => (
         display: 'block'
       }}
     />
-    <p style={{ marginTop: '20px' }}>
+    <p style={marginTop20px}>
       Looks you don't have any devices in your house!
       <br /> Define your device in the integration page.
     </p>

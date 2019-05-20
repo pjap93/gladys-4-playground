@@ -47,7 +47,7 @@ import ZwaveNetworkPage from '../routes/integration/all/zwave/network-page';
 import ZwaveSettingsPage from '../routes/integration/all/zwave/settings-page';
 
 const session = new Session();
-const httpClient = (process.env.DEMO_MODE === 'true') ? new DemoHttpClient() : new HttpClient(session);
+const httpClient = process.env.DEMO_MODE === 'true' ? new DemoHttpClient() : new HttpClient(session);
 
 const store = createStore({
   httpClient,
@@ -68,74 +68,78 @@ const store = createStore({
   showDropDown: false
 });
 
-const AppRouter = connect('currentUrl,user,profilePicture,showDropDown,', actions)(
-  ({ currentUrl, user, profilePicture, showDropDown, handleRoute, toggleDropDown }) => (
-    <div id="app">
-      <Layout currentUrl={currentUrl}>
-        <Header currentUrl={currentUrl} user={user} profilePicture={profilePicture} toggleDropDown={toggleDropDown} showDropDown={showDropDown} />
-        <Router onChange={handleRoute}>
-          <Login path="/login" />
-          <LoginBlockstack path="/login/blockstack" />
-          
-          <SignupWelcomePage path="/signup" />
-          <SignupCreateAccountLocal path="/signup/create-account-local" />
-          <SignupCreateAccountGladysGateway path="/signup/create-account-gladys-gateway" />
-          <SignupCreateAccountBlockstack path="/signup/create-account-blockstack" />
-          <SignupPreferences path="/signup/preference" />
-          <SignupConfigureHouse path="/signup/configure-house" />
-          <SignupSuccess path="/signup/success" />
+const AppRouter = connect(
+  'currentUrl,user,profilePicture,showDropDown,',
+  actions
+)(({ currentUrl, user, profilePicture, showDropDown, handleRoute, toggleDropDown }) => (
+  <div id="app">
+    <Layout currentUrl={currentUrl}>
+      <Header
+        currentUrl={currentUrl}
+        user={user}
+        profilePicture={profilePicture}
+        toggleDropDown={toggleDropDown}
+        showDropDown={showDropDown}
+      />
+      <Router onChange={handleRoute}>
+        <Login path="/login" />
+        <LoginBlockstack path="/login/blockstack" />
 
-          <Dashboard path="/dashboard" />
-          <Device path="/dashboard/device" />
-          <IntegrationPage path="/dashboard/integration" />
-          <IntegrationPage path="/dashboard/integration/device" />
-          <IntegrationPage path="/dashboard/integration/communication" />
-          <IntegrationPage path="/dashboard/integration/calendar" />
-          <IntegrationPage path="/dashboard/integration/music" />
-          <IntegrationPage path="/dashboard/integration/health" />
-          <IntegrationPage path="/dashboard/integration/weather" />
-          <IntegrationPage path="/dashboard/integration/navigation" />
+        <SignupWelcomePage path="/signup" />
+        <SignupCreateAccountLocal path="/signup/create-account-local" />
+        <SignupCreateAccountGladysGateway path="/signup/create-account-gladys-gateway" />
+        <SignupCreateAccountBlockstack path="/signup/create-account-blockstack" />
+        <SignupPreferences path="/signup/preference" />
+        <SignupConfigureHouse path="/signup/configure-house" />
+        <SignupSuccess path="/signup/success" />
 
-          <TelegramPage path="/dashboard/integration/communication/telegram" />
-          <PhilipsHuePage path="/dashboard/integration/device/philips-hue" />
-          <Redirect path="/dashboard/integration/device/zwave" to="/dashboard/integration/device/zwave/node" />
-          <ZwaveNodePage path="/dashboard/integration/device/zwave/node" />
-          <ZwaveNetworkPage path="/dashboard/integration/device/zwave/network" />
-          <ZwaveSettingsPage path="/dashboard/integration/device/zwave/settings" />
+        <Dashboard path="/dashboard" />
+        <Device path="/dashboard/device" />
+        <IntegrationPage path="/dashboard/integration" />
+        <IntegrationPage path="/dashboard/integration/device" />
+        <IntegrationPage path="/dashboard/integration/communication" />
+        <IntegrationPage path="/dashboard/integration/calendar" />
+        <IntegrationPage path="/dashboard/integration/music" />
+        <IntegrationPage path="/dashboard/integration/health" />
+        <IntegrationPage path="/dashboard/integration/weather" />
+        <IntegrationPage path="/dashboard/integration/navigation" />
 
-          <ChatPage path="/dashboard/chat" />
-          <MapPage path="/dashboard/maps" />
-          <CalendarPage path="/dashboard/calendar" />
-          <ScenePage path="/dashboard/scene" />
-          <EditScenePage path="/dashboard/scene/:scene_selector" />
-          <TriggerPage path="/dashboard/trigger" />
+        <TelegramPage path="/dashboard/integration/communication/telegram" />
+        <PhilipsHuePage path="/dashboard/integration/device/philips-hue" />
+        <Redirect path="/dashboard/integration/device/zwave" to="/dashboard/integration/device/zwave/node" />
+        <ZwaveNodePage path="/dashboard/integration/device/zwave/node" />
+        <ZwaveNetworkPage path="/dashboard/integration/device/zwave/network" />
+        <ZwaveSettingsPage path="/dashboard/integration/device/zwave/settings" />
 
-          <ProfilePage path="/dashboard/profile" />
-          <SettingsSessionPage path="/dashboard/settings/session" />
-          <SettingsHousePage path="/dashboard/settings/house" />
-          <SettingsAdvancedPage path="/dashboard/settings/advanced" />
-          <SettingsSystemPage path="/dashboard/settings/system" />
-        </Router>
-      </Layout>
-    </div>
-  )
-);
+        <ChatPage path="/dashboard/chat" />
+        <MapPage path="/dashboard/maps" />
+        <CalendarPage path="/dashboard/calendar" />
+        <ScenePage path="/dashboard/scene" />
+        <EditScenePage path="/dashboard/scene/:scene_selector" />
+        <TriggerPage path="/dashboard/trigger" />
+
+        <ProfilePage path="/dashboard/profile" />
+        <SettingsSessionPage path="/dashboard/settings/session" />
+        <SettingsHousePage path="/dashboard/settings/house" />
+        <SettingsAdvancedPage path="/dashboard/settings/advanced" />
+        <SettingsSystemPage path="/dashboard/settings/system" />
+      </Router>
+    </Layout>
+  </div>
+));
 
 @connect(
   'session',
   actions
 )
 class MainApp extends Component {
-
   componentWillMount() {
     this.props.checkSession();
     this.props.loadProfilePicture();
   }
 
-  render({}, { }) {
-    return (
-      <AppRouter />
-    );
+  render({}, {}) {
+    return <AppRouter />;
   }
 }
 

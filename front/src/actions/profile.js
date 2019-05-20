@@ -1,7 +1,6 @@
 import { RequestStatus } from '../utils/consts';
 
 function createActions(store) {
-
   const actions = {
     async getMySelf(state) {
       store.setState({ ProfileGetStatus: RequestStatus.Getting });

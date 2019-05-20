@@ -2,21 +2,33 @@ import { DeviceGetByRoomStatus } from '../utils/consts';
 import update from 'immutability-helper';
 
 function createActions(store) {
-
   const actions = {
     async getDevicesByRoom(state) {
-      store.setState({ DeviceGetStatus: DeviceGetByRoomStatus.Getting });
+      store.setState({
+        DeviceGetStatus: DeviceGetByRoomStatus.Getting
+      });
       try {
         const rooms = await state.httpClient.get('/api/v1/room?expand=devices');
-        store.setState({ rooms, DeviceGetStatus: DeviceGetByRoomStatus.Success });
+        store.setState({
+          rooms,
+          DeviceGetStatus: DeviceGetByRoomStatus.Success
+        });
       } catch (e) {
-        store.setState({ DeviceGetStatus: DeviceGetByRoomStatus.Error });
+        store.setState({
+          DeviceGetStatus: DeviceGetByRoomStatus.Error
+        });
       }
     },
     collapseRoom(state, e, roomIndex) {
       e.preventDefault();
       const newState = update(state, {
-        rooms: { [roomIndex]: { collapsed: { $set: !state.rooms[roomIndex].collapsed } } }
+        rooms: {
+          [roomIndex]: {
+            collapsed: {
+              $set: !state.rooms[roomIndex].collapsed
+            }
+          }
+        }
       });
       store.setState(newState);
     },
@@ -29,8 +41,7 @@ function createActions(store) {
         await actions.turnOnLight(state, device.selector);
       }
     },
-    updateLocalValue (state, roomIndex, deviceIndex, deviceFeatureIndex, value) {
-      
+    updateLocalValue(state, roomIndex, deviceIndex, deviceFeatureIndex, value) {
       // create a new immutable state
       const newState = update(state, {
         rooms: {

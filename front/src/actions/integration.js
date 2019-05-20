@@ -15,12 +15,16 @@ const actions = store => ({
       integrations
     });
   },
-  search (state, e) {
+  search(state, e) {
     if (!e.target.value || e.target.value === '') {
-      return store.setState({ integrationsFiltered: null });
+      return store.setState({
+        integrationsFiltered: null
+      });
     }
     store.setState({
-      integrationsFiltered: state.integrations.filter(integration => integration.name.toLowerCase().includes(e.target.value.toLowerCase()))
+      integrationsFiltered: state.integrations.filter(integration =>
+        integration.name.toLowerCase().includes(e.target.value.toLowerCase())
+      )
     });
   }
 });

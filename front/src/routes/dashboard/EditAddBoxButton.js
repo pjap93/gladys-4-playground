@@ -5,17 +5,22 @@ const addBox = (addBoxFunction, x) => () => {
   addBoxFunction(x);
 };
 
-const updateNewSelectedBox = (updateNewSelectedBoxFunction, x) => (e) => {
+const updateNewSelectedBox = (updateNewSelectedBoxFunction, x) => e => {
   updateNewSelectedBoxFunction(x, e.target.value);
 };
 
-const EditAddBoxButton = ({ children, ...props }) => (
+const marginBottom30px = {
+  marginBottom: '30px'
+};
 
-  <div class="row" style={{ marginBottom: '30px' }}>
+const EditAddBoxButton = ({ children, ...props }) => (
+  <div class="row" style={marginBottom30px}>
     <div class="col-8">
       <select onChange={updateNewSelectedBox(props.updateNewSelectedBox, props.x)} class="form-control">
         {DASHBOARD_BOX_TYPE_LIST.map(dashboardBoxType => (
-          <option value={dashboardBoxType}><Text id={'dashboard.boxTitle.' + dashboardBoxType} /></option>
+          <option value={dashboardBoxType}>
+            <Text id={'dashboard.boxTitle.' + dashboardBoxType} />
+          </option>
         ))}
       </select>
     </div>
@@ -25,7 +30,6 @@ const EditAddBoxButton = ({ children, ...props }) => (
       </button>
     </div>
   </div>
-
 );
 
 export default EditAddBoxButton;
