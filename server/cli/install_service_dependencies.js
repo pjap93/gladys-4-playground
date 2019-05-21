@@ -5,8 +5,11 @@ const logger = require('../utils/logger.js');
 
 const SERVICE_PATH = join(__dirname, '../services');
 
-const isDirectory = source => lstatSync(source).isDirectory();
-const getDirectories = source => readdirSync(source).map(name => join(source, name)).filter(isDirectory);
+const isDirectory = (source) => lstatSync(source).isDirectory();
+const getDirectories = (source) =>
+  readdirSync(source)
+    .map((name) => join(source, name))
+    .filter(isDirectory);
 
 const directories = getDirectories(SERVICE_PATH);
 
