@@ -1,10 +1,10 @@
 import { Text } from 'preact-i18n';
 
-const moveBoxUp = (moveBoxUpFunction, x, y) => (e) => {
+const moveBoxUp = (moveBoxUpFunction, x, y) => e => {
   moveBoxUpFunction(x, y);
 };
 
-const moveBoxDown = (moveBoxDownFunction, x, y) => (e) => {
+const moveBoxDown = (moveBoxDownFunction, x, y) => e => {
   moveBoxDownFunction(x, y);
 };
 
@@ -15,7 +15,9 @@ const removeBox = (removeBoxFunction, x, y) => () => {
 const BaseEditBox = ({ children, ...props }) => (
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title"><Text id={props.titleKey} /></h3>
+      <h3 class="card-title">
+        <Text id={props.titleKey} />
+      </h3>
       <div class="card-options">
         <a onClick={moveBoxUp(props.moveBoxUp, props.x, props.y)} class="card-options-collapse">
           <i class="fe fe-chevron-up" />
@@ -28,9 +30,7 @@ const BaseEditBox = ({ children, ...props }) => (
         </a>
       </div>
     </div>
-    <div class="card-body">
-      {children}
-    </div>
+    <div class="card-body">{children}</div>
   </div>
 );
 

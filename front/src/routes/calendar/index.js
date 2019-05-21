@@ -18,11 +18,10 @@ const localizer = BigCalendar.momentLocalizer(moment);
   actions
 )
 class Map extends Component {
-
   onSelectSlot(slotInfo) {
     console.log(slotInfo);
   }
-  render({}, { }) {
+  render({}, {}) {
     return (
       <div class="page">
         <div class="page-main">
@@ -34,15 +33,17 @@ class Map extends Component {
                     <div class="card-body">
                       <BigCalendar
                         localizer={localizer}
-                        events={[{
-                          title: 'Test',
-                          start: new Date('2019-02-25 01:15:54.185'),
-                          end: new Date('2019-02-25 14:15:54.185')
-                        }]}
+                        events={[
+                          {
+                            title: 'Test',
+                            start: new Date('2019-02-25 01:15:54.185'),
+                            end: new Date('2019-02-25 14:15:54.185')
+                          }
+                        ]}
                         startAccessor="start"
                         endAccessor="end"
                         style={{
-                          height: '550px' 
+                          height: '550px'
                         }}
                         onSelectSlot={this.onSelectSlot}
                         selectable
@@ -58,7 +59,6 @@ class Map extends Component {
     );
   }
 }
-
 
 /*function getTimeTemplate(schedule, isAllDay) {
   const html = [];

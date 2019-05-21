@@ -10,7 +10,6 @@ import integrationConfig from '../../../../../config/integrations';
   actions
 )
 class ZwaveSettingsPage extends Component {
-
   componentWillMount() {
     this.props.getUsbPorts();
     this.props.getInfos();

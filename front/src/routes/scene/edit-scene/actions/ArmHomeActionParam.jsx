@@ -1,5 +1,5 @@
 const ArmHomeActionParams = ({ children, ...props }) => (
-  <select class="form-control" >
+  <select class="form-control">
     <option>Main Home</option>
   </select>
 );

@@ -8,8 +8,8 @@
     "serve": "preact build && preact serve",
     "dev": "preact watch -p 1444",
     "eslint": "eslint src --ext .json --ext .js",
-    "prettier-check": "prettier --check src/**/*.js",
-    "prettier": "prettier --write src/**/*.js",
+    "prettier-check": "prettier --check '**/*.js' '**/*.jsx'",
+    "prettier": "prettier --write '**/*.js' '**/*.jsx'",
     "test": "jest --coverage"
   },
   "devDependencies": {

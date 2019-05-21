@@ -4,9 +4,8 @@ import update from 'immutability-helper';
 import { route } from 'preact-router';
 
 function createActions(store) {
-
   const actions = {
-    resetPreferences (state) {
+    resetPreferences(state) {
       store.setState({
         signupUserPreferences: {
           temperature_unit_preference: 'celsius',
@@ -17,56 +16,56 @@ function createActions(store) {
         }
       });
     },
-    updateUserPreferences (state, property, value) {
+    updateUserPreferences(state, property, value) {
       const newState = update(state, {
         signupUserPreferences: {
           [property]: {
-            $set: value 
+            $set: value
           }
         }
       });
       store.setState(newState);
     },
-    updateSystemPreferences (state, property, value) {
+    updateSystemPreferences(state, property, value) {
       const newState = update(state, {
         signupSystemPreferences: {
           [property]: {
-            $set: value 
+            $set: value
           }
         }
       });
       store.setState(newState);
     },
-    async savePreferences (state) {
+    async savePreferences(state) {
       // saving user preferences
       store.setState({
-        signupSaveUserPreferences: RequestStatus.Getting 
+        signupSaveUserPreferences: RequestStatus.Getting
       });
       try {
         await state.httpClient.patch(`/api/v1/me`, state.signupUserPreferences);
         store.setState({
-          signupSaveUserPreferences: RequestStatus.Success 
+          signupSaveUserPreferences: RequestStatus.Success
         });
       } catch (e) {
         store.setState({
-          signupSaveUserPreferences: RequestStatus.Error 
+          signupSaveUserPreferences: RequestStatus.Error
         });
       }
       // saving system preferences
       store.setState({
-        signupSaveSystemPreferences: RequestStatus.Getting 
+        signupSaveSystemPreferences: RequestStatus.Getting
       });
       try {
         await state.httpClient.post(`/api/v1/variable/${SYSTEM_VARIABLE_NAMES.DEVICE_STATE_HISTORY_IN_DAYS}`, {
           value: state.signupSystemPreferences[SYSTEM_VARIABLE_NAMES.DEVICE_STATE_HISTORY_IN_DAYS]
         });
         store.setState({
-          signupSaveSystemPreferences: RequestStatus.Success 
+          signupSaveSystemPreferences: RequestStatus.Success
         });
         route('/signup/configure-house');
       } catch (e) {
         store.setState({
-          signupSaveSystemPreferences: RequestStatus.Error 
+          signupSaveSystemPreferences: RequestStatus.Error
         });
       }
     }

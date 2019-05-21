@@ -7,15 +7,15 @@ import EditDevicesInRoom from '../../components/boxs/device-in-room/EditDeviceIn
 const Box = ({ children, ...props }) => {
   switch (props.box.type) {
     case 'weather':
-      return (<EditWeatherBox {...props} />);
+      return <EditWeatherBox {...props} />;
     case 'user-presence':
-      return (<EditAtHomeBox {...props} />);
+      return <EditAtHomeBox {...props} />;
     case 'camera':
-      return (<EditCameraBox {...props}  />);
+      return <EditCameraBox {...props} />;
     case 'temperature-in-room':
-      return (<EditRoomTemperatureBox {...props} />);
+      return <EditRoomTemperatureBox {...props} />;
     case 'devices-in-room':
-      return (<EditDevicesInRoom {...props} />);
+      return <EditDevicesInRoom {...props} />;
   }
 };
 
@@ -23,26 +23,36 @@ const onDragStart = (onDragStartFunction, x, y) => {
   onDragStartFunction(x, y);
 };
 
-const onDragOver = (dragOverFunction, x, y) => (e) => {
+const onDragOver = (dragOverFunction, x, y) => e => {
   e.preventDefault();
   dragOverFunction(x, y, e);
 };
 
-const onDrop = (dropFunction, x, y) => (event) => {
+const onDrop = (dropFunction, x, y) => event => {
   dropFunction(x, y, event);
 };
 
-const EditBoxWithDragAndDrop = ({  children, ...props }) => (
+const EditBoxWithDragAndDrop = ({ children, ...props }) => (
   <div>
-    {props.dragEnable &&
-      <div style={{
-        height: '50px', padding: '10px', borderStyle: 'dashed', borderColor: 'grey', marginBottom: '1.5rem' 
-      }}
+    {props.dragEnable && (
+      <div
+        style={{
+          height: '50px',
+          padding: '10px',
+          borderStyle: 'dashed',
+          borderColor: 'grey',
+          marginBottom: '1.5rem'
+        }}
       >
         <p class="text-center">Drag and drop me here</p>
       </div>
-    }
-    <div draggable="true" ondragstart={onDragStart(props.onDragStart, props.x, props.y)}  ondrop={onDrop(props.onDrop, props.x, props.y)} ondragover={onDragOver(props.onDragOver, props.x, props.y)} >
+    )}
+    <div
+      draggable="true"
+      ondragstart={onDragStart(props.onDragStart, props.x, props.y)}
+      ondrop={onDrop(props.onDrop, props.x, props.y)}
+      ondragover={onDragOver(props.onDragOver, props.x, props.y)}
+    >
       <Box {...props} />
     </div>
   </div>

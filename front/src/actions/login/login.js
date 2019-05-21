@@ -4,7 +4,6 @@ import createActionsProfilePicture from '../profilePicture';
 import { route } from 'preact-router';
 
 function createActions(store) {
-
   const actionsProfilePicture = createActionsProfilePicture(store);
 
   const actions = {
@@ -14,11 +13,11 @@ function createActions(store) {
       }
       if (!validateEmail(state.loginFormEmailValue)) {
         return store.setState({
-          loginStatus: LoginStatus.WrongEmailError 
+          loginStatus: LoginStatus.WrongEmailError
         });
       }
       store.setState({
-        loginStatus: LoginStatus.Processing 
+        loginStatus: LoginStatus.Processing
       });
       try {
         const user = await state.httpClient.post('/api/v1/login', {
@@ -26,7 +25,10 @@ function createActions(store) {
           password: state.loginFormPasswordValue
         });
         store.setState({
-          user, loginStatus: LoginStatus.LoginSuccess, loginFormEmailValue: '', loginFormPasswordValue: '' 
+          user,
+          loginStatus: LoginStatus.LoginSuccess,
+          loginFormEmailValue: '',
+          loginFormPasswordValue: ''
         });
         state.session.saveUser(user);
         state.session.init();
@@ -34,24 +36,24 @@ function createActions(store) {
         route('/dashboard');
       } catch (e) {
         store.setState({
-          loginStatus: LoginStatus.WrongCredentialsError 
+          loginStatus: LoginStatus.WrongCredentialsError
         });
       }
     },
     onEmailChange(state, event) {
       store.setState({
-        loginFormEmailValue: event.target.value 
+        loginFormEmailValue: event.target.value
       });
     },
     onPasswordChange(state, event) {
       store.setState({
-        loginFormPasswordValue: event.target.value 
+        loginFormPasswordValue: event.target.value
       });
     },
     async checkIfInstanceIsConfigured(state) {
       // check instance state
       store.setState({
-        checkIfInstanceIsConfiguredRequestState: RequestStatus.Getting 
+        checkIfInstanceIsConfiguredRequestState: RequestStatus.Getting
       });
       try {
         const instanceState = await state.httpClient.get('/api/v1/setup');
@@ -59,11 +61,11 @@ function createActions(store) {
           route('/signup');
         }
         store.setState({
-          checkIfInstanceIsConfiguredRequestState: RequestStatus.Success 
+          checkIfInstanceIsConfiguredRequestState: RequestStatus.Success
         });
       } catch (e) {
         store.setState({
-          checkIfInstanceIsConfiguredRequestState: RequestStatus.Error 
+          checkIfInstanceIsConfiguredRequestState: RequestStatus.Error
         });
       }
     }

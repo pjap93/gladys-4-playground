@@ -8,15 +8,10 @@ import actions from '../../../actions/device';
   actions
 )
 class EditTrigger extends Component {
+  componentWillMount() {}
 
-  componentWillMount() {
-    
-  }
-
-  render({}, { }) {
-    return (
-      <EditTriggerPage />
-    );
+  render({}, {}) {
+    return <EditTriggerPage />;
   }
 }
 

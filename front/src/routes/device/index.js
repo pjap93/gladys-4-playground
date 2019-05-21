@@ -8,15 +8,12 @@ import actions from '../../actions/device';
   actions
 )
 class Device extends Component {
-
   componentWillMount() {
     this.props.getDevicesByRoom();
   }
 
-  render({}, { }) {
-    return (
-      <DevicePage />
-    );
+  render({}, {}) {
+    return <DevicePage />;
   }
 }
 

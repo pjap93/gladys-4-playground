@@ -1,8 +1,8 @@
 import { RequestStatus } from '../../../../../utils/consts';
 import vis from 'vis';
 
-function renderGraph (zwaveNodes) {
-  const nodeData = zwaveNodes.map((node) => ({
+function renderGraph(zwaveNodes) {
+  const nodeData = zwaveNodes.map(node => ({
     id: node.id,
     label: node.product
   }));
@@ -12,8 +12,8 @@ function renderGraph (zwaveNodes) {
 
   const alreadyIn = {};
 
-  zwaveNodes.forEach((node) => {
-    node.neighbors.forEach((neighborId) => {
+  zwaveNodes.forEach(node => {
+    node.neighbors.forEach(neighborId => {
       if (!alreadyIn[`${neighborId}-${node.id}`]) {
         edgeData.push({
           from: node.id,
@@ -42,19 +42,20 @@ function renderGraph (zwaveNodes) {
 }
 
 const actions = store => ({
-  async getNeighbors (state) {
+  async getNeighbors(state) {
     store.setState({
-      zwaveGetNeighborsStatus: RequestStatus.Getting 
+      zwaveGetNeighborsStatus: RequestStatus.Getting
     });
     try {
       const zwaveNodesNeighbors = await state.httpClient.get('/api/v1/service/zwave/neighbor');
       store.setState({
-        zwaveNodesNeighbors, zwaveGetNeighborsStatus: RequestStatus.Success 
+        zwaveNodesNeighbors,
+        zwaveGetNeighborsStatus: RequestStatus.Success
       });
       renderGraph(zwaveNodesNeighbors);
     } catch (e) {
       store.setState({
-        zwaveGetNeighborsStatus: RequestStatus.Error 
+        zwaveGetNeighborsStatus: RequestStatus.Error
       });
     }
   }

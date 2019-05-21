@@ -8,16 +8,12 @@ import LoginPage from './LoginPage';
   actions
 )
 class Login extends Component {
-
   componentWillMount() {
     this.props.checkIfInstanceIsConfigured();
   }
 
-  render({ }, {}) {
-
-    return (
-      <LoginPage />
-    );
+  render({}, {}) {
+    return <LoginPage />;
   }
 }
 

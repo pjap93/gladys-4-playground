@@ -8,9 +8,7 @@ dayjs.extend(relativeTime);
 function createActions(store) {
   const actions = {
     userChanged(state, user) {
-      const userIndex = state.usersWithPresence.findIndex(
-        u => u.selector === user.selector
-      );
+      const userIndex = state.usersWithPresence.findIndex(u => u.selector === user.selector);
       // if user is not found, we refresh the box
       if (userIndex === -1) {
         return actions.getUsersWithPresence(state);
@@ -36,9 +34,7 @@ function createActions(store) {
         // calculate relative date
         usersWithPresence.forEach(user => {
           if (user.last_house_changed) {
-            user.last_house_changed_relative_to_now = dayjs(
-              user.last_house_changed
-            )
+            user.last_house_changed_relative_to_now = dayjs(user.last_house_changed)
               .locale(state.user.language)
               .fromNow();
           }

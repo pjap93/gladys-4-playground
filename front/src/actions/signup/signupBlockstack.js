@@ -3,7 +3,6 @@ import createActionSignupCreateLocalAccount from './signupCreateLocalAccount';
 import createActionsWelcome from './welcome';
 
 function createActions(store) {
-
   const signupLocalAccountActions = createActionSignupCreateLocalAccount(store);
   const welcomeActions = createActionsWelcome(store);
 
@@ -11,22 +10,22 @@ function createActions(store) {
     async init(state) {
       if (!state.blockstackLoaded) {
         store.setState({
-          blockstackLoaded: true 
+          blockstackLoaded: true
         });
         await loadBlockstack();
       }
       const userSession = new window.blockstack.UserSession();
-      
+
       // handle blockstack login
       if (userSession.isUserSignedIn()) {
         const blockstackUserData = userSession.loadUserData();
         store.setState({
-          blockstackUserData 
+          blockstackUserData
         });
       } else if (userSession.isSignInPending()) {
         const blockstackUserData = await userSession.handlePendingSignIn();
         store.setState({
-          blockstackUserData 
+          blockstackUserData
         });
       } else {
         const redirectURI = `${window.location.href}`;

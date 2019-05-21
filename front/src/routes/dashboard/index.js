@@ -8,15 +8,12 @@ import actions from '../../actions/dashboard';
   actions
 )
 class Dashboard extends Component {
-
   componentWillMount() {
     this.props.getBoxes();
   }
 
-  render({}, { }) {
-    return (
-      <DashboardPage />
-    );
+  render({}, {}) {
+    return <DashboardPage />;
   }
 }
 

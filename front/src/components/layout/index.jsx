@@ -1,15 +1,10 @@
 import { h } from 'preact';
 
-const NOT_MAIN_PAGES = [
-  '/login',
-  '/login/blockstack'
-];
+const NOT_MAIN_PAGES = ['/login', '/login/blockstack'];
 
 const Layout = ({ children, ...props }) => (
   <div class="page">
-    <div class={NOT_MAIN_PAGES.includes(props.currentUrl) ?  'page-single' : 'page-main'}>
-      {children}
-    </div>
+    <div class={NOT_MAIN_PAGES.includes(props.currentUrl) ? 'page-single' : 'page-main'}>{children}</div>
   </div>
 );
 

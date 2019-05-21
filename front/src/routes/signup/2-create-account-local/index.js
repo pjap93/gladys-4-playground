@@ -9,25 +9,27 @@ import actions from '../../../actions/signup/signupCreateLocalAccount';
   actions
 )
 class CreateAccountLocal extends Component {
-
   componentWillMount() {
     this.props.resetNewUser();
     this.props.checkIfInstanceIsConfigured();
   }
 
-  render({ signupNewUser, updateNewUser, createUser, signupErrors, createLocalAccountStatus, createLocalAccountError }, {}) {
+  render(
+    { signupNewUser, updateNewUser, createUser, signupErrors, createLocalAccountStatus, createLocalAccountError },
+    {}
+  ) {
     return (
       <SignupLayout currentUrl="/signup/create-account-local">
-        { signupNewUser &&
-        <CreateAccountLocalTab
-          createUser={createUser}
-          updateNewUser={updateNewUser}
-          signupNewUser={signupNewUser}
-          signupErrors={signupErrors}
-          createLocalAccountStatus={createLocalAccountStatus}
-          createLocalAccountError={createLocalAccountError}
-        />
-        }
+        {signupNewUser && (
+          <CreateAccountLocalTab
+            createUser={createUser}
+            updateNewUser={updateNewUser}
+            signupNewUser={signupNewUser}
+            signupErrors={signupErrors}
+            createLocalAccountStatus={createLocalAccountStatus}
+            createLocalAccountError={createLocalAccountError}
+          />
+        )}
       </SignupLayout>
     );
   }

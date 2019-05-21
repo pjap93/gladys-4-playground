@@ -9,13 +9,11 @@ import actions from '../../../actions/signup/signupCreateLocalAccount';
   actions
 )
 class CreateAccountGladysGateway extends Component {
-
   componentWillMount() {
     this.props.checkIfInstanceIsConfigured();
   }
 
-  render({ }, {}) {
-
+  render({}, {}) {
     return (
       <SignupLayout currentUrl="/signup/create-account-blockstack">
         <CreateAccountGladysGatewayTab />

@@ -8,15 +8,10 @@ import actions from '../../../actions/device';
   actions
 )
 class SettingsSessions extends Component {
+  componentWillMount() {}
 
-  componentWillMount() {
-    
-  }
-
-  render({}, { }) {
-    return (
-      <SessionPage />
-    );
+  render({}, {}) {
+    return <SessionPage />;
   }
 }
 

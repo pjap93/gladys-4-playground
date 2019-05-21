@@ -8,15 +8,12 @@ import actions from '../../actions/scene';
   actions
 )
 class Scene extends Component {
-
   componentWillMount() {
     this.props.getScenes();
   }
 
-  render({}, { }) {
-    return (
-      <ScenePage />
-    );
+  render({}, {}) {
+    return <ScenePage />;
   }
 }
 

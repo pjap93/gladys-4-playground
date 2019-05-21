@@ -9,12 +9,11 @@ function validateEmail(email) {
 }
 
 function createActions(store) {
-
   const actionsProfilePicture = createActionsProfilePicture(store);
   const welcomeActions = createActionsWelcome(store);
 
   const actions = {
-    resetNewUser (state) {
+    resetNewUser(state) {
       store.setState({
         signupNewUser: {
           firstname: '',
@@ -52,33 +51,40 @@ function createActions(store) {
         errored = true;
         errors.password = true;
       }
-      if (!state.signupNewUser.birthdateMonth || !state.signupNewUser.birthdateDay || !state.signupNewUser.birthdateYear) {
+      if (
+        !state.signupNewUser.birthdateMonth ||
+        !state.signupNewUser.birthdateDay ||
+        !state.signupNewUser.birthdateYear
+      ) {
         errored = true;
         errors.birthdate = true;
       }
       store.setState({
-        signupErrors: errors 
+        signupErrors: errors
       });
       return errored;
     },
-    async createUser (state) {
+    async createUser(state) {
       store.setState({
-        signupAlreadySubmitted: true 
+        signupAlreadySubmitted: true
       });
       const errored = actions.validateUser(state);
       if (errored) {
-        return ;
+        return;
       }
       const userToCreate = Object.assign({}, state.signupNewUser, {
-        birthdate: `${state.signupNewUser.birthdateYear}-${state.signupNewUser.birthdateMonth}-${state.signupNewUser.birthdateDay}`
+        birthdate: `${state.signupNewUser.birthdateYear}-${state.signupNewUser.birthdateMonth}-${
+          state.signupNewUser.birthdateDay
+        }`
       });
       store.setState({
-        createLocalAccountStatus: RequestStatus.Getting 
+        createLocalAccountStatus: RequestStatus.Getting
       });
       try {
         const user = await state.httpClient.post(`/api/v1/signup`, userToCreate);
         store.setState({
-          user, createLocalAccountStatus: RequestStatus.Success 
+          user,
+          createLocalAccountStatus: RequestStatus.Success
         });
         state.session.saveUser(user);
         actionsProfilePicture.loadProfilePicture(state);
@@ -86,24 +92,25 @@ function createActions(store) {
       } catch (e) {
         if (!e.response) {
           store.setState({
-            createLocalAccountStatus: RequestStatus.NetworkError 
+            createLocalAccountStatus: RequestStatus.NetworkError
           });
         } else if (e.response && e.response.status === 409) {
           store.setState({
-            createLocalAccountStatus: RequestStatus.ConflictError, createLocalAccountError: e.response.data 
+            createLocalAccountStatus: RequestStatus.ConflictError,
+            createLocalAccountError: e.response.data
           });
         } else {
           store.setState({
-            createLocalAccountStatus: RequestStatus.Error 
+            createLocalAccountStatus: RequestStatus.Error
           });
         }
       }
     },
-    updateNewUser (state, property, value) {
+    updateNewUser(state, property, value) {
       const newState = update(state, {
         signupNewUser: {
           [property]: {
-            $set: value 
+            $set: value
           }
         }
       });

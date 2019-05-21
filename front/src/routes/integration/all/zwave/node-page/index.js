@@ -10,7 +10,6 @@ import integrationConfig from '../../../../../config/integrations';
   actions
 )
 class ZwaveNodePage extends Component {
-
   componentWillMount() {
     this.props.getNodes();
   }

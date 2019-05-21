@@ -3,12 +3,9 @@ import SignupLayout from '../layout';
 import SuccessTab from './SuccessTab';
 
 class Success extends Component {
+  componentDidMount() {}
 
-  componentDidMount() {
-    
-  }
-
-  render({}, { }) {
+  render({}, {}) {
     return (
       <SignupLayout>
         <SuccessTab />

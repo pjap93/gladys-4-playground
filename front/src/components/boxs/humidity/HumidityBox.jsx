@@ -1,9 +1,8 @@
-
 const HumidityBox = ({ children, ...props }) => (
   <div class="card">
     <div class="card-body p-3 text-center">
       <div class="text-right text-green">
-      6%
+        6%
         <i class="fe fe-chevron-up" />
       </div>
       <div class="h1 m-0">70%</div>

@@ -8,15 +8,10 @@ import actions from '../../actions/device';
   actions
 )
 class Trigger extends Component {
+  componentWillMount() {}
 
-  componentWillMount() {
-    
-  }
-
-  render({}, { }) {
-    return (
-      <TriggerPage />
-    );
+  render({}, {}) {
+    return <TriggerPage />;
   }
 }
 

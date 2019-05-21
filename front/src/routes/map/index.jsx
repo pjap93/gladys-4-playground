@@ -8,20 +8,21 @@ import 'leaflet/dist/leaflet.css';
   actions
 )
 class Map extends Component {
-
   componentDidMount() {
     this.props.initLeafletMap();
   }
 
-  render({}, { }) {
+  render({}, {}) {
     return (
       <div class="page">
         <div class="page-main">
           <div class="my-3 my-md-5">
             <div class="map-header">
-              <div id="map-tab-leaflet" style={{
-                height: '550px' 
-              }}
+              <div
+                id="map-tab-leaflet"
+                style={{
+                  height: '550px'
+                }}
               />
             </div>
           </div>

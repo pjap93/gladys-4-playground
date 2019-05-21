@@ -9,10 +9,7 @@ import integrationConfig from '../../../../config/integrations';
   actions
 )
 class TelegramIntegration extends Component {
-
-  componentWillMount() {
-
-  }
+  componentWillMount() {}
 
   render({ user, telegramSaveApiKeyStatus, saveTelegramApiKey, updateTelegramApiKey }, {}) {
     return (

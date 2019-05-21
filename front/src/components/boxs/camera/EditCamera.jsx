@@ -7,11 +7,11 @@ import BaseEditBox from '../baseEditBox';
 const EditCameraBox = ({ children, ...props }) => (
   <BaseEditBox {...props} titleKey="dashboard.boxTitle.camera">
     <div class="form-group">
-      <label><Text id="dashboard.boxes.camera.editCameraLabel" /></label>
+      <label>
+        <Text id="dashboard.boxes.camera.editCameraLabel" />
+      </label>
       <select class="form-control">
-        {props.cameras && props.cameras.map((camera) => (
-          <option value={camera.selector}>{camera.name}</option>
-        ))}
+        {props.cameras && props.cameras.map(camera => <option value={camera.selector}>{camera.name}</option>)}
       </select>
     </div>
   </BaseEditBox>
@@ -22,17 +22,11 @@ const EditCameraBox = ({ children, ...props }) => (
   actions
 )
 class EditCameraBoxComponent extends Component {
+  componentDidMount() {}
 
-  componentDidMount() {
-    
-  }
-
-  render(props, { }) {
-    return (
-      <EditCameraBox {...props} />
-    );
+  render(props, {}) {
+    return <EditCameraBox {...props} />;
   }
 }
-
 
 export default EditCameraBoxComponent;

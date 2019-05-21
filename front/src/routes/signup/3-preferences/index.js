@@ -9,15 +9,17 @@ import actions from '../../../actions/signup/signupSetPreferences';
   actions
 )
 class Preferences extends Component {
-
   componentWillMount() {
     this.props.resetPreferences();
   }
 
-  render({ signupUserPreferences, signupSystemPreferences, updateUserPreferences, updateSystemPreferences, savePreferences }, { }) {
+  render(
+    { signupUserPreferences, signupSystemPreferences, updateUserPreferences, updateSystemPreferences, savePreferences },
+    {}
+  ) {
     return (
       <SignupLayout currentUrl="/signup/preference">
-        { signupUserPreferences && signupSystemPreferences &&
+        {signupUserPreferences && signupSystemPreferences && (
           <PreferencesTab
             signupUserPreferences={signupUserPreferences}
             signupSystemPreferences={signupSystemPreferences}
@@ -25,7 +27,7 @@ class Preferences extends Component {
             updateSystemPreferences={updateSystemPreferences}
             savePreferences={savePreferences}
           />
-        }
+        )}
       </SignupLayout>
     );
   }
