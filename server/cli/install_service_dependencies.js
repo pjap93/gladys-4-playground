@@ -13,7 +13,7 @@ const directories = getDirectories(SERVICE_PATH);
 directories.forEach((directory) => {
   logger.info(`Installing dependencies in folder ${directory}`);
   try {
-    execSync(`npm install --prefix ${directory}`, {
+    execSync(`cd ${directory} && npm install`, {
       maxBuffer: 10 * 1000 * 1024, // 10Mo of logs allowed for module with big npm install
     });
   } catch (e) {
