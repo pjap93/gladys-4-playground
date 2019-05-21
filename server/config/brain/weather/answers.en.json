@@ -1,26 +1,18 @@
 [
   {
     "label": "weather.get.success.sunny",
-    "answers": [
-      "Weather is sunny and temperature outside is {{ temperature }} {{ units }}."
-    ]
+    "answers": ["Weather is sunny and temperature outside is {{ temperature }} {{ units }}."]
   },
   {
     "label": "weather.get.success.raining",
-    "answers": [
-      "It's raining and temperature outside is {{ temperature }} {{ units }}."
-    ]
+    "answers": ["It's raining and temperature outside is {{ temperature }} {{ units }}."]
   },
   {
     "label": "weather.get.fail",
-    "answers": [
-      "There was an error while getting the weather."
-    ]
+    "answers": ["There was an error while getting the weather."]
   },
   {
     "label": "weather.get.fail.not-configured",
-    "answers": [
-      "You need to configure DarkSky API in the Integration tab before using this feature."
-    ]
+    "answers": ["You need to configure DarkSky API in the Integration tab before using this feature."]
   }
 ]

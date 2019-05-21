@@ -1,13 +1,6 @@
 {
-  "plugins": [
-    "jsdoc",
-    "require-jsdoc"
-  ],
-  "extends": [
-    "airbnb-base",
-    "plugin:jsdoc/recommended",
-    "prettier"
-  ],
+  "plugins": ["jsdoc", "require-jsdoc"],
+  "extends": ["airbnb-base", "plugin:jsdoc/recommended", "prettier"],
   "parserOptions": {
     "ecmaVersion": 2018
   },
@@ -28,10 +21,7 @@
     "after": true
   },
   "rules": {
-    "semi": [
-      "error",
-      "always"
-    ],
+    "semi": ["error", "always"],
     "quotes": [
       "error",
       "single",
@@ -49,10 +39,7 @@
     ],
     "no-mixed-spaces-and-tabs": "error",
     "no-eval": "error",
-    "block-spacing": [
-      "error",
-      "always"
-    ],
+    "block-spacing": ["error", "always"],
     "comma-spacing": [
       "error",
       {
@@ -66,10 +53,7 @@
         "properties": "never"
       }
     ],
-    "curly": [
-      "error",
-      "all"
-    ],
+    "curly": ["error", "all"],
     "no-unused-expressions": [
       "error",
       {
@@ -86,16 +70,11 @@
         "ignoreRestSiblings": true
       }
     ],
-    "func-call-spacing": [
-      "error",
-      "never"
-    ],
+    "func-call-spacing": ["error", "never"],
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": [
-          "**/*.test.js"
-        ]
+        "devDependencies": ["**/*.test.js"]
       }
     ],
     "max-len": [
@@ -146,17 +125,13 @@
   },
   "overrides": [
     {
-      "files": [
-        "services/**/*.js"
-      ],
+      "files": ["services/**/*.js"],
       "rules": {
         "global-require": 0
       }
     },
     {
-      "files": [
-        "**/*.controller.js"
-      ],
+      "files": ["**/*.controller.js"],
       "rules": {
         "jsdoc/check-examples": 0,
         "jsdoc/check-param-names": 0,

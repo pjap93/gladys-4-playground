@@ -9,19 +9,16 @@
       "uniqueid": "00:17:88:01:xx:xx:xx:xx-xx",
       "swversion": "66013452",
       "state": {
-          "on": true,
-          "bri": 202,
-          "hue": 11315,
-          "sat": 237,
-          "effect": "none",
-          "xy": [
-            0.5534,
-            0.4239
-          ],
-          "alert": "none",
-          "colormode": "xy",
-          "reachable": true
-        }
+        "on": true,
+        "bri": 202,
+        "hue": 11315,
+        "sat": 237,
+        "effect": "none",
+        "xy": [0.5534, 0.4239],
+        "alert": "none",
+        "colormode": "xy",
+        "reachable": true
+      }
     },
     {
       "id": "2",
@@ -32,19 +29,16 @@
       "uniqueid": "00:17:88:01:xx:xx:xx:xx-xx",
       "swversion": "66013452",
       "state": {
-          "on": true,
-          "bri": 202,
-          "hue": 11315,
-          "sat": 237,
-          "effect": "none",
-          "xy": [
-            0.5534,
-            0.4239
-          ],
-          "alert": "none",
-          "colormode": "xy",
-          "reachable": true
-        }
+        "on": true,
+        "bri": 202,
+        "hue": 11315,
+        "sat": 237,
+        "effect": "none",
+        "xy": [0.5534, 0.4239],
+        "alert": "none",
+        "colormode": "xy",
+        "reachable": true
+      }
     },
     {
       "id": "3",
@@ -55,19 +49,16 @@
       "uniqueid": "00:17:88:01:xx:xx:xx:xx-xx",
       "swversion": "66013452",
       "state": {
-          "on": true,
-          "bri": 202,
-          "hue": 11315,
-          "sat": 237,
-          "effect": "none",
-          "xy": [
-            0.5534,
-            0.4239
-          ],
-          "alert": "none",
-          "colormode": "xy",
-          "reachable": true
-        }
+        "on": true,
+        "bri": 202,
+        "hue": 11315,
+        "sat": 237,
+        "effect": "none",
+        "xy": [0.5534, 0.4239],
+        "alert": "none",
+        "colormode": "xy",
+        "reachable": true
+      }
     }
   ]
 }
