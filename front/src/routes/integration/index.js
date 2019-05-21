@@ -8,15 +8,12 @@ import actions from '../../actions/integration';
   actions
 )
 class Integration extends Component {
-
   componentWillMount() {
     this.props.getIntegrations();
   }
 
-  render({}, { }) {
-    return (
-      <IntegrationPage />
-    );
+  render({}, {}) {
+    return <IntegrationPage />;
   }
 }
 

@@ -5,7 +5,7 @@ const webpack = require('webpack');
 
 const asyncPlugin = require('preact-cli-plugin-fast-async');
 
-module.exports = function (config) {
+module.exports = function(config) {
   asyncPlugin(config);
   config.plugins.push(
     new webpack.DefinePlugin({

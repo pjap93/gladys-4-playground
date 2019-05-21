@@ -10,17 +10,26 @@ import actions from '../../../actions/signup/signupBlockstack';
   actions
 )
 class CreateAccountBlockstack extends Component {
-
   componentWillMount() {
     this.props.checkIfInstanceIsConfigured();
     this.props.init();
   }
 
-  render({ blockstackAuthInfos, createUser, updateNewUser, signupNewUser, signupErrors, createLocalAccountStatus, createLocalAccountError }, {}) {
-
+  render(
+    {
+      blockstackAuthInfos,
+      createUser,
+      updateNewUser,
+      signupNewUser,
+      signupErrors,
+      createLocalAccountStatus,
+      createLocalAccountError
+    },
+    {}
+  ) {
     return (
       <SignupLayout currentUrl="/signup/create-account-blockstack">
-        {blockstackAuthInfos &&
+        {blockstackAuthInfos && (
           <CreateAccountBlockstackTab
             createUser={createUser}
             updateNewUser={updateNewUser}
@@ -30,10 +39,8 @@ class CreateAccountBlockstack extends Component {
             createLocalAccountError={createLocalAccountError}
             disableEmailPassword
           />
-        }
-        {!blockstackAuthInfos &&
-          <RedirectingToBlockstack />
-        }
+        )}
+        {!blockstackAuthInfos && <RedirectingToBlockstack />}
       </SignupLayout>
     );
   }

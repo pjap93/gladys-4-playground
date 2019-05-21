@@ -20,9 +20,10 @@ const EmptyState = ({ children, ...props }) => (
         maxWidth: '300px'
       }}
     />
-    <p style={{
-      marginTop: '20px' 
-    }}
+    <p
+      style={{
+        marginTop: '20px'
+      }}
     >
       <Text id="dashboard.emptyDashboardSentenceTop" />
       <br /> <Text id="dashboard.emptyDashboardSentenceBottom" />

@@ -9,7 +9,6 @@ import actions from '../../../actions/signup/welcome';
   actions
 )
 class WelcomePage extends Component {
-
   componentWillMount() {
     this.props.checkIfInstanceIsConfigured();
   }

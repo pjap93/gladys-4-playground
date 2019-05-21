@@ -8,15 +8,10 @@ import actions from '../../../actions/device';
   actions
 )
 class SettingsSystem extends Component {
+  componentWillMount() {}
 
-  componentWillMount() {
-    
-  }
-
-  render({}, { }) {
-    return (
-      <SettingsSystemPage />
-    );
+  render({}, {}) {
+    return <SettingsSystemPage />;
   }
 }
 

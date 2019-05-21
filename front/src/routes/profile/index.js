@@ -8,15 +8,12 @@ import actions from '../../actions/profile';
   actions
 )
 class Profile extends Component {
-
   componentWillMount() {
     this.props.getMySelf();
   }
 
-  render({ user, profileUpdateErrors }, { }) {
-    return (
-      <DashboardProfile user={user} newUser={user} errors={profileUpdateErrors} />
-    );
+  render({ user, profileUpdateErrors }, {}) {
+    return <DashboardProfile user={user} newUser={user} errors={profileUpdateErrors} />;
   }
 }
 

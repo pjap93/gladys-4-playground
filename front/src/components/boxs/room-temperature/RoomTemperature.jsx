@@ -1,5 +1,3 @@
-
-
 const RoomTemperatureBox = ({ children, ...props }) => (
   <div class="card p-3">
     <div class="d-flex align-items-center">
@@ -7,7 +5,9 @@ const RoomTemperatureBox = ({ children, ...props }) => (
         <i class="fe fe-thermometer" />
       </span>
       <div>
-        <h4 class="m-0">{props.temperature}°{props.unit}</h4>
+        <h4 class="m-0">
+          {props.temperature}°{props.unit}
+        </h4>
         <small class="text-muted">{props.roomName}</small>
       </div>
     </div>

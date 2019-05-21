@@ -8,16 +8,12 @@ import LoginBlockstackForm from './LoginBlockstackForm';
   actions
 )
 class LoginBlockstack extends Component {
-
   componentWillMount() {
     this.props.login();
   }
 
-  render({ }, {}) {
-
-    return (
-      <LoginBlockstackForm />
-    );
+  render({}, {}) {
+    return <LoginBlockstackForm />;
   }
 }
 

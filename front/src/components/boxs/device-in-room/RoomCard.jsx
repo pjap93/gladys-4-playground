@@ -6,16 +6,14 @@ const RoomCard = ({ children, ...props }) => {
   }
 
   return (
-    <div class={'card ' + (props.room.collapsed ? ' card-collapsed' : '')} style="display: inline-block; min-width: 300px">
+    <div
+      class={'card ' + (props.room.collapsed ? ' card-collapsed' : '')}
+      style="display: inline-block; min-width: 300px"
+    >
       <div class="card-header">
         <h3 class="card-title">{props.room.name}</h3>
         <div class="card-options">
-          <a
-            href=""
-            onClick={collapseRoom}
-            class="card-options-collapse"
-            data-toggle="card-collapse"
-          >
+          <a href="" onClick={collapseRoom} class="card-options-collapse" data-toggle="card-collapse">
             <i class="fe fe-chevron-up" />
           </a>
         </div>

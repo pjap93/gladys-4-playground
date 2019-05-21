@@ -8,15 +8,10 @@ import actions from '../../../actions/device';
   actions
 )
 class SettingsHouses extends Component {
+  componentWillMount() {}
 
-  componentWillMount() {
-    
-  }
-
-  render({}, { }) {
-    return (
-      <HousePage />
-    );
+  render({}, {}) {
+    return <HousePage />;
   }
 }
 

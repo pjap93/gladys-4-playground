@@ -8,15 +8,10 @@ import actions from '../../../actions/device';
   actions
 )
 class SettingsAdvanced extends Component {
+  componentWillMount() {}
 
-  componentWillMount() {
-    
-  }
-
-  render({}, { }) {
-    return (
-      <SettingsAdvancedPage />
-    );
+  render({}, {}) {
+    return <SettingsAdvancedPage />;
   }
 }
 

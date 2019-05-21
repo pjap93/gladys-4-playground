@@ -7,16 +7,22 @@ const ZwavePage = ({ children, ...props }) => (
         <div class="container">
           <div class="page-header">
             <h1 class="page-title">
-              <Link href="/dashboard/integration/device" class="btn btn-secondary btn-sm btn-block" >◀️️ Back</Link>
+              <Link href="/dashboard/integration/device" class="btn btn-secondary btn-sm btn-block">
+                ◀️️ Back
+              </Link>
             </h1>
           </div>
-          
+
           <div class="row">
             <div class="col-lg-3">
               <div class="card">
-                <Link href={`${props.currentUrl}/${props.integration.key}`}><img class="card-img-top" src={props.integration.img} alt={props.integration.name} /></Link>
+                <Link href={`${props.currentUrl}/${props.integration.key}`}>
+                  <img class="card-img-top" src={props.integration.img} alt={props.integration.name} />
+                </Link>
                 <div class="card-body d-flex flex-column">
-                  <h4><Link href="#">{props.integration.name}</Link></h4>
+                  <h4>
+                    <Link href="#">{props.integration.name}</Link>
+                  </h4>
                   <div class="text-muted">{props.integration.description}</div>
                   <br />
                   <div class="row">
@@ -32,10 +38,7 @@ const ZwavePage = ({ children, ...props }) => (
             </div>
             <div class="col-lg-9">
               <div class="card">
-                
-                <div class="card-body">
-                  {children}
-                </div>
+                <div class="card-body">{children}</div>
               </div>
             </div>
           </div>

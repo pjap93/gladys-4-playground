@@ -15,12 +15,10 @@ const Sessions = ({ children, ...props }) => (
               </tr>
             </thead>
             <tbody>
-              
-              { props.devices && props.devices.map((device, index) => (
-                <SessionDevice device={device} revokeDevice={props.revokeDevice} index={index} />
-              ))
-              }
-            
+              {props.devices &&
+                props.devices.map((device, index) => (
+                  <SessionDevice device={device} revokeDevice={props.revokeDevice} index={index} />
+                ))}
             </tbody>
           </table>
         </div>

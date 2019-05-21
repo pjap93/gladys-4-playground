@@ -9,10 +9,7 @@ import integrationConfig from '../../../../config/integrations';
   actions
 )
 class PhilipsHueIntegration extends Component {
-
-  componentWillMount() {
-
-  }
+  componentWillMount() {}
 
   render({ user, getBridges, bridges, philipsHueGetBridgesStatus, philipsHueGetBridgeError }, {}) {
     return (

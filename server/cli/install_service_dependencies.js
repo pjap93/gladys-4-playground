@@ -5,15 +5,18 @@ const logger = require('../utils/logger.js');
 
 const SERVICE_PATH = join(__dirname, '../services');
 
-const isDirectory = source => lstatSync(source).isDirectory();
-const getDirectories = source => readdirSync(source).map(name => join(source, name)).filter(isDirectory);
+const isDirectory = (source) => lstatSync(source).isDirectory();
+const getDirectories = (source) =>
+  readdirSync(source)
+    .map((name) => join(source, name))
+    .filter(isDirectory);
 
 const directories = getDirectories(SERVICE_PATH);
 
 directories.forEach((directory) => {
   logger.info(`Installing dependencies in folder ${directory}`);
   try {
-    execSync(`npm install --prefix ${directory}`, {
+    execSync(`cd ${directory} && npm install`, {
       maxBuffer: 10 * 1000 * 1024, // 10Mo of logs allowed for module with big npm install
     });
   } catch (e) {

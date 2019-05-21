@@ -9,11 +9,11 @@ const integrations = {
   }
 };
 
-communicationEn.forEach((integration) => {
+communicationEn.forEach(integration => {
   integrations.en[integration.key] = integration;
 });
 
-deviceEn.forEach((integration) => {
+deviceEn.forEach(integration => {
   integrations.en[integration.key] = integration;
 });
 
