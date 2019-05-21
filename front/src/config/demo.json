@@ -314,16 +314,7 @@
       "id": "1",
       "manufacturer": "Z-Wave.Me",
       "product": "ZME_UZB1 USB Stick",
-      "neighbors": [
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        10
-      ]
+      "neighbors": [2, 3, 4, 5, 6, 7, 8, 10]
     },
     {
       "id": "2",
@@ -371,9 +362,7 @@
       "id": "10",
       "manufacturer": "FIBARO System",
       "product": "FGMS001-ZW5 Motion Sensor",
-      "neighbors": [
-        1
-      ]
+      "neighbors": [1]
     }
   ],
   "get /api/v1/service/usb/port": [

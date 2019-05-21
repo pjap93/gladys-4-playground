@@ -1,177 +1,177 @@
 {
-    "login": {
-      "title": "Gladys Assistant",
-      "cardTitle": "Login to your account",
-      "loginWithGladysGatewayButton": "Login with Gladys Gateway",
-      "loginWithBlockstackButton": "Login with Blockstack",
-      "emailLabel": "Email Address",
-      "emailPlaceholder": "Enter your email",
-      "passwordLabel": "Password",
-      "forgotPasswordLabel": "I forgot my password",
-      "passwordPlaceholder": "Enter your password",
-      "loginButtonText": "Log in",
-      "wrongCredentials": "Wrong email/password.",
-      "invalidEmail": "Invalid email",
-      "needHelpText": "Need help? Join us on <a href=\"https://community.gladysassistant.com/\"> Gladys Community</a>."
+  "login": {
+    "title": "Gladys Assistant",
+    "cardTitle": "Login to your account",
+    "loginWithGladysGatewayButton": "Login with Gladys Gateway",
+    "loginWithBlockstackButton": "Login with Blockstack",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "Enter your email",
+    "passwordLabel": "Password",
+    "forgotPasswordLabel": "I forgot my password",
+    "passwordPlaceholder": "Enter your password",
+    "loginButtonText": "Log in",
+    "wrongCredentials": "Wrong email/password.",
+    "invalidEmail": "Invalid email",
+    "needHelpText": "Need help? Join us on <a href=\"https://community.gladysassistant.com/\"> Gladys Community</a>."
+  },
+  "signup": {
+    "welcome": {
+      "title": "Welcome in Gladys 🙋",
+      "introSentence": "First, thank you for choosing me. I'm Gladys, a privacy-friendly home assistant for your house.",
+      "introTimeToCreateAccount": "It's time to create a local account for your Gladys setup.",
+      "introDontWorryLocal": "Don't worry: Gladys is fully self-hosted, and all the informations you'll enter are just saved in the local database of Gladys.",
+      "introInCaseOfIssues": "In case you have issues installing Gladys, check out our <a href=\"\">documentation</a> or ask a question on <a href=\"\">Gladys community</a>.",
+      "introReadMoreGladysGateway": "Read more about the <a href=\"\">Gladys Gateway.</a>",
+      "buttonCreateAccountGladysGateway": "Create account with Gladys Gateway",
+      "buttonCreateAccountWithEmail": "Create local account with your Email",
+      "buttonCreateAccountWithBlockstack": "Create account with Blockstack"
     },
-    "signup": {
-      "welcome": {
-        "title": "Welcome in Gladys 🙋",
-        "introSentence": "First, thank you for choosing me. I'm Gladys, a privacy-friendly home assistant for your house.",
-        "introTimeToCreateAccount": "It's time to create a local account for your Gladys setup.",
-        "introDontWorryLocal": "Don't worry: Gladys is fully self-hosted, and all the informations you'll enter are just saved in the local database of Gladys.",
-        "introInCaseOfIssues": "In case you have issues installing Gladys, check out our <a href=\"\">documentation</a> or ask a question on <a href=\"\">Gladys community</a>.",
-        "introReadMoreGladysGateway": "Read more about the <a href=\"\">Gladys Gateway.</a>",
-        "buttonCreateAccountGladysGateway": "Create account with Gladys Gateway",
-        "buttonCreateAccountWithEmail": "Create local account with your Email",
-        "buttonCreateAccountWithBlockstack" : "Create account with Blockstack"
-      },
-      "createLocalAccount": {
-        "title": "Create your local Gladys account",
-        "backButton": "Back",
-        "description": "All informations entered here are only saved locally in Gladys database. You can update them later at any time.",
-        "firstnameLabel": "Firstname",
-        "firstnamePlaceHolder": "Enter your Firstname",
-        "lastnameLabel": "Lastname",
-        "lastnamePlaceHolder": "Enter your Lastname",
-        "languageLabel": "Language",
-        "english": "English",
-        "french": "Français",
-        "birthdateLabel": "Birthdate",
-        "birthdatePlaceHolder": "Enter your birthdate",
-        "january": "January",
-        "february": "February",
-        "march": "March",
-        "april": "April",
-        "may": "May",
-        "june": "June",
-        "july": "July",
-        "august": "August",
-        "september": "September",
-        "october": "October",
-        "november": "November",
-        "december": "December",
-        "emailLabel": "Email",
-        "emailPlaceHolder": "Enter your Email",
-        "passwordLabel": "Password (min 8 characters)",
-        "passwordPlaceHolder": "Enter a password",
-        "passwordRepeatLabel": "Repeat your password",
-        "passwordRepeatPlaceHolder": "Repeat your password",
-        "firstnameError": "Firstname is required.",
-        "lastnameError": "Lastname is required.",
-        "emailError": "Email is not a valid email",
-        "passwordError": "Password should be at least 8 characters.",
-        "passwordRepeatError": "Password are not matching.",
-        "birthdateError": "Birthdate is required.",
-        "networkError": "Network Error: We didn't succeeded in contacting your Gladys instance. Are you connected to the network? Is your Gladys instance running?",
-        "emailAlreadyExistError": "A user with this email already exist.",
-        "selectorAlreadyExistError": "A user with this firstname already exist.",
-        "createAccountButton": "Create Account"
-      },
-      "preferences": {
-        "title": "Your preferences",
-        "description": "You can modify those settings anytime later.",
-        "temperatureUnitsLabel": "Temperature unit",
-        "temperatureUnitsCelsius": "Celsius (°C)",
-        "temperatureUnitsFahrenheit": "Fahrenheit (°F)",
-        "distanceUnit": "Distance unit",
-        "distanceUnitMeter": "SI (Meter)",
-        "distanceUnitUs": "Imperial/US (Miles)",
-        "deviceStateHistoryDuration": "Keep Device State History",
-        "saveSettingsButton": "Save settings"
-      },
-      "configureHouse": {
-        "title": "Configure your house",
-        "description": "All those informations are saved only in Gladys local database. If you have several houses, you can configure them later in Gladys.",
-        "houseNameLabel": "Name",
-        "houseNamePlaceHolder": "Enter your house name",
-        "houseNameError": "House name is required",
-        "houseLocationLabel": "Click where you house is located",
-        "roomsLabel": "Add all rooms in your house",
-        "roomNamePlaceHolder": "Type a new room to add",
-        "addRoomButton": "Add",
-        "saveHouse": "Save house"
-      },
-      "success": {
-        "title": "Allow me to thank you 🙏",
-        "introduction": "I'm <a href=\"https://twitter.com/pierregillesl\">Pierre-Gilles Leymarie</a>, and I founded Gladys Assistant in 2013.",
-        "thanksForChoosingOpenSource": "I would like to thank you for choosing Gladys 🙌 I hope you'll enjoy using this software as much as I enjoyed building it.",
-        "ifYouWantToSupportThisSotware": "As Gladys is now my main job, I rely on contribution to make this project substainable. If you want to access to additionnal features and support Gladys, read more about the <a href=\"\">Gladys community package</a>.",
-        "goToDashboardButton": "Go to Dashboard"
-      }
+    "createLocalAccount": {
+      "title": "Create your local Gladys account",
+      "backButton": "Back",
+      "description": "All informations entered here are only saved locally in Gladys database. You can update them later at any time.",
+      "firstnameLabel": "Firstname",
+      "firstnamePlaceHolder": "Enter your Firstname",
+      "lastnameLabel": "Lastname",
+      "lastnamePlaceHolder": "Enter your Lastname",
+      "languageLabel": "Language",
+      "english": "English",
+      "french": "Français",
+      "birthdateLabel": "Birthdate",
+      "birthdatePlaceHolder": "Enter your birthdate",
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December",
+      "emailLabel": "Email",
+      "emailPlaceHolder": "Enter your Email",
+      "passwordLabel": "Password (min 8 characters)",
+      "passwordPlaceHolder": "Enter a password",
+      "passwordRepeatLabel": "Repeat your password",
+      "passwordRepeatPlaceHolder": "Repeat your password",
+      "firstnameError": "Firstname is required.",
+      "lastnameError": "Lastname is required.",
+      "emailError": "Email is not a valid email",
+      "passwordError": "Password should be at least 8 characters.",
+      "passwordRepeatError": "Password are not matching.",
+      "birthdateError": "Birthdate is required.",
+      "networkError": "Network Error: We didn't succeeded in contacting your Gladys instance. Are you connected to the network? Is your Gladys instance running?",
+      "emailAlreadyExistError": "A user with this email already exist.",
+      "selectorAlreadyExistError": "A user with this firstname already exist.",
+      "createAccountButton": "Create Account"
     },
-    "dashboard": {
-      "title": "Dashboard",
-      "editDashboardButton": "Edit",
-      "editDashboardCancelButton": "Cancel",
-      "editDashboardSaveButton": "Save",
-      "emptyDashboardSentenceTop": "Looks like your dashboard is not configured yet.",
-      "emptyDashboardSentenceBottom": "Click on the \"Edit\" button to design your dashboard.",
-      "boxTitle": {
-        "weather": "Weather",
-        "temperature-in-room": "Temperature in room",
-        "user-presence": "User presence",
-        "camera": "Camera",
-        "devices-in-room": "Devices in room"
-      },
-      "boxes": {
-        "deleteButton": "Delete",
-        "weather": {
-          "editHouseLabel": "Select a house. I will use its latitude/longitude to get the weather."
-        },
-        "devicesInRoom": {
-          "editRoomLabel": "Select the room you want to display here."
-        },
-        "temperatureInRoom": {
-          "editRoomLabel": "Select the room you want to display here."
-        },
-        "userPresence": {
-          "description": "Display who's at home and who is not.",
-          "left": "Left",
-          "atHome": "At Home",
-          "neverSeenAtHome": "Never Seen At Home",
-          "error": "There was a network error fetching the list of user. Please refresh.",
-          "emptyText": "There are no users to display here. You can add users in Gladys settings."
-        },
-        "camera": {
-          "editCameraLabel": "Select the camera you want to display here."
-        }
-      }
+    "preferences": {
+      "title": "Your preferences",
+      "description": "You can modify those settings anytime later.",
+      "temperatureUnitsLabel": "Temperature unit",
+      "temperatureUnitsCelsius": "Celsius (°C)",
+      "temperatureUnitsFahrenheit": "Fahrenheit (°F)",
+      "distanceUnit": "Distance unit",
+      "distanceUnitMeter": "SI (Meter)",
+      "distanceUnitUs": "Imperial/US (Miles)",
+      "deviceStateHistoryDuration": "Keep Device State History",
+      "saveSettingsButton": "Save settings"
     },
-    "integration": {
-      "root": {
-        "title": "Integrations",
-        "menu": {
-          "device": "Devices",
-          "communication": "Communication",
-          "calendar": "Calendar",
-          "music": "Music",
-          "health": "Health",
-          "weather": "Weather",
-          "navigation": "navigation"
-        }
-      },
-      "telegram": {
-        "title": "Telegram",
-        "introduction": "To connect Gladys to Telegram, you first need to create a Telegram bot using the Botfather. Send a <b>/newbot</b> message to the <a href=\"https://telegram.me/BotFather\">@BotFather</a> in Telegram. Then, enter the API key he gave you below.",
-        "link": "To talk to Gladys in Telegram, click on <a href=\"{{link}}\">this link</a>.",
-        "note": "This link is unique to your account, do not send it to other users."
-      },
-      "philipsHue": {
-        "title": "Philips Hue",
-        "introduction": "Configure here your Philips Hue lights. Gladys is compatible with <a href=\"{{link}}\">this set of Philips Hue lights</a>",
-        "searchForBridgesButton": "Scan network for bridges"
-      }
+    "configureHouse": {
+      "title": "Configure your house",
+      "description": "All those informations are saved only in Gladys local database. If you have several houses, you can configure them later in Gladys.",
+      "houseNameLabel": "Name",
+      "houseNamePlaceHolder": "Enter your house name",
+      "houseNameError": "House name is required",
+      "houseLocationLabel": "Click where you house is located",
+      "roomsLabel": "Add all rooms in your house",
+      "roomNamePlaceHolder": "Type a new room to add",
+      "addRoomButton": "Add",
+      "saveHouse": "Save house"
     },
-    "editScene": {
-      "actions": {
-        "telegram": {
-          "send": "Send Telegram Message"
-        },
-        "delay": "Wait",
-        "light": {
-          "turn-on": "Turn On the Lights"
-        }
+    "success": {
+      "title": "Allow me to thank you 🙏",
+      "introduction": "I'm <a href=\"https://twitter.com/pierregillesl\">Pierre-Gilles Leymarie</a>, and I founded Gladys Assistant in 2013.",
+      "thanksForChoosingOpenSource": "I would like to thank you for choosing Gladys 🙌 I hope you'll enjoy using this software as much as I enjoyed building it.",
+      "ifYouWantToSupportThisSotware": "As Gladys is now my main job, I rely on contribution to make this project substainable. If you want to access to additionnal features and support Gladys, read more about the <a href=\"\">Gladys community package</a>.",
+      "goToDashboardButton": "Go to Dashboard"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "editDashboardButton": "Edit",
+    "editDashboardCancelButton": "Cancel",
+    "editDashboardSaveButton": "Save",
+    "emptyDashboardSentenceTop": "Looks like your dashboard is not configured yet.",
+    "emptyDashboardSentenceBottom": "Click on the \"Edit\" button to design your dashboard.",
+    "boxTitle": {
+      "weather": "Weather",
+      "temperature-in-room": "Temperature in room",
+      "user-presence": "User presence",
+      "camera": "Camera",
+      "devices-in-room": "Devices in room"
+    },
+    "boxes": {
+      "deleteButton": "Delete",
+      "weather": {
+        "editHouseLabel": "Select a house. I will use its latitude/longitude to get the weather."
+      },
+      "devicesInRoom": {
+        "editRoomLabel": "Select the room you want to display here."
+      },
+      "temperatureInRoom": {
+        "editRoomLabel": "Select the room you want to display here."
+      },
+      "userPresence": {
+        "description": "Display who's at home and who is not.",
+        "left": "Left",
+        "atHome": "At Home",
+        "neverSeenAtHome": "Never Seen At Home",
+        "error": "There was a network error fetching the list of user. Please refresh.",
+        "emptyText": "There are no users to display here. You can add users in Gladys settings."
+      },
+      "camera": {
+        "editCameraLabel": "Select the camera you want to display here."
       }
     }
+  },
+  "integration": {
+    "root": {
+      "title": "Integrations",
+      "menu": {
+        "device": "Devices",
+        "communication": "Communication",
+        "calendar": "Calendar",
+        "music": "Music",
+        "health": "Health",
+        "weather": "Weather",
+        "navigation": "navigation"
+      }
+    },
+    "telegram": {
+      "title": "Telegram",
+      "introduction": "To connect Gladys to Telegram, you first need to create a Telegram bot using the Botfather. Send a <b>/newbot</b> message to the <a href=\"https://telegram.me/BotFather\">@BotFather</a> in Telegram. Then, enter the API key he gave you below.",
+      "link": "To talk to Gladys in Telegram, click on <a href=\"{{link}}\">this link</a>.",
+      "note": "This link is unique to your account, do not send it to other users."
+    },
+    "philipsHue": {
+      "title": "Philips Hue",
+      "introduction": "Configure here your Philips Hue lights. Gladys is compatible with <a href=\"{{link}}\">this set of Philips Hue lights</a>",
+      "searchForBridgesButton": "Scan network for bridges"
+    }
+  },
+  "editScene": {
+    "actions": {
+      "telegram": {
+        "send": "Send Telegram Message"
+      },
+      "delay": "Wait",
+      "light": {
+        "turn-on": "Turn On the Lights"
+      }
+    }
+  }
 }
